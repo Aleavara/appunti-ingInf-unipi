@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Memory Visualizer: * vs **</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1, h2 { text-align: center; color: #2c3e50; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 45%;
+            min-width: 400px;
+            padding: 20px;
+            border-top: 5px solid #ccc;
+        }
+
+        .panel.objects { border-color: #e74c3c; } /* Rosso per oggetti */
+        .panel.pointers { border-color: #3498db; } /* Blu per puntatori */
+
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        
+        .keyword { color: #c678dd; }
+        .type { color: #e5c07b; }
+        .variable { color: #e06c75; }
+        .comment { color: #5c6370; font-style: italic; }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+
+        button:active { transform: scale(0.95); }
+        .btn-reset { background-color: #95a5a6; color: white; }
+        .btn-alloc { background-color: #2ecc71; color: white; }
+        .btn-item { background-color: #f1c40f; color: black; }
+
+        /* Memory Visualization Area */
+        .memory-stage {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ecf0f1;
+            border: 2px dashed #bdc3c7;
+            padding: 10px;
+            height: 300px;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .memory-zone {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .zone-label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+        }
+
+        /* Stack Items */
+        .stack-var {
+            width: 80px;
+            height: 50px;
+            background-color: #fab1a0; /* Stack Color */
+            border: 2px solid #e17055;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            margin-top: 20px;
+            z-index: 2;
+        }
+
+        /* Heap Items */
+        .heap-block {
+            background-color: #74b9ff; /* Heap Color */
+            border: 2px solid #0984e3;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column; /* Vertical stack for pointers */
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        /* Case 1: Contiguous Array */
+        .heap-contiguous {
+            display: flex;
+            flex-direction: row; /* Horizontal for objects */
+        }
+        .heap-cell-obj {
+            width: 50px;
+            height: 50px;
+            border-right: 1px solid #0984e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+        .heap-cell-obj:last-child { border-right: none; }
+
+        /* Case 2: Pointer Array */
+        .heap-array-ptrs {
+            display: flex;
+            flex-direction: column; /* Vertical column of pointers */
+        }
+        .heap-cell-ptr {
+            width: 100px;
+            height: 40px;
+            border-bottom: 1px solid #0984e3;
+            background-color: #a29bfe; /* Pointer color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            position: relative;
+        }
+        .heap-cell-ptr:last-child { border-bottom: none; }
+
+        /* The actual objects pointed to by the pointer array */
+        .heap-object-dynamic {
+            width: 60px;
+            height: 40px;
+            background-color: #55efc4;
+            border: 2px solid #00b894;
+            position: absolute;
+            right: -100px; /* Shifted to the right */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .heap-object-dynamic.visible { opacity: 1; }
+
+        /* Arrows (Simulated with SVG later, simplified here) */
+        .arrow-line {
+            position: absolute;
+            height: 2px;
+            background-color: #2d3436;
+            transform-origin: 0 50%;
+            z-index: 1;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            font-size: 0.9em;
+            background: #fff3cd;
+            padding: 10px;
+            border-left: 4px solid #ffc107;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>C++ Memory: Array di Oggetti vs Array di Puntatori</h1>
+    <div class="subtitle">Visualizzazione interattiva per capire la differenza tra <code>Type*</code> e <code>Type**</code></div>
+
+    <div class="container">
+
+        <div class="panel objects">
+            <h2>1. Array di Oggetti</h2>
+            <div class="code-block">
+<span class="keyword">class</span> <span class="type">Server</span> { ... };
+
+<span class="comment">// 1. Crea array continuo</span>
+<span class="type">Server</span>* cluster = <span class="keyword">new</span> <span class="type">Server</span>[3];
+
+<span class="comment">// Accesso diretto</span>
+cluster[0].cpu = 10;</div>
+
+            <div class="controls">
+                <button class="btn-reset" onclick="resetObj()">Reset</button>
+                <button class="btn-alloc" onclick="allocObj()">Esegui new Server[3]</button>
+            </div>
+
+            <div class="memory-stage" id="stage-obj">
+                <div class="memory-zone">
+                    <div class="zone-label">STACK (Memoria Locale)</div>
+                    <div id="stack-obj-content"></div>
+                </div>
+                <div class="memory-zone">
+                    <div class="zone-label">HEAP (Memoria Dinamica)</div>
+                    <div id="heap-obj-content"></div>
+                </div>
+                <div id="arrow-obj" class="arrow-line" style="width: 0; top: 50px; left: 25%;"></div>
+            </div>
+
+            <div class="explanation">
+                <strong>Cosa succede:</strong> Viene creato un BLOCCO UNICO. Gli oggetti sono "incollati" tra loro. Non puoi avere "buchi" vuoti (nullptr). Se crei l'array, crei 3 oggetti Server fisici immediatamente.
+            </div>
+        </div>
+
+        <div class="panel pointers">
+            <h2>2. Array di Puntatori (Cluster/Mensa)</h2>
+            <div class="code-block">
+<span class="keyword">class</span> <span class="type">Server</span> { ... };
+
+<span class="comment">// 1. Crea array di FRECCE</span>
+<span class="type">Server</span>** cluster = <span class="keyword">new</span> <span class="type">Server</span>*[3];
+
+<span class="comment">// 2. Crea oggetti singoli dopo</span>
+cluster[0] = <span class="keyword">new</span> <span class="type">Server</span>();
+cluster[2] = <span class="keyword">new</span> <span class="type">Server</span>();
+<span class="comment">// cluster[1] rimane nullptr</span></div>
+
+            <div class="controls">
+                <button class="btn-reset" onclick="resetPtr()">Reset</button>
+                <button class="btn-alloc" onclick="allocPtrArr()">1. new Server*[3]</button>
+                <button class="btn-item" onclick="allocPtrItem(0)">2. new Server (idx 0)</button>
+                <button class="btn-item" onclick="allocPtrItem(2)">3. new Server (idx 2)</button>
+            </div>
+
+            <div class="memory-stage" id="stage-ptr">
+                <div class="memory-zone">
+                    <div class="zone-label">STACK</div>
+                    <div id="stack-ptr-content"></div>
+                </div>
+                <div class="memory-zone">
+                    <div class="zone-label">HEAP</div>
+                    <div id="heap-ptr-content"></div>
+                </div>
+                </div>
+
+            <div class="explanation">
+                <strong>Cosa succede:</strong> Crei una lista di "ganci" (puntatori). All'inizio sono vuoti. Poi crei i server VERI in posti diversi della memoria. L'indice 1 rimane vuoto (nullptr). <strong>Massima flessibilità!</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- LOGICA SCENARIO 1 (OGGETTI) ---
+        function resetObj() {
+            document.getElementById('stack-obj-content').innerHTML = '';
+            document.getElementById('heap-obj-content').innerHTML = '';
+            document.getElementById('arrow-obj').style.width = '0';
+        }
+
+        function allocObj() {
+            resetObj();
+            
+            // 1. Draw Stack Variable
+            const stackDiv = document.getElementById('stack-obj-content');
+            stackDiv.innerHTML = `<div class="stack-var"><div>cluster</div><div>(0x55AA)</div></div>`;
+
+            // 2. Draw Heap Block (Contiguous)
+            const heapDiv = document.getElementById('heap-obj-content');
+            setTimeout(() => {
+                heapDiv.innerHTML = `
+                    <div class="heap-block heap-contiguous">
+                        <div class="heap-cell-obj">Srv 0</div>
+                        <div class="heap-cell-obj">Srv 1</div>
+                        <div class="heap-cell-obj">Srv 2</div>
+                    </div>
+                    <div style="font-size:0.8em; margin-top:5px; color:#0984e3;">Indirizzo: 0x55AA</div>
+                `;
+                
+                // Draw connection arrow
+                // (Simplified visual hack for the line)
+                const arrow = document.getElementById('arrow-obj');
+                arrow.style.top = "60px"; 
+                arrow.style.left = "22%";
+                arrow.style.width = "28%";
+                arrow.style.borderTop = "2px solid black";
+                arrow.style.transform = "rotate(10deg)";
+            }, 300);
+        }
+
+        // --- LOGICA SCENARIO 2 (PUNTATORI) ---
+        let ptrAllocated = false;
+
+        function resetPtr() {
+            document.getElementById('stack-ptr-content').innerHTML = '';
+            document.getElementById('heap-ptr-content').innerHTML = '';
+            ptrAllocated = false;
+        }
+
+        function allocPtrArr() {
+            if(ptrAllocated) return;
+            resetPtr();
+
+            // 1. Stack Variable
+            const stackDiv = document.getElementById('stack-ptr-content');
+            stackDiv.innerHTML = `<div class="stack-var"><div>cluster</div><div>(0x99FF)</div></div>`;
+
+            // 2. Heap Array of Pointers
+            const heapDiv = document.getElementById('heap-ptr-content');
+            setTimeout(() => {
+                heapDiv.innerHTML = `
+                    <div class="heap-block heap-array-ptrs" id="ptr-array-container">
+                        <div class="heap-cell-ptr" id="ptr-cell-0">idx 0: nullptr</div>
+                        <div class="heap-cell-ptr" id="ptr-cell-1">idx 1: nullptr</div>
+                        <div class="heap-cell-ptr" id="ptr-cell-2">idx 2: nullptr</div>
+                    </div>
+                    <div style="font-size:0.8em; margin-top:5px; color:#0984e3;">Indirizzo: 0x99FF</div>
+                `;
+                ptrAllocated = true;
+            }, 300);
+        }
+
+        function allocPtrItem(index) {
+            if(!ptrAllocated) {
+                alert("Devi prima allocare l'array di puntatori!");
+                return;
+            }
+
+            const cell = document.getElementById(`ptr-cell-${index}`);
+            // Check if already allocated
+            if(cell.innerHTML.includes("->")) return;
+
+            // Update the pointer cell
+            const randomAddr = "0x" + Math.floor(Math.random()*1000 + 1000).toString(16).toUpperCase();
+            cell.innerHTML = `idx ${index}: <span style="font-weight:bold">${randomAddr}</span>`;
+            cell.style.backgroundColor = "#fab1a0"; // Highlight change
+
+            // Create the object visually "far away"
+            // We append it to the cell to position it absolute relative to the cell
+            const objDiv = document.createElement("div");
+            objDiv.className = "heap-object-dynamic";
+            objDiv.innerHTML = "Srv Obj";
+            cell.appendChild(objDiv);
+
+            // Animate appearance
+            setTimeout(() => {
+                objDiv.classList.add("visible");
+                // Draw small arrow line inside
+                objDiv.style.boxShadow = "-5px 5px 10px rgba(0,0,0,0.2)";
+            }, 100);
+        }
+
+    </script>
+</body>
+</html>
