@@ -1,0 +1,2151 @@
+\documentclass[a4paper,12pt]{article}
+
+% Pacchetti per la lingua e la codifica
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% Pacchetti per la matematica
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{cancel}
+% Pacchetti per l'impaginazione
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref} % Link colorati
+\usepackage{amsmath}
+% --- COMANDO PER LA DIFFICOLTÀ ---
+\newcommand{\diff}[1]{%
+    \ifcase#1\or
+    {\color{green!60!black}$\bullet$}% 1 pallino
+    \or
+    {\color{orange}$\bullet\bullet$}% 2 pallini
+    \or
+    {\color{red}$\bullet\bullet\bullet$}% 3 pallini
+    \fi
+}
+
+% --- COMANDO PER RIFERIMENTO SOLUZIONE ---
+% Uso: \sol{ex20} crea la scritta (Sol. pag. X) che punta alla label {sol:ex20}
+\newcommand{\sol}[1]{%
+    \hspace{0.5cm}{\footnotesize\itshape\color{gray}(Sol. pag. \pageref{sol:#1})}%
+}
+% ---------------------------------
+
+% Titolo del documento
+\title{\textbf{Raccolta Ragionata Esercizi d'Esame: \\ Equazioni Differenziali}}
+\author{Alessio Avarappattu}
+\date{Dicembre 2025}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Legenda Difficoltà:} \\
+\diff{1} \textbf{Base:} Applicazione diretta del metodo risolutivo. \\
+\diff{2} \textbf{Intermedio:} Richiede calcoli lunghi, integrazione per parti o studio di casi. \\
+\diff{3} \textbf{Avanzato:} Parametri critici, perturbazioni singolari, studi qualitativi o limiti.
+
+\tableofcontents
+\newpage
+
+% =========================================================================
+\section{Equazioni a Variabili Separabili}
+\textit{Metodo: Separare $x$ e $y$, integrare ambo i membri, esplicitare la soluzione.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex 20
+    \item \diff{1} \textbf{Base Trigonometrica} \sol{ex1} \\
+    Si trovi la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = \tan(x)y(x) \\
+    y(\pi/4) = 2
+    \end{cases}
+    \]
+
+    % Ex 33
+    \item \diff{1} \textbf{Base Polinomiale} \sol{ex2} \\
+    Si risolva il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = x^2(1+y^2(x)) \\
+    y(0) = 1
+    \end{cases}
+    \]
+
+    % Ex 22
+    \item \diff{2} \textbf{Con Logaritmi} \sol{ex3} \\
+    Si trovi la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = \log(x)e^{-y(x)} \\
+    y(3) = \log(3) + \log(\log 3)
+    \end{cases}
+    \]
+
+    % Ex 4 (Corretto)
+    \item \diff{1} \textbf{Parametrica e Limitatezza} \sol{ex4} \\
+    Risolvere al variare di $\alpha \in \mathbb{R}$ il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = x^2 y(x) \\
+    y(0) = \alpha
+    \end{cases}
+    \]
+    Determinare inoltre per quali valori di $\alpha$:
+    \begin{enumerate}[label=\alph*)]
+        \item La soluzione è limitata superiormente.
+        \item La soluzione è limitata (sia superiormente che inferiormente).
+    \end{enumerate}
+
+    % Ex 5
+    \item \diff{2} \textbf{Studio Qualitativo} \sol{ex5} \\
+    Si consideri l'equazione $y' = x y \log(y)$.
+    \begin{enumerate}[label=\alph*)]
+        \item Si determinino eventuali soluzioni costanti.
+        \item Si risolva il problema di Cauchy con $y(0)=3$.
+        \item Sapendo che $y(x) > 0$ per ogni $x$, si risolva con $y(0)=1/2$ e si calcoli $\lim_{x \to \infty} y'(x)$.
+    \end{enumerate}
+
+\end{enumerate}
+
+% =========================================================================
+\section{Equazioni Lineari del Primo Ordine}
+\textit{Metodo: Formula risolutiva con fattore integrante $e^{A(x)}$.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 6
+    \item \diff{1} \textbf{Standard} \sol{ex6} \\
+    Si trovi la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + y(x) = \cos(x) + e^x \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 7
+    \item \diff{1} \textbf{Coefficiente Razionale} \sol{ex7} \\
+    Risolvere l'equazione differenziale:
+    \[ y'(x) + \frac{y(x)}{1+x^2} = e^{-\arctan x} \]
+
+    % Ex 8
+    \item \diff{2} \textbf{Fattore Integrante Singolare} \sol{ex8} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + \frac{y(x)}{x} = \cos(x^2) \\
+    y(\sqrt{\pi}) = 1
+    \end{cases}
+    \]
+
+    % Ex 9
+    \item \diff{2} \textbf{Risonanza Esponenziale (Cauchy)} \sol{ex9} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + y(x) = \sin(x) + e^{-x} \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 10
+    \item \diff{2} \textbf{Coefficiente Irrazionale} \sol{ex10} \\
+    Si trovi la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + \frac{1}{2\sqrt{x}}y(x) = \arctan(x)e^{-\sqrt{x}} \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 11
+    \item \diff{1} \textbf{Polinomiale-Esponenziale} \sol{ex11} \\
+    Si risolva il problema di Cauchy (con $y_0 \in \mathbb{R}$):
+    \[
+    \begin{cases}
+    y'(x) + 4x^3 y(x) = x e^{-x^4} \\
+    y(0) = y_0
+    \end{cases}
+    \]
+
+    % Ex 12
+    \item \diff{2} \textbf{Con Sommatoria} \sol{ex12} \\
+    Risolvere per $N \in \mathbb{N}$ l'equazione differenziale:
+    \[ y'(x) + y(x) = \sum_{n=0}^{N} \cos(nx) \]
+
+    % Ex 13
+    \item \diff{2} \textbf{Parametro $n$ Naturale} \sol{ex13} \\
+    Si risolva, per $n \in \mathbb{N}$, il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'_n(x) + y_n(x) = x^n e^{-x} \\
+    y_n(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 14
+    \item \diff{2} \textbf{Cauchy Lineare Fratta} \sol{ex14} \\
+    Risolvere per $x > 0$ il problema di Cauchy (con parametro $\alpha$):
+    \[
+    \begin{cases}
+    y'(x) = \frac{1+x}{x}y(x) + x - x^2 \\
+    y(1) = \alpha
+    \end{cases}
+    \]
+
+    % Ex 15
+    \item \diff{3} \textbf{Con Analisi del Limite ($\lambda$)} \sol{ex15} \\
+    Si risolva, per $\lambda \in \mathbb{R}$, il problema di Cauchy:
+    \[
+    \begin{cases}
+    y_\lambda'(x) - y_\lambda(x) = e^{(1+\lambda^2)x} \\
+    y_\lambda(0) = 0
+    \end{cases}
+    \]
+    Si determini poi se esistono $\lambda \in \mathbb{R}$ tali che $\lim_{x \to +\infty} y_\lambda(x) = +\infty$.
+
+\end{enumerate}
+
+% =========================================================================
+\section{Equazioni di Bernoulli (Non Lineari)}
+\textit{Metodo: Sostituzione $z = y^{1-\alpha}$ per renderla lineare.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 16
+    \item \diff{2} \textbf{Bernoulli Standard} \sol{ex16} \\
+    Risolvere il problema di Cauchy (con parametro iniziale $y_0$):
+    \[
+    \begin{cases}
+    y'(x) + y(x) = y^2(x) \\
+    y(0) = y_0
+    \end{cases}
+    \]
+
+    % Ex 17
+    \item \diff{2} \textbf{Bernoulli Guidata} \sol{ex17} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = y(x) - x (y(x))^2 \\
+    y(0) = 1
+    \end{cases}
+    \]
+    (Suggerimento: dividere per $y^2$ ed effettuare la sostituzione $z(x) = 1/y(x)$).
+
+\end{enumerate}
+
+% =========================================================================
+\section{Lineari del Secondo Ordine a Coeff. Costanti}
+\textit{Metodo: Polinomio caratteristico per l'omogenea + Metodo di somiglianza/variazione costanti per la particolare.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 18
+    \item \diff{1} \textbf{Standard Trigonometrica} \sol{ex18} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(x) - 3y'(x) + 2y(x) = \cos(2x) \\
+    y(0) = 0, \quad y'(0) = 1
+    \end{cases}
+    \]
+
+    % Ex 19
+    \item \diff{2} \textbf{Doppia Risonanza Esponenziale} \sol{ex19} \\
+    Risolvere l'equazione differenziale:
+    \[ y''(t) - y(t) = e^t - e^{-t} \]
+
+    % Ex 20
+    \item \diff{2} \textbf{Termine Noto Polinomiale} \sol{ex20} \\
+    Risolvere per $k \in \mathbb{R}$ il problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(t) - y'(t) = t+1 \\
+    y(0) = k, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 21
+    \item \diff{3} \textbf{Risonanza Completa ($e^x$)} \sol{ex21} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(x) - 2y'(x) + y(x) = e^x \\
+    y(0) = 0, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 22
+    \item \diff{3} \textbf{Condizione Mista e Limite} \sol{ex22} \\
+    Data l'equazione differenziale:
+    \[ y''(x) - y'(x) - 2y(x) = 12e^{2x} \]
+    \begin{itemize}
+        \item Determinare la famiglia di soluzioni che soddisfa la condizione $y(0)+y'(0)=18$.
+        \item Tra queste, stabilire se ne esiste una tale che $\lim_{x \to -\infty} y(x) = 0$.
+    \end{itemize}
+
+    % Ex 23
+    \item \diff{3} \textbf{Termine Noto a Sommatoria} \sol{ex23} \\
+    Calcolare la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(x) + y(x) = \sum_{k=2}^{5} \sin(kx) \\
+    y(0) = 0, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 24
+    \item \diff{2} \textbf{Risonanza Parametrica ($\alpha$)} \sol{ex24} \\
+    Risolvere, per $\alpha > 0$, l'equazione differenziale:
+    \[ y''(x) - 5y'(x) + 6y(x) = e^{\alpha x} \]
+
+    % Ex 25
+    \item \diff{2} \textbf{Parametro Base vs Esponente} \sol{ex25} \\
+    Si trovi la soluzione generale al variare di $\alpha \ge 0$:
+    \[ y''(x) - \alpha^2 y(x) = e^x \]
+    (Discutere il caso di risonanza quando $\alpha=1$).
+
+    % Ex 26
+    \item \diff{3} \textbf{Parametro $\alpha$ all'Esponente} \sol{ex26} \\
+    Si trovi la soluzione generale dell'equazione al variare di $\alpha \ge 0$:
+    \[ y''(x) - \alpha^2 y(x) = e^{\alpha^2 x} \]
+
+    % Ex 27
+    \item \diff{2} \textbf{Risonanza Polinomiale} \sol{ex27} \\
+    Risolvere per ogni $\alpha \in \mathbb{R}$ il problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(x) + \alpha^2 y(x) = x^2 \\
+    y(0) = 0, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 28
+    \item \diff{3} \textbf{Integrabilità all'Infinito} \sol{ex28} \\
+    Risolvere il problema di Cauchy con parametro $\beta \in \mathbb{R}$:
+    \[
+    \begin{cases}
+    y''(t) - 2y(t) = 0 \\
+    y(0) = 1, \quad y'(0) = \beta
+    \end{cases}
+    \]
+    Determinare se esistono valori di $\beta$ tali per cui la soluzione soddisfi:
+    \[ \int_0^{+\infty} |y(t)| \, dt < +\infty \]
+
+\end{enumerate}
+
+% =========================================================================
+\section{Equazioni di Ordine Superiore ($n > 2$)}
+\textit{Metodo: Polinomio caratteristico di grado $n$.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 29 
+    \item \diff{2} \textbf{Terzo Ordine} \sol{ex29} \\
+    Risolvere l'equazione differenziale:
+    \[ y'''(x) - y'(x) = \cos(x) \]
+
+    % Ex 30
+    \item \diff{2} \textbf{Quarto Ordine} \sol{ex30} \\
+    Risolvere l'equazione differenziale:
+    \[ y''''(x) - y(x) = e^{-x} \]
+
+\end{enumerate}
+
+\section{Problemi Avanzati e Studi Qualitativi}
+\textit{Include: Perturbazioni, Oscillatori Forzati, Eq. Integro-Differenziali.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 31
+    \item \diff{3} \textbf{Oscillatore Armonico Forzato ($\omega$)} \sol{ex31} \\
+    Risolvere, al variare del parametro $\omega \in \mathbb{R}^+$, il problema di Cauchy:
+    \[
+    \begin{cases}
+    y''(x) + 9y(x) = \cos(\omega x) \\
+    y(0) = 1, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 32
+    \item \diff{3} \textbf{Studio Completo Risonanza Trigonometrica} \sol{ex32} \\
+    Si consideri l'equazione $y''(x) + 4y(x) = \sin(\alpha x)$ con $\alpha \ge 0$.
+    \begin{enumerate}[label=\alph*)]
+        \item Calcolare l'integrale generale al variare di $\alpha$.
+        \item Esistono valori di $\alpha$ per cui la soluzione non è limitata inferiormente?
+        \item Nei casi $\alpha=2$ e $\alpha=4$, risolvere con condizioni $y(0)=1, y'(0)=1$.
+    \end{enumerate}
+
+    % Ex 33
+    \item \diff{3} \textbf{Parametro $\epsilon$ e Variabile Indipendente} \sol{ex33} \\
+    Si risolva per $\epsilon \in \mathbb{R}^+$ il problema di Cauchy:
+    \[
+    \begin{cases}
+    y_\epsilon''(x) - \epsilon^2 y_\epsilon(x) = x \\
+    y_\epsilon(0) = \epsilon^2, \quad y_\epsilon'(0) = 0
+    \end{cases}
+    \]
+
+    % Ex 34
+    \item \diff{2} \textbf{Equazione Integro-Differenziale} \sol{ex34} \\
+    Si risolva l'equazione seguente (derivando ambo i membri rispetto a $x$):
+    \[ \int_0^x y(t)\,dt + y'(x) = e^x, \quad \text{con } y(0)=0 \]
+
+    % Ex 35
+    \item \diff{3} \textbf{Perturbazione Singolare ($\epsilon$)} \sol{ex35} \\
+    Calcolare, per $0 < \epsilon < 1$, la soluzione del problema di Cauchy:
+    \[
+    \begin{cases}
+    -\epsilon^2 y_\epsilon''(x) + y_\epsilon(x) = e^{-x} \\
+    y_\epsilon(0) = 0 \\
+    y_\epsilon'(0) = \frac{1}{\epsilon(\epsilon+1)}
+    \end{cases}
+    \]
+    e determinare il limite puntuale di $y_\epsilon(x)$ per $\epsilon \to 0^+$ (per $x > 0$).
+
+\end{enumerate}
+
+\newpage
+\section{Soluzioni}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+% Ex 1
+    \item \textbf{Base Trigonometrica} \label{sol:ex1} \\
+    \[
+    \begin{cases}
+    y'(x) = \tan(x)y(x) \\
+    y(\pi/4) = 2
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Separiamo le variabili (ponendo $y \neq 0$):
+    \[ \frac{y'}{y} = \tan(x) \implies \int \frac{dy}{y} = \int \frac{\sin x}{\cos x} \, dx \]
+    
+    Calcoliamo gli integrali:
+    \[ \ln|y| = -\ln|\cos x| + c \]
+    
+    Applichiamo l'esponenziale ad entrambi i membri per isolare $y$.
+    \textbf{Attenzione alla costante:}
+    \[ |y| = e^{-\ln|\cos x| + c} = e^{-\ln|\cos x|} \cdot e^c \]
+    Poiché $e^{-\ln|\cos x|} = \frac{1}{|\cos x|}$ e ponendo $K = \pm e^c$ (costante moltiplicativa):
+    \[ y(x) = \frac{K}{\cos x} \]
+    
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(\pi/4) = 2$:
+    \[ 2 = \frac{K}{\cos(\pi/4)} = \frac{K}{\sqrt{2}/2} \implies K = \sqrt{2} \]
+    
+    \textbf{Soluzione:}
+    \[ y(x) = \frac{\sqrt{2}}{\cos x} \]
+
+% Ex 2
+    \item \textbf{Base Polinomiale} \label{sol:ex2} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = x^2(1+y^2(x)) \\
+    y(0) = 1
+    \end{cases}
+    \]
+    
+    \textbf{Svolgimento:}
+    Separiamo le variabili:
+    \[ \frac{y'}{1+y^2} = x^2 \]
+    Integriamo rispetto a $x$:
+    \[ \int \frac{dy}{1+y^2} = \int x^2 \, dx \]
+    
+    Riconosciamo l'integrale notevole a sinistra ($\arctan y$):
+    \[ \arctan(y) = \frac{x^3}{3} + c \]
+    
+    \textbf{Condizione Iniziale (Strategia Migliore):}
+    Conviene trovare $c$ \textit{prima} di isolare la $y$, è meno rischioso.
+    Imponiamo $y(0)=1$:
+    \[ \arctan(1) = \frac{0}{3} + c \implies \frac{\pi}{4} = c \]
+    
+    Quindi l'equazione è:
+    \[ \arctan(y) = \frac{x^3}{3} + \frac{\pi}{4} \]
+    
+    \textbf{Isoliamo la y:}
+    Applichiamo la tangente ad entrambi i membri (la costante è dentro l'argomento!):
+    \[ y(x) = \tan\left( \frac{x^3}{3} + \frac{\pi}{4} \right) \]
+
+% Ex 3
+    \item \textbf{Con Logaritmi} \label{sol:ex3} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = \log(x)e^{-y(x)} \\
+    y(3) = \log(3) + \log(\log 3)
+    \end{cases}
+    \]
+    
+    \textbf{Svolgimento:}
+    Separiamo le variabili moltiplicando per $e^y$:
+    \[ e^y \, dy = \log(x) \, dx \]
+    Integriamo. A sinistra è immediato, a destra integriamo per parti ($1 \cdot \log x$):
+    \[ e^y = \int 1 \cdot \log(x) \, dx = x\log x - \int x \cdot \frac{1}{x} \, dx \]
+    \[ e^y = x\log x - x + c \]
+    
+    \textbf{Condizione Iniziale:}
+    Sostituiamo $x=3$ e $y = \log(3) + \log(\log 3)$.
+    Calcoliamo il membro sinistro $e^y$:
+    \[ e^{\log 3 + \log(\log 3)} = e^{\log 3} \cdot e^{\log(\log 3)} = 3 \cdot (\log 3) = 3\log 3 \]
+    
+    Sostituiamo nell'equazione completa:
+    \[ 3\log 3 = 3\log 3 - 3 + c \]
+    Semplificando $3\log 3$:
+    \[ 0 = -3 + c \implies c = 3 \]
+    
+    \textbf{Soluzione Finale:}
+    Riprendiamo $e^y = x\log x - x + 3$ e isoliamo la $y$:
+    \[ y(x) = \log( x\log x - x + 3 ) \]
+
+% Ex 4
+    \item \textbf{Parametrica e Limitatezza} \label{sol:ex4} \\
+    Risolvere al variare di $\alpha \in \mathbb{R}$ il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) = x^2 y(x) \\
+    y(0) = \alpha
+    \end{cases}
+    \]
+    Determinare inoltre per quali valori di $\alpha$:
+    \begin{enumerate}[label=\alph*)]
+        \item La soluzione è limitata superiormente.
+        \item La soluzione è limitata (sia superiormente che inferiormente).
+    \end{enumerate}
+
+    \textbf{Svolgimento:}
+    L'equazione è a variabili separabili.
+    Se $\alpha = 0$, la soluzione è banalmente la funzione costante $y(x) = 0$.
+    Se $\alpha \neq 0$:
+    \[ \frac{y'}{y} = x^2 \implies \int \frac{dy}{y} = \int x^2 \, dx \]
+    \[ \ln|y| = \frac{x^3}{3} + c \]
+    Esponenziando:
+    \[ y(x) = K e^{x^3/3} \]
+    Imponiamo $y(0) = \alpha$:
+    \[ \alpha = K e^0 \implies K = \alpha \]
+    
+    La soluzione unica è:
+    \[ y(x) = \alpha e^{x^3/3} \]
+
+    \textbf{Analisi della Limitatezza:}
+    Studiamo il comportamento della funzione esponenziale $g(x) = e^{x^3/3}$:
+    \begin{itemize}
+        \item Per $x \to +\infty$, l'esponente $x^3/3 \to +\infty$, quindi $g(x) \to +\infty$.
+        \item Per $x \to -\infty$, l'esponente $x^3/3 \to -\infty$, quindi $g(x) \to 0^+$.
+    \end{itemize}
+
+    \textbf{Caso a) Limitatezza Superiore ($y(x) \le M$):}
+    \begin{itemize}
+        \item Se $\alpha > 0$: $\lim_{x \to +\infty} y(x) = +\infty$. (Illimitata superiormente).
+        \item Se $\alpha < 0$: $\lim_{x \to +\infty} y(x) = -\infty$. La funzione sta sempre sotto l'asse delle x (è negativa), quindi è limitata superiormente dallo zero.
+        \item Se $\alpha = 0$: $y(x)=0$. (Limitata).
+    \end{itemize}
+    \textbf{Risposta:} $\alpha \le 0$.
+
+    \textbf{Caso b) Limitatezza Globale ($|y(x)| \le M$):}
+    Una funzione è limitata se non va né a $+\infty$ né a $-\infty$.
+    \begin{itemize}
+        \item Se $\alpha \neq 0$, la funzione diverge sempre (a $+\infty$ o $-\infty$) per $x \to +\infty$.
+        \item L'unico caso in cui rimane "bloccata" è quando $\alpha = 0$.
+    \end{itemize}
+    \textbf{Risposta:} Solo $\alpha = 0$.
+
+% Ex 5
+    \item \textbf{Studio Qualitativo e Doppio Esponenziale} \label{sol:ex5} \\
+    Si consideri l'equazione $y' = x y \ln(y)$.
+    
+    \textbf{a) Soluzioni Costanti}
+    Cerchiamo le $y = k$ tali che $y'(x) = 0$ (perchè un numero fisso ha la derivata =0).
+    \[ 0 = x \cdot y \cdot \ln(y) \]
+    Poiché il logaritmo richiede $y > 0$:
+    \begin{itemize}
+        \item $y=0$ non è accettabile per il dominio del logaritmo.
+        \item $\ln(y)=0 \implies y=1$.
+    \end{itemize}
+    \textbf{Unica soluzione costante:} $y(x) = 1$.
+
+    \textbf{b) Problema di Cauchy con $y(0)=3$}
+    Separiamo le variabili ($y \neq 1$):
+    \[ \frac{y'}{y \ln(y)} = x \]
+    Integriamo (a sinistra usiamo la sostituzione $t=\ln y$, quindi $dt=\frac{dy}{y}$):
+    \[ \int \frac{1}{\ln y} \cdot \frac{dy}{y} = \int x \, dx \]
+    \[ \ln|\ln(y)| = \frac{x^2}{2} + c \]
+    
+    \textbf{Applicazione del "Metodo K" (per togliere il primo logaritmo):}
+    \[ \ln(y) = K \cdot e^{x^2/2} \]
+    (Nota: qui $K$ ingloba il segno e la costante $e^c$).
+    
+    Imponiamo $y(0)=3$:
+    \[ \ln(3) = K \cdot e^0 \implies K = \ln 3 \]
+    
+    Torniamo all'equazione:
+    \[ \ln(y) = (\ln 3) \cdot e^{x^2/2} \]
+    
+    Esponenziando un'altra volta per isolare la $y$:
+    \[ y(x) = e^{\left( (\ln 3) e^{x^2/2} \right)} \]
+    Possiamo scriverlo meglio usando le proprietà delle potenze ($e^{A \cdot B} = (e^A)^B$):
+    \[ y(x) = \left( e^{\ln 3} \right)^{e^{x^2/2}} = 3^{e^{x^2/2}} \]
+
+    \textbf{c) Problema con $y(0)=1/2$ e Limite}
+    Riprendiamo la forma generale trovata prima: $\ln(y) = K e^{x^2/2}$.
+    Imponiamo $y(0)=1/2$:
+    \[ \ln(1/2) = K \cdot e^0 \implies K = \ln(1/2) = -\ln 2 \]
+    Quindi:
+    \[ \ln(y) = -\ln 2 \cdot e^{x^2/2} \]
+    Per isolare la $y$, applichiamo l'esponenziale:
+    \[ y(x) = e^{\left( -\ln 2 \cdot e^{x^2/2} \right)} = \left( e^{-\ln 2} \right)^{e^{x^2/2}} = \left(\frac{1}{2}\right)^{e^{x^2/2}} \]
+
+    \textbf{Calcolo del limite di $y'(x)$:}
+    Dobbiamo calcolare $\lim_{x \to +\infty} y'(x)$.
+    Usiamo l'equazione differenziale di partenza per scrivere $y'$:
+    \[ y'(x) = x \cdot y(x) \cdot \ln(y(x)) \]
+    
+    Sostituiamo le espressioni di $y$ e $\ln y$ che abbiamo appena trovato:
+    \[ y'(x) = x \cdot \underbrace{\left[ e^{-\ln 2 \cdot e^{x^2/2}} \right]}_{y(x)} \cdot \underbrace{\left[ -\ln 2 \cdot e^{x^2/2} \right]}_{\ln y(x)} \]
+    
+    Riorganizziamo i termini per vedere la frazione "Numeratore vs Denominatore":
+    Il termine con l'esponente negativo lo portiamo sotto (al denominatore):
+    \[ y'(x) = - \ln 2 \cdot \frac{ x \cdot e^{x^2/2} }{ e^{\left( \ln 2 \cdot e^{x^2/2} \right)} } \]
+    
+    \textbf{Analisi della Gerarchia degli Infiniti:}
+    \begin{itemize}
+        \item Al \textbf{Numeratore} abbiamo $x \cdot e^{x^2/2}$. Questo è un "Infinito di tipo Esponenziale".
+        \item Al \textbf{Denominatore} abbiamo $e^{\dots e^{x^2/2}}$. Questo è un "Infinito di tipo \textbf{Doppio Esponenziale}" ($e$ elevato alla $e$).
+    \end{itemize}
+    
+    In analisi, il doppio esponenziale è infinitamente più potente dell'esponenziale singolo (proprio come l'esponenziale è più potente di un polinomio).
+    Il denominatore cresce molto più velocemente del numeratore e "schiaccia" la frazione a zero.
+    
+    \[ \lim_{x \to +\infty} y'(x) = 0 \]
+
+% Ex 6
+    \item \textbf{Lineare Standard (Calcoli Lunghi)} \label{sol:ex6} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + y(x) = \cos(x) + e^x \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    È un'equazione lineare del primo ordine $y' + a(x)y = f(x)$ con $a(x)=1$.
+    La formula risolutiva è:
+    \[ y(x) = e^{-A(x)} \left( \int f(x)e^{A(x)} \, dx + c \right) \]
+    Dove $A(x) = \int 1 \, dx = x$.
+    
+    Sostituendo:
+    \[ y(x) = e^{-x} \left( \int (\cos x + e^x) e^x \, dx + c \right) \]
+    \[ y(x) = e^{-x} \left( \underbrace{\int e^x \cos x \, dx}_{I_1} + \underbrace{\int e^{2x} \, dx}_{I_2} + c \right) \]
+
+    \textbf{Calcolo degli integrali:}
+    \begin{itemize}
+        \item $I_2 = \int e^{2x} \, dx = \frac{1}{2}e^{2x}$. (Facile)
+        \item $I_1 = \int e^x \cos x \, dx$. (Integrale ciclico per parti).
+        \[ \begin{aligned}
+           \int e^x \cos x &= e^x \cos x - \int e^x (-\sin x) \\
+                           &= e^x \cos x + \left( e^x \sin x - \int e^x \cos x \right)
+        \end{aligned} \]
+        Portando l'integrale a sinistra:
+        \[ 2 \int e^x \cos x = e^x(\sin x + \cos x) \implies I_1 = \frac{e^x}{2}(\sin x + \cos x) \]
+    \end{itemize}
+
+    \textbf{Composizione della soluzione generale:}
+    \[ y(x) = e^{-x} \left[ \frac{e^x}{2}(\sin x + \cos x) + \frac{1}{2}e^{2x} + c \right] \]
+    Moltiplichiamo per $e^{-x}$ (ricorda di distribuirlo su tutti i termini!):
+    \[ y(x) = \frac{1}{2}(\sin x + \cos x) + \frac{1}{2}e^x + c e^{-x} \]
+
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(0)=0$:
+    \[ 0 = \frac{1}{2}(\sin 0 + \cos 0) + \frac{1}{2}e^0 + c e^0 \]
+    \[ 0 = \frac{1}{2}(0 + 1) + \frac{1}{2} + c \]
+    \[ 0 = \frac{1}{2} + \frac{1}{2} + c \implies 0 = 1 + c \implies c = -1 \]
+
+    \textbf{Soluzione Finale:}
+    \[ y(x) = \frac{1}{2}(\sin x + \cos x) + \frac{1}{2}e^x - e^{-x} \]
+
+% Ex 7
+    \item \textbf{Coefficiente Razionale} \label{sol:ex7} \\
+    Risolvere l'equazione differenziale:
+    \[ y'(x) + \frac{y(x)}{1+x^2} = e^{-\arctan x} \]
+
+    \textbf{Svolgimento:}
+    Equazione lineare con $a(x) = \frac{1}{1+x^2}$.
+    Calcoliamo la primitiva $A(x)$:
+    \[ A(x) = \int \frac{1}{1+x^2} \, dx = \arctan(x) \]
+    
+    Applichiamo la formula risolutiva:
+    \[ y(x) = e^{-A(x)} \left( \int f(x)e^{A(x)} \, dx + c \right) \]
+    \[ y(x) = e^{-\arctan x} \left( \int e^{-\arctan x} \cdot e^{\arctan x} \, dx + c \right) \]
+    
+    \textbf{Il passaggio chiave:}
+    Gli esponenziali si annullano ($e^{-k} \cdot e^k = e^0 = 1$):
+    \[ y(x) = e^{-\arctan x} \left( \int 1 \, dx + c \right) \]
+    
+    \textbf{Soluzione:}
+    \[ y(x) = e^{-\arctan x} (x + c) \]
+
+% Ex 8
+    \item \textbf{Fattore Integrante Singolare} \label{sol:ex8} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + \frac{y(x)}{x} = \cos(x^2) \\
+    y(\sqrt{\pi}) = 1
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Equazione lineare definita per $x \neq 0$.
+    Poiché la condizione iniziale è data in $x_0 = \sqrt{\pi}$ (che è positivo), lavoriamo nell'intervallo $x > 0$.
+    
+    Calcoliamo il fattore integrante (primitiva di $1/x$):
+    \[ A(x) = \int \frac{1}{x} \, dx = \ln|x| = \ln(x) \quad (\text{visto che } x>0) \]
+    
+    Formula risolutiva:
+    \[ y(x) = e^{-\ln x} \left( \int \cos(x^2) \cdot e^{\ln x} \, dx + c \right) \]
+    Semplifichiamo gli esponenziali ($e^{\ln x} = x$):
+    \[ y(x) = \frac{1}{x} \left( \int x \cos(x^2) \, dx + c \right) \]
+    
+    \textbf{Calcolo dell'integrale:}
+    L'integrale è quasi immediato (la derivata di $x^2$ è $2x$).
+    Moltiplichiamo e dividiamo per 2:
+    \[ \int x \cos(x^2) \, dx = \frac{1}{2} \int 2x \cos(x^2) \, dx = \frac{1}{2}\sin(x^2) \]
+    
+    Quindi la soluzione generale è:
+    \[ y(x) = \frac{1}{x} \left( \frac{1}{2}\sin(x^2) + c \right) = \frac{\sin(x^2)}{2x} + \frac{c}{x} \]
+    
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(\sqrt{\pi}) = 1$:
+    \[ 1 = \frac{\sin(\pi)}{2\sqrt{\pi}} + \frac{c}{\sqrt{\pi}} \]
+    Sapendo che $\sin(\pi) = 0$:
+    \[ 1 = 0 + \frac{c}{\sqrt{\pi}} \implies c = \sqrt{\pi} \]
+    
+    \textbf{Soluzione Finale:}
+    \[ y(x) = \frac{\sin(x^2)}{2x} + \frac{\sqrt{\pi}}{x} = \frac{\sin(x^2) + 2\sqrt{\pi}}{2x} \] 
+
+% Ex 9
+    \item \textbf{Risonanza Esponenziale} \label{sol:ex9} \\
+    Risolvere il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'(x) + y(x) = \sin(x) + e^{-x} \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Fattore integrante $A(x) = x$. Moltiplichiamo tutto per $e^x$.
+    La formula risolutiva è:
+    \[ y(x) = e^{-x} \left( \int (\sin x + e^{-x})e^x \, dx + c \right) \]
+    
+    Espandiamo l'integrale:
+    \[ \int (\sin x \cdot e^x + \underbrace{e^{-x} \cdot e^x}_{1}) \, dx = \int e^x \sin x \, dx + \int 1 \, dx \]
+    
+    \textbf{Calcolo degli integrali:}
+    \begin{itemize}
+        \item $\int 1 \, dx = x$. (Ecco la risonanza!).
+        \item $\int e^x \sin x \, dx$. Usiamo la formula nota (o integriamo per parti due volte come nell'Ex 6, ma occhio ai segni):
+        \[ \int e^x \sin x \, dx = \frac{e^x}{2}(\sin x - \cos x) \]
+    \end{itemize}
+    
+    Soluzione generale:
+    \[ y(x) = e^{-x} \left[ \frac{e^x}{2}(\sin x - \cos x) + x + c \right] \]
+    \[ y(x) = \frac{1}{2}(\sin x - \cos x) + x e^{-x} + c e^{-x} \]
+    
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(0) = 0$:
+    \[ 0 = \frac{1}{2}(\sin 0 - \cos 0) + 0 + c \cdot 1 \]
+    \[ 0 = \frac{1}{2}(0 - 1) + c \]
+    \[ 0 = -\frac{1}{2} + c \implies c = \frac{1}{2} \]
+    
+    \textbf{Soluzione Finale:}
+    \[ y(x) = \frac{1}{2}(\sin x - \cos x) + \left(x + \frac{1}{2}\right)e^{-x} \]
+
+    % Ex 10
+    \item \textbf{Coefficiente Irrazionale} \label{sol:ex10} \\
+    \[
+    \begin{cases}
+    y'(x) + \frac{1}{2\sqrt{x}}y(x) = \arctan(x)e^{-\sqrt{x}} \\
+    y(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    È un'equazione lineare $y' + a(x)y = f(x)$ definita per $x > 0$ (con continuità in 0 da destra).
+    
+    Calcoliamo la primitiva del coefficiente $a(x) = \frac{1}{2\sqrt{x}}$:
+    \[ A(x) = \int \frac{1}{2\sqrt{x}} \, dx = \sqrt{x} \]
+    
+    Formula risolutiva:
+    \[ y(x) = e^{-\sqrt{x}} \left( \int \arctan(x)e^{-\sqrt{x}} \cdot e^{\sqrt{x}} \, dx + c \right) \]
+    
+    Gli esponenziali nell'integrale si elidono ($e^{-\sqrt{x}} \cdot e^{\sqrt{x}} = 1$):
+    \[ y(x) = e^{-\sqrt{x}} \left( \int \arctan(x) \, dx + c \right) \]
+    
+    \textbf{Calcolo dell'integrale (per parti):}
+    Prendiamo $u(x)=\arctan x$ (da derivare) e $v'(x)=1$ (da integrare):
+    \[ \int 1 \cdot \arctan(x) \, dx = x \arctan(x) - \int x \cdot \frac{1}{1+x^2} \, dx \]
+    Per risolvere il secondo integrale, moltiplichiamo e dividiamo per 2 per avere al numeratore la derivata del denominatore:
+    \[ = x \arctan(x) - \frac{1}{2} \int \frac{2x}{1+x^2} \, dx = x \arctan(x) - \frac{1}{2}\ln(1+x^2) \]
+    
+    Soluzione generale:
+    \[ y(x) = e^{-\sqrt{x}} \left[ x \arctan(x) - \frac{1}{2}\ln(1+x^2) + c \right] \]
+    
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(0)=0$:
+    \[ 0 = e^0 \left[ 0 \cdot \arctan(0) - \frac{1}{2}\ln(1) + c \right] \]
+    \[ 0 = 1 \cdot [ 0 - 0 + c ] \implies c = 0 \]
+    
+    \textbf{Soluzione Finale:}
+    \[ y(x) = e^{-\sqrt{x}} \left( x \arctan(x) - \frac{1}{2}\ln(1+x^2) \right) \]
+
+    % Ex 11
+    \item \textbf{Polinomiale-Esponenziale} \label{sol:ex11} \\
+    \[
+    \begin{cases}
+    y'(x) + 4x^3 y(x) = x e^{-x^4} \\
+    y(0) = y_0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Equazione lineare con $a(x) = 4x^3$.
+    Calcoliamo la primitiva:
+    \[ A(x) = \int 4x^3 \, dx = x^4 \]
+    
+    Formula risolutiva:
+    \[ y(x) = e^{-x^4} \left( \int x e^{-x^4} \cdot e^{x^4} \, dx + c \right) \]
+    
+    Semplifichiamo gli esponenziali ($e^{-x^4} \cdot e^{x^4} = 1$):
+    \[ y(x) = e^{-x^4} \left( \int x \, dx + c \right) \]
+    
+    L'integrale è immediato:
+    \[ y(x) = e^{-x^4} \left( \frac{x^2}{2} + c \right) \]
+    
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(0) = y_0$:
+    \[ y_0 = e^0 \left( 0 + c \right) \implies c = y_0 \]
+    
+    \textbf{Soluzione Finale:}
+    \[ y(x) = e^{-x^4} \left( \frac{x^2}{2} + y_0 \right) \]
+
+    % Ex 12
+    \item \textbf{Con Sommatoria} \label{sol:ex12} \\
+    Risolvere per $N \in \mathbb{N}$ l'equazione differenziale:
+    \[ y'(x) + y(x) = \sum_{n=0}^{N} \cos(nx) \]
+
+    \textbf{Svolgimento:}
+    Equazione lineare a coefficienti costanti con $a(x)=1$. Fattore integrante $e^x$.
+    La formula risolutiva è:
+    \[ y(x) = e^{-x} \left( \int e^x \left[ \sum_{n=0}^{N} \cos(nx) \right] dx + c \right) \]
+
+    \textbf{Strategia (Linearità):}
+    Invece di calcolare la somma trigonometrica, scambiamo l'integrale con la sommatoria:
+    \[ \int e^x \sum_{n=0}^{N} \cos(nx) \, dx = \sum_{n=0}^{N} \left( \int e^x \cos(nx) \, dx \right) \]
+
+    Calcoliamo l'integrale per un generico $n$ (usando l'integrazione per parti ciclica o la formula nota):
+    \[ \int e^x \cos(nx) \, dx = \frac{e^x}{1+n^2} \big( \cos(nx) + n\sin(nx) \big) \]
+    \textit{Nota: La formula vale anche per $n=0$ (dove restituisce $e^x$), quindi non serve dividere i casi.}
+
+    Sostituiamo questo risultato nella formula generale:
+    \[ y(x) = e^{-x} \left( \sum_{n=0}^{N} \left[ \frac{e^x}{1+n^2} (\cos(nx) + n\sin(nx)) \right] + c \right) \]
+
+    Portando $e^{-x}$ dentro la parentesi, si semplifica con gli $e^x$ della sommatoria:
+    \[ y(x) = \sum_{n=0}^{N} \frac{\cos(nx) + n\sin(nx)}{1+n^2} + c e^{-x} \]
+
+    % Ex 13
+    \item \textbf{Parametro $n$ Naturale} \label{sol:ex13} \\
+    Si risolva, per $n \in \mathbb{N}$, il problema di Cauchy:
+    \[
+    \begin{cases}
+    y'_n(x) + y_n(x) = x^n e^{-x} \\
+    y_n(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Equazione lineare con $a(x)=1$, quindi fattore integrante $e^x$.
+    Applichiamo la formula risolutiva:
+    \[ y_n(x) = e^{-x} \left( \int x^n e^{-x} \cdot e^x \, dx + c \right) \]
+
+    \textbf{Semplificazione:}
+    Gli esponenziali nell'integrale si elidono ($e^{-x} \cdot e^x = 1$):
+    \[ y_n(x) = e^{-x} \left( \int x^n \, dx + c \right) \]
+
+    L'integrale è immediato (regola della potenza):
+    \[ y_n(x) = e^{-x} \left( \frac{x^{n+1}}{n+1} + c \right) \]
+
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y_n(0) = 0$:
+    \[ 0 = e^0 \left( \frac{0^{n+1}}{n+1} + c \right) \implies 0 = 1 \cdot (0 + c) \implies c = 0 \]
+
+    \textbf{Soluzione Finale:}
+    \[ y_n(x) = \frac{x^{n+1}}{n+1} e^{-x} \]
+
+% Ex 14
+    \item \textbf{Cauchy Lineare Fratta} \label{sol:ex14} \\
+    \[
+    \begin{cases}
+    y'(x) = \frac{1+x}{x}y(x) + x - x^2 \\
+    y(1) = \alpha
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    L'equazione è nella forma $y'(x) = a(x)y(x) + b(x)$.
+    Identifichiamo il coefficiente $a(x) = \frac{1}{x} + 1$.
+    La primitiva è $A(x) = \ln(x) + x$ (per $x>0$).
+    
+    Usiamo la formula risolutiva diretta:
+    \[ y(x) = e^{\ln x + x} \left( \int (x - x^2) e^{-(\ln x + x)} \, dx + c \right) \]
+    
+    Semplifichiamo gli esponenziali:
+    \begin{itemize}
+        \item Fuori: $e^{\ln x + x} = x e^x$.
+        \item Dentro: $e^{-\ln x - x} = \frac{1}{x} e^{-x}$.
+    \end{itemize}
+    
+    Nell'integrale la $x$ al denominatore si semplifica con $(x-x^2)$:
+    \[ \frac{x-x^2}{x} = 1 - x \]
+    Quindi dobbiamo calcolare:
+    \[ y(x) = x e^x \left( \int (1 - x) e^{-x} \, dx + c \right) \]
+
+    \textbf{Calcolo dell'integrale:}
+    Spezziamo in due integrali distinti:
+    \[ I = \int e^{-x} \, dx - \int x e^{-x} \, dx \]
+    
+    1. Il primo è immediato: $\int e^{-x} \, dx = -e^{-x}$.
+    2. Il secondo si fa per parti ($x$ deriva, $e^{-x}$ integra):
+       \[ \int x e^{-x} \, dx = -x e^{-x} - \int (-e^{-x}) \, dx = -x e^{-x} - e^{-x} \]
+    
+    Mettiamo tutto insieme (attenzione al segno meno davanti al secondo integrale):
+    \[ I = (-e^{-x}) - (-x e^{-x} - e^{-x}) \]
+    \[ I = -e^{-x} + x e^{-x} + e^{-x} = x e^{-x} \]
+    
+    Sostituiamo nella soluzione generale:
+    \[ y(x) = x e^x \left( x e^{-x} + c \right) = x^2 + c x e^x \]
+
+    \textbf{Condizione Iniziale:}
+    Imponiamo $y(1) = \alpha$:
+    \[ \alpha = 1 + c e \implies c = \frac{\alpha - 1}{e} \]
+    
+    \textbf{Soluzione Finale:}
+    \[ y(x) = x^2 + (\alpha - 1) x e^{x-1} \]
+
+% Ex 15
+    \item \textbf{Con Analisi del Limite ($\lambda$)} \label{sol:ex15} \\
+    \[
+    \begin{cases}
+    y_\lambda'(x) - y_\lambda(x) = e^{(1+\lambda^2)x} \\
+    y_\lambda(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Scriviamo l'equazione in forma normale portando la $y$ a destra:
+    \[ y'(x) = 1 \cdot y(x) + e^{(1+\lambda^2)x} \]
+    
+    Identifichiamo il coefficiente $a(x) = 1$.
+    La primitiva è $A(x) = \int 1 \, dx = x$.
+    
+    Applichiamo la formula risolutiva:
+    \[ y(x) = e^x \left( \int e^{(1+\lambda^2)x} \cdot e^{-x} \, dx + c \right) \]
+    
+    Semplifichiamo l'esponenziale dentro l'integrale (somma degli esponenti):
+    \[ (1+\lambda^2)x - x = x + \lambda^2 x - x = \lambda^2 x \]
+    
+    Quindi dobbiamo calcolare:
+    \[ y(x) = e^x \left( \int e^{\lambda^2 x} \, dx + c \right) \]
+    
+    \textbf{Qui bisogna distinguere i casi per l'integrale:}
+    
+    \textbf{CASO 1: $\lambda \neq 0$} (Allora $\lambda^2 \neq 0$)
+    \[ \int e^{\lambda^2 x} \, dx = \frac{1}{\lambda^2}e^{\lambda^2 x} \]
+    Sostituendo:
+    \[ y(x) = e^x \left( \frac{1}{\lambda^2}e^{\lambda^2 x} + c \right) = \frac{1}{\lambda^2}e^{(1+\lambda^2)x} + c e^x \]
+    Imponiamo $y(0)=0$:
+    \[ 0 = \frac{1}{\lambda^2} + c \implies c = -\frac{1}{\lambda^2} \]
+    Soluzione ($\lambda \neq 0$):
+    \[ y_\lambda(x) = \frac{1}{\lambda^2} \left( e^{(1+\lambda^2)x} - e^x \right) \]
+
+    \textbf{CASO 2: $\lambda = 0$} (Allora l'esponente è 0)
+    \[ \int e^0 \, dx = \int 1 \, dx = x \]
+    Sostituendo:
+    \[ y(x) = e^x ( x + c ) \]
+    Imponiamo $y(0)=0$:
+    \[ 0 = 1(0+c) \implies c = 0 \]
+    Soluzione ($\lambda = 0$):
+    \[ y_0(x) = x e^x \]
+
+    \textbf{Analisi del Limite:}
+    Verifichiamo se $\lim_{x \to +\infty} y_\lambda(x) = +\infty$.
+    
+    \begin{itemize}
+        \item Se $\lambda = 0$: $\lim x e^x = +\infty$. (Sì)
+        \item Se $\lambda \neq 0$: Poiché $1+\lambda^2 > 1$, l'esponenziale $e^{(1+\lambda^2)x}$ domina su $e^x$. Il coefficiente $1/\lambda^2$ è positivo. Il limite è $+\infty$. (Sì)
+    \end{itemize}
+
+    \textbf{Risposta:}
+    Esiste per ogni $\lambda \in \mathbb{R}$.
+
+ % Ex 16
+    \item \textbf{Bernoulli Standard} \label{sol:ex16} \\
+    \[
+    \begin{cases}
+    y'(x) + y(x) = y^2(x) \\
+    y(0) = y_0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Equazione di Bernoulli con $\alpha = 2$.
+    Dividiamo per $y^2$:
+    \[ \frac{y'}{y^2} + \frac{1}{y} = 1 \]
+    
+    Sostituzione: $z = \frac{1}{y} \implies z' = -\frac{y'}{y^2}$.
+    Sostituendo otteniamo:
+    \[ -z' + z = 1 \]
+    
+    \textbf{Risoluzione in $z$:}
+    Isoliamo $z'$ (moltiplico per -1 e sposto):
+    \[ z' = z - 1 \]
+    
+    Per usare la formula risolutiva delle lineari, riportiamo la $z$ a sinistra per avere la forma $z' + a(x)z = f(x)$:
+    \[ z' - z = -1 \]
+    
+    Ora procediamo come sempre:
+    \begin{itemize}
+        \item Coefficiente $a(x) = -1 \implies A(x) = -x$.
+        \item Termine noto $f(x) = -1$.
+    \end{itemize}
+    
+    Formula risolutiva:
+    \[ z(x) = e^x \left( \int -1 \cdot e^{-x} \, dx + c \right) \]
+    \[ z(x) = e^x \left( e^{-x} + c \right) \]
+    \[ z(x) = 1 + c e^x \]
+
+    \textbf{Ritorno alla $y$:}
+    Dato che $y = 1/z$:
+    \[ y(x) = \frac{1}{1 + c e^x} \]
+    
+    \textbf{Condizione Iniziale:}
+    $y(0) = y_0 \implies y_0 = \frac{1}{1+c}$.
+    Da cui ricaviamo $c$:
+    \[ 1+c = \frac{1}{y_0} \implies c = \frac{1}{y_0} - 1 = \frac{1-y_0}{y_0} \]
+    
+    \textbf{Soluzione Finale:}
+    Sostituendo $c$ e semplificando la frazione:
+    \[ y(x) = \frac{y_0}{y_0 + (1-y_0)e^x} \]
+
+    % Ex 17
+    \item \textbf{Bernoulli Guidata} \label{sol:ex17} \\
+    \[
+    \begin{cases}
+    y'(x) = y(x) - x (y(x))^2 \\
+    y(0) = 1
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Scriviamo l'equazione come $y' - y = -x y^2$.
+    È una Bernoulli con $\alpha=2$.
+    
+    \textbf{Passo 1: Sostituzione}
+    Dividiamo per $y^2$:
+    \[ \frac{y'}{y^2} - \frac{1}{y} = -x \]
+    Poniamo $z = \frac{1}{y}$. Derivando: $z' = -\frac{y'}{y^2} \implies \frac{y'}{y^2} = -z'$.
+    
+    Sostituiamo nell'equazione:
+    \[ -z' - z = -x \]
+    Moltiplichiamo tutto per $-1$ per avere la forma normale:
+    \[ z' + z = x \]
+
+    \textbf{Passo 2: Risoluzione in $z$}
+    Equazione lineare con $a(x)=1$. Fattore integrante $e^x$.
+    \[ z(x) = e^{-x} \left( \int x e^x \, dx + c \right) \]
+    
+    Calcoliamo l'integrale per parti:
+    \[ \int x e^x \, dx = x e^x - \int e^x \, dx = x e^x - e^x = e^x(x-1) \]
+    
+    Sostituiamo nella formula di $z$:
+    \[ z(x) = e^{-x} \left[ e^x(x-1) + c \right] \]
+    \[ z(x) = (x-1) + c e^{-x} \]
+
+    \textbf{Passo 3: Ritorno alla $y$}
+    Poiché $y = 1/z$:
+    \[ y(x) = \frac{1}{x - 1 + c e^{-x}} \]
+
+    \textbf{Passo 4: Condizione Iniziale}
+    Imponiamo $y(0) = 1$:
+    \[ 1 = \frac{1}{0 - 1 + c \cdot e^0} \implies 1 = \frac{1}{-1+c} \]
+    \[ c - 1 = 1 \implies c = 2 \]
+
+    \textbf{Soluzione Finale:}
+    \[ y(x) = \frac{1}{x - 1 + 2e^{-x}} \]
+
+    % Ex 18
+    \item \textbf{Standard Trigonometrica} \label{sol:ex18} \\
+    \[
+    \begin{cases}
+    y''(x) - 3y'(x) + 2y(x) = \cos(2x) \\
+    y(0) = 0, \quad y'(0) = 1
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    
+    \textbf{1. Soluzione Omogenea ($y_h$)}
+    Equazione caratteristica: $\lambda^2 - 3\lambda + 2 = 0$.
+    Scomponiamo: $(\lambda - 1)(\lambda - 2) = 0$.
+    Radici: $\lambda_1 = 1, \lambda_2 = 2$.
+    \[ y_h(x) = c_1 e^x + c_2 e^{2x} \]
+
+    \textbf{2. Soluzione Particolare ($y_p$)}
+    Il termine noto è $\cos(2x)$. Poiché $2i$ non è soluzione dell'equazione caratteristica, cerchiamo una soluzione della forma:
+    \[ y_p(x) = A\cos(2x) + B\sin(2x) \]
+    Calcoliamo le derivate:
+    \[ y_p' = -2A\sin(2x) + 2B\cos(2x) \]
+    \[ y_p'' = -4A\cos(2x) - 4B\sin(2x) \]
+    
+    Sostituiamo nell'equazione completa ($y'' - 3y' + 2y = \cos(2x)$):
+    \[ (-4A\cos - 4B\sin) - 3(-2A\sin + 2B\cos) + 2(A\cos + B\sin) = \cos(2x) \]
+    
+    Raccogliamo i termini simili:
+    \begin{itemize}
+        \item Cos: $-4A - 6B + 2A = -2A - 6B$
+        \item Sin: $-4B + 6A + 2B = 6A - 2B$
+    \end{itemize}
+    
+    Impostiamo il sistema uguagliando i coefficienti a quelli del termine noto ($1 \cdot \cos + 0 \cdot \sin$):
+    \[
+    \begin{cases}
+    -2A - 6B = 1 \\
+    6A - 2B = 0 \implies B = 3A
+    \end{cases}
+    \]
+    Sostituiamo $B$ nella prima:
+    \[ -2A - 6(3A) = 1 \implies -20A = 1 \implies A = -\frac{1}{20} \]
+    Quindi $B = 3A = -\frac{3}{20}$.
+    
+    La soluzione particolare è:
+    \[ y_p(x) = -\frac{1}{20}\cos(2x) -\frac{3}{20}\sin(2x) \]
+
+    \textbf{3. Integrale Generale}
+    \[ y(x) = c_1 e^x + c_2 e^{2x} -\frac{1}{20}\cos(2x) -\frac{3}{20}\sin(2x) \]
+
+    \textbf{4. Problema di Cauchy}
+    Calcoliamo la derivata dell'integrale generale per imporre la condizione su $y'$:
+    \[ y'(x) = c_1 e^x + 2c_2 e^{2x} + \frac{1}{10}\sin(2x) - \frac{3}{10}\cos(2x) \]
+    
+    Imponiamo le condizioni:
+
+\[
+\begin{cases}
+    y(0) = 0 \implies c_1 + c_2 - \frac{1}{20} = 0 \\
+    y'(0) = 1 \implies c_1 + 2c_2 - \frac{3}{10} = 1
+\end{cases}
+\]
+
+Sistema:
+\[
+\begin{cases}
+    c_1 + c_2 = \frac{1}{20} \\
+    c_1 + 2c_2 = \frac{13}{10} \quad \left( = \frac{26}{20} \right)
+\end{cases}
+\]
+    Sottraendo la prima dalla seconda: $c_2 = \frac{25}{20} = \frac{5}{4}$.
+    Ricaviamo $c_1$: $c_1 = \frac{1}{20} - \frac{25}{20} = -\frac{24}{20} = -\frac{6}{5}$.
+
+    \textbf{Soluzione Finale:}
+    \[ y(x) = -\frac{6}{5}e^x + \frac{5}{4}e^{2x} - \frac{1}{20}\cos(2x) - \frac{3}{20}\sin(2x) \]
+
+    % Ex 19
+    \item \textbf{Doppia Risonanza Esponenziale} \label{sol:ex19} \\
+    Risolvere l'equazione differenziale:
+    \[ y''(t) - y(t) = e^t - e^{-t} \]
+
+    \textbf{Svolgimento:}
+    
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 - 1 = 0 \implies \lambda = \pm 1$.
+    \[ y_h(t) = c_1 e^t + c_2 e^{-t} \]
+
+    \textbf{2. Soluzione Particolare}
+    Il termine noto è somma di due esponenziali che coincidono entrambi con le radici dell'omogenea. Abbiamo risonanza per entrambi.
+    Cerchiamo una soluzione della forma:
+    \[ y_p(t) = A t e^t + B t e^{-t} \]
+    
+    Calcoliamo le derivate (regola del prodotto):
+    \[ y_p' = A(e^t + t e^t) + B(e^{-t} - t e^{-t}) \]
+    \[ y_p'' = A(e^t + e^t + t e^t) + B(-e^{-t} - (e^{-t} - t e^{-t})) \]
+    \[ y_p'' = A(2e^t + t e^t) + B(-2e^{-t} + t e^{-t}) \]
+    
+    Sostituiamo nell'equazione $y'' - y = e^t - e^{-t}$:
+    \[ [A(2e^t + t e^t) + B(-2e^{-t} + t e^{-t})] - [A t e^t + B t e^{-t}] = e^t - e^{-t} \]
+    
+Semplifichiamo (i termini con la $t$ si cancellano sempre se la risonanza è impostata bene):
+\[ 
+    2A e^t + \cancel{A t e^t} - 2B e^{-t} + \cancel{B t e^{-t}} - \cancel{A t e^t} - \cancel{B t e^{-t}} = e^t - e^{-t} 
+\]
+\[ 
+    2A e^t - 2B e^{-t} = 1 e^t - 1 e^{-t} 
+\]
+    
+    Uguagliamo i coefficienti:
+    \begin{itemize}
+        \item Per $e^t$: $2A = 1 \implies A = 1/2$.
+        \item Per $e^{-t}$: $-2B = -1 \implies B = 1/2$.
+    \end{itemize}
+    
+    Quindi la soluzione particolare è:
+    \[ y_p(t) = \frac{1}{2}t e^t + \frac{1}{2}t e^{-t} = \frac{t}{2}(e^t + e^{-t}) \]
+    (Nota:questo equivarrebbe a $t \sinh t$ o $t \cosh t$ a seconda dei segni, ma lasciamolo così).
+
+    \textbf{3. Integrale Generale}
+    \[ y(t) = c_1 e^t + c_2 e^{-t} + \frac{1}{2}t e^t + \frac{1}{2}t e^{-t} \]
+
+    % Ex 20
+    \item \textbf{Termine Noto Polinomiale (Risonanza)} \label{sol:ex20} \\
+    \[
+    \begin{cases}
+    y''(t) - y'(t) = t+1 \\
+    y(0) = k, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 - \lambda = 0 \implies \lambda(\lambda - 1) = 0$.
+    Radici: $\lambda_1 = 0, \lambda_2 = 1$.
+    \[ y_h(t) = c_1 e^{0t} + c_2 e^{1t} = c_1 + c_2 e^t \]
+    (La presenza della costante $c_1$ isolata conferma la risonanza con polinomi).
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto $f(t) = t+1$ (grado 1).
+    Poiché $\lambda=0$ è radice semplice, cerchiamo un polinomio di grado $1+1=2$, senza termine noto (inutile):
+    \[ y_p(t) = At^2 + Bt \]
+    
+    Calcoliamo le derivate:
+    \[ y_p'(t) = 2At + B \]
+    \[ y_p''(t) = 2A \]
+    
+    Sostituiamo in $y'' - y' = t+1$:
+    \[ (2A) - (2At + B) = t + 1 \]
+    \[ -2At + (2A - B) = 1t + 1 \]
+    
+    Sistema dei coefficienti:
+    \[
+    \begin{cases}
+    -2A = 1 \implies A = -\frac{1}{2} \\
+    2A - B = 1 \implies 2(-\frac{1}{2}) - B = 1
+    \end{cases}
+    \]
+    Dalla seconda: $-1 - B = 1 \implies B = -2$.
+    
+    Soluzione particolare:
+    \[ y_p(t) = -\frac{1}{2}t^2 - 2t \]
+
+    \textbf{3. Integrale Generale}
+    \[ y(t) = c_1 + c_2 e^t - \frac{1}{2}t^2 - 2t \]
+
+    \textbf{4. Problema di Cauchy}
+    Calcoliamo la derivata:
+    \[ y'(t) = c_2 e^t - t - 2 \]
+    
+    Imponiamo le condizioni:
+    \begin{itemize}
+        \item $y'(0) = 0 \implies c_2 e^0 - 0 - 2 = 0 \implies c_2 = 2$.
+        \item $y(0) = k \implies c_1 + c_2 - 0 - 0 = k \implies c_1 + 2 = k \implies c_1 = k - 2$.
+    \end{itemize}
+
+    \textbf{Soluzione Finale:}
+    \[ y(t) = (k-2) + 2e^t - \frac{1}{2}t^2 - 2t \] 
+
+    % Ex 21
+    \item \textbf{Risonanza Completa ($e^x$)} \label{sol:ex21} \\
+    \[
+    \begin{cases}
+    y''(x) - 2y'(x) + y(x) = e^x \\
+    y(0) = 0, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 - 2\lambda + 1 = 0 \implies (\lambda - 1)^2 = 0$.
+    Radice: $\lambda = 1$ con molteplicità $\mu = 2$.
+    \[ y_h(x) = c_1 e^x + c_2 x e^x \]
+
+    \textbf{2. Soluzione Particolare}
+    Il termine noto è $e^x$. Poiché $\alpha=1$ coincide con la radice doppia dell'omogenea, dobbiamo cercare una soluzione moltiplicata per $x^2$:
+    \[ y_p(x) = A x^2 e^x \]
+    
+    Calcoliamo le derivate (con calma):
+    \[ y_p' = A(2x e^x + x^2 e^x) = A e^x (x^2 + 2x) \]
+    
+    Per la derivata seconda, deriviamo il prodotto $e^x \cdot (x^2+2x)$:
+    \[ y_p'' = A [ e^x(x^2 + 2x) + e^x(2x + 2) ] \]
+    \[ y_p'' = A e^x (x^2 + 4x + 2) \]
+    
+    Sostituiamo nell'equazione $y'' - 2y' + y = e^x$.
+    Dividiamo subito tutto per $e^x$ (che non è mai zero) per semplificare i conti:
+    \[ A(x^2 + 4x + 2) - 2A(x^2 + 2x) + Ax^2 = 1 \]
+    
+    Raccogliamo le potenze di $x$:
+    \begin{itemize}
+        \item Termini $x^2$: $A - 2A + A = 0$ (Deve annullarsi!)
+        \item Termini $x$: $4A - 4A = 0$ (Deve annullarsi!)
+        \item Termini noti: $2A = 1$
+    \end{itemize}
+    
+    Dall'ultima equazione: $2A = 1 \implies A = 1/2$.
+    
+    Soluzione particolare:
+    \[ y_p(x) = \frac{1}{2}x^2 e^x \]
+
+    \textbf{3. Integrale Generale}
+    \[ y(x) = c_1 e^x + c_2 x e^x + \frac{1}{2}x^2 e^x = e^x \left( c_1 + c_2 x + \frac{1}{2}x^2 \right) \]
+
+    \textbf{4. Problema di Cauchy}
+    Condizione $y(0) = 0$:
+    \[ 0 = e^0 (c_1 + 0 + 0) \implies c_1 = 0 \]
+    
+    Aggiorniamo la funzione per derivare meno roba ($y = c_2 x e^x + \frac{1}{2}x^2 e^x$):
+    \[ y'(x) = c_2(e^x + x e^x) + \frac{1}{2}(2x e^x + x^2 e^x) \]
+    
+    Condizione $y'(0) = 0$:
+    \[ 0 = c_2(1 + 0) + \frac{1}{2}(0 + 0) \implies c_2 = 0 \]
+
+    \textbf{Soluzione Finale:}
+    \[ y(x) = \frac{1}{2}x^2 e^x \]
+
+    \item \textbf{ Soluzione} 
+\label{sol:ex22}
+\noindent \textbf{1. Soluzione Generale} \\
+Risolviamo prima l'omogenea associata $y'' - y' - 2y = 0$. Il polinomio caratteristico è:
+\[ \lambda^2 - \lambda - 2 = 0 \implies (\lambda - 2)(\lambda + 1) = 0 \]
+Le radici sono $\lambda_1 = 2$ e $\lambda_2 = -1$, quindi la soluzione omogenea è:
+\[ y_h(x) = c_1 e^{2x} + c_2 e^{-x} \]
+Carchiamo una soluzione particolare per $12e^{2x}$. Poiché $\lambda=2$ è radice semplice del polinomio caratteristico, usiamo il metodo della somiglianza con risonanza (moltiplichiamo per $x$):
+\[ y_p(x) = A x e^{2x} \]
+Calcoliamo le derivate:
+\begin{align*}
+    y_p'(x) &= A e^{2x}(1 + 2x) \\
+    y_p''(x) &= A e^{2x}(2 + 2(1+2x)) = A e^{2x}(4x + 4)
+\end{align*}
+Sostituendo nell'equazione differenziale completa:
+\[ A e^{2x}(4x + 4) - A e^{2x}(1 + 2x) - 2(A x e^{2x}) = 12e^{2x} \]
+Dividendo per $e^{2x}$:
+\[ A(4x + 4 - 1 - 2x - 2x) = 12 \implies 3A = 12 \implies A = 4 \]
+La soluzione generale è dunque:
+\[ y(x) = c_1 e^{2x} + c_2 e^{-x} + 4xe^{2x} \]
+
+\noindent \textbf{2. Condizione Mista} \\
+Imponiamo $y(0) + y'(0) = 18$. Calcoliamo $y(0)$ e $y'(0)$:
+\begin{align*}
+    y(0) &= c_1 + c_2 \\
+    y'(x) &= 2c_1 e^{2x} - c_2 e^{-x} + 4(e^{2x} + 2xe^{2x}) \\
+    y'(0) &= 2c_1 - c_2 + 4
+\end{align*}
+Sommando e imponendo la condizione:
+\[ (c_1 + c_2) + (2c_1 - c_2 + 4) = 18 \implies 3c_1 + 4 = 18 \implies c_1 = \frac{14}{3} \]
+La famiglia di soluzioni cercata è:
+\[ y(x) = \frac{14}{3}e^{2x} + c_2 e^{-x} + 4xe^{2x} \]
+
+\noindent \textbf{3. Limite} \\
+Verifichiamo se esiste $c_2$ tale che $\lim_{x \to -\infty} y(x) = 0$:
+\[ \lim_{x \to -\infty} \left( \frac{14}{3}e^{2x} + 4xe^{2x} + c_2 e^{-x} \right) \]
+Notiamo che:
+\begin{itemize}
+    \item $\frac{14}{3}e^{2x} \to 0$
+    \item $4xe^{2x} \to 0$ (gerarchia degli infiniti)
+    \item $c_2 e^{-x} \to \pm \infty$ (poiché l'esponente diventa positivo), a meno che $c_2 = 0$.
+\end{itemize}
+Affinché il limite sia finito e pari a 0, dobbiamo imporre $c_2 = 0$.
+La soluzione finale è:
+\[ y(x) = \frac{14}{3}e^{2x} + 4xe^{2x} \]
+
+    \item \textbf{ Soluzione} 
+\label{sol:ex23} \\
+\noindent \textbf{1. Soluzione Generale} \\
+Risolviamo l'omogenea $y'' + y = 0$. Le radici caratteristiche sono $\lambda = \pm i$, quindi:
+\[ y_h(x) = c_1 \cos(x) + c_2 \sin(x) \]
+Per la soluzione particolare, sfruttiamo la linearità. Invece di espandere la sommatoria, risolviamo per il termine generico $\sin(kx)$ con $k \in \{2,3,4,5\}$. Poiché la pulsazione naturale è $\omega=1$ e $k \ge 2$, non c'è risonanza.
+Cerchiamo $y_{p,k}(x) = A_k \sin(kx)$. Sostituendo in $y''+y$:\noindent \textbf{Calcolo dei coefficienti: }
+
+Cerchiamo una soluzione particolare della forma $y_{p,k}(x) = A_k \sin(kx)$.
+Sostituiamo $y_{p,k}$ e la sua derivata seconda $y''_{p,k} = -k^2 A_k \sin(kx)$ nell'equazione completa:
+
+\[ -k^2 A_k \sin(kx) + A_k \sin(kx) = \sin(kx) \]
+
+Raccogliamo i termini simili a sinistra:
+\[ A_k (1-k^2) \cdot \sin(kx) = 1 \cdot \sin(kx) \]
+
+Uguagliamo i coefficienti del termine $\sin(kx)$ (il termine tra parentesi a sinistra deve essere uguale al coefficiente 1 a destra):
+\[ A_k(1-k^2) = 1 \]
+
+Da cui ricaviamo il valore di $A_k$:
+\[ A_k = \frac{1}{1-k^2} \]
+La soluzione particolare complessiva è la somma delle soluzioni particolari:
+\[ y_p(x) = \sum_{k=2}^{5} \frac{1}{1-k^2}\sin(kx) \]
+La soluzione generale è:
+\[ y(x) = c_1 \cos(x) + c_2 \sin(x) + \sum_{k=2}^{5} \frac{1}{1-k^2}\sin(kx) \]
+
+\noindent \textbf{3. Problema di Cauchy} \\
+Imponiamo $y(0)=0$:
+\[ c_1 \cdot 1 + c_2 \cdot 0 + \sum 0 = 0 \implies c_1 = 0 \]
+Imponiamo $y'(0)=0$. Calcoliamo prima la derivata:
+\[ y'(x) = -c_1 \sin(x) + c_2 \cos(x) + \sum_{k=2}^{5} \frac{k}{1-k^2}\cos(kx) \]
+In $x=0$:
+\[ y'(0) = c_2 + \sum_{k=2}^{5} \frac{k}{1-k^2} = 0 \implies c_2 = - \sum_{k=2}^{5} \frac{k}{1-k^2} = \sum_{k=2}^{5} \frac{k}{k^2-1} \]
+Svolgiamo la somma numerica per $k=2,3,4,5$:
+\[ c_2 = \frac{2}{3} + \frac{3}{8} + \frac{4}{15} + \frac{5}{24} = \frac{80+45+32+25}{120} = \frac{182}{120} = \frac{91}{60} \]
+La soluzione finale è:
+\[ y(x) = \frac{91}{60}\sin(x) + \sum_{k=2}^{5} \frac{1}{1-k^2}\sin(kx) \]
+\item \textbf{Soluzione}
+\label{sol:ex24} \\
+\noindent \textbf{1. Omogenea associata} \\
+L'equazione caratteristica è $r^2 - 5r + 6 = 0$, che ha radici $r_1=2$ e $r_2=3$.
+La soluzione omogenea è:
+\[ y_h(x) = c_1 e^{2x} + c_2 e^{3x} \]
+
+\noindent \textbf{2. Soluzione particolare (Discussione su $\alpha$)} \\
+Il termine noto è $e^{\alpha x}$. Dobbiamo distinguere se $\alpha$ coincide con le radici caratteristiche.
+
+\begin{itemize}
+    \item \textbf{Caso $\alpha \neq 2$ e $\alpha \neq 3$ (Nessuna risonanza):} \\
+    Cerchiamo $y_p = A e^{\alpha x}$. Sostituendo nell'equazione otteniamo:
+    \[ A(\alpha^2 - 5\alpha + 6)e^{\alpha x} = e^{\alpha x} \implies A = \frac{1}{\alpha^2 - 5\alpha + 6} \]
+    
+\item \textbf{Caso $\alpha = 2$ (Risonanza semplice):} \\
+    Poiché $\alpha=2$ è radice semplice, cerchiamo $y_p = A x e^{2x}$.
+    Calcoliamo le derivate (regola del prodotto):
+    \begin{align*}
+        y_p' &= A e^{2x}(1+2x) \\
+        y_p'' &= A e^{2x}(4+4x)
+    \end{align*}
+    Sostituiamo nell'equazione $y'' - 5y' + 6y = e^{2x}$:
+    \[ A e^{2x}[(4+4x) - 5(1+2x) + 6x] = e^{2x} \]
+    I termini con la $x$ si elidono ($4x-10x+6x=0$). Rimane:
+    \[ A(4-5) = 1 \implies -A = 1 \implies A = -1 \]
+    Quindi $y_p = -xe^{2x}$.
+
+    \item \textbf{Caso $\alpha = 3$ (Risonanza semplice):} \\
+    Poiché $\alpha=3$ è radice semplice, cerchiamo $y_p = A x e^{3x}$.
+    Calcoliamo le derivate:
+    \begin{align*}
+        y_p' &= A e^{3x}(1+3x) \\
+        y_p'' &= A e^{3x}(6+9x)
+    \end{align*}
+    Sostituiamo nell'equazione:
+    \[ A e^{3x}[(6+9x) - 5(1+3x) + 6x] = e^{3x} \]
+    I termini con la $x$ si elidono ($9x-15x+6x=0$). Rimane:
+    \[ A(6-5) = 1 \implies A = 1 \]
+    Quindi $y_p = xe^{3x}$.
+\end{itemize}
+
+\noindent \textbf{Soluzione Generale:}
+\[
+y(x) = c_1 e^{2x} + c_2 e^{3x} + 
+\begin{cases} 
+\frac{1}{(\alpha-2)(\alpha-3)}e^{\alpha x} & \text{se } \alpha \neq 2,3 \\
+-x e^{2x} & \text{se } \alpha = 2 \\
+x e^{3x} & \text{se } \alpha = 3 
+\end{cases}
+\]
+
+\item \textbf{Soluzione}
+\label{sol:ex25} \\
+\noindent \textbf{1. Soluzione Omogenea} \\
+L'equazione omogenea associata è $y'' - \alpha^2 y = 0$.
+Per trovare le radici, scriviamo l'equazione caratteristica nella forma $ar^2 + br + c = 0$:
+\[ 1 \cdot r^2 + 0 \cdot r - \alpha^2 = 0 \]
+Identifichiamo i coefficienti:
+\[ a = 1, \quad b = 0 \quad (\text{poiché manca } y'), \quad c = -\alpha^2 \]
+Calcoliamo il discriminante $\Delta$:
+\[ \Delta = b^2 - 4ac = (0)^2 - 4(1)(-\alpha^2) = 4\alpha^2 \]
+Poiché $\Delta \ge 0$, abbiamo radici reali:
+\[ r_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{0 \pm \sqrt{4\alpha^2}}{2} = \frac{\pm 2\alpha}{2} = \pm \alpha \]
+Quindi le soluzioni dell'omogenea sono:
+\begin{itemize}
+    \item Se $\alpha > 0$ (radici distinte $\pm \alpha$): \quad $y_h(x) = c_1 e^{\alpha x} + c_2 e^{-\alpha x}$
+    \item Se $\alpha = 0$ (radice doppia $0$): \quad $y_h(x) = c_1 e^{0x} + c_2 x e^{0x} = c_1 + c_2 x$
+\end{itemize}
+
+\noindent \textbf{2. Soluzione Particolare} \\
+Il termine noto è $e^x$ (che ha esponente $1$).
+Confrontiamo l'esponente $1$ con le radici trovate ($\pm \alpha$).
+
+\begin{itemize}
+    \item \textbf{Caso $\alpha \neq 1$ (Nessuna risonanza):} \\
+    
+    L'esponente $1$ è diverso dalle radici $\pm \alpha$. Cerchiamo $y_p = A e^x$.
+    Sostituendo nell'equazione $y'' - \alpha^2 y = e^x$:
+    \[ A e^x - \alpha^2 A e^x = e^x \implies A(1-\alpha^2)e^x = e^x \]
+    Confrontando i coefficienti:
+    \[ A = \frac{1}{1-\alpha^2} \]
+    
+    \item \textbf{Caso $\alpha = 1$ (Risonanza):} \\
+    Se $\alpha=1$, le radici sono $\pm 1$. La radice $+1$ coincide con l'esponente del termine noto.
+    Cerchiamo quindi la soluzione moltiplicando per $x$:
+    \[ y_p = A x e^x \]
+    Calcoliamo le derivate (regola del prodotto):
+    \[ y_p' = A e^x (1+x), \quad y_p'' = A e^x (2+x) \]
+    Sostituiamo nell'equazione con $\alpha=1$ (cioè $y'' - y = e^x$):
+    \[ [A e^x (2+x)] - [A x e^x] = e^x \]
+    Sviluppando:
+    \[ 2Ae^x + Axe^x - Axe^x = e^x \]
+    I termini con la $x$ si elidono perfettamente. Rimane:
+    \[ 2 A e^x = e^x \implies 2A = 1 \implies A = \frac{1}{2} \]
+    Quindi $y_p = \frac{1}{2} x e^x$.
+\end{itemize}
+
+\noindent \textbf{Soluzione Generale:}
+\[
+y(x) = 
+\begin{cases} 
+c_1 e^{\alpha x} + c_2 e^{-\alpha x} + \frac{1}{1-\alpha^2}e^x & \text{se } \alpha \neq 1, \alpha > 0 \\
+c_1 e^x + c_2 e^{-x} + \frac{1}{2}xe^x & \text{se } \alpha = 1 \\
+c_1 x + c_2 + e^x & \text{se } \alpha = 0
+\end{cases}
+\]
+
+% Ex 26
+    \item \textbf{Parametro $\alpha$ all'Esponente} \label{sol:ex26} \\
+    \[ y''(x) - \alpha^2 y(x) = e^{\alpha^2 x}, \quad \alpha \ge 0 \]
+
+    \textbf{Svolgimento:}
+    Analizziamo l'equazione caratteristica: $\lambda^2 - \alpha^2 = 0 \implies \lambda = \pm \alpha$.
+
+    \textbf{CASO 1: $\alpha = 0$}
+    L'equazione diventa $y'' = 1$.
+    Si può risolvere integrando due volte consecutivamente:
+    \[ y'(x) = \int 1 \, dx = x + c_1 \]
+    \[ y(x) = \int (x + c_1) \, dx = \frac{1}{2}x^2 + c_1 x + c_2 \]
+    (Nota: qui la risonanza era doppia, $\lambda=0$ con m.a.=2).
+
+    \textbf{CASO 2: $\alpha = 1$}
+    L'equazione diventa $y'' - y = e^x$.
+    Le radici sono $\lambda = \pm 1$.
+    Il termine noto $e^x$ va in \textbf{risonanza} con $\lambda_1 = 1$.
+    Cerchiamo soluzione particolare: $y_p(x) = A x e^x$.
+    
+    Derivate:
+    $y_p' = A e^x (1+x)$
+    $y_p'' = A e^x (2+x)$
+    
+    Sostituiamo:
+    \[ A e^x(2+x) - A x e^x = e^x \]
+    \[ 2A e^x = e^x \implies 2A = 1 \implies A = 1/2 \]
+    Soluzione per $\alpha=1$:
+    \[ y(x) = c_1 e^x + c_2 e^{-x} + \frac{1}{2}x e^x \]
+
+    \textbf{CASO 3: $\alpha > 0$ e $\alpha \neq 1$}
+    Le radici sono $\lambda = \pm \alpha$.
+    L'esponente del termine noto è $\alpha^2$.
+    Dato che $\alpha \neq 1$ e $\alpha \neq 0$, allora $\alpha^2 \neq \alpha$.
+    \textbf{Non c'è risonanza}.
+    
+    Cerchiamo particolare della forma: $y_p(x) = K e^{\alpha^2 x}$.
+    Derivate:
+    $y_p' = K \alpha^2 e^{\alpha^2 x}$
+    $y_p'' = K \alpha^4 e^{\alpha^2 x}$
+    
+    Sostituiamo:
+    \[ K \alpha^4 e^{\alpha^2 x} - \alpha^2 (K e^{\alpha^2 x}) = e^{\alpha^2 x} \]
+    Dividiamo per l'esponenziale:
+    \[ K \alpha^4 - K \alpha^2 = 1 \]
+    \[ K (\alpha^4 - \alpha^2) = 1 \implies K = \frac{1}{\alpha^2(\alpha^2 - 1)} \]
+    
+    Soluzione generale ($\alpha \neq 0, 1$):
+    \[ y(x) = c_1 e^{\alpha x} + c_2 e^{-\alpha x} + \frac{1}{\alpha^2(\alpha^2 - 1)} e^{\alpha^2 x} \]
+
+% Ex 27
+    \item \textbf{Risonanza Polinomiale (Parametrica)} \label{sol:ex27} \\
+    \[
+    \begin{cases}
+    y''(x) + \alpha^2 y(x) = x^2 \\
+    y(0) = 0, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Dobbiamo distinguere due casi in base al parametro $\alpha$.
+
+    \textbf{CASO 1: $\alpha = 0$}
+    L'equazione diventa:
+    \[ y''(x) = x^2 \]
+    Procediamo per integrazione diretta due volte:
+    \[ y'(x) = \int x^2 \, dx = \frac{x^3}{3} + c_1 \]
+    \[ y(x) = \int \left(\frac{x^3}{3} + c_1\right) dx = \frac{x^4}{12} + c_1 x + c_2 \]
+    
+    Imponiamo le condizioni iniziali:
+    \begin{itemize}
+        \item $y'(0) = 0 \implies 0 + c_1 = 0 \implies c_1 = 0$.
+        \item $y(0) = 0 \implies 0 + 0 + c_2 = 0 \implies c_2 = 0$.
+    \end{itemize}
+    Soluzione per $\alpha=0$:
+    \[ y(x) = \frac{x^4}{12} \]
+
+    \textbf{CASO 2: $\alpha \neq 0$}
+    
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 + \alpha^2 = 0 \implies \lambda = \pm i\alpha$.
+    \[ y_h(x) = c_1 \cos(\alpha x) + c_2 \sin(\alpha x) \]
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto $P(x) = x^2$. Poiché $0$ non è soluzione dell'omogenea, \textbf{non c'è risonanza}.
+    Cerchiamo un polinomio generico di grado 2:
+    \[ y_p(x) = Ax^2 + Bx + C \]
+    
+    Derivate:
+    \[ y_p' = 2Ax + B \]
+    \[ y_p'' = 2A \]
+    
+    Sostituiamo nell'equazione completa ($y'' + \alpha^2 y = x^2$):
+    \[ (2A) + \alpha^2 (Ax^2 + Bx + C) = x^2 \]
+    
+    Ordiniamo per potenze di $x$:
+    \[ (\alpha^2 A)x^2 + (\alpha^2 B)x + (2A + \alpha^2 C) = 1 x^2 + 0x + 0 \]
+    
+    Sistema dei coefficienti:
+    \[
+    \begin{cases}
+    \alpha^2 A = 1 \implies A = \frac{1}{\alpha^2} \\
+    \alpha^2 B = 0 \implies B = 0 \\
+    2A + \alpha^2 C = 0 \implies C = -\frac{2A}{\alpha^2}
+    \end{cases}
+    \]
+    Sostituendo $A$ in $C$:
+    \[ C = -\frac{2}{\alpha^2} \cdot \frac{1}{\alpha^2} = -\frac{2}{\alpha^4} \]
+    
+    Quindi la soluzione particolare è:
+    \[ y_p(x) = \frac{1}{\alpha^2}x^2 - \frac{2}{\alpha^4} \]
+
+    \textbf{3. Problema di Cauchy}
+    Integrale generale:
+    \[ y(x) = c_1 \cos(\alpha x) + c_2 \sin(\alpha x) + \frac{x^2}{\alpha^2} - \frac{2}{\alpha^4} \]
+    Derivata:
+    \[ y'(x) = -\alpha c_1 \sin(\alpha x) + \alpha c_2 \cos(\alpha x) + \frac{2x}{\alpha^2} \]
+    
+    Condizioni:
+    \begin{itemize}
+        \item $y(0) = 0$:
+        \[ c_1(1) + 0 + 0 - \frac{2}{\alpha^4} = 0 \implies c_1 = \frac{2}{\alpha^4} \]
+        \item $y'(0) = 0$:
+        \[ 0 + \alpha c_2(1) + 0 = 0 \implies \alpha c_2 = 0 \implies c_2 = 0 \]
+    \end{itemize}
+
+    \textbf{Soluzione Finale ($\alpha \neq 0$):}
+    \[ y(x) = \frac{2}{\alpha^4}\cos(\alpha x) + \frac{x^2}{\alpha^2} - \frac{2}{\alpha^4} \]
+
+    % Ex 28
+    \item \textbf{Integrabilità all'Infinito} \label{sol:ex28} \\
+    \[
+    \begin{cases}
+    y''(t) - 2y(t) = 0 \\
+    y(0) = 1, \quad y'(0) = \beta
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 - 2 = 0 \implies \lambda = \pm \sqrt{2}$.
+    Integrale generale:
+    \[ y(t) = c_1 e^{\sqrt{2}t} + c_2 e^{-\sqrt{2}t} \]
+    Derivata:
+    \[ y'(t) = \sqrt{2}c_1 e^{\sqrt{2}t} - \sqrt{2}c_2 e^{-\sqrt{2}t} \]
+
+    \textbf{2. Problema di Cauchy}
+Imponiamo le condizioni:
+\[
+\begin{cases}
+    y(0) = 1 \implies c_1 + c_2 = 1 \\
+    y'(0) = \beta \implies \sqrt{2}c_1 - \sqrt{2}c_2 = \beta
+\end{cases}
+\]
+    
+    Dalla prima ricaviamo $c_2 = 1 - c_1$. Sostituiamo nella seconda:
+    \[ \sqrt{2}c_1 - \sqrt{2}(1 - c_1) = \beta \]
+    \[ \sqrt{2}c_1 - \sqrt{2} + \sqrt{2}c_1 = \beta \]
+    \[ 2\sqrt{2}c_1 = \beta + \sqrt{2} \]
+    \[ c_1 = \frac{\beta + \sqrt{2}}{2\sqrt{2}} = \frac{\beta}{2\sqrt{2}} + \frac{1}{2} \]
+    
+    Ora troviamo $c_2$:
+    \[ c_2 = 1 - c_1 = 1 - \left( \frac{\beta}{2\sqrt{2}} + \frac{1}{2} \right) = \frac{1}{2} - \frac{\beta}{2\sqrt{2}} \]
+    
+    Quindi la soluzione unica del problema di Cauchy è:
+    \[ y(t) = \left( \frac{1}{2} + \frac{\beta}{2\sqrt{2}} \right) e^{\sqrt{2}t} + \left( \frac{1}{2} - \frac{\beta}{2\sqrt{2}} \right) e^{-\sqrt{2}t} \]
+
+    \textbf{3. Integrabilità all'Infinito}
+    Ci viene chiesto per quali $\beta$ vale:
+    \[ \int_0^{+\infty} |y(t)| \, dt < +\infty \]
+    
+    Analizziamo i due termini della soluzione:
+    \begin{itemize}
+        \item Il termine con $e^{-\sqrt{2}t}$ tende a 0 velocemente per $t \to +\infty$. Questo termine è **sempre integrabile** (converge).
+        \item Il termine con $e^{\sqrt{2}t}$ tende a $+\infty$ velocemente. Questo termine **non è mai integrabile** all'infinito, a meno che... non sparisca del tutto!
+    \end{itemize}
+    
+    Affinché l'integrale converga, dobbiamo "uccidere" il termine che esplode.
+    Condizione necessaria e sufficiente: il coefficiente di $e^{\sqrt{2}t}$ deve essere ZERO.
+    
+    \[ c_1 = 0 \implies \frac{1}{2} + \frac{\beta}{2\sqrt{2}} = 0 \]
+    \[ \frac{\beta}{2\sqrt{2}} = -\frac{1}{2} \]
+    \[ \beta = -\sqrt{2} \]
+
+    \textbf{Conclusione:}
+    L'unico valore per cui la soluzione è integrabile è $\beta = -\sqrt{2}$.
+    In tal caso la soluzione diventa semplicemente $y(t) = e^{-\sqrt{2}t}$.
+
+    % Ex 29
+    \item \textbf{Terzo Ordine} \label{sol:ex29} \\
+    Risolvere l'equazione differenziale:
+    \[ y'''(x) - y'(x) = \cos(x) \]
+
+    \textbf{Svolgimento:}
+
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: 
+    \[ \lambda^3 - \lambda = 0 \implies \lambda(\lambda^2 - 1) = 0 \]
+    Le radici sono reali e distinte: $\lambda_1 = 0$, $\lambda_2 = 1$, $\lambda_3 = -1$.
+    \[ y_h(x) = c_1 + c_2 e^x + c_3 e^{-x} \]
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto: $\cos(x)$. Non c'è risonanza.
+    Cerchiamo:
+    \[ y_p(x) = A \cos(x) + B \sin(x) \]
+    
+    Calcoliamo le derivate:
+    \begin{itemize}
+        \item $y_p' = -A \sin(x) + B \cos(x)$
+        \item $y_p'' = -A \cos(x) - B \sin(x)$
+        \item $y_p''' = A \sin(x) - B \cos(x)$
+    \end{itemize}
+    
+    Sostituiamo nell'equazione $y''' - y' = \cos(x)$:
+    \[ [A \sin(x) - B \cos(x)] - [-A \sin(x) + B \cos(x)] = \cos(x) \]
+    
+    Sommiamo i termini simili:
+    \[ 2A \sin(x) - 2B \cos(x) = \cos(x) \]
+    
+    Uguagliando i coefficienti:
+    \[
+    \begin{cases}
+    2A = 0 \implies A = 0 \\
+    -2B = 1 \implies B = -\frac{1}{2}
+    \end{cases}
+    \]
+    
+    Soluzione particolare:
+    \[ y_p(x) = -\frac{1}{2}\sin(x) \]
+
+    \textbf{3. Integrale Generale}
+    \[ y(x) = c_1 + c_2 e^x + c_3 e^{-x} - \frac{1}{2}\sin(x) \]
+
+    % Ex 30
+    \item \textbf{Quarto Ordine} \label{sol:ex30} \\
+    Risolvere l'equazione differenziale:
+    \[ y''''(x) - y(x) = e^{-x} \]
+
+    \textbf{Svolgimento:}
+
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: 
+    \[ \lambda^4 - 1 = 0 \implies (\lambda^2 - 1)(\lambda^2 + 1) = 0 \]
+    
+    Abbiamo 4 radici:
+    \begin{itemize}
+        \item $\lambda^2 - 1 = 0 \implies \lambda = \pm 1$ (Reali)
+        \item $\lambda^2 + 1 = 0 \implies \lambda = \pm i$ (Immaginarie)
+    \end{itemize}
+    
+    Soluzione omogenea (somma di esponenziali e oscillazioni):
+    \[ y_h(x) = c_1 e^x + c_2 e^{-x} + c_3 \cos(x) + c_4 \sin(x) \]
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto $e^{-x}$. Poiché $\lambda = -1$ è radice semplice dell'omogenea, c'è risonanza
+    Dobbiamo moltiplicare per $x$:
+    \[ y_p(x) = A x e^{-x} \]
+    
+    Calcoliamo le derivate (regola del prodotto ripetuta):
+    \begin{itemize}
+        \item $y_p' = A(1 - x)e^{-x}$
+        \item $y_p'' = A(-1 - (1-x))e^{-x} = A(x-2)e^{-x}$
+        \item $y_p''' = A(1 - (x-2))e^{-x} = A(3-x)e^{-x}$
+        \item $y_p'''' = A(-1 - (3-x))e^{-x} = A(x-4)e^{-x}$
+    \end{itemize}
+    
+    Sostituiamo nell'equazione $y'''' - y = e^{-x}$:
+    \[ [ A(x-4)e^{-x} ] - [ A x e^{-x} ] = e^{-x} \]
+    
+    Svolgiamo:
+    \[ Ax e^{-x} - 4A e^{-x} - Ax e^{-x} = e^{-x} \]
+    I termini con $x$ si cancellano (ottimo segno!):
+    \[ -4A e^{-x} = e^{-x} \]
+    
+    Confronto coefficienti:
+    \[ -4A = 1 \implies A = -\frac{1}{4} \]
+    
+    Soluzione particolare:
+    \[ y_p(x) = -\frac{1}{4} x e^{-x} \]
+
+    \textbf{3. Integrale Generale}
+    \[ y(x) = c_1 e^x + c_2 e^{-x} + c_3 \cos(x) + c_4 \sin(x) - \frac{1}{4} x e^{-x} \]
+
+% Ex 31
+    \item \textbf{Oscillatore Armonico Forzato ($\omega$)} \label{sol:ex31} \\
+    \[
+    \begin{cases}
+    y''(x) + 9y(x) = \cos(\omega x) \\
+    y(0) = 1, \quad y'(0) = 0
+    \end{cases}
+    \]
+
+    \textbf{Svolgimento:}
+    Omogenea: $y_h(x) = c_1 \cos(3x) + c_2 \sin(3x)$.
+
+    \textbf{CASO 1: $\omega \neq 3$ (Nessuna Risonanza)}
+    Cerchiamo $y_p(x) = A \cos(\omega x)$.
+    
+    Calcolo derivate:
+    \[ y_p'(x) = -A\omega \sin(\omega x) \]
+    \[ y_p''(x) = -A\omega^2 \cos(\omega x) \]
+    
+    Sostituzione in $y'' + 9y = \cos(\omega x)$:
+    \[ [-A\omega^2 \cos(\omega x)] + 9[A \cos(\omega x)] = \cos(\omega x) \]
+    \[ A(9 - \omega^2) \cos(\omega x) = \cos(\omega x) \implies A = \frac{1}{9-\omega^2} \]
+
+
+    \textbf{CASO 2: $\omega = 3$ (Risonanza)}
+    Cerchiamo $y_p(x) = x [ A \cos(3x) + B \sin(3x) ] = Ax\cos(3x) + Bx\sin(3x)$.
+    
+    Calcolo derivate (regola del prodotto):
+    \begin{align*}
+        y_p' &= A\cos(3x) - 3Ax\sin(3x) + B\sin(3x) + 3Bx\cos(3x) \\
+        y_p'' &= -3A\sin(3x) - [3A\sin(3x) + 9Ax\cos(3x)] + 3B\cos(3x) + [3B\cos(3x) - 9Bx\sin(3x)]
+    \end{align*}
+    Raggruppando i termini della derivata seconda:
+    \[ y_p'' = -6A\sin(3x) + 6B\cos(3x) - 9Ax\cos(3x) - 9Bx\sin(3x) \]
+    
+    Sostituzione in $y'' + 9y = \cos(3x)$:
+    Osserviamo che i termini con la $x$ (quelli con il 9) si cancellano esattamente con $+9y_p$. Rimangono solo i termini "liberi":
+    \[ -6A\sin(3x) + 6B\cos(3x) = \cos(3x) \]
+    
+   Sistema:
+\[
+\begin{cases}
+    -6A = 0 \implies A = 0 \quad (\text{coefficiente del seno}) \\
+    6B = 1 \implies B = 1/6 \quad (\text{coefficiente del coseno})
+\end{cases}
+\]
+    
+    Quindi $y_p(x) = \frac{1}{6}x \sin(3x)$.
+    \vspace{0.5cm} % Spazio per separare
+    
+    \textbf{Problemi di Cauchy}
+    
+    Ricordiamo le condizioni iniziali: $y(0)=1, \quad y'(0)=0$.
+    L'omogenea è sempre $y_h(x) = c_1 \cos(3x) + c_2 \sin(3x)$.
+
+    \textbf{1. Per $\omega \neq 3$:}
+    Integrale generale:
+    \[ y(x) = c_1 \cos(3x) + c_2 \sin(3x) + \frac{1}{9-\omega^2}\cos(\omega x) \]
+    Derivata:
+    \[ y'(x) = -3c_1 \sin(3x) + 3c_2 \cos(3x) - \frac{\omega}{9-\omega^2}\sin(\omega x) \]
+    
+    Imponiamo le condizioni:
+    \begin{itemize}
+        \item $y(0)=1 \implies c_1(1) + 0 + \frac{1}{9-\omega^2}(1) = 1 \implies c_1 = 1 - \frac{1}{9-\omega^2}$
+        \item $y'(0)=0 \implies 0 + 3c_2(1) - 0 = 0 \implies c_2 = 0$
+    \end{itemize}
+    
+    Soluzione finale ($\omega \neq 3$):
+    \[ y(x) = \left( 1 - \frac{1}{9-\omega^2} \right)\cos(3x) + \frac{1}{9-\omega^2}\cos(\omega x) \]
+
+    \textbf{2. Per $\omega = 3$:}
+    Integrale generale:
+    \[ y(x) = c_1 \cos(3x) + c_2 \sin(3x) + \frac{1}{6}x\sin(3x) \]
+    Derivata (attenzione alla regola del prodotto sull'ultimo termine):
+    \[ y'(x) = -3c_1 \sin(3x) + 3c_2 \cos(3x) + \frac{1}{6}\sin(3x) + \frac{1}{2}x\cos(3x) \]
+    
+    Imponiamo le condizioni:
+    \begin{itemize}
+        \item $y(0)=1 \implies c_1(1) + 0 + 0 = 1 \implies c_1 = 1$
+        \item $y'(0)=0 \implies 0 + 3c_2(1) + \frac{1}{6}(0) + 0 = 0 \implies c_2 = 0$
+    \end{itemize}
+    
+    Soluzione finale ($\omega = 3$):
+    \[ y(x) = \cos(3x) + \frac{1}{6}x\sin(3x) \]
+
+    % Ex 32
+    \item \textbf{Studio Completo Risonanza Trigonometrica} \label{sol:ex32} \\
+    Si considera $y''(x) + 4y(x) = \sin(\alpha x)$ con $\alpha \ge 0$.
+
+    \textbf{Svolgimento:}
+
+    \textbf{a) Integrale Generale al variare di $\alpha$}
+    
+    \textit{1. Soluzione Omogenea:}
+    $\lambda^2 + 4 = 0 \implies \lambda = \pm 2i$.
+    \[ y_h(x) = c_1 \cos(2x) + c_2 \sin(2x) \]
+    
+    \textit{2. Soluzione Particolare:}
+    Distinguiamo se $\alpha$ coincide con la frequenza naturale (2).
+    
+    \textbf{Caso $\alpha \neq 2$ (No Risonanza):}
+    Cerchiamo $y_p(x) = A \sin(\alpha x)$.
+    Derivate: $y_p'' = -A\alpha^2 \sin(\alpha x)$.
+    Sostituzione:
+    \[ -A\alpha^2 \sin(\alpha x) + 4A \sin(\alpha x) = \sin(\alpha x) \]
+    \[ A(4-\alpha^2) = 1 \implies A = \frac{1}{4-\alpha^2} \]
+    \[ y(x) = c_1 \cos(2x) + c_2 \sin(2x) + \frac{1}{4-\alpha^2}\sin(\alpha x) \]
+
+    \textbf{Caso $\alpha = 2$ (Risonanza):}
+    Cerchiamo $y_p(x) = x [A \cos(2x) + B \sin(2x)]$.
+    Poiché manca $y'$, sappiamo che rimarrà il termine "sfasato" (il coseno).
+    Svolgendo i calcoli completi si ottiene:
+    \[ A = -\frac{1}{4}, \quad B = 0 \]
+    \[ y_p(x) = -\frac{1}{4}x \cos(2x) \]
+    \[ y(x) = c_1 \cos(2x) + c_2 \sin(2x) - \frac{1}{4}x \cos(2x) \]
+
+    \hrulefill
+
+    \textbf{b) Limitata inferiormente?}
+    Dobbiamo vedere se $y(x) \to -\infty$ per qualche $x$.
+    \begin{itemize}
+        \item Se $\alpha \neq 2$: La soluzione è somma di seni e coseni limitati. La funzione è limitata (oscilla tra un max e un min).
+        \item Se $\alpha = 2$: C'è il termine $- \frac{1}{4}x \cos(2x)$. L'ampiezza dell'oscillazione cresce linearmente con $x$. Quindi per $x \to +\infty$ la funzione assume valori arbitrariamente grandi e arbitrariamente piccoli (non è limitata né sup. né inf.).
+    \end{itemize}
+    \textbf{Risposta:} Solo per $\alpha = 2$.
+
+    \hrulefill
+
+    \textbf{c) Problemi di Cauchy ($y(0)=1, y'(0)=1$)}
+
+    \textbf{Caso $\alpha = 4$ (No Risonanza):}
+    Usiamo la formula generale con $\alpha=4$:
+    \[ y(x) = c_1 \cos(2x) + c_2 \sin(2x) + \frac{1}{4-16}\sin(4x) \]
+    \[ y(x) = c_1 \cos(2x) + c_2 \sin(2x) - \frac{1}{12}\sin(4x) \]
+    Derivata:
+    \[ y'(x) = -2c_1 \sin(2x) + 2c_2 \cos(2x) - \frac{4}{12}\cos(4x) \]
+    Condizioni:
+    \begin{itemize}
+        \item $y(0)=1 \implies c_1 = 1$.
+        \item $y'(0)=1 \implies 2c_2 - \frac{1}{3} = 1 \implies 2c_2 = \frac{4}{3} \implies c_2 = \frac{2}{3}$.
+    \end{itemize}
+    Soluzione ($\alpha=4$):
+    \[ y(x) = \cos(2x) + \frac{2}{3}\sin(2x) - \frac{1}{12}\sin(4x) \]
+
+    \textbf{Caso $\alpha = 2$ (Risonanza):}
+    Formula risonante:
+    \[ y(x) = c_1 \cos(2x) + c_2 \sin(2x) - \frac{1}{4}x \cos(2x) \]
+    Derivata:
+    \[ y'(x) = -2c_1 \sin(2x) + 2c_2 \cos(2x) - \frac{1}{4}[ \cos(2x) - 2x\sin(2x) ] \]
+    Condizioni:
+    \begin{itemize}
+        \item $y(0)=1 \implies c_1 = 1$.
+        \item $y'(0)=1 \implies 0 + 2c_2 - \frac{1}{4}(1 - 0) = 1 \implies 2c_2 = 1 + \frac{1}{4} = \frac{5}{4} \implies c_2 = \frac{5}{8}$.
+    \end{itemize}
+    Soluzione ($\alpha=2$):
+    \[ y(x) = \cos(2x) + \frac{5}{8}\sin(2x) - \frac{1}{4}x \cos(2x) \]
+
+    % Ex 33
+    \item \textbf{Parametro $\epsilon$ e Variabile Indipendente} \label{sol:ex33} \\
+    \[
+    \begin{cases}
+    y_\epsilon''(x) - \epsilon^2 y_\epsilon(x) = x \\
+    y_\epsilon(0) = \epsilon^2, \quad y_\epsilon'(0) = 0
+    \end{cases}
+    \]
+  
+    \textbf{Svolgimento:}
+
+    \textbf{1. Soluzione Omogenea}
+    Equazione caratteristica: $\lambda^2 - \epsilon^2 = 0 \implies \lambda = \pm \epsilon$.
+    \[ y_h(x) = c_1 e^{\epsilon x} + c_2 e^{-\epsilon x} \]
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto $x$ (polinomio grado 1). Cerchiamo $y_p(x) = Ax + B$.
+    Derivate: $y_p' = A, \quad y_p'' = 0$.
+    
+    Sostituzione:
+    \[ 0 - \epsilon^2(Ax + B) = x \]
+    \[ -\epsilon^2 A x - \epsilon^2 B = x \]
+    
+Uguaglianza coefficienti:
+\[
+\begin{cases}
+    -\epsilon^2 A = 1 \implies A = -\frac{1}{\epsilon^2} \\
+    -\epsilon^2 B = 0 \implies B = 0
+\end{cases}
+\]
+    
+    \[ y_p(x) = -\frac{x}{\epsilon^2} \]
+
+    \textbf{3. Problema di Cauchy}
+    Integrale generale:
+    \[ y(x) = c_1 e^{\epsilon x} + c_2 e^{-\epsilon x} - \frac{x}{\epsilon^2} \]
+    Derivata:
+    \[ y'(x) = c_1 \epsilon e^{\epsilon x} - c_2 \epsilon e^{-\epsilon x} - \frac{1}{\epsilon^2} \]
+    
+    Imponiamo le condizioni ($y(0)=\epsilon^2, y'(0)=0$):
+    \[
+    \begin{cases}
+    c_1 + c_2 = \epsilon^2 \quad (\text{da } y(0)) \\
+    \epsilon(c_1 - c_2) - \frac{1}{\epsilon^2} = 0 \implies c_1 - c_2 = \frac{1}{\epsilon^3} \quad (\text{da } y'(0))
+    \end{cases}
+    \]
+    
+    Risolviamo il sistema (Somma e Sottrazione):
+    \begin{itemize}
+        \item $2c_1 = \epsilon^2 + \frac{1}{\epsilon^3} \implies c_1 = \frac{\epsilon^2}{2} + \frac{1}{2\epsilon^3}$
+        \item $2c_2 = \epsilon^2 - \frac{1}{\epsilon^3} \implies c_2 = \frac{\epsilon^2}{2} - \frac{1}{2\epsilon^3}$
+    \end{itemize}
+
+    \textbf{Soluzione Finale:}
+    \[ y_\epsilon(x) = \left( \frac{\epsilon^2}{2} + \frac{1}{2\epsilon^3} \right) e^{\epsilon x} + \left( \frac{\epsilon^2}{2} - \frac{1}{2\epsilon^3} \right) e^{-\epsilon x} - \frac{x}{\epsilon^2} \]
+    
+    \textit{Forma alternativa con seno e coseno iperbolico:}
+    \[ y_\epsilon(x) = \epsilon^2 \cosh(\epsilon x) + \frac{1}{\epsilon^3}\sinh(\epsilon x) - \frac{x}{\epsilon^2} \]
+% Ex 34
+    \item \textbf{Equazione Integro-Differenziale} \label{sol:ex34} \\
+    Risolvere derivando ambo i membri:
+    \[ \int_0^x y(t)\,dt + y'(x) = e^x, \quad \text{con } y(0)=0 \]
+
+    \textbf{Svolgimento:}
+
+    \textbf{1. Trasformazione in Equazione Differenziale}
+    Deriviamo entrambi i membri dell'equazione rispetto a $x$:
+    \[ \frac{d}{dx}\left( \int_0^x y(t)\,dt \right) + \frac{d}{dx}(y'(x)) = \frac{d}{dx}(e^x) \]
+    Applicando il Teorema Fondamentale del Calcolo integrale:
+    \[ y(x) + y''(x) = e^x \]
+    Riordiniamo:
+    \[ y''(x) + y(x) = e^x \]
+
+    \textbf{2. Determinazione delle Condizioni Iniziali}
+    Abbiamo bisogno di $y(0)$ e $y'(0)$.
+    \begin{itemize}
+        \item $y(0) = 0$ (Dato dal problema).
+        \item Per trovare $y'(0)$, sostituiamo $x=0$ nell'equazione \textit{originale} (quella con l'integrale):
+        \[ \int_0^0 y(t)\,dt + y'(0) = e^0 \]
+        \[ 0 + y'(0) = 1 \implies y'(0) = 1 \]
+    \end{itemize}
+    
+    Il problema diventa:
+    \[ \begin{cases} y'' + y = e^x \\ y(0) = 0 \\ y'(0) = 1 \end{cases} \]
+
+    \textbf{3. Soluzione Omogenea}
+    $\lambda^2 + 1 = 0 \implies \lambda = \pm i$.
+    \[ y_h(x) = c_1 \cos(x) + c_2 \sin(x) \]
+
+    \textbf{4. Soluzione Particolare}
+    Termine noto $e^x$. Non c'è risonanza (le radici sono immaginarie).
+    Cerchiamo $y_p(x) = A e^x$.
+    Derivate: $y_p' = A e^x, \quad y_p'' = A e^x$.
+    
+    Sostituzione:
+    \[ A e^x + A e^x = e^x \implies 2A e^x = e^x \implies 2A = 1 \implies A = \frac{1}{2} \]
+    
+    \[ y(x) = c_1 \cos(x) + c_2 \sin(x) + \frac{1}{2}e^x \]
+
+    \textbf{5. Calcolo delle Costanti}
+    Derivata dell'integrale generale:
+    \[ y'(x) = -c_1 \sin(x) + c_2 \cos(x) + \frac{1}{2}e^x \]
+    
+    Sistema condizioni:
+    \begin{itemize}
+        \item $y(0)=0 \implies c_1(1) + 0 + \frac{1}{2} = 0 \implies c_1 = -\frac{1}{2}$
+        \item $y'(0)=1 \implies 0 + c_2(1) + \frac{1}{2} = 1 \implies c_2 = \frac{1}{2}$
+    \end{itemize}
+
+    \textbf{Soluzione Finale:}
+    \[ y(x) = -\frac{1}{2}\cos(x) + \frac{1}{2}\sin(x) + \frac{1}{2}e^x \]
+    \textit{Oppure raccogliendo:}
+    \[ y(x) = \frac{1}{2} (e^x + \sin(x) - \cos(x)) \]
+
+    % Ex 35
+    \item \textbf{Perturbazione Singolare ($\epsilon$)} \label{sol:ex35} \\
+    \[
+    \begin{cases}
+    -\epsilon^2 y_\epsilon''(x) + y_\epsilon(x) = e^{-x} \\
+    y_\epsilon(0) = 0 \\
+    y_\epsilon'(0) = \frac{1}{\epsilon(\epsilon+1)}
+    \end{cases}
+    \]
+    con $0 < \epsilon < 1$.
+
+    \textbf{Svolgimento:}
+
+    \textbf{1. Soluzione Omogenea}
+    $-\epsilon^2 \lambda^2 + 1 = 0 \implies \lambda^2 = \frac{1}{\epsilon^2} \implies \lambda = \pm \frac{1}{\epsilon}$.
+    \[ y_h(x) = c_1 e^{\frac{x}{\epsilon}} + c_2 e^{-\frac{x}{\epsilon}} \]
+
+    \textbf{2. Soluzione Particolare}
+    Termine noto $e^{-x}$. Poiché $0 < \epsilon < 1$, allora $1/\epsilon > 1$, quindi nessuna risonanza con $-1$.
+    Cerchiamo $y_p(x) = A e^{-x}$.
+    \[ y_p' = -A e^{-x}, \quad y_p'' = A e^{-x} \]
+    
+    Sostituiamo nell'equazione $-\epsilon^2 y'' + y = e^{-x}$:
+    \[ -\epsilon^2 (A e^{-x}) + A e^{-x} = e^{-x} \]
+    \[ A(1 - \epsilon^2)e^{-x} = e^{-x} \implies A = \frac{1}{1-\epsilon^2} \]
+    
+    Integrale generale:
+    \[ y(x) = c_1 e^{\frac{x}{\epsilon}} + c_2 e^{-\frac{x}{\epsilon}} + \frac{1}{1-\epsilon^2}e^{-x} \]
+
+    \textbf{3. Problema di Cauchy (passaggio critico)}
+    Calcoliamo la derivata:
+    \[ y'(x) = \frac{c_1}{\epsilon} e^{\frac{x}{\epsilon}} - \frac{c_2}{\epsilon} e^{-\frac{x}{\epsilon}} - \frac{1}{1-\epsilon^2}e^{-x} \]
+    
+    Imponiamo le condizioni a $x=0$:
+    \begin{enumerate}
+        \item $y(0)=0 \implies c_1 + c_2 + \frac{1}{1-\epsilon^2} = 0 \implies c_1 + c_2 = -\frac{1}{1-\epsilon^2}$
+        \item $y'(0) = \frac{1}{\epsilon(\epsilon+1)} \implies \frac{1}{\epsilon}(c_1 - c_2) - \frac{1}{1-\epsilon^2} = \frac{1}{\epsilon(\epsilon+1)}$
+    \end{enumerate}
+    
+    Lavoriamo sulla seconda equazione per semplificarla. Moltiplichiamo tutto per $\epsilon$:
+    \[ c_1 - c_2 = \frac{1}{\epsilon+1} + \frac{\epsilon}{1-\epsilon^2} \]
+    Notiamo che $1-\epsilon^2 = (1-\epsilon)(1+\epsilon)$. Facciamo il denominatore comune a destra:
+    \[ c_1 - c_2 = \frac{1(1-\epsilon) + \epsilon}{(1-\epsilon)(1+\epsilon)} = \frac{1}{(1-\epsilon)(1+\epsilon)} = \frac{1}{1-\epsilon^2} \]
+    
+    Ora il sistema è pulitissimo:
+    \[
+    \begin{cases}
+    c_1 + c_2 = -\frac{1}{1-\epsilon^2} \\
+    c_1 - c_2 = \frac{1}{1-\epsilon^2}
+    \end{cases}
+    \]
+    Sommando le due equazioni: $2c_1 = 0 \implies c_1 = 0$.
+    Sottraendo: $2c_2 = -\frac{2}{1-\epsilon^2} \implies c_2 = -\frac{1}{1-\epsilon^2}$.
+
+    \textbf{Soluzione $y_\epsilon(x)$:}
+    \[ y_\epsilon(x) = -\frac{1}{1-\epsilon^2} e^{-\frac{x}{\epsilon}} + \frac{1}{1-\epsilon^2} e^{-x} \]
+    \[ y_\epsilon(x) = \frac{e^{-x} - e^{-x/\epsilon}}{1-\epsilon^2} \]
+
+    \textbf{4. Limite Puntuale}
+    Calcoliamo $\lim_{\epsilon \to 0^+} y_\epsilon(x)$ per un $x > 0$ fissato.
+    \begin{itemize}
+        \item Il denominatore $(1-\epsilon^2) \to 1$.
+        \item L'esponente $-x/\epsilon \to -\infty$ (poiché $x>0$ e $\epsilon \to 0^+$), quindi $e^{-x/\epsilon} \to 0$.
+        \item Il termine $e^{-x}$ rimane costante.
+    \end{itemize}
+    \[ \lim_{\epsilon \to 0^+} \frac{e^{-x} - e^{-x/\epsilon}}{1-\epsilon^2} = \frac{e^{-x} - 0}{1} = e^{-x} \]
+\end{enumerate}
+
+\end{document}

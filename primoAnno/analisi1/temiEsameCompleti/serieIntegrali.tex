@@ -1,0 +1,1926 @@
+\documentclass[a4paper,12pt]{article}
+
+% Pacchetti per la lingua e la codifica
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% Pacchetti per la matematica
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% Pacchetti per l'impaginazione
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\newcommand{\sol}[1]{{\normalfont\footnotesize\itshape\quad (sol. pag. #1)}}
+% --- COMANDO PER LA DIFFICOLTÀ ---
+\newcommand{\diff}[1]{%
+    \ifcase#1\or
+    {\color{green!60!black}$\bullet$}% 1 pallino
+    \or
+    {\color{orange}$\bullet\bullet$}% 2 pallini
+    \or
+    {\color{red}$\bullet\bullet\bullet$}% 3 pallini
+    \fi
+}
+% ---------------------------------
+
+% Titolo del documento
+\title{\textbf{Raccolta Ragionata Esercizi d'Esame}}
+\author{Alessio Avarappattu}
+\date{Dicembre 2025}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Legenda Difficoltà:} \\
+\diff{1} Esercizio Standard / Applicazione Formule \\
+\diff{2} Esercizio Intermedio / Richiede Taylor o Sostituzioni \\
+\diff{3} Esercizio Avanzato / Parametri multipli o Limiti complessi
+
+\tableofcontents
+\newpage
+
+% =========================================================================
+\section{Serie di Potenze e Raggi di Convergenza}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex 1
+    \item \diff{1} \textbf{Serie Geometrica} \sol{8} \\
+    Dato $x \in \mathbb{R} \setminus \{0\}$ e $M \in \mathbb{N}$, calcolare il valore della seguente sommatoria:
+    \[ \sum_{n=-M}^{M} x^n \]
+
+    % Ex 2
+    \item \diff{1} \textbf{Serie Geometrica (Somma)} \sol{8} \\
+    Determinare per quali $x$ converge la serie $\sum_{k=0}^{+\infty} x^{2k}$ e calcolarne la somma $S(x)$.
+
+    % Ex 3
+    \item \diff{1} \textbf{Serie Razionale Semplice} \sol{9} \\
+    Determinare l'insieme di convergenza della seguente serie di potenze:
+    \[ \sum_{n=1}^{+\infty} \frac{n}{n^2+1} x^n \]
+
+    % Ex 4
+    \item \diff{1} \textbf{Serie Razionale} \sol{9} \\
+    Studiare per $x \in \mathbb{R}$ la convergenza della serie:
+    \[ \sum_{n=1}^{+\infty} \frac{1+n^2}{n^3} x^n \]
+
+    % Ex 5
+    \item \diff{1} \textbf{Serie Logaritmica} \sol{9} \\
+    Studiare la convergenza della seguente serie di potenze:
+    \[ \sum_{n=2}^{+\infty} \frac{1}{\log(n)} x^n \]
+
+    % Ex 6
+    \item \diff{2} \textbf{Serie con Fattoriale} \sol{10} \\
+    Studiare la convergenza della seguente serie di potenze (Usa Stirling):
+    \[ \sum_{n=0}^{+\infty} \frac{n^n}{n!} x^n \]
+
+    % Ex 7
+    \item \diff{2} \textbf{Serie Centrata in $x_0=1$} \sol{10} \\
+    Determinare l'insieme di convergenza della seguente serie di potenze:
+    \[ \sum_{n=1}^{+\infty} \frac{n \log(n)}{1+n^2} (x-1)^n \]
+
+    % Ex 8
+    \item \diff{2} \textbf{Raggio con Parametro $\lambda$} \sol{11} \\
+    Dato $\lambda \ge 0$, determinare il raggio di convergenza della serie:
+    \[ \sum_{n=1}^{+\infty} \frac{n^\lambda + 1}{\lambda^n+1} x^n \]
+
+    % Ex 9
+    \item \diff{3} \textbf{Coefficiente con Taylor} \sol{12} \\
+    Studiare, al variare di $\alpha > 0$, la convergenza della serie di potenze:
+    \[ \sum_{n=1}^{+\infty} \left[ \alpha - n\log\left(1+\frac{1}{n}\right) \right] x^n \]
+
+    % Ex 10
+    \item \diff{3} \textbf{Parametro all'Esponente} \sol{12} \\
+    Determinare per quali $x$ converge la serie (con $n \neq 4$):
+    \[ \sum_{\substack{n=1 \\ n \ne 4}}^{+\infty} \frac{1}{(n^2-4n)^{x^3-x+1/2}} \]
+
+\end{enumerate}
+
+% =========================================================================
+\section{Serie Numeriche e Sviluppi di Taylor}
+\textit{Obiettivo: Usare Taylor per trovare l'ordine di infinitesimo, criterio del Rapporto/Radice e Leibniz.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 11
+    \item \diff{1} \textbf{Serie Astratta} \sol{14} \\
+    Studiare la convergenza semplice (non assoluta) della seguente serie:
+    \[ \sum_{n=1}^{+\infty} (-1)^n \frac{1}{f(n)} \]
+
+    % Ex 12
+    \item \diff{1} \textbf{Serie a Segni Alterni} \sol{14} \\
+    Studiare la convergenza della seguente serie:
+    \[ \sum_{n=0}^{+\infty} (-1)^n \frac{n-4}{n^2+1} \]
+
+    % Ex 13
+    \item \diff{2} \textbf{Leibniz + Asintotico} \sol{14} \\
+    Studiare la convergenza semplice (non assoluta) della seguente serie numerica:
+    \[ \sum_{n=1}^{+\infty} (-1)^{n-1} \frac{n^3}{e^n - n^2} \]
+
+    % Ex 14
+    \item \diff{2} \textbf{Serie Parametrica con Fattoriale} \sol{15} \\
+    Studiare, al variare di $x \in \mathbb{R}$, la convergenza della serie:
+    \[ \sum_{n=1}^{+\infty} \frac{(x(x-1)n)^n}{n!} \]
+
+    % Ex 15
+    \item \diff{2} \textbf{Cancellazione di Taylor} \sol{15} \\
+    Determinare la convergenza della seguente serie:
+    \[ \sum_{n=1}^{+\infty} \left( \sin\left(\frac{1}{n}\right) - \arctan\left(\frac{1}{n}\right) \right) \]
+
+    % Ex 16
+    \item \diff{3} \textbf{Serie Trigonometrica Parametrica} \sol{16} \\
+    Studiare, per $\alpha > 1$, la convergenza della seguente serie:
+    \[ \sum_{n=1}^{+\infty} \sin(n^2)\cos(n\pi)\sin\left(\frac{1}{n^\alpha}\right) \cos\left(\frac{1}{n}\right) \]
+
+    % Ex 17
+    \item \diff{3} \textbf{Doppio Parametro $a, b$} \sol{16} \\
+    Determinare per quali $a \in \mathbb{R}, b \ne 0$ converge la serie:
+    \[ \sum_{n=1}^{+\infty} \frac{n\sin(1/n)-a}{2^{bn}} \]
+
+    % Ex 18
+    \item \diff{3} \textbf{Serie con Potenze di Seni} \sol{17} \\
+    Data la serie per $\alpha > 0$ (con $x$ parametro fissato):
+    \[ \sum_{n=1}^{+\infty} \frac{\sin^\alpha(1/n^3)}{\sin^3(1/(n\sqrt{x}))} \]
+    a) Segno costante? b) Termine infinitesimo? c) Convergenza?
+
+\end{enumerate}
+
+% =========================================================================
+\section{Integrali Impropri Standard (0 e Infinito)}
+\textit{Obiettivo: Distinguere comportamento in 0 (Taylor, $p<1$) e a infinito (Gerarchia, $p>1$).}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 19
+    \item \diff{1} \textbf{Calcolo Integrale Definito} \sol{18} \\
+    Calcolare il seguente integrale definito:
+    \[ \int_{1}^{2} x \arctan\left(\sqrt{x^2-1}\right) \, dx \]
+
+    % Ex 20
+    \item \diff{1} \textbf{Calcolo Diretto} \sol{19} \\
+    a) Calcolare per $1 \le n < 13,5$: $\int_{1}^{+\infty} \frac{\log(x)}{x^{n+1}} \, dx$ \\
+    b) Calcolare: $\int_{0}^{\pi/2} \frac{\cos^3(x)}{1+\sin^2(x)} \, dx$
+
+    % Ex 21
+    \item \diff{1} \textbf{Gaussiano} \sol{20} \\
+    Studiare la convergenza ed eventualmente calcolare:
+    \[ \int_{0}^{+\infty} e^{-x^2} (x+4x^3) \, dx \]
+
+    % Ex 22
+    \item \diff{1} \textbf{Confronto Asintotico Semplice} \sol{20} \\
+    Studiare la convergenza ed eventualmente calcolare:
+    \[ \int_{0}^{+\infty} \frac{1}{\sqrt{x}+x^2} \, dx \]
+
+    % Ex 23
+    \item \diff{2} \textbf{Calcolo per Parti Ciclico} \sol{21} \\
+    Studiare la convergenza e, se converge, calcolare il valore di:
+    \[ \int_{0}^{+\infty} e^{-x} \sin(x) \, dx \]
+
+    % Ex 24
+    \item \diff{2} \textbf{Sostituzione e Improprio} \sol{22} \\
+    Studiare la convergenza ed eventualmente calcolare:
+    \[ \int_{0}^{2} \frac{e^x}{\sqrt{e^x-1}} \, dx \]
+
+    % Ex 25
+    \item \diff{2} \textbf{Singolarità con Valore Assoluto} \sol{22} \\
+    Studiare la convergenza del seguente integrale:
+    \[ \int_{0}^{2} \frac{\sqrt{x}}{\sqrt{1+x^2} - \sqrt{|x-1|}} \, dx \]
+
+    % Ex 26
+    \item \diff{2} \textbf{Serie Armonica Logaritmica (Integrale)} \sol{23} \\
+    Studiare la convergenza ed eventualmente calcolare:
+    \[ \int_{3}^{+\infty} \frac{1}{\log(x) (\log(\log(x)))^2} \frac{dx}{x} \]
+
+    % Ex 27
+    \item \diff{2} \textbf{Razionale con Casi $\lambda$} \sol{24} \\
+    Studiare al variare di $\lambda > -1$ (e poi $\lambda \le -1$):
+    \[ \int_{1}^{+\infty} \frac{1}{x^2 + \lambda} \, dx \]
+
+    % Ex 28
+    \item \diff{2} \textbf{Limitata su Potenza} \sol{25} \\
+    Studiare, al variare di $\alpha \in \mathbb{R}$, la convergenza di:
+    \[ \int_{0}^{+\infty} \frac{2+\sin(x)}{x^\alpha} \, dx \]
+
+    % Ex 29
+    \item \diff{2} \textbf{Funzione Integrale} \sol{26} \\
+    Sia $f(x) = \frac{1+x\sqrt{x}}{x\sqrt{x}}$ per $x>0$. Studiare esistenza integrali su $(0,1)$ e $(1,+\infty)$ per $f(x)$ e per la sua primitiva $F(x)$.
+
+    % Ex 30
+    \item \diff{3} \textbf{Parametro e Limite} \sol{27} \\
+    Calcolare $I_a = \int_{a}^{2} \frac{1}{\sqrt{x}-1} \, dx$ e il limite per $a \to 1^+$.
+
+    % Ex 31
+    \item \diff{3} \textbf{Parametrico Generalizzato} \sol{28} \\
+    Calcolare $I_a(n) = \int_{a}^{2} \frac{1}{(x-1)^{1/n}} \, dx$ e il limite per $a \to 1^+$.
+
+    % Ex 32
+    \item \diff{3} \textbf{Successione di Integrali} \sol{28} \\
+    Calcolare $I_n = \int_{0}^{1} x^n \log(x) \, dx$ e studiarne il limite per $n \to +\infty$.
+
+    % Ex 33
+    \item \diff{3} \textbf{Parametrico Esponenziale} \sol{29} \\
+    Al variare di $m \in \mathbb{Z}$, studiare e calcolare:
+    \[ \int_{e^m}^{+\infty} \frac{\log(x)}{x^2} \, dx \]
+
+\end{enumerate}
+
+% =========================================================================
+\section{(Parametri Misti e Limiti)}
+\textit{Obiettivo: Gestire esercizi complessi con più parametri ($\alpha, \beta, \lambda$) e definizioni di funzioni tramite integrali.}
+
+\begin{enumerate}[resume, label=\textbf{\arabic*.}]
+
+    % Ex 34
+    \item \diff{2} \textbf{Parametro Logaritmico} \sol{30} \\
+    Studiare, al variare di $\alpha$, la convergenza ed eventualmente calcolare:
+    \[ \int_{0}^{1} x^\alpha (\log(x))^2 \, dx \]
+
+    % Ex 35
+    \item \diff{2} \textbf{Razionale con Parametro} \sol{32} \\
+    Determinare per quali $\lambda$ converge il seguente integrale:
+    \[ \int_{1}^{+\infty} \frac{x^2+1}{x^4+\lambda x^2+1} \, dx \]
+
+    % Ex 36
+    \item \diff{2} \textbf{Misto Log-Razionale} \sol{33} \\
+    Studiare la convergenza del seguente integrale improprio:
+    \[ \int_{-1}^{+\infty} \frac{x \log(2+x)}{x^3+1} \, dx \]
+
+    % Ex 37
+    \item \diff{2} \textbf{Parametri su Radici} \sol{33} \\
+    Studiare la convergenza ed eventualmente calcolare:
+    \[ \int_{1}^{2} \left( \frac{\alpha}{\sqrt{x-1}} + \frac{\beta}{\sqrt[3]{2-x}} \right) \, dx \]
+
+    % Ex 38
+    \item \diff{2} \textbf{Dominio Funzione Integrale} \sol{34} \\
+    Determinare l'insieme di definizione di $F(x) = \int_{0}^{x} \frac{\log(1+t^2)}{t\sqrt{3-t}} \, dt$.
+
+    % Ex 39
+    \item \diff{1} \textbf{Doppio Parametro $\alpha, \beta$} \sol{35} \\
+    Studiare, al variare di $\alpha, \beta \in \mathbb{R}^+$, la convergenza assoluta:
+    \[ \int_{0}^{1} \frac{1}{x^\alpha} \tan(x^\beta) \, dx \]
+
+    % Ex 40
+    \item \diff{3} \textbf{Esponenziale-Trigonometrico} \sol{36} \\
+    Studiare la convergenza per $a \ge 0$ su $(1,+\infty)$ e su $(0,\pi)$ di:
+    \[ \frac{e^{ax}-\cos(x)}{x^a} \]
+
+    % Ex 41
+    \item \diff{3} \textbf{Cosh e Limite} \sol{37} \\
+    Studiare $\Phi(\alpha) = \int_{-\infty}^{+\infty} \frac{1}{\cosh(\alpha x)} \, dx$ e il limite per $\alpha \to 0^+$.
+
+    % Ex 42
+    \item \diff{3} \textbf{Razionale Parametrico e Limite} \sol{38} \\
+    Studiare $\Phi(\alpha) = \int_{1}^{+\infty} \frac{1}{x^2+\alpha x+1} \, dx$ e il limite per $\alpha \to 2$.
+
+    % Ex 43
+    \item \diff{3} \textbf{Integrale Dipendente e Limite} \sol{39} \\
+    Studiare $I(\lambda) = \int_{\lambda}^{+\infty} \frac{x}{(x^2+1)\log^2(x^2+1)} \, dx$ e il limite di $\lambda^\alpha I(\lambda)$.
+
+    % Ex 44
+    \item \diff{2} \textbf{parametrico} \sol{40} \\
+    Studiare, al variare di $\alpha > 0$, la convergenza di:
+    \[ \int_{2}^{+\infty} \frac{\sin(x+x^\alpha)}{x^2 \arctan(x^\alpha + x^{1/\alpha})} \, dx \]
+
+\end{enumerate}
+
+    \newpage
+\section*{Soluzioni e Svolgimenti}
+
+\subsection*{Fase 1: Serie di Potenze}
+
+\begin{description}
+
+% Soluzione Esercizio 1
+    \item[Esercizio 1 (Somma Finita)] \hfill \\
+    Esistono due metodi per risolvere questa sommatoria:
+
+    \textbf{Metodo A: Raccoglimento (Veloce)} \\
+    Raccogliamo il termine con l'esponente più basso $x^{-M}$:
+    \[
+    \sum_{n=-M}^{M} x^n = x^{-M} (1 + x + \dots + x^{2M}) = x^{-M} \sum_{k=0}^{2M} x^k
+    \]
+    Questa è una geometrica di ragione $x$ con $2M+1$ termini. Usando la formula classica:
+    \[
+    S = x^{-M} \frac{1-x^{2M+1}}{1-x} = \frac{x^{-M} - x^{M+1}}{1-x} \quad (\text{per } x \ne 1)
+    \]
+
+    \textbf{Metodo B: Spezzamento (Intuitivo)} \\
+    Dividiamo la somma in tre parti: esponenti negativi, zero, esponenti positivi.
+    \[
+    \sum_{n=-M}^{M} x^n = \underbrace{\sum_{n=-M}^{-1} x^n}_{\text{Parte Negativa}} + \underbrace{1}_{n=0} + \underbrace{\sum_{n=1}^{M} x^n}_{\text{Parte Positiva}}
+    \]
+    \begin{itemize}
+        \item Parte Positiva: Progressione geometrica di ragione $x$:
+        \[ S_{pos} = x \frac{1-x^M}{1-x} \]
+        \item Parte Negativa: Ponendo $k=-n$, diventa una geometrica di ragione $1/x$:
+        \[ S_{neg} = \sum_{k=1}^{M} \left(\frac{1}{x}\right)^k = \frac{1}{x} \frac{1-(1/x)^M}{1-1/x} = \frac{x^{-M}-1}{1-x} \]
+    \end{itemize}
+    Sommando tutto ($S_{neg} + 1 + S_{pos}$) si ottiene lo stesso risultato del Metodo A.
+    
+    \vspace{0.2cm}
+    \textit{Nota: Se $x=1$, la somma vale semplicemente $2M+1$.}
+
+    % Soluzione Esercizio 2
+    \item[Esercizio 2 (Serie Geometrica $x^{2k}$)] \hfill \\
+    Possiamo riscrivere il termine generale come $(x^2)^k$. Si tratta di una serie geometrica di ragione $q = x^2$.
+    \begin{itemize}
+        \item \textbf{Convergenza:} La serie converge se la ragione in modulo è minore di 1:
+        \[ |x^2| < 1 \implies x^2 < 1 \implies -1 < x < 1 \]
+        \item \textbf{Somma:} Usando la formula $S = \frac{1}{1-q}$:
+        \[ S(x) = \frac{1}{1-x^2} \]
+    \end{itemize}
+
+    % Soluzione Esercizio 3
+    \item[Esercizio 3 (Serie di Potenze)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \frac{n}{n^2+1}$.
+    \begin{enumerate}
+        \item \textbf{Calcolo del Raggio $R$:} Usiamo il criterio del rapporto:
+        \[
+        L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \frac{n+1}{(n+1)^2+1} \cdot \frac{n^2+1}{n} \sim 1
+        \]
+        Il raggio è $R = 1/L = 1$. La serie converge sicuramente in $(-1, 1)$.
+        
+        \item \textbf{Studio degli estremi:}
+        \begin{itemize}
+            \item Per $\mathbf{x=1}$: La serie diventa $\sum \frac{n}{n^2+1}$.
+            Poiché $a_n \sim \frac{1}{n}$ (serie armonica), la serie \textbf{diverge}.
+            \item Per $\mathbf{x=-1}$: La serie diventa $\sum (-1)^n \frac{n}{n^2+1}$.
+            È una serie a segni alterni. Per il Criterio di Leibniz (termini infinitesimi e decrescenti), la serie \textbf{converge}.
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Conclusione:} L'insieme di convergenza è l'intervallo \textbf{$[-1, 1)$}.
+
+    % Soluzione Esercizio 4 (Il 4 della Fase 1)
+    \item[Esercizio 4 (Serie Razionale)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \frac{1+n^2}{n^3}$.
+    \begin{enumerate}
+        \item \textbf{Calcolo del Raggio $R$:}
+        Usiamo il Criterio della Radice. Ricordando che $\lim_{n \to \infty} \sqrt[n]{P(n)} = 1$:
+        \[
+        L = \lim_{n \to \infty} \sqrt[n]{\frac{1+n^2}{n^3}} = 1 \implies R = 1
+        \]
+        La serie converge sicuramente in $(-1, 1)$.
+        
+        \item \textbf{Studio degli estremi:}
+        \begin{itemize}
+            \item Per $\mathbf{x=1}$: La serie diventa $\sum \frac{1+n^2}{n^3}$.
+            Per confronto asintotico $a_n \sim 1/n$. Poiché la serie armonica diverge, la serie \textbf{diverge}. Il punto 1 è escluso.
+            
+            \item Per $\mathbf{x=-1}$: La serie diventa $\sum (-1)^n \frac{1+n^2}{n^3}$.
+            Qui occorre fare una distinzione importante:
+            \begin{itemize}
+                \item \textit{Convergenza Assoluta:} Studiamo la serie dei moduli $\sum |a_n|$. Ricadiamo nel caso $x=1$, che abbiamo visto divergere. Quindi \textbf{non converge assolutamente}.
+                \item \textit{Convergenza Semplice:} Usiamo il Criterio di Leibniz. Il termine $a_n$ tende a 0 ed è decrescente. Quindi la serie \textbf{converge semplicemente}.
+            \end{itemize}
+            \textbf{Conclusione sul punto -1:} Poiché esiste la convergenza semplice, la somma è finita. Pertanto il punto $x=-1$ va \textbf{incluso} nell'insieme di convergenza.
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Risultato:} L'insieme di convergenza è l'intervallo \textbf{$[-1, 1)$}.
+
+    % Soluzione Esercizio 7 (Il 5 della Fase 1)
+    \item[Esercizio 5 (Serie Logaritmica)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \frac{1}{\log n}$.
+    \begin{enumerate}
+        \item \textbf{Calcolo del Raggio $R$:}
+        \[
+        L = \lim_{n \to \infty} \frac{\log n}{\log(n+1)} = 1 \implies R = 1
+        \]
+        La serie converge in $(-1, 1)$.
+        
+        \item \textbf{Studio degli estremi:}
+        \begin{itemize}
+            \item Per $\mathbf{x=1}$: La serie è $\sum \frac{1}{\log n}$.
+            Usiamo il criterio del confronto. Sappiamo che $\log n < n$ per ogni $n \ge 2$. Quindi:
+            \[ \frac{1}{\log n} > \frac{1}{n} \]
+            Poiché la serie armonica $\sum 1/n$ diverge, per confronto diverge anche la nostra serie (che è maggiore).
+            
+            \item Per $\mathbf{x=-1}$: La serie è $\sum (-1)^n \frac{1}{\log n}$.
+            Applichiamo il \textbf{Criterio di Leibniz} al termine $b_n = \frac{1}{\log n}$:
+            \begin{enumerate}
+                \item \textit{Infinitesimo:} $\lim_{n \to \infty} \frac{1}{\log n} = 0$. (Verificato)
+                \item \textit{Decrescenza:} La funzione $\log x$ è strettamente crescente. Pertanto $\log(n+1) > \log n$, il che implica $\frac{1}{\log(n+1)} < \frac{1}{\log n}$. La successione è decrescente. (Verificato)
+            \end{enumerate}
+            Quindi la serie \textbf{converge}.
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Conclusione:} L'insieme di convergenza è \textbf{$[-1, 1)$}.
+
+    % Soluzione Esercizio 5 (Il 6 della Fase 1)
+    \item[Esercizio 6 (Serie con Fattoriale e $n^n$)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \frac{n^n}{n!}$.
+    \begin{enumerate}
+        \item \textbf{Calcolo del Raggio $R$ (Criterio della Radice):}
+        Calcoliamo il limite della radice n-esima del coefficiente:
+        \[
+        L = \lim_{n \to \infty} \sqrt[n]{a_n} = \lim_{n \to \infty} \sqrt[n]{\frac{n^n}{n!}} = \lim_{n \to \infty} \frac{n}{\sqrt[n]{n!}}
+        \]
+        Usiamo la stima asintotica fondamentale $\sqrt[n]{n!} \sim \frac{n}{e}$ (conseguenza di Stirling):
+        \[
+        L = \lim_{n \to \infty} \frac{n}{n/e} = e
+        \]
+        Il raggio è $R = 1/L = 1/e$. L'intervallo aperto è $(-1/e, 1/e)$.
+        
+        \item \textbf{Studio degli estremi:}
+        Agli estremi dobbiamo capire se la serie numerica converge. Usiamo l'\textbf{Approssimazione di Stirling} completa: $n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n$.
+        
+        \begin{itemize}
+            \item Per $\mathbf{x=1/e}$: La serie diventa $\sum \frac{n^n}{n! e^n}$.
+            Sostituendo Stirling al denominatore:
+            \[
+            a_n \sim \frac{n^n}{\sqrt{2\pi n} \cdot \frac{n^n}{e^n} \cdot e^n} = \frac{n^n}{\sqrt{2\pi n} \cdot n^n} = \frac{1}{\sqrt{2\pi n}}
+            \]
+            Il termine generale si comporta come $\frac{1}{n^{1/2}}$. Poiché l'esponente $1/2 < 1$, la serie \textbf{diverge}.
+            
+            \item Per $\mathbf{x=-1/e}$: La serie diventa $\sum (-1)^n \frac{n^n}{n! e^n}$.
+            Il modulo del termine generale è asintotico a $\frac{1}{\sqrt{2\pi n}}$, che è infinitesimo. Inoltre è decrescente.
+            Per il Criterio di Leibniz, la serie \textbf{converge}.
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Conclusione:} L'insieme di convergenza è \textbf{$[-1/e, 1/e)$}.
+
+    % Soluzione Esercizio 7 (Il 7 della Fase 1)
+    \item[Esercizio 7 (Serie Centrata in $x_0=1$)] \hfill \\
+    La serie è $\sum a_n (x-1)^n$ con $a_n = \frac{n \log n}{1+n^2}$.
+    \begin{enumerate}
+        \item \textbf{Calcolo del Raggio $R$:}
+        Usiamo il Criterio della Radice e i limiti notevoli ($\sqrt[n]{n} \to 1$):
+        \[
+        L = \lim_{n \to \infty} \sqrt[n]{\frac{n \log n}{1+n^2}} \sim 1 \implies R=1
+        \]
+        
+        \item \textbf{Calcolo dell'Intervallo (Attenzione al Centro):}
+        La serie è centrata in $x_0 = 1$. Gli estremi si trovano spostandosi di $R$ dal centro:
+        \[
+        \text{Intervallo} = (x_0 - R, \ x_0 + R) = (1 - 1, \ 1 + 1) = (0, 2)
+        \]
+        Dobbiamo testare manualmente cosa succede sui bordi $x=0$ e $x=2$.
+        
+        \item \textbf{Studio degli estremi:}
+        \begin{itemize}
+            \item Per $\mathbf{x=2}$ (Estremo destro): 
+            Il termine di potenza diventa $(2-1)^n = 1^n = 1$.
+            La serie è $\sum \frac{n \log n}{1+n^2}$.
+            Per confronto asintotico $a_n \sim \frac{\log n}{n} > \frac{1}{n}$. Poiché la serie armonica diverge, questa \textbf{diverge}.
+            
+            \item Per $\mathbf{x=0}$ (Estremo sinistro):
+            Il termine di potenza diventa $(0-1)^n = (-1)^n$.
+            La serie è $\sum (-1)^n \frac{n \log n}{1+n^2}$.
+            Usiamo Leibniz: il termine è infinitesimo e decrescente. Quindi \textbf{converge}.
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Conclusione:} L'insieme di convergenza è \textbf{$[0, 2)$}.
+
+ % Soluzione Esercizio 8 (L'8 della Fase 1)
+    \item[Esercizio 8 (Raggio con Parametro $\lambda$)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \frac{n^\lambda + 1}{\lambda^n+1}$.
+    Calcoliamo il limite della radice n-esima $L = \lim_{n \to \infty} \sqrt[n]{a_n}$.
+    
+    Bisogna fare attenzione: il termine dominante al denominatore cambia a seconda del valore di $\lambda$.
+    
+    \begin{itemize}
+        \item \textbf{Caso A: $0 \le \lambda \le 1$} \\
+        Qui $\lambda^n$ non esplode (è $\le 1$). Il termine $+1$ al denominatore è rilevante o dominante.
+        \[ L = \lim \frac{\sqrt[n]{n^\lambda}}{\sqrt[n]{1}} = 1 \]
+        Il raggio è $R = 1/L = 1/1 = \mathbf{1}$.
+        
+        \item \textbf{Caso B: $\lambda > 1$} \\
+        Qui $\lambda^n \to +\infty$ esponenzialmente e vince sul $+1$.
+        \[ L = \lim \frac{1}{\sqrt[n]{\lambda^n}} = \frac{1}{\lambda} \]
+        Il raggio è l'inverso del limite: $R = 1/L = 1/(1/\lambda) = \mathbf{\lambda}$.
+    \end{itemize}
+    
+    \textbf{Nota Importante sul Risultato:}
+    Potrebbe venire il dubbio se prendere il minimo o il massimo. Ricorda che $R$ è l'inverso di $L$.
+    \begin{itemize}
+        \item Se $\lambda$ è grande (es. 100), i coefficienti sono piccolissimi ($1/100^n$), quindi la serie converge in un raggio molto ampio ($R=100$).
+        \item Se $\lambda$ è piccolo, il raggio si ferma a 1.
+    \end{itemize}
+    Quindi il risultato si può scrivere compattamente come:
+    \[ \mathbf{R = \max(1, \lambda)} \]
+
+  % Soluzione Esercizio 9 (Il 9 della Fase 1)
+    \item[Esercizio 9 (Coefficiente con Taylor)] \hfill \\
+    La serie è $\sum a_n x^n$ con $a_n = \alpha - n\log\left(1+\frac{1}{n}\right)$.
+    
+    \textbf{1. Analisi asintotica (Taylor):}
+    Sviluppiamo il logaritmo fino al secondo ordine per $x=1/n \to 0$:
+    \[
+    a_n = \alpha - n \left( \frac{1}{n} - \frac{1}{2n^2} + o\left(\frac{1}{n^2}\right) \right) = (\alpha - 1) + \frac{1}{2n} + o\left(\frac{1}{n}\right)
+    \]
+    
+    \textbf{2. Calcolo del Raggio (Nota importante):}
+    Il raggio $R=1$ in tutti i casi, ma per motivi diversi:
+    \begin{itemize}
+        \item Se $\alpha \ne 1$, $a_n \to \alpha - 1$ (costante). Poiché $\lim \sqrt[n]{|\text{costante}|} = 1$, il raggio è $R=1$.
+        \item Se $\alpha = 1$, $a_n \sim \frac{1}{2n}$. Poiché $\lim \sqrt[n]{\frac{1}{2n}} = 1$, il raggio è comunque $R=1$.
+    \end{itemize}
+    
+    \textbf{3. Studio degli estremi:}
+    \begin{itemize}
+        \item \textbf{Caso $\alpha \ne 1$:} 
+        Il limite del termine generale è $\lim a_n = \alpha - 1 \ne 0$.
+        Mancando la condizione necessaria ($a_n \to 0$), la serie non converge mai agli estremi.
+        \textbf{Insieme:} $(-1, 1)$.
+        
+        \item \textbf{Caso $\alpha = 1$:}
+        Il termine diventa $a_n \sim \frac{1}{2n}$.
+        \begin{itemize}
+            \item Per $\mathbf{x=1}$: $\sum \frac{1}{2n}$ diverge (armonica).
+            \item Per $\mathbf{x=-1}$: $\sum (-1)^n \frac{1}{2n}$ converge (Leibniz).
+        \end{itemize}
+        \textbf{Insieme:} $[-1, 1)$.
+    \end{itemize}
+
+% Soluzione Esercizio 10 (Il 10 della Fase 1)
+    \item[Esercizio 10 (Parametro all'Esponente)] \hfill \\
+    La serie è $\sum \frac{1}{(n^2-4n)^E}$ dove l'esponente è $E = x^3-x+1/2$.
+    
+    \textbf{1. Scelta del Criterio:}
+    Trattandosi di una base polinomiale, i criteri del Rapporto e della Radice darebbero limite $L=1$ (caso dubbio). 
+    L'unica strada è il \textbf{Criterio del Confronto Asintotico} con la serie armonica generalizzata.
+    
+    \textbf{2. Analisi Asintotica:}
+    Per $n \to \infty$, la base $n^2-4n \sim n^2$.
+    Quindi il termine generale è asintotico a:
+    \[
+    a_n \sim \frac{1}{(n^2)^{E}} = \frac{1}{n^{2E}}
+    \]
+    Questa è una serie armonica generalizzata $\sum \frac{1}{n^p}$ con $p = 2E$.
+    
+    \textbf{3. Condizione di Convergenza:}
+    Ricordiamo che la serie armonica converge se e solo se $p > 1$.
+    Imponiamo la disuguaglianza sull'esponente totale:
+    \[
+    2(x^3 - x + 1/2) > 1
+    \]
+    
+    \textbf{4. Risoluzione della Disequazione:}
+    \[
+    2x^3 - 2x + 1 > 1 \implies 2x^3 - 2x > 0 \implies 2x(x^2-1) > 0
+    \]
+    Studiamo il segno del prodotto $x(x-1)(x+1) > 0$:
+    \begin{itemize}
+        \item Fattore $x > 0$: positivo per $x > 0$.
+        \item Fattore $x^2-1 > 0$: positivo per $x < -1 \cup x > 1$.
+    \end{itemize}
+    Dal grafico dei segni, il prodotto è positivo negli intervalli:
+    \[ (-1, 0) \cup (1, +\infty) \]
+    
+    \textbf{Conclusione:} La serie converge per $x \in (-1, 0) \cup (1, +\infty)$.
+
+    % Soluzione Esercizio 10b (Serie di Potenze "mostruosa")
+    \item[Esercizio 10b] \hfill \\
+    Studiare la convergenza della seguente serie per $x = e^2$:
+    \[ \sum_{n=1}^{+\infty} \frac{(2+\cos(n!)) \cdot n^{n^{3/2}}}{2^{n^2}} (x-1)^n \]
+    
+    \textbf{1. Impostazione: Criterio della Radice}
+    Trattandosi di una serie di potenze $\sum a_n (x-1)^n$, calcoliamo il raggio di convergenza $R$ usando il limite della radice $n$-esima dei coefficienti:
+    \[ L = \lim_{n \to +\infty} \sqrt[n]{|a_n|} = \lim_{n \to +\infty} \sqrt[n]{\frac{(2+\cos(n!)) \cdot n^{n^{3/2}}}{2^{n^2}}} \]
+    
+    \textbf{2. Semplificazione dei termini}
+    Spezziamo il limite in tre fattori:
+    \[ L = \lim_{n \to +\infty} \frac{\sqrt[n]{2+\cos(n!)} \cdot \sqrt[n]{n^{n^{3/2}}}}{\sqrt[n]{2^{n^2}}} \]
+    
+    Analizziamo i pezzi singolarmente:
+    \begin{itemize}
+        \item \textbf{Il termine oscillante:} Poiché $-1 \le \cos(n!) \le 1$, il termine $2+\cos(n!)$ è compreso tra 1 e 3.
+        Per il teorema dei carabinieri, $\sqrt[n]{1} \le \sqrt[n]{2+\cos(n!)} \le \sqrt[n]{3}$.
+        Entrambi tendono a 1, quindi questo fattore tende a \textbf{1}.
+        
+        \item \textbf{Il numeratore (potenza di potenza):}
+        \[ \sqrt[n]{n^{n^{3/2}}} = (n^{n^{1.5}})^{1/n} = n^{\frac{n^{1.5}}{n}} = n^{n^{0.5}} = n^{\sqrt{n}} \]
+        
+        \item \textbf{Il denominatore:}
+        \[ \sqrt[n]{2^{n^2}} = (2^{n^2})^{1/n} = 2^{\frac{n^2}{n}} = 2^n \]
+    \end{itemize}
+    
+    \textbf{3. Confronto tra Infiniti}
+    Il limite è diventato:
+    \[ L = \lim_{n \to +\infty} \frac{n^{\sqrt{n}}}{2^n} \]
+    Per capire chi "vince", passiamo ai logaritmi o confrontiamo gli ordini di infinito:
+    \begin{itemize}
+        \item Numeratore: $\ln(n^{\sqrt{n}}) = \sqrt{n} \ln n$.
+        \item Denominatore: $\ln(2^n) = n \ln 2$.
+    \end{itemize}
+    Per $n \to +\infty$, $n$ (lineare) è molto più grande di $\sqrt{n}\ln n$.
+    Quindi il denominatore $2^n$ domina pesantemente sul numeratore.
+    \[ L = 0 \]
+    
+    \textbf{4. Raggio di Convergenza e Conclusione}
+    Il raggio è $R = \frac{1}{L} = \frac{1}{0} = +\infty$.
+    
+    La serie converge \textbf{assolutamente per ogni} $x \in \mathbb{R}$.
+    Di conseguenza, converge anche per il valore richiesto $x = e^2$.
+
+    % Soluzione Esercizio 4 (L'11 della Fase 2)
+    \item[Esercizio 11 (Serie Astratta)] \hfill \\
+    La serie è $\sum (-1)^n a_n$ con $a_n = \frac{1}{f(n)}$.
+    Trattandosi di una serie a segni alterni, applichiamo il \textbf{Criterio di Leibniz}. La convergenza semplice è garantita se sono verificate le seguenti due condizioni sul termine generale $a_n$:
+    
+    \begin{enumerate}
+        \item \textbf{Infinitesimo:} Il termine deve tendere a zero.
+        \[ \lim_{n \to \infty} \frac{1}{f(n)} = 0 \implies \lim_{n \to \infty} f(n) = +\infty \]
+        Quindi $f(n)$ deve essere una successione divergente.
+        
+        \item \textbf{Decrescenza:} Il termine deve essere decrescente ($a_{n+1} \le a_n$).
+        \[ \frac{1}{f(n+1)} \le \frac{1}{f(n)} \implies f(n+1) \ge f(n) \]
+        Quindi $f(n)$ deve essere una successione monotona crescente (almeno definitivamente).
+    \end{enumerate}
+    
+    \textbf{Conclusione:} La serie converge semplicemente se $f(n)$ è una successione positiva, crescente e divergente a $+\infty$.
+
+    % Soluzione Esercizio 22 (Il 12 della Fase 2)
+    \item[Esercizio 12 (Segni Alterni)] \hfill \\
+    La serie è $\sum (-1)^n \frac{n-4}{n^2+1}$.
+    \begin{enumerate}
+        \item \textbf{Convergenza Assoluta:}
+        Studiamo la serie dei valori assoluti $\sum \left| \frac{n-4}{n^2+1} \right|$.
+        Per $n \to \infty$, il termine generale è asintotico a:
+        \[ |a_n| \sim \frac{n}{n^2} = \frac{1}{n} \]
+        Poiché la serie armonica diverge, la serie \textbf{non converge assolutamente}.
+        
+        \item \textbf{Convergenza Semplice:}
+        Usiamo il Criterio di Leibniz.
+        \begin{itemize}
+            \item \textit{Infinitesimo:} $\lim \frac{n-4}{n^2+1} = 0$ (grado den. > grado num.).
+            \item \textit{Decrescenza:} La derivata di $f(x) = \frac{x-4}{x^2+1}$ è negativa per $x$ sufficientemente grandi (il numeratore della derivata è $-x^2+8x+1$, che è negativo per $x > 9$).
+        \end{itemize}
+        Quindi la serie \textbf{converge semplicemente}.
+    \end{enumerate}
+
+    % Soluzione Esercizio 1 (Il 13 della Fase 2)
+    \item[Esercizio 13 (Leibniz e Gerarchia)] \hfill \\
+    La serie è $\sum (-1)^{n-1} \frac{n^3}{e^n - n^2}$.
+    Anche qui usiamo il Criterio di Leibniz per la convergenza semplice:
+    
+    \begin{enumerate}
+        \item \textbf{Infinitesimo:}
+        Calcoliamo il limite del termine generale (senza segno):
+        \[ \lim_{n \to \infty} \frac{n^3}{e^n - n^2} = 0 \]
+        Questo è vero per la \textbf{gerarchia degli infiniti}: l'esponenziale $e^n$ al denominatore cresce infinitamente più velocemente della potenza $n^3$.
+        
+        \item \textbf{Decrescenza:}
+        Per $n$ grande, il termine $e^n$ domina, rendendo la frazione decrescente.
+    \end{enumerate}
+    \textbf{Conclusione:} La serie converge semplicemente.
+    
+    \textit{Nota: In questo caso specifico, applicando il Criterio del Rapporto al modulo, si scoprirebbe che la serie converge anche assolutamente (perché $1/e < 1$), ma Leibniz è sufficiente per rispondere alla domanda sulla convergenza semplice.}
+
+% Soluzione Esercizio 28 (Il 14 della tua lista mentale)
+    \item[Esercizio 14 (Serie Parametrica con Fattoriale)] \hfill \\
+    La serie è $\sum \frac{[x(x-1)]^n n^n}{n!}$.
+    Posto $K = x(x-1)$, procediamo con lo studio.
+    
+    \textbf{Nota Metodologica (Perché la Convergenza Assoluta?):}
+    Poiché il termine $x(x-1)$ può assumere valori negativi, la serie non è a termini positivi. I criteri standard (Radice e Rapporto) si applicano solo a termini non negativi.
+    Pertanto, applichiamo il \textbf{Criterio della Radice} al valore assoluto $|a_n|$. Se la serie converge assolutamente, allora convergerà anche semplicemente.
+    
+    Calcoliamo il limite:
+    \[
+    L = \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n \to \infty} \frac{\sqrt[n]{|K|^n} \cdot \sqrt[n]{n^n}}{\sqrt[n]{n!}}
+    \]
+    
+    Ricordiamo le proprietà fondamentali usate:
+    \begin{itemize}
+        \item $\sqrt[n]{|K|^n} = |K|$.
+        \item $\sqrt[n]{n^n} = n$.
+        \item $\sqrt[n]{n!} \sim \frac{n}{e}$ (Approssimazione di Stirling per $n \to +\infty$).
+    \end{itemize}
+    
+    Sostituendo otteniamo:
+    \[
+    L = \lim_{n \to \infty} \frac{|K| \cdot n}{n/e} = |K|e
+    \]
+    
+    La serie converge assolutamente (e quindi semplicemente) se $L < 1$, cioè $|x^2 - x| < 1/e$.
+    Questo sistema si divide in:
+    
+    \begin{enumerate}
+        \item $x^2 - x > -1/e \implies x^2 - x + \frac{1}{e} > 0$. \\
+        Discriminante $\Delta = 1 - 4/e < 0$ (poiché $e \approx 2.71$). Parabola sempre positiva, verificata $\forall x$.
+        
+        \item $x^2 - x < 1/e \implies x^2 - x - \frac{1}{e} < 0$. \\
+        Discriminante $\Delta = 1 + 4/e > 0$. Verificata per valori interni alle radici.
+    \end{enumerate}
+    
+    \textbf{Conclusione:} La serie converge per:
+    \[
+    \frac{1 - \sqrt{1 + 4/e}}{2} < x < \frac{1 + \sqrt{1 + 4/e}}{2}
+    \]
+
+    % Soluzione Esercizio 20 (Il 15 della tua lista mentale, 5 della Fase 2)
+    \item[Esercizio 15 (Cancellazione di Taylor)] \hfill \\
+    La serie è $\sum \left( \sin\left(\frac{1}{n}\right) - \arctan\left(\frac{1}{n}\right) \right)$.
+    Per studiare la convergenza, dobbiamo determinare l'ordine di infinitesimo del termine generale.
+    I limiti notevoli (Taylor al primo ordine) non sono sufficienti perché portano a una cancellazione totale ($1/n - 1/n = 0$).
+    
+    Dobbiamo sviluppare fino al \textbf{terzo ordine}:
+    \begin{align*}
+        \sin\left(\frac{1}{n}\right) &= \frac{1}{n} - \frac{1}{6n^3} + o\left(\frac{1}{n^3}\right) \\
+        \arctan\left(\frac{1}{n}\right) &= \frac{1}{n} - \frac{1}{3n^3} + o\left(\frac{1}{n^3}\right)
+    \end{align*}
+    
+    Sostituendo nella somma:
+    \[
+    a_n = \left(\frac{1}{n} - \frac{1}{6n^3}\right) - \left(\frac{1}{n} - \frac{1}{3n^3}\right) + o\left(\frac{1}{n^3}\right)
+    \]
+    I termini lineari $1/n$ si elidono:
+    \[
+    a_n = \left(-\frac{1}{6} + \frac{1}{3}\right)\frac{1}{n^3} = \frac{1}{6n^3}
+    \]
+    
+    Il termine generale è asintotico a $\frac{1}{6n^3}$.
+    Trattandosi di una serie armonica generalizzata con esponente $p=3 > 1$, la serie \textbf{converge}.
+
+% Soluzione Esercizio 14 (Il 16 della Fase 2)
+    \item[Esercizio 16 (Serie Trigonometrica Parametrica)] \hfill \\
+    La serie è $\sum \sin(n^2)\cos(n\pi)\sin\left(\frac{1}{n^\alpha}\right) \cos\left(\frac{1}{n}\right)$ con $\alpha > 1$.
+    
+    \textbf{1. Analisi preliminare (Passo 0):}
+    Il termine generale tende a zero? Sì, perché $\sin(1/n^\alpha) \to 0$. Quindi ha senso studiare la convergenza.
+    
+    \textbf{2. Scelta del Metodo (Passo 1):}
+    I segni non sono costanti positivi, né alternati regolarmente (a causa di $\sin(n^2)$ che oscilla in modo irregolare).
+    In questi casi "caotici", l'unica strada è studiare la \textbf{Convergenza Assoluta}.
+    
+    \textbf{3. Criterio del Confronto Asintotico sui Moduli:}
+    Studiamo $\sum |a_n|$.
+    \begin{itemize}
+        \item $|\sin(n^2)| \le 1$ e $|\cos(n\pi)| = 1$.
+        \item $|\cos(1/n)| \to 1$.
+        \item $\sin(1/n^\alpha) \sim \frac{1}{n^\alpha}$ (Taylor).
+    \end{itemize}
+    Quindi $|a_n| \sim \frac{1}{n^\alpha}$.
+    
+    Trattandosi di una serie armonica generalizzata con $\alpha > 1$, la serie converge assolutamente (e quindi semplicemente).
+
+% Soluzione Esercizio 40 (Il 17 della Fase 2)
+    \item[Esercizio 17 (Doppio Parametro $a, b$)] \hfill \\
+    La serie è $\sum \frac{n\sin(1/n)-a}{2^{bn}}$.
+    
+    \textbf{1. Analisi dettagliata del Numeratore (Taylor):}
+    Dobbiamo capire "quanto pesa" il numeratore. Sviluppiamo $\sin(x)$ con $x=1/n$:
+    \[
+    \sin\left(\frac{1}{n}\right) = \frac{1}{n} - \frac{1}{6n^3} + o\left(\frac{1}{n^3}\right)
+    \]
+    Moltiplichiamo per $n$:
+    \[
+    n\sin\left(\frac{1}{n}\right) = n\left(\frac{1}{n} - \frac{1}{6n^3}\right) = 1 - \frac{1}{6n^2} + o\left(\frac{1}{n^2}\right)
+    \]
+    Sostituendo nella frazione, il termine generale diventa:
+    \[
+    a_n = \frac{(1 - \frac{1}{6n^2}) - a}{2^{bn}} = \frac{(1-a) - \frac{1}{6n^2}}{2^{bn}}
+    \]
+    
+    \textbf{2. Semplificazione Asintotica (Caso per Caso):}
+    Il comportamento dipende da $a$, ma vedremo che il parametro $b$ è quello decisivo.
+    
+    \begin{itemize}
+        \item \textbf{Caso A ($a \ne 1$):} Il termine $(1-a)$ è un numero diverso da zero. Per $n$ grande, $-\frac{1}{6n^2}$ è trascurabile rispetto alla costante.
+        \[
+        a_n \sim \frac{1-a}{2^{bn}} = (1-a) \cdot \left(\frac{1}{2^b}\right)^n
+        \]
+        Questa è una \textbf{Serie Geometrica} di ragione $q = 1/2^b$. Converge se $|q| < 1$, cioè se $2^b > 1 \implies b > 0$.
+        
+        \item \textbf{Caso B ($a = 1$):} Il termine costante sparisce ($1-1=0$). Rimane il termine successivo di Taylor.
+        \[
+        a_n \sim \frac{-1/6n^2}{2^{bn}} = -\frac{1}{6n^2 2^{bn}}
+        \]
+        Anche qui, tutto dipende dall'esponenziale al denominatore.
+        \begin{itemize}
+            \item Se $b > 0$, l'esponenziale al denominatore fa convergere la serie .
+            \item Se $b \le 0$, l'esponenziale sparisce o va al numeratore, e la serie diverge.
+        \end{itemize}
+    \end{itemize}
+    
+    \textbf{Conclusione:}
+    In entrambi i casi, l'unica condizione necessaria e sufficiente per avere convergenza è che l'esponenziale al denominatore faccia il suo lavoro, ovvero che:
+    \[ \mathbf{b > 0} \]
+    Il valore di $a$ non influenza la convergenza (influenza solo la "velocità" con cui converge, ma non il risultato finale).
+
+    % Soluzione Esercizio 41 (Il 18 della Fase 2)
+    \item[Esercizio 18 (Serie con Potenze di Seni)] \hfill \\
+    La serie è $\sum \frac{\sin^\alpha(1/n^3)}{\sin^3(1/(n\sqrt{x}))}$ con parametro $\alpha > 0$ e $x$ fissato ($x>0$ per esistenza della radice e denominatore).
+    
+    \textbf{1. Stime Asintotiche:}
+    Utilizziamo l'equivalenza $\sin(\epsilon) \sim \epsilon$ per $\epsilon \to 0$.
+    \begin{itemize}
+        \item Numeratore: $\sin^\alpha(1/n^3) \sim (1/n^3)^\alpha = \frac{1}{n^{3\alpha}}$.
+        \item Denominatore: $\sin^3\left(\frac{1}{n\sqrt{x}}\right) \sim \left(\frac{1}{n\sqrt{x}}\right)^3 = \frac{1}{n^3 x^{3/2}}$.
+    \end{itemize}
+    
+    Mettendo insieme i pezzi, il termine generale è asintotico a:
+    \[
+    a_n \sim \frac{1}{n^{3\alpha}} \cdot n^3 x^{3/2} = x^{3/2} \cdot \frac{1}{n^{3\alpha - 3}}
+    \]
+    La costante $x^{3/2}$ non influenza la convergenza. Ci siamo ridotti a una serie armonica generalizzata $\sum \frac{1}{n^p}$ con esponente $p = 3\alpha - 3$.
+    
+    \textbf{2. Risposte ai quesiti:}
+    \begin{enumerate}
+        \item[a)] \textbf{Segno Costante:} Sì, definitivamente. Per $n$ sufficientemente grande, gli argomenti dei seni ($1/n^3$ e $1/(n\sqrt{x})$) sono positivi e vicini a zero (nel primo quadrante), quindi i termini sono tutti positivi.
+        
+        \item[b)] \textbf{Termine Infinitesimo:} Affinché $\lim a_n = 0$, è necessario che la potenza di $n$ rimanga al denominatore, ovvero che l'esponente $p$ sia positivo:
+        \[ 3\alpha - 3 > 0 \implies \alpha > 1 \]
+        
+        \item[c)] \textbf{Convergenza:} La serie armonica generalizzata converge se l'esponente $p > 1$:
+        \[ 3\alpha - 3 > 1 \implies 3\alpha > 4 \implies \alpha > \frac{4}{3} \]
+
+        
+    \end{enumerate}
+    % Soluzione Esercizio 26 (Calcolo Integrale Definito)
+    \item[Esercizio 19 (Integrazione per Sostituzione)] \hfill \\
+    Calcolare $I = \int_{1}^{2} x \arctan\left(\sqrt{x^2-1}\right) \, dx$.
+    
+    Procediamo per \textbf{sostituzione}, sfruttando il fatto che $x$ è legato alla derivata dell'argomento della radice.
+    Poniamo $t = \sqrt{x^2-1}$.
+    \[
+    t^2 = x^2 - 1 \implies 2t \, dt = 2x \, dx \implies t \, dt = x \, dx
+    \]
+    Cambiamo gli estremi di integrazione:
+    \begin{itemize}
+        \item Per $x=1 \implies t=0$.
+        \item Per $x=2 \implies t=\sqrt{3}$.
+    \end{itemize}
+    
+    L'integrale diventa:
+    \[
+    I = \int_{0}^{\sqrt{3}} t \arctan(t) \, dt
+    \]
+    Procediamo ora per \textbf{parti}:
+    \begin{align*}
+        f(t) &= \arctan(t) \implies f'(t) = \frac{1}{1+t^2} \\
+        g'(t) &= t \implies g(t) = \frac{t^2}{2}
+    \end{align*}
+    \[
+    I = \left[ \frac{t^2}{2}\arctan(t) \right]_0^{\sqrt{3}} - \frac{1}{2} \int_0^{\sqrt{3}} \frac{t^2}{1+t^2} \, dt
+    \]
+    Per risolvere l'integrale razionale usiamo il trucco $+1-1$:
+    \[
+    \frac{t^2}{1+t^2} = \frac{t^2+1-1}{1+t^2} = 1 - \frac{1}{1+t^2}
+    \]
+    Quindi:
+    \[
+    I = \left[ \frac{t^2}{2}\arctan(t) \right]_0^{\sqrt{3}} - \frac{1}{2} \left[ t - \arctan(t) \right]_0^{\sqrt{3}}
+    \]
+    Sostituendo i valori ($\arctan(\sqrt{3}) = \pi/3$):
+    \[
+    I = \left( \frac{3}{2} \cdot \frac{\pi}{3} \right) - \frac{1}{2} \left( \sqrt{3} - \frac{\pi}{3} \right) = \frac{\pi}{2} - \frac{\sqrt{3}}{2} + \frac{\pi}{6} = \frac{2\pi}{3} - \frac{\sqrt{3}}{2}
+    \]
+
+  
+    \item[Esercizio 20a (Integrale con Logaritmo e Parametro)] \hfill \\
+    Calcolare per $n \ge 1$ (il 13 è inutile) l'integrale $I = \int_{1}^{+\infty} \frac{\log(x)}{x^{n+1}} \, dx$.
+    
+    Procediamo per \textbf{integrazione per parti}, scegliendo di derivare il logaritmo per eliminarlo.
+    \begin{align*}
+        f(x) &= \log(x) \implies f'(x) = \frac{1}{x} \\
+        g'(x) &= x^{-n-1} \implies g(x) = \frac{x^{-n}}{-n} = -\frac{1}{n x^n}
+    \end{align*}
+    Applicando la formula:
+    \[
+    I = \left[ -\frac{\log(x)}{n x^n} \right]_{1}^{+\infty} - \int_{1}^{+\infty} \left( \frac{1}{x} \right) \left( -\frac{1}{n x^n} \right) \, dx
+    \]
+    Analizziamo il termine tra parentesi quadre:
+    \begin{itemize}
+        \item Per $x \to +\infty$: $\frac{\log(x)}{x^n} \to 0$ per gerarchia degli infiniti (dato che $n \ge 1$).
+        \item Per $x = 1$: $\log(1) = 0$.
+    \end{itemize}
+    Il termine di bordo è nullo. Rimane l'integrale:
+    \[
+    I = \frac{1}{n} \int_{1}^{+\infty} \frac{1}{x^{n+1}} \, dx = \frac{1}{n} \left[ \frac{x^{-n}}{-n} \right]_{1}^{+\infty}
+    \]
+    \[
+    I = \frac{1}{n} \left[ -\frac{1}{n x^n} \right]_{1}^{+\infty} = \frac{1}{n} \left( 0 - \left(-\frac{1}{n}\right) \right) = \frac{1}{n^2}
+    \]
+    
+    \textbf{Risultato:} $\frac{1}{n^2}$.
+  
+    \item[Esercizio 20b (Trigonometrico)] \hfill \\
+    Calcolare $I = \int_{0}^{\pi/2} \frac{\cos^3(x)}{1+\sin^2(x)} \, dx$.
+    
+    Utilizziamo la sostituzione $t = \sin(x)$, notando prima che possiamo riscrivere il numeratore per evidenziare la derivata:
+    \[
+    \cos^3(x) = \cos^2(x) \cdot \cos(x) = (1-\sin^2(x)) \cos(x)
+    \]
+    Quindi poniamo:
+    \begin{itemize}
+        \item $t = \sin(x) \implies dt = \cos(x) dx$
+        \item Estremi: $x=0 \to t=0$ e $x=\pi/2 \to t=1$.
+    \end{itemize}
+    L'integrale diventa:
+    \[
+    I = \int_{0}^{1} \frac{1-t^2}{1+t^2} \, dt
+    \]
+    Scomponiamo la frazione algebrica (o eseguiamo la divisione polinomiale):
+    \[
+    \frac{1-t^2}{1+t^2} = \frac{2 - (1+t^2)}{1+t^2} = \frac{2}{1+t^2} - 1
+    \]
+    Passiamo alle primitive:
+    \[
+    I = \int_{0}^{1} \left( \frac{2}{1+t^2} - 1 \right) \, dt = \left[ 2\arctan(t) - t \right]_{0}^{1}
+    \]
+    Sostituendo i valori ($\arctan(1)=\pi/4$):
+    \[
+    I = \left( 2\cdot\frac{\pi}{4} - 1 \right) - (0 - 0) = \frac{\pi}{2} - 1
+    \]
+    % Soluzione Esercizio 21 (Gaussiano con Polinomio)
+    \item[Esercizio 21 (Sostituzione su Gaussiana)] \hfill \\
+    Calcolare $I = \int_{0}^{+\infty} e^{-x^2} (x+4x^3) \, dx$.
+    
+    L'integrale sembra complesso, ma notiamo che possiamo raccogliere una $x$ dal polinomio, che rappresenta la derivata (a meno di costanti) dell'esponente $-x^2$.
+    \[
+    I = \int_{0}^{+\infty} e^{-x^2} \cdot x \cdot (1+4x^2) \, dx
+    \]
+    Effettuiamo la sostituzione $t = x^2$:
+    \begin{itemize}
+        \item $dt = 2x \, dx \implies x \, dx = \frac{1}{2} dt$
+        \item Gli estremi rimangono $0$ e $+\infty$.
+    \end{itemize}
+    Sostituendo nell'integrale:
+    \[
+    I = \int_{0}^{+\infty} e^{-t} (1+4t) \frac{1}{2} \, dt = \frac{1}{2} \int_{0}^{+\infty} e^{-t} \, dt + 2 \int_{0}^{+\infty} t e^{-t} \, dt
+    \]
+    Calcoliamo i due pezzi separatamente:
+    \begin{enumerate}
+        \item $\int_{0}^{+\infty} e^{-t} \, dt = \left[ -e^{-t} \right]_0^{+\infty} = 1$.
+        \item $\int_{0}^{+\infty} t e^{-t} \, dt$ si risolve per parti ($f=t, g'=e^{-t}$):
+        \[
+        \left[ -t e^{-t} \right]_0^{+\infty} + \int_{0}^{+\infty} e^{-t} \, dt = 0 + 1 = 1
+        \]
+        (Nota: il termine di bordo va a 0 per gerarchia degli infiniti).
+    \end{enumerate}
+    
+    Sommando i risultati:
+    \[
+    I = \frac{1}{2}(1) + 2(1) = \frac{5}{2}
+    \]
+    % Soluzione Esercizio (ex 22)
+    \item[Esercizio 22: Integrale Razionale] \hfill \\
+    Calcolare $I = \int_{0}^{+\infty} \frac{1}{\sqrt{x}+x^2} \, dx$.
+    
+    \textbf{1. Analisi Convergenza:}
+    \begin{itemize}
+        \item Per $x \to 0^+$: $f(x) \sim \frac{1}{\sqrt{x}}$. Converge (ordine $1/2 < 1$).
+        \item Per $x \to +\infty$: $f(x) \sim \frac{1}{x^2}$. Converge (ordine $2 > 1$).
+    \end{itemize}
+    
+    \textbf{2. Calcolo:}
+    Sostituzione $t = \sqrt{x} \implies x=t^2, \, dx = 2t \, dt$.
+    \[
+    I = \int_{0}^{+\infty} \frac{2t}{t+t^4} \, dt = \int_{0}^{+\infty} \frac{2}{1+t^3} \, dt
+    \]
+    Scomponiamo in fratti semplici ($1+t^3 = (t+1)(t^2-t+1)$):
+    \[
+    \frac{2}{1+t^3} = \frac{A}{t+1} + \frac{Bt+C}{t^2-t+1}
+    \]
+    Risolvendo il sistema si ottiene $A=2/3, B=-2/3, C=4/3$.
+    \[
+    I = \frac{2}{3} \int \frac{dt}{t+1} - \frac{1}{3} \int \frac{2t-4}{t^2-t+1} \, dt
+    \]
+    Nel secondo integrale facciamo comparire la derivata del denominatore $(2t-1)$:
+    \[
+    \frac{2t-4}{t^2-t+1} = \frac{2t-1 - 3}{t^2-t+1}
+    \]
+    Sostituendo e integrando:
+    \begin{itemize}
+        \item Parte Logaritmica: $\frac{2}{3}\log|t+1| - \frac{1}{3}\log(t^2-t+1) = \frac{1}{3}\log\left(\frac{(t+1)^2}{t^2-t+1}\right)$.
+        \item Parte Arcotangente: Rimane $\int \frac{1}{t^2-t+1} dt = \frac{2}{\sqrt{3}}\arctan\left(\frac{2t-1}{\sqrt{3}}\right)$.
+    \end{itemize}
+    
+    Valutando i limiti tra $0$ e $+\infty$:
+    \begin{itemize}
+        \item Il termine logaritmico tende a $\log(1)=0$ sia a $0$ che a $+\infty$.
+        \item Il termine arcotangente vale $\frac{2}{\sqrt{3}}[\frac{\pi}{2} - (-\frac{\pi}{6})] = \frac{4\pi}{3\sqrt{3}}$.
+    \end{itemize}
+    
+    \textbf{Risultato:} $\frac{4\pi}{3\sqrt{3}}$.
+
+
+    \item \textbf{Esercizio 23: Calcolo per Parti Ciclico} \\
+Studiare la convergenza e, se converge, calcolare il valore di:
+\[ I = \int_{0}^{+\infty} e^{-x} \sin(x) \, dx \]
+
+\textbf{Svolgimento:} \\
+Poiché $|e^{-x}\sin(x)| \le e^{-x}$ e $\int_{0}^{+\infty} e^{-x} dx$ converge, l'integrale converge assolutamente.
+Calcoliamo la primitiva per parti (due volte):
+\[
+\begin{aligned}
+\int e^{-x} \sin(x) \, dx &= -e^{-x}\sin(x) - \int (-e^{-x})\cos(x) \, dx \\
+&= -e^{-x}\sin(x) + \int e^{-x}\cos(x) \, dx \\
+&= -e^{-x}\sin(x) + \left[ -e^{-x}\cos(x) - \int (-e^{-x})(-\sin(x)) \, dx \right] \\
+&= -e^{-x}\sin(x) -e^{-x}\cos(x) - \underbrace{\int e^{-x}\sin(x) \, dx}_{I}
+\end{aligned}
+\]
+Abbiamo ottenuto l'equazione $I = -e^{-x}(\sin(x)+\cos(x)) - I$. Portando $I$ a sinistra:
+\[
+2I = -e^{-x}(\sin(x)+\cos(x)) \implies I = -\frac{1}{2}e^{-x}(\sin(x)+\cos(x)) + c
+\]
+Calcoliamo ora l'integrale definito:
+\[
+\begin{aligned}
+\int_{0}^{+\infty} e^{-x} \sin(x) \, dx &= \lim_{b \to +\infty} \left[ -\frac{e^{-x}}{2}(\sin(x)+\cos(x)) \right]_{0}^{b} \\
+&= \underbrace{\lim_{b \to +\infty} -\frac{\sin(b)+\cos(b)}{2e^b}}_{0} - \left[ -\frac{1}{2}(0+1) \right] \\
+&= 0 - \left( -\frac{1}{2} \right) = \frac{1}{2}
+\end{aligned}
+\]
+% Soluzione Esercizio 23 (Analisi Convergenza + Calcolo)
+    \item[Esercizio 24] \hfill \\
+    Calcolare l'integrale improprio $I = \int_{0}^{2} \frac{e^x}{\sqrt{e^x-1}} \, dx$.
+    
+    \textbf{1. Studio della Convergenza} \\
+    La funzione integranda $f(x)$ è continua in $(0, 2]$, ma presenta una singolarità in $x=0$ dove il denominatore si annulla.
+    Studiamo il comportamento asintotico per $x \to 0^+$ utilizzando lo sviluppo di Taylor ($e^x - 1 \sim x$):
+    \[
+    f(x) = \frac{e^x}{\sqrt{e^x-1}} \sim \frac{1}{\sqrt{x}} = \frac{1}{x^{1/2}}
+    \]
+    Poiché l'ordine di infinito è $\alpha = \frac{1}{2} < 1$, l'integrale \textbf{converge}.
+    
+    \textbf{2. Calcolo del Valore} \\
+    Si effettua la sostituzione $t = e^x - 1$.
+    \begin{itemize}
+        \item Differenziale: $dt = e^x \, dx$.
+        \item Cambio estremi:
+        \begin{itemize}
+            \item Per $x = 0 \implies t = e^0 - 1 = 0$.
+            \item Per $x = 2 \implies t = e^2 - 1$.
+        \end{itemize}
+    \end{itemize}
+    
+    Sostituendo nell'integrale:
+    \[
+    I = \int_{0}^{e^2-1} \frac{1}{\sqrt{t}} \, dt = \int_{0}^{e^2-1} t^{-\frac{1}{2}} \, dt
+    \]
+    Calcolando la primitiva:
+    \[
+    I = \left[ 2\sqrt{t} \right]_{0}^{e^2-1} = 2\sqrt{e^2-1} - 0 = 2\sqrt{e^2-1}
+    \]
+    % Soluzione Esercizio con Modulo e Radici
+    \item[Esercizio 25: (Studio Convergenza con Modulo)] \hfill \\
+    Studiare la convergenza di $I = \int_{0}^{2} \frac{\sqrt{x}}{\sqrt{1+x^2} - \sqrt{|x-1|}} \, dx$.
+    
+    \textbf{1. Analisi del dominio e del modulo}
+    Il modulo $|x-1|$ cambia espressione in $x=1$. Spezziamo l'integrale o analizziamo i casi:
+    \begin{itemize}
+        \item In $[0, 1]$, $|x-1| = 1-x$. Il denominatore si annulla se $\sqrt{1+x^2} = \sqrt{1-x} \implies 1+x^2=1-x \implies x(x+1)=0$.
+        L'unica singolarità nell'intervallo è a \textbf{$x=0$}.
+        \item In $[1, 2]$, la funzione è continua (il denominatore non si annulla mai).
+    \end{itemize}
+    Il problema è solo a $x \to 0^+$.
+    
+    \textbf{2. Stima Asintotica (Taylor a 0)}
+    Consideriamo $x \to 0$. Possiamo scrivere $|x-1| = 1-x$.
+    Sviluppiamo i termini del denominatore con Taylor $(1+t)^{1/2} \sim 1 + \frac{1}{2}t$:
+    \[
+    \sqrt{1+x^2} \sim 1 + \frac{1}{2}x^2
+    \]
+    \[
+    \sqrt{1-x} \sim 1 - \frac{1}{2}x
+    \]
+    
+    Il denominatore diventa:
+    \[
+    D(x) \sim \left(1 + \frac{x^2}{2}\right) - \left(1 - \frac{x}{2}\right) = \frac{x}{2} + \frac{x^2}{2}
+    \]
+    Trascuriamo $x^2$ perché infinitesimo di ordine superiore rispetto a $x$ (vicino a zero, $x$ domina su $x^2$).
+    \[ D(x) \sim \frac{x}{2} \]
+    
+    La funzione integranda completa è asintotica a:
+    \[
+    f(x) \sim \frac{\sqrt{x}}{x/2} = \frac{2}{x^{1/2}}
+    \]
+    
+    \textbf{3. Conclusione}
+    Poiché l'esponente è $\alpha = \frac{1}{2} < 1$, l'integrale \textbf{converge}.
+    \textbf{          Nota sull'intervallo $[1, 2]$:}
+    Verifichiamo se ci sono problemi per $x \ge 1$.
+    Sostituendo $x=1$, la funzione vale $f(1) = \frac{1}{\sqrt{2}}$, che è un valore finito.
+    Inoltre, per $x > 1$, l'equazione $1+x^2 = x-1$ non ha soluzioni reali ($\Delta < 0$).
+    
+    Di conseguenza, nell'intervallo $[1, 2]$ la funzione è limitata e continua. L'integrale in questo tratto è un integrale di Riemann standard (esiste finito sicuramente) e non influisce sulla convergenza dell'integrale improprio.
+    
+    \textbf{Risultato finale:} L'integrale converge (determinato unicamente dal comportamento in $x=0$).
+% Soluzione Esercizio 26 (Metodo a step con t=log(x))
+    \item[Esercizio 26] \hfill \\
+    Calcolare $I = \int_{3}^{+\infty} \frac{1}{x \log(x) (\log(\log(x)))^2} \, dx$.
+    
+    \textbf{1. Studio della Convergenza}
+    La funzione è definita e continua in $[3, +\infty)$.
+    Per $x \to +\infty$, usiamo il confronto generalizzato (Scala di Abel-Bertrand):
+    \[
+    f(x) = \frac{1}{x \log(x) (\log(\log x))^p}
+    \]
+    Poiché l'esponente dell'ultimo logaritmo è $p = 2 > 1$, la funzione decresce abbastanza velocemente. L'integrale \textbf{converge}.
+    
+    \textbf{2. Calcolo (Sostituzione $t = \log(x)$)}
+    Procediamo per gradi sostituendo il primo logaritmo. Poniamo $t = \log(x)$.
+    \begin{itemize}
+        \item Differenziale: $dt = \frac{1}{x} \, dx$.
+        \item Estremi:
+        \begin{itemize}
+            \item $x = 3 \implies t = \log(3)$.
+            \item $x \to +\infty \implies t \to +\infty$.
+        \end{itemize}
+    \end{itemize}
+    
+    L'integrale si semplifica notevolmente:
+    \[
+    I = \int_{\log(3)}^{+\infty} \frac{1}{t (\log(t))^2} \, dt
+    \]
+    
+    Ora l'integrale è immediato, della forma $\int f(t)^{-2} \cdot f'(t) \, dt$ (dove $f(t)=\log t$ e la derivata è $1/t$).
+    La primitiva è $\frac{(\log t)^{-1}}{-1} = -\frac{1}{\log t}$.
+    
+    \[
+    I = \left[ -\frac{1}{\log(t)} \right]_{\log(3)}^{+\infty}
+    \]
+    
+    Sostituendo gli estremi:
+    \[
+    I = \underbrace{\lim_{k \to +\infty} \left(-\frac{1}{\log(k)}\right)}_{0} - \left( -\frac{1}{\log(\log(3))} \right) = \frac{1}{\log(\log(3))}
+    \]
+   % Aggiornamento Esercizio 27: Analisi Asintoto
+    \item[Esercizio 27 (Studio completo al variare di $\lambda$)] \hfill \\
+    Studiare la convergenza di $I = \int_{1}^{+\infty} \frac{1}{x^2 + \lambda} \, dx$.
+    
+    \textbf{1. Il "pericolo" dell'asintoto verticale}
+    L'integrale presenta una singolarità se il denominatore si annulla all'interno del dominio di integrazione $[1, +\infty)$.
+    Risoviamo $x^2 + \lambda = 0 \implies x^2 = -\lambda$.
+    Questo ha soluzioni reali solo se $\lambda \le 0$, date da $x_{sing} = \sqrt{-\lambda}$.
+    
+    Dobbiamo verificare se questa singolarità cade nel nostro percorso ($x \ge 1$):
+    \[
+    x_{sing} \ge 1 \iff \sqrt{-\lambda} \ge 1 \iff -\lambda \ge 1 \iff \lambda \le -1
+    \]
+    
+    Quindi distinguiamo tre casi fondamentali:
+    
+    \begin{itemize}
+        \item \textbf{CASO A: $\lambda > -1$ (Nessun ostacolo)}
+        \begin{itemize}
+            \item Se $\lambda > 0$, il denominatore è sempre positivo.
+            \item Se $-1 < \lambda \le 0$, l'asintoto esiste (es. $x=0.5$) ma cade \textit{prima} di 1, fuori dal nostro integrale.
+        \end{itemize}
+        In questo caso l'unica analisi è a $+\infty$. Poiché $f(x) \sim 1/x^2$, l'integrale \textbf{CONVERGE}.
+        
+        \item \textbf{CASO B: $\lambda = -1$ (Problema all'estremo)}
+        L'integrale diventa $\int_{1}^{+\infty} \frac{1}{x^2-1} dx$.
+        C'è una singolarità a $x=1$.
+        Scomponiamo il denominatore: $x^2-1 = (x-1)(x+1)$.
+        Per $x \to 1^+$:
+        \[ f(x) = \frac{1}{(x-1)(x+1)} \sim \frac{1}{(x-1)(2)} = \frac{1}{2(x-1)} \]
+        L'ordine di infinito è $\alpha = 1$. L'integrale \textbf{DIVERGE}.
+        
+        \item \textbf{CASO C: $\lambda < -1$ (Problema interno)}
+        L'asintoto cade dentro l'intervallo (es. per $\lambda=-4$, asintoto a $x=2$).
+        La funzione non è integrabile in senso improprio attraverso un asintoto verticale di ordine 1.
+        L'integrale \textbf{DIVERGE}.
+    \end{itemize}
+    
+    \textbf{Risultato:} L'integrale converge se e solo se $\lambda > -1$.
+    \section*{\centering \color{red} Richiamo teorico}
+
+Quando integriamo su un intervallo $[a, +\infty)$, dobbiamo garantire che "la strada sia libera".
+
+Se la funzione ha un asintoto verticale (un "muro" infinito) in un punto $c$ interno all'intervallo ($a < c < +\infty$), l'integrale si deve spezzare:
+\[ \int_{a}^{+\infty} f(x)dx = \int_{a}^{c} f(x)dx + \int_{c}^{+\infty} f(x)dx \]
+
+Per le funzioni razionali standard (rapporti di polinomi), gli asintoti sono quasi sempre del primo ordine (tipo $\frac{1}{x-c}$).
+Poiché l'ordine è $1$ (e $1 \ge 1$), l'integrale in quel punto \textbf{DIVERGE} sempre.
+
+\textbf{In sintesi:} Se trovi un asintoto in mezzo al cammino $\implies$ DIVERGE.
+
+% Soluzione Esercizio 28 (Confronto Diretto)
+    \item[Esercizio 28] \hfill \\
+    Discutere la convergenza di $I = \int_{1}^{+\infty} \frac{2+\sin(x)}{x^\alpha} \, dx$ al variare di $\alpha$.
+    
+    \textbf{Ragionamento:}
+    Non possiamo usare il confronto asintotico standard (il limite $\sim$ non esiste a causa dell'oscillazione del seno).
+    Usiamo il \textbf{Criterio del Confronto Diretto} sfruttando la limitatezza del numeratore.
+    
+    Sappiamo che $-1 \le \sin(x) \le 1$, quindi sommando 2:
+    \[ 1 \le 2+\sin(x) \le 3 \]
+    
+    Dividendo tutto per $x^\alpha$ (che è positivo in $[1, +\infty)$):
+    \[
+    \frac{1}{x^\alpha} \le f(x) \le \frac{3}{x^\alpha}
+    \]
+    
+    Analizziamo i casi:
+    \begin{itemize}
+        \item \textbf{Se $\alpha > 1$:}
+        L'integrale improprio della maggiorante $\int_{1}^{+\infty} \frac{3}{x^\alpha} dx$ \textbf{converge}.
+        Per il criterio del confronto, anche il nostro integrale \textbf{converge}.
+        
+        \item \textbf{Se $\alpha \le 1$:}
+        L'integrale improprio della minorante $\int_{1}^{+\infty} \frac{1}{x^\alpha} dx$ \textbf{diverge} (a $+\infty$).
+        Essendo $f(x)$ più grande di una funzione divergente, anche il nostro integrale \textbf{diverge}.
+    \end{itemize}
+    
+    \textbf{Risultato:} Converge per $\alpha > 1$, diverge per $\alpha \le 1$.
+
+    % Soluzione Esercizio 29 (Analisi di f e della sua primitiva F)
+    \item[Esercizio 29] \hfill \\
+    Data $f(x) = \frac{1+x\sqrt{x}}{x\sqrt{x}}$ per $x>0$, studiare l'integrabilità in senso improprio su $(0,1)$ e $(1,+\infty)$ di $f(x)$ e di una sua primitiva $F(x)$.
+    
+    \textbf{1. Semplificazione e Studio di $f(x)$}
+    Prima di tutto, riscriviamo la funzione sfruttando le potenze:
+    \[ f(x) = \frac{1}{x\sqrt{x}} + 1 = x^{-3/2} + 1 = \frac{1}{x^{1.5}} + 1 \]
+    
+    Analizziamo l'integrale di $f(x)$:
+    \begin{itemize}
+        \item \textbf{Su $(0,1)$:} Per $x \to 0^+$, il termine dominante è $\frac{1}{x^{1.5}}$. Essendo l'esponente $\alpha = 1.5 > 1$, l'integrale \textbf{DIVERGE} (positivamente).
+        \item \textbf{Su $(1,+\infty)$:} Per $x \to +\infty$, $f(x) \to 1$. Poiché il limite non è 0, la condizione necessaria per la convergenza cade. L'integrale \textbf{DIVERGE}.
+    \end{itemize}
+    
+    \textbf{2. Calcolo e Studio della primitiva $F(x)$}
+    Calcoliamo esplicitamente la primitiva (integrale indefinito):
+    \[ F(x) = \int (x^{-3/2} + 1) \, dx = \frac{x^{-1/2}}{-1/2} + x = -2\frac{1}{\sqrt{x}} + x \]
+    Possiamo ignorare la costante $C$ per lo studio della convergenza.
+    
+    Ora studiamo l'integrabilità di $F(x) = x - \frac{2}{\sqrt{x}}$:
+    \begin{itemize}
+        \item \textbf{Su $(0,1)$:}
+        Dobbiamo valutare $\int_{0}^{1} \left( x - \frac{2}{\sqrt{x}} \right) dx$.
+        Il termine $x$ non crea problemi.
+        Il termine pericoloso è $-\frac{2}{x^{0.5}}$.
+        Poiché l'esponente della singolarità è $\alpha = 0.5 < 1$, questo termine è integrabile.
+        Quindi l'integrale di $F(x)$ \textbf{CONVERGE}.
+        
+        \item \textbf{Su $(1,+\infty)$:}
+        Dobbiamo valutare $\int_{1}^{+\infty} \left( x - \frac{2}{\sqrt{x}} \right) dx$.
+        Per $x \to +\infty$, il termine dominante è $x$ (che va all'infinito).
+        Ovviamente, integrare una funzione che tende a infinito su un dominio infinito porta a divergenza.
+        Quindi l'integrale di $F(x)$ \textbf{DIVERGE}.
+    \end{itemize}
+    
+    \textbf{Sintesi:}
+    \begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Funzione & Intervallo $(0,1)$ & Intervallo $(1,+\infty)$ \\ \hline
+    $f(x)$ & Diverge ($\alpha > 1$) & Diverge (lim $\neq$ 0) \\ \hline
+    $F(x)$ & \textbf{Converge} ($\alpha < 1$) & Diverge (polinomiale) \\ \hline
+    \end{tabular}
+    \end{table}
+
+\section*{Riepilogo Strategico: La "Tabella della Verità"}
+
+Quando studiamo la convergenza di $\frac{1}{x^\alpha}$, le regole si invertono a seconda che il problema sia a zero o all'infinito. Ecco lo schema definitivo per non sbagliare:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Aumenta lo spazio tra le righe per leggibilità
+% Definiamo uno sfondo grigio chiaro/azzurro per l'intestazione
+\begin{tabular}{|c|p{5cm}|c|}
+\hline
+
+\textbf{Dove siamo?} & \textbf{Chi "comanda"? (Gerarchia)} & \textbf{Convergenza} ($\int \frac{1}{x^\alpha}$) \\ 
+\hline
+
+% Riga Infinito
+o
+\textbf{A $+\infty$} & 
+Vincono le potenze \textbf{GRANDI}. \newline
+(Es: $x^2$ domina su $x$). & 
+Converge se $\boldsymbol{\alpha > 1}$ \\ 
+& & (Serve andare a zero velocemente) \\
+\hline
+
+% Riga Zero
+
+\textbf{A $0^+$} & 
+Vincono le potenze \textbf{PICCOLE} (o negative). \newline
+(Es: $\frac{1}{x^2}$ domina su $\frac{1}{x}$). & 
+Converge se $\boldsymbol{\alpha < 1}$ \\ 
+& & (L'asintoto non deve essere troppo "ripido") \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Nota bene:} Nel confronto asintotico ($\sim$), manteniamo sempre il termine che "vince" secondo questa gerarchia e studiamo solo quello.
+% Soluzione Esercizio 30
+    \item[Esercizio 30 (Calcolo diretto di limite integrale)] \hfill \\
+    Calcolare $I_a = \int_{a}^{2} \frac{1}{\sqrt{x}-1} \, dx$ con $a > 1$, e successivamente il limite per $a \to 1^+$.
+    
+    \textbf{1. Calcolo della Primitiva}
+    Usiamo la sostituzione $t = \sqrt{x}$.
+    \begin{itemize}
+        \item $x = t^2 \implies dx = 2t \, dt$.
+    \end{itemize}
+    L'integrale diventa:
+    \[ \int \frac{1}{t-1} \cdot 2t \, dt = 2 \int \frac{t}{t-1} \, dt \]
+    
+    Trucco algebrico (sommo e sottraggo 1 al numeratore):
+    \[ \frac{t}{t-1} = \frac{t-1+1}{t-1} = 1 + \frac{1}{t-1} \]
+    
+    Quindi integriamo:
+    \[ 2 \int \left( 1 + \frac{1}{t-1} \right) dt = 2t + 2\ln|t-1| \]
+    
+    Tornando alla variabile $x$:
+    \[ F(x) = 2\sqrt{x} + 2\ln|\sqrt{x}-1| \]
+    
+    \textbf{2. Calcolo dell'Integrale definito $I_a$}
+    Valutiamo tra $a$ e $2$:
+    \[ I_a = F(2) - F(a) = \left[ 2\sqrt{2} + 2\ln(\sqrt{2}-1) \right] - \left[ 2\sqrt{a} + 2\ln(\sqrt{a}-1) \right] \]
+    
+    \textbf{3. Limite per $a \to 1^+$}
+    Analizziamo il termine problematico quando $a \to 1^+$:
+    \[ \lim_{a \to 1^+} \ln(\underbrace{\sqrt{a}-1}_{\to 0^+}) = -\infty \]
+    
+    Sostituendo nel limite completo:
+    \[ \lim_{a \to 1^+} I_a = \text{Costante} - [ 2(1) + 2(-\infty) ] = \text{Costante} - (-\infty) = +\infty \]
+    
+    \textbf{Risultato:} L'integrale diverge a $+\infty$.
+
+    % Soluzione Esercizio 31 (Generalizzato con parametro n)
+    \item[Esercizio 31 (Parametro $n$)] \hfill \\
+    Calcolare $I_a(n) = \int_{a}^{2} \frac{1}{(x-1)^{1/n}} \, dx$ (con $n > 1$) e il limite per $a \to 1^+$.
+    
+    \textbf{1. Riscriviamo la funzione come potenza}
+    \[ f(x) = (x-1)^{-1/n} \]
+    Questa è una potenza standard del tipo $(x-1)^\alpha$ con $\alpha = -\frac{1}{n}$.
+    
+    \textbf{2. Calcolo della Primitiva}
+    Poiché $n > 1$, allora $\alpha \neq -1$, quindi usiamo la regola della potenza $\frac{y^{\alpha+1}}{\alpha+1}$:
+    \begin{itemize}
+        \item Nuovo esponente: $-\frac{1}{n} + 1 = \frac{n-1}{n}$.
+        \item Coefficiente moltiplicativo (l'inverso dell'esponente): $\frac{n}{n-1}$.
+    \end{itemize}
+    
+    La primitiva è:
+    \[ F(x) = \frac{n}{n-1} (x-1)^{\frac{n-1}{n}} \]
+    
+    \textbf{3. Calcolo dell'integrale definito $I_a(n)$}
+    \[ I_a(n) = F(2) - F(a) = \frac{n}{n-1} \left[ (2-1)^{\frac{n-1}{n}} - (a-1)^{\frac{n-1}{n}} \right] \]
+    Poiché $(1)^{\text{qualsiasi cosa}} = 1$:
+    \[ I_a(n) = \frac{n}{n-1} \left[ 1 - (a-1)^{\frac{n-1}{n}} \right] \]
+    
+    \textbf{4. Limite per $a \to 1^+$}
+    Passiamo al limite:
+    \[ \lim_{a \to 1^+} I_a(n) = \frac{n}{n-1} \left[ 1 - \underbrace{(1-1)^{\frac{n-1}{n}}}_{0} \right] \]
+    Nota: Il termine $(a-1)^{\frac{n-1}{n}}$ tende a $0$ perché l'esponente $\frac{n-1}{n}$ è positivo (dato che $n > 1$).
+    
+    \textbf{Risultato:} L'integrale converge a $\frac{n}{n-1}$.
+% Soluzione Esercizio 32 (Variante Calcolo Primitiva)
+    \item[Esercizio 32] \hfill \\
+    Calcolare $I_n = \int_{0}^{1} x^n \log(x) \, dx$ e il limite per $n \to +\infty$.
+    
+    \textbf{1. Calcolo della Primitiva $F(x)$}
+    Calcoliamo l'integrale indefinito $\int x^n \log(x) dx$ per parti:
+    \begin{itemize}
+        \item $f = \log(x) \implies f' = 1/x$
+        \item $g' = x^n \implies g = \frac{x^{n+1}}{n+1}$
+    \end{itemize}
+    \[ \int x^n \log(x) dx = \frac{x^{n+1}}{n+1}\log(x) - \int \frac{x^{n+1}}{n+1} \cdot \frac{1}{x} dx \]
+    \[ = \frac{x^{n+1}}{n+1}\log(x) - \frac{1}{n+1}\int x^n dx \]
+    \[ F(x) = \frac{x^{n+1}}{n+1}\log(x) - \frac{x^{n+1}}{(n+1)^2} \]
+    
+    \textbf{2. Calcolo dell'Integrale definito}
+    Applicando il Teorema Fondamentale del Calcolo: $I_n = [F(x)]_0^1 = F(1) - \lim_{x \to 0^+} F(x)$.
+    
+    \begin{itemize}
+        \item \textbf{Valutazione a $x=1$:}
+        \[ F(1) = \frac{1}{n+1}\cdot 0 - \frac{1}{(n+1)^2} = -\frac{1}{(n+1)^2} \]
+        
+        \item \textbf{Valutazione a $x \to 0^+$:}
+        \[ \lim_{x \to 0^+} \left[ \frac{x^{n+1}\log(x)}{n+1} - \frac{x^{n+1}}{(n+1)^2} \right] \]
+        Il termine $x^{n+1}\log(x)$ tende a 0 (gerarchia infiniti: la potenza vince sul logaritmo).
+        Il termine $\frac{x^{n+1}}{(n+1)^2}$ tende ovviamente a 0.
+        Quindi $\lim_{x \to 0^+} F(x) = 0$.
+    \end{itemize}
+    
+    \textbf{Risultato:}
+    \[ I_n = -\frac{1}{(n+1)^2} - 0 = -\frac{1}{(n+1)^2} \]
+    
+    \textbf{3. Limite della successione}
+    \[ \lim_{n \to +\infty} I_n = 0 \]
+\item \textbf{Esercizio 33: Parametrico Esponenziale} \\
+Al variare di $m \in \mathbb{Z}$, studiare e calcolare:
+\[ \int_{e^m}^{+\infty} \frac{\log(x)}{x^2} \, dx \]
+
+\textbf{Svolgimento:} \\
+L'integranda è definita e continua in $[e^m, +\infty)$. Procediamo per parti:
+\[
+\begin{aligned}
+\int \frac{\log(x)}{x^2} \, dx & \quad \text{pongo } f(x)=\log(x) \implies f'(x)=1/x \\
+& \quad \text{pongo } g'(x)=x^{-2} \implies g(x)=-1/x \\
+&= -\frac{\log(x)}{x} - \int \left( -\frac{1}{x} \right) \cdot \frac{1}{x} \, dx \\
+&= -\frac{\log(x)}{x} + \int x^{-2} \, dx \\
+&= -\frac{\log(x)}{x} - \frac{1}{x} + c \\
+&= -\frac{1}{x} \left[ \log(x) + 1 \right] + c
+\end{aligned}
+\]
+
+Calcoliamo l'integrale improprio:
+\[
+\begin{aligned}
+\int_{e^m}^{+\infty} \frac{\log(x)}{x^2} \, dx &= \lim_{b \to +\infty} \left[ -\frac{1}{x} (\log(x)+1) \right]_{e^m}^{b} \\
+&= \underbrace{\lim_{b \to +\infty} \left( -\frac{\log(b)+1}{b} \right)}_{=0} - \left[ -\frac{1}{e^m} (\log(e^m)+1) \right] \\
+&= \frac{1}{e^m} (m+1) = \frac{m+1}{e^m}
+\end{aligned}
+\]
+
+Calcoliamo ora l'integrale improprio:
+\[
+\begin{aligned}
+\int_{e^m}^{+\infty} \frac{\log(x)}{x^2} \, dx &= \lim_{b \to +\infty} \left[ -\frac{\log(x)+1}{x} \right]_{e^m}^{b} \\
+&= \underbrace{\lim_{b \to +\infty} \left( -\frac{\log(b)+1}{b} \right)}_{=0 \text{ (gerarchia infiniti)}} - \left( -\frac{\log(e^m)+1}{e^m} \right) \\
+&= \frac{m+1}{e^m}
+\end{aligned}
+\]
+      % Soluzione Esercizio 34 (Integrale con Logaritmo al quadrato)
+    \item[Esercizio 34] \hfill \\
+    Studiare la convergenza e calcolare $I(\alpha) = \int_{0}^{1} x^\alpha (\log(x))^2 \, dx$.
+    \textbf{1. Studio preliminare della convergenza}
+    La funzione integranda è $f(x) = x^\alpha (\log x)^2$.
+    Il dominio è $(0, 1]$ e l'unica singolarità si trova in $x=0$.
+    
+    Studiamo il comportamento asintotico per $x \to 0^+$:
+    \begin{itemize}
+        \item Il termine $(\log x)^2$ tende a $+\infty$, ma è un "infinito lento" (più lento di qualsiasi potenza negativa).
+        \item Possiamo riscrivere $f(x)$ come:
+        \[ f(x) = \frac{(\log x)^2}{x^{-\alpha}} \]
+    \end{itemize}
+    
+    Ricordiamo l'Integrale Improprio Notevole (test di Abel-Dirichlet generalizzato):
+    L'integrale $\int_{0}^{1} \frac{1}{x^p |\log x|^q} \, dx$ converge se:
+    \begin{enumerate}
+        \item $p < 1$ (indipendentemente da $q$)
+        \item $p = 1$ e $q > 1$
+    \end{enumerate}
+    
+    Nel nostro caso, possiamo riscrivere la funzione per farla combaciare con il modello:
+    \[ x^\alpha (\log x)^2 = \frac{1}{x^{-\alpha} (\log x)^{-2}} \]
+    Quindi abbiamo $p = -\alpha$.
+    
+    La condizione di convergenza principale ($p < 1$) diventa:
+    \[ -\alpha < 1 \implies \alpha > -1 \]
+    
+    Se siamo nel caso limite $\alpha = -1$ (cioè $p=1$), guardiamo l'esponente del logaritmo $q = -2$. Poiché $-2$ non è maggiore di 1, in questo caso diverge.
+    
+    \textbf{Conclusione:} L'integrale converge se e solo se $\boldsymbol{\alpha > -1}$.
+    \textbf{2. Studio della Convergenza}
+    L'integrale è improprio a $x=0$.
+    Per $x \to 0^+$, il termine $(\log x)^2$ tende a $+\infty$ ma molto lentamente (è un "infinito debole").
+    La convergenza è determinata dalla potenza $x^\alpha$.
+    
+    Affinché l'area sia finita, l'esponente di $x$ deve essere maggiore di $-1$ (se fosse $\alpha \le -1$, la singolarità sarebbe non integrabile).
+    \[ \text{Converge per } \alpha > -1 \]
+    
+    \textbf{2. Calcolo dell'Integrale (per parti due volte)}
+    Assumiamo $\alpha > -1$. Procediamo per parti derivando il logaritmo.
+    
+    \textit{Primo passaggio:}
+    \begin{itemize}
+        \item $f(x) = (\log x)^2 \implies f'(x) = 2\log(x) \cdot \frac{1}{x}$
+        \item $g'(x) = x^\alpha \implies g(x) = \frac{x^{\alpha+1}}{\alpha+1}$
+    \end{itemize}
+    \[ I = \left[ \frac{x^{\alpha+1}}{\alpha+1} (\log x)^2 \right]_0^1 - \frac{2}{\alpha+1} \int_{0}^{1} x^\alpha \log(x) \, dx \]
+    Il termine tra parentesi quadre è nullo:
+    \begin{itemize}
+        \item A $x=1$: $\log(1)=0$.
+        \item A $x \to 0^+$: $\lim x^{\alpha+1}(\log x)^2 = 0$ (perché $\alpha+1 > 0$, la potenza vince sul logaritmo).
+    \end{itemize}
+    
+    Resta:
+    \[ I = - \frac{2}{\alpha+1} \int_{0}^{1} x^\alpha \log(x) \, dx \]
+    
+    \textit{Secondo passaggio (integriamo $\int x^\alpha \log x$):}
+    Applicando di nuovo per parti sullo stesso schema:
+    \[ \int_{0}^{1} x^\alpha \log(x) \, dx = \underbrace{\left[ \frac{x^{\alpha+1}}{\alpha+1} \log x \right]_0^1}_{0} - \int_{0}^{1} \frac{x^{\alpha+1}}{\alpha+1} \cdot \frac{1}{x} \, dx \]
+    \[ = - \frac{1}{\alpha+1} \int_{0}^{1} x^\alpha \, dx = - \frac{1}{\alpha+1} \left[ \frac{x^{\alpha+1}}{\alpha+1} \right]_0^1 = - \frac{1}{(\alpha+1)^2} \]
+    
+    \textbf{3. Risultato Finale}
+    Sostituiamo questo risultato nell'espressione di $I$:
+    \[ I(\alpha) = - \frac{2}{\alpha+1} \cdot \left( - \frac{1}{(\alpha+1)^2} \right) = \frac{2}{(\alpha+1)^3} \]
+    
+    \textbf{Risultato:}
+    L'integrale converge per $\alpha > -1$ e vale $\frac{2}{(\alpha+1)^3}$.
+% Soluzione Esercizio 35 (Analisi delle singolarità al denominatore)
+    \item[Esercizio 35] \hfill \\
+    Determinare per quali $\lambda$ converge l'integrale:
+    \[ \int_{1}^{+\infty} \frac{x^2+1}{x^4+\lambda x^2+1} \, dx \]
+    
+    \textbf{1. Convergenza all'infinito}
+    Per $x \to +\infty$, il termine dominante al denominatore è $x^4$.
+    \[ f(x) \sim \frac{x^2}{x^4} = \frac{1}{x^2} \]
+    Poiché l'esponente $2 > 1$, l'integrale converge sempre nella "coda" all'infinito, per qualsiasi $\lambda$.
+    
+    \textbf{2. Analisi delle singolarità (Il "buco" nel dominio)}
+    Dobbiamo verificare se il denominatore si annulla nell'intervallo di integrazione $[1, +\infty)$.
+    Poniamo $t = x^2$ e studiamo $t^2 + \lambda t + 1 = 0$.
+    
+    Le radici sono date da:
+    \[ t_{1,2} = \frac{-\lambda \pm \sqrt{\lambda^2 - 4}}{2} \]
+    
+    Analizziamo i casi per $\lambda$:
+    
+    \begin{itemize}
+        \item \textbf{Caso A: $\lambda > -2$}
+        \begin{itemize}
+            \item Se $|\lambda| < 2$ (cioè $-2 < \lambda < 2$), il delta $\lambda^2 - 4$ è negativo. Non ci sono radici reali. Il denominatore non si annulla mai.
+            \item Se $\lambda \ge 2$, il delta è positivo, ma le soluzioni sarebbero negative (impossibile per $t=x^2$) oppure non reali. Inoltre per $\lambda > 0$ il denominatore è somma di termini positivi.
+        \end{itemize}
+        \textbf{Conclusione A:} Per $\lambda > -2$, il denominatore è sempre positivo. L'integrale \textbf{CONVERGE}.
+        
+        \item \textbf{Caso B: $\lambda \le -2$}
+        In questo caso il delta è positivo ($\lambda^2 - 4 \ge 0$) e ci sono due soluzioni reali per $t$.
+        Dobbiamo capire se queste soluzioni corrispondono a una $x \ge 1$.
+        
+        Consideriamo la soluzione più grande $t_1$:
+        \[ t_1 = \frac{-\lambda + \sqrt{\lambda^2 - 4}}{2} \]
+        Verifichiamo se $t_1 \ge 1$ (ricordando che $\lambda$ è un numero negativo, es. -3, -4...):
+        \[ \frac{-\lambda + \sqrt{\lambda^2 - 4}}{2} \ge 1 \iff -\lambda + \sqrt{\lambda^2 - 4} \ge 2 \]
+        \[ \sqrt{\lambda^2 - 4} \ge 2 + \lambda \]
+        Poiché $\lambda \le -2$, il termine a destra ($2+\lambda$) è $\le 0$, mentre la radice è $\ge 0$.
+        Una quantità positiva è sempre maggiore di una negativa.
+        
+        Quindi esiste sempre una radice $t_1 \ge 1$, che corrisponde a un punto $x_0 = \sqrt{t_1} \ge 1$ in cui il denominatore si annulla.
+        In questo punto la funzione esplode come un polo semplice ($1/(x-x_0)$), che non è integrabile.
+        \textbf{Conclusione B:} Per $\lambda \le -2$, l'integrale \textbf{DIVERGE}.
+    \end{itemize}
+    
+    \textbf{Risultato Finale:}
+    L'integrale converge se e solo se:
+    \[ \lambda > -2 \]
+    % Soluzione Esercizio 36 (Misto Log-Razionale con singolarità apparente)
+    \item[Esercizio 36] \hfill \\
+    Studiare la convergenza di $\displaystyle \int_{-1}^{+\infty} \frac{x \log(2+x)}{x^3+1} \, dx$.
+    
+    L'integrale presenta due zone da analizzare: l'intorno di $+\infty$ e l'estremo sinistro $x = -1$ (dove il denominatore si annulla).
+    
+    \textbf{1. Studio a $+\infty$}
+    Per $x \to +\infty$:
+    \begin{itemize}
+        \item Il numeratore si comporta come $x \log x$.
+        \item Il denominatore si comporta come $x^3$.
+    \end{itemize}
+    \[ f(x) \sim \frac{x \log x}{x^3} = \frac{\log x}{x^2} \]
+    Poiché l'esponente al denominatore è $2 > 1$, la presenza del logaritmo non disturba la convergenza (è un "infinito debole").
+    L'integrale \textbf{CONVERGE} a $+\infty$.
+    
+    \textbf{2. Studio a $x \to -1^+$ (La "finta" singolarità)}
+    Valutiamo il limite della funzione. Sostituendo $x=-1$ otteniamo la forma indeterminata $\frac{0}{0}$.
+    Usiamo le stime asintotiche ponendo $t = x+1$ (quindi $x = t-1$) con $t \to 0^+$.
+    
+    \begin{itemize}
+        \item \textbf{Numeratore:}
+        $x \log(2+x) \approx -1 \cdot \log(1+(x+1))$.
+        Ricordando che $\log(1+y) \sim y$, abbiamo:
+        \[ \text{Num} \sim -1 \cdot (x+1) = -(x+1) \]
+        
+        \item \textbf{Denominatore:}
+        Scomponiamo la somma di cubi: $x^3+1 = (x+1)(x^2-x+1)$.
+        Il secondo fattore tende a $(-1)^2 -(-1) + 1 = 3$.
+        \[ \text{Den} \sim 3(x+1) \]
+    \end{itemize}
+    
+    Mettendo tutto insieme:
+    \[ f(x) \sim \frac{-(x+1)}{3(x+1)} = -\frac{1}{3} \]
+    
+    Poiché il limite è \textbf{finito} (la funzione non esplode), la singolarità è eliminabile.
+    L'integrale in un intorno limitato di una funzione limitata esiste sempre.
+    Quindi \textbf{CONVERGE} anche a -1.
+    
+    \textbf{Risultato:} L'integrale converge globalmente.
+
+    % Soluzione Esercizio 37 (Somma di due singolarità agli estremi)
+    \item[Esercizio 37] \hfill \\
+    Studiare la convergenza e calcolare:
+    \[ I = \int_{1}^{2} \left( \frac{\alpha}{\sqrt{x-1}} + \frac{\beta}{\sqrt[3]{2-x}} \right) \, dx \]
+    
+    L'integrale è improprio in entrambi gli estremi:
+    \begin{itemize}
+        \item A $x=1$ diverge il primo termine.
+        \item A $x=2$ diverge il secondo termine.
+    \end{itemize}
+    Per la linearità dell'integrale, possiamo studiare i due addendi separatamente. L'integrale totale esiste se e solo se entrambi convergono.
+    
+    \textbf{1. Studio della Convergenza}
+    Ricordiamo la regola per le singolarità al finito: $\int_a^b \frac{1}{|x-c|^p} \, dx$ converge se $p < 1$.
+    
+    \begin{itemize}
+        \item \textbf{Primo termine:} $\frac{\alpha}{(x-1)^{1/2}}$.
+        L'esponente è $p = 1/2$. Poiché $1/2 < 1$, questo termine converge per ogni $\alpha$.
+        
+        \item \textbf{Secondo termine:} $\frac{\beta}{(2-x)^{1/3}}$.
+        L'esponente è $p = 1/3$. Poiché $1/3 < 1$, anche questo termine converge per ogni $\beta$.
+    \end{itemize}
+    
+    \textbf{Conclusione:} L'integrale converge per \textbf{qualsiasi valore} di $\alpha, \beta \in \mathbb{R}$.
+    
+    \textbf{2. Calcolo dell'Integrale}
+    Calcoliamo le primitive separatamente usando la regola della potenza $\int y^n = \frac{y^{n+1}}{n+1}$.
+    
+    \begin{itemize}
+        \item Per il primo termine:
+        \[ \int \alpha (x-1)^{-1/2} \, dx = \alpha \frac{(x-1)^{1/2}}{1/2} = 2\alpha \sqrt{x-1} \]
+        
+        \item Per il secondo termine (attenzione al segno meno della derivata interna di $2-x$):
+        \[ \int \beta (2-x)^{-1/3} \, dx = -\beta \frac{(2-x)^{2/3}}{2/3} = -\frac{3}{2}\beta \sqrt[3]{(2-x)^2} \]
+    \end{itemize}
+    
+    Uniamo i pezzi e valutiamo tra 1 e 2:
+    \[ I = \left[ 2\alpha \sqrt{x-1} - \frac{3}{2}\beta \sqrt[3]{(2-x)^2} \right]_{1}^{2} \]
+    
+    Sostituiamo gli estremi:
+    \begin{itemize}
+        \item A $x=2$:
+        $2\alpha\sqrt{1} - \frac{3}{2}\beta(0) = 2\alpha$
+        
+        \item A $x=1$:
+        $2\alpha(0) - \frac{3}{2}\beta\sqrt[3]{1} = -\frac{3}{2}\beta$
+    \end{itemize}
+    
+    \[ I = (2\alpha) - \left( -\frac{3}{2}\beta \right) = 2\alpha + \frac{3}{2}\beta \]
+
+% Soluzione Esercizio 38 (Dominio Funzione Integrale)
+    \item[Esercizio 38] \hfill \\
+    Determinare l'insieme di definizione di $F(x) = \int_{0}^{x} \frac{\log(1+t^2)}{t\sqrt{3-t}} \, dt$.
+    
+    Sia $f(t) = \frac{\log(1+t^2)}{t\sqrt{3-t}}$.
+    
+    \textbf{1. Dominio dell'integranda $f(t)$}
+    Dobbiamo imporre le condizioni di esistenza:
+    \begin{itemize}
+        \item Argomento del logaritmo: $1+t^2 > 0$ (Sempre verificato).
+        \item Denominatore diverso da zero: $t \neq 0$.
+        \item Argomento della radice (al denominatore): $3-t > 0 \implies t < 3$.
+    \end{itemize}
+    Il dominio naturale di $f(t)$ è $(-\infty, 0) \cup (0, 3)$.
+    
+    La funzione integrale parte da $x_0 = 0$. Dobbiamo analizzare il comportamento agli estremi del dominio di $f(t)$ per vedere se l'integrale converge (e quindi il punto viene "inglobato" nel dominio di $F$) o diverge.
+    
+    \textbf{2. Studio della singolarità in $t=0$ (Punto di partenza)}
+    La funzione non è definita in $t=0$, ma vediamo il limite per $t \to 0$:
+    Ricordando che $\log(1+t^2) \sim t^2$:
+    \[ \lim_{t \to 0} f(t) \sim \frac{t^2}{t\sqrt{3}} = \frac{t}{\sqrt{3}} = 0 \]
+    La funzione ha una \textbf{discontinuità eliminabile} in $0$. Essendo prolungabile con continuità, l'integrale a $0$ converge tranquillamente.
+    Quindi possiamo "passare attraverso" lo zero.
+    
+    \textbf{3. Studio della singolarità in $t=3$ (Estremo destro)}
+    Vediamo come si comporta l'integrale vicino a $3^-$:
+    \[ f(t) = \frac{\log(1+t^2)}{t\sqrt{3-t}} \sim \frac{\log(10)}{3 \cdot (3-t)^{1/2}} \quad (\text{per } t \to 3) \]
+    Si comporta come $\frac{1}{(3-t)^{1/2}}$.
+    Poiché l'esponente è $1/2 < 1$, l'integrale \textbf{CONVERGE} in 3.
+    Quindi $x=3$ fa parte del dominio.
+    Ovviamente per $x > 3$ la funzione non esiste, quindi ci fermiamo lì.
+    
+    \textbf{4. Studio a sinistra ($t < 0$)}
+    Per $t < 0$, la funzione $f(t)$ è continua ovunque e non ci sono altri punti problematici fino a $-\infty$.
+    Nota: Per il dominio di definizione non ci interessa se $\lim_{x \to -\infty} F(x)$ sia finito o no, ci basta che per ogni $x$ finito l'integrale esista. Poiché la funzione è continua su $(-\infty, 0)$, l'integrale esiste per ogni $x < 0$.
+    
+    \textbf{Conclusione}
+    L'intervallo massimale che contiene lo $0$ e su cui l'integranda è integrabile è:
+    \[ D_F = (-\infty, 3] \]
+
+    % Soluzione Esercizio 39 (Doppio Parametro con Tangente)
+    \item[Esercizio 39] \hfill \\
+    Studiare la convergenza assoluta di $\displaystyle \int_{0}^{1} \frac{\tan(x^\beta)}{x^\alpha} \, dx$ con $\alpha, \beta > 0$.
+    
+    La funzione integranda è positiva nell'intervallo $(0, 1]$, quindi la convergenza assoluta coincide con quella semplice.
+    L'unica singolarità possibile è a $x=0$ (il denominatore si annulla).
+    A $x=1$ la funzione è definita e continua ($\tan(1)$ è un valore finito).
+    
+    \textbf{Analisi Asintotica a $x \to 0^+$}
+    Utilizziamo lo sviluppo asintotico della tangente: $\tan(y) \sim y$ per $y \to 0$.
+    Poiché $\beta > 0$, l'argomento $x^\beta$ tende a 0, quindi:
+    \[ \tan(x^\beta) \sim x^\beta \]
+    
+    Sostituiamo nell'integranda:
+    \[ f(x) \sim \frac{x^\beta}{x^\alpha} = \frac{1}{x^{\alpha-\beta}} \]
+    
+    \textbf{Condizione di Convergenza}
+    Siamo ricondotti all'integrale notevole $\int_0^1 \frac{1}{x^p} \, dx$, che converge se l'esponente $p < 1$.
+    Nel nostro caso $p = \alpha - \beta$.
+    
+    Imponiamo la condizione:
+    \[ \alpha - \beta < 1 \implies \alpha < \beta + 1 \]
+    
+    \textbf{Risultato:}
+    L'integrale converge per tutti gli $\alpha, \beta > 0$ tali che $\alpha < \beta + 1$.
+
+    % Soluzione Esercizio 40 (Doppio studio: 0 e Infinito con parametro)
+    \item[Esercizio 40] \hfill \\
+    Studiare la convergenza per $a \ge 0$ della funzione $f(x) = \frac{e^{ax}-\cos(x)}{x^a}$ sui due intervalli:
+    
+    \textbf{1. Intervallo $(1, +\infty)$ (Studio all'Infinito)}
+    Analizziamo il comportamento asintotico per $x \to +\infty$.
+    
+    \begin{itemize}
+        \item \textbf{Se $a > 0$:}
+        Il termine dominante al numeratore è l'esponenziale $e^{ax}$, che cresce molto più velocemente del coseno (limitato).
+        Il denominatore è una potenza $x^a$.
+        Per la gerarchia degli infiniti, l'esponenziale vince su qualsiasi potenza:
+        \[ \lim_{x \to +\infty} \frac{e^{ax}}{x^a} = +\infty \]
+        La funzione integranda diverge a $+\infty$ (non va nemmeno a zero!), quindi la condizione necessaria per la convergenza non è soddisfatta.
+        L'integrale \textbf{DIVERGE}.
+        
+        \item \textbf{Se $a = 0$:}
+        La funzione diventa:
+        \[ f(x) = \frac{e^0 - \cos x}{x^0} = 1 - \cos x \]
+        Questa è una funzione periodica e limitata che oscilla tra 0 e 2. Non tendendo a 0 all'infinito, l'integrale \textbf{DIVERGE}.
+    \end{itemize}
+    \textbf{Risultato su $(1, +\infty)$:} L'integrale diverge per ogni $a \ge 0$.
+    
+    \hrulefill
+    
+    \textbf{2. Intervallo $(0, \pi)$ (Studio della Singolarità a 0)}
+    Qui il problema è il limite per $x \to 0^+$. Dobbiamo usare gli sviluppi di Taylor per capire l'ordine di infinitesimo del numeratore, dato che $e^0 - \cos(0) = 1-1 = 0$ (forma $0/0$).
+    
+    Sviluppi di Taylor (per $x \to 0$):
+    \begin{itemize}
+        \item $e^{ax} = 1 + ax + \frac{(ax)^2}{2} + o(x^2)$
+        \item $\cos x = 1 - \frac{x^2}{2} + o(x^2)$
+    \end{itemize}
+    
+    Sostituiamo nel numeratore:
+    \[ \text{Num} = \left(1 + ax + \frac{a^2 x^2}{2}\right) - \left(1 - \frac{x^2}{2}\right) = ax + \frac{1}{2}(a^2+1)x^2 + o(x^2) \]
+    
+    Ora dobbiamo distinguere due casi in base al valore di $a$ (perché se $a=0$ il termine lineare sparisce):
+    
+    \begin{itemize}
+        \item \textbf{Caso $a > 0$:}
+        Il termine dominante del numeratore è quello di grado più basso: $ax$.
+        Quindi la funzione si comporta come:
+        \[ f(x) \sim \frac{ax}{x^a} = a \frac{1}{x^{a-1}} \]
+        Per il criterio di convergenza $\int \frac{1}{x^p}$, serve che l'esponente $p < 1$.
+        \[ a-1 < 1 \implies a < 2 \]
+        Quindi converge per $0 < a < 2$.
+        
+        \item \textbf{Caso $a = 0$:}
+        Il termine lineare $ax$ diventa 0. Il numeratore inizia col termine quadratico:
+        \[ \text{Num} \approx \frac{1}{2}(0+1)x^2 = \frac{x^2}{2} \]
+        Il denominatore è $x^0 = 1$.
+        \[ f(x) \sim \frac{x^2}{2} \to 0 \]
+        La funzione non ha singolarità (tende a 0), quindi l'integrale \textbf{CONVERGE}.
+    \end{itemize}
+    
+    \textbf{Risultato su $(0, \pi)$:}
+    L'integrale converge se e solo se:
+    \[ 0 \le a < 2 \]
+
+    % Soluzione Esercizio 41 (Cosh e Rescaling)
+    \item[Esercizio 41] \hfill \\
+    Data la funzione $\displaystyle \Phi(\alpha) = \int_{-\infty}^{+\infty} \frac{1}{\cosh(\alpha x)} \, dx$, studiarne la convergenza e il limite per $\alpha \to 0^+$.
+    
+    \textbf{1. Studio della Convergenza}
+    La funzione integranda $f(x) = \frac{1}{\cosh(\alpha x)}$ è pari e sempre positiva.
+    Possiamo studiare l'integrale su $[0, +\infty)$.
+    
+    Ricordiamo la definizione: $\cosh(t) = \frac{e^t + e^{-t}}{2}$.
+    Per $x \to +\infty$ (con $\alpha > 0$), domina l'esponenziale positivo:
+    \[ \cosh(\alpha x) \sim \frac{e^{\alpha x}}{2} \]
+    Quindi l'integranda si comporta come:
+    \[ f(x) \sim \frac{1}{\frac{1}{2}e^{\alpha x}} = 2 e^{-\alpha x} \]
+    
+    L'integrale di un esponenziale $e^{-kx}$ converge all'infinito se e solo se l'esponente è negativo (cioè $k > 0$).
+    Qui abbiamo $-\alpha x$, quindi converge per ogni $\alpha > 0$.
+    (Se $\alpha = 0$, $\cosh(0)=1$ e l'integrale di una costante su $\mathbb{R}$ diverge).
+    
+    \textbf{2. Calcolo dell'Integrale}
+    Per calcolare $\Phi(\alpha)$ esplicitamente, usiamo la sostituzione:
+    \[ t = \alpha x \implies dx = \frac{1}{\alpha} \, dt \]
+    Gli estremi di integrazione rimangono $-\infty$ e $+\infty$ (dato che $\alpha > 0$).
+    
+    \[ \Phi(\alpha) = \int_{-\infty}^{+\infty} \frac{1}{\cosh t} \cdot \frac{1}{\alpha} \, dt = \frac{1}{\alpha} \int_{-\infty}^{+\infty} \frac{dt}{\cosh t} \]
+    
+    Calcoliamo l'integrale noto $\int \frac{1}{\cosh t} \, dt$:
+    \[ \frac{1}{\cosh t} = \frac{2}{e^t + e^{-t}} = \frac{2e^t}{e^{2t} + 1} \]
+    Ponendo $u = e^t$ (quindi $du = e^t dt$):
+    \[ \int \frac{2}{u^2+1} \, du = 2 \arctan(u) = 2 \arctan(e^t) \]
+    
+    Valutiamo tra $-\infty$ e $+\infty$:
+    \[ \int_{-\infty}^{+\infty} \frac{dt}{\cosh t} = \left[ 2 \arctan(e^t) \right]_{-\infty}^{+\infty} \]
+    \begin{itemize}
+        \item Per $t \to +\infty$, $e^t \to +\infty \implies \arctan(+\infty) = \frac{\pi}{2}$.
+        \item Per $t \to -\infty$, $e^t \to 0 \implies \arctan(0) = 0$.
+    \end{itemize}
+    Valore dell'integrale puro: $2(\frac{\pi}{2} - 0) = \pi$.
+    
+    Quindi la nostra funzione integrale vale:
+    \[ \Phi(\alpha) = \frac{\pi}{\alpha} \]
+    
+    \textbf{3. Calcolo del Limite}
+    Ora il limite è immediato:
+    \[ \lim_{\alpha \to 0^+} \Phi(\alpha) = \lim_{\alpha \to 0^+} \frac{\pi}{\alpha} = +\infty \]  
+
+    % Soluzione Esercizio 42 (Razionale Parametrico e Limite)
+    \item[Esercizio 42] \hfill \\
+    Data la funzione $\displaystyle \Phi(\alpha) = \int_{1}^{+\infty} \frac{1}{x^2+\alpha x+1} \, dx$, studiarne la convergenza e calcolare il limite per $\alpha \to 2$.
+    
+    \textbf{1. Studio della Convergenza}
+    Analizziamo il denominatore $D(x) = x^2+\alpha x+1$.
+    Dato che siamo interessati al limite per $\alpha \to 2$, consideriamo $\alpha > 0$.
+    \begin{itemize}
+        \item \textbf{Singolarità:} Le radici di $x^2+\alpha x+1=0$ sono reali solo se $\Delta \ge 0$ ($\alpha \ge 2$) o complesse se $\Delta < 0$ ($0 < \alpha < 2$).
+        In ogni caso, per $\alpha > 0$, le eventuali radici reali sarebbero negative (regola dei segni di Cartesio: $++\,+$ $\to$ nessuna variazione $\to$ radici negative).
+        Poiché integriamo in $[1, +\infty)$, il denominatore non si annulla mai nell'intervallo.
+        
+        \item \textbf{Comportamento a $+\infty$:}
+        \[ f(x) \sim \frac{1}{x^2} \]
+        Poiché l'esponente $2 > 1$, l'integrale \textbf{CONVERGE} per ogni $\alpha$ in un intorno di 2.
+    \end{itemize}
+    
+    \textbf{2. Calcolo del Limite per $\alpha \to 2$}
+    Grazie alla convergenza uniforme (o semplicemente per continuità dell'integrale rispetto al parametro in assenza di singolarità), possiamo scambiare il limite con l'integrale:
+    
+    \[ L = \lim_{\alpha \to 2} \Phi(\alpha) = \int_{1}^{+\infty} \left( \lim_{\alpha \to 2} \frac{1}{x^2+\alpha x+1} \right) \, dx \]
+    
+    Sostituendo $\alpha = 2$ nell'integranda:
+    \[ x^2 + 2x + 1 = (x+1)^2 \]
+    
+    L'integrale diventa immediato:
+    \[ L = \int_{1}^{+\infty} \frac{1}{(x+1)^2} \, dx \]
+    La primitiva di $(x+1)^{-2}$ è $-(x+1)^{-1} = -\frac{1}{x+1}$.
+    
+    Valutiamo tra 1 e $+\infty$:
+    \[ L = \left[ -\frac{1}{x+1} \right]_{1}^{+\infty} \]
+    \begin{itemize}
+        \item A $+\infty$: tende a 0.
+        \item A 1: vale $-\frac{1}{2}$.
+    \end{itemize}
+    
+    \[ L = 0 - \left(-\frac{1}{2}\right) = \frac{1}{2} \]
+% Soluzione Esercizio 43 (Versione Completa: 0 e Infinito)
+    \item[Esercizio 43] \hfill \\
+    Data la funzione integrale $I(\lambda) = \int_{\lambda}^{+\infty} \frac{x}{(x^2+1)\log^2(x^2+1)} \, dx$.
+    
+    \textbf{1. Studio della Convergenza}
+    L'integrale è improprio a $+\infty$ e potenzialmente nell'estremo inferiore se $\lambda \le 0$.
+    
+    \begin{itemize}
+        \item \textbf{A $+\infty$ (Convergenza):}
+        Per $x \to +\infty$, il numeratore è $x$ e il denominatore è circa $x^2 \log^2(x^2)$.
+        \[ f(x) \sim \frac{x}{x^2 (2\log x)^2} \sim \frac{1}{4 x \log^2 x} \]
+        Questo rientra nel caso degli integrali generalizzati $\int \frac{1}{x^\alpha \log^\beta x}$. Con $\alpha=1$, converge se $\beta > 1$.
+        Qui $\beta=2$, quindi l'integrale \textbf{CONVERGE} a $+\infty$.
+        
+        \item \textbf{A $x=0$ (Singolarità):}
+        Se l'intervallo toccasse lo 0 (cioè se $\lambda \le 0$), avremmo problemi.
+        Analizziamo $x \to 0^+$:
+        $\log(1+x^2) \sim x^2$ (nota il quadrato interno).
+        \[ f(x) \sim \frac{x}{1 \cdot (x^2)^2} = \frac{x}{x^4} = \frac{1}{x^3} \]
+        Poiché l'ordine $3 \ge 1$, l'integrale diverge a 0.
+    \end{itemize}
+    
+    \textbf{Conclusione Dominio:} L'integrale converge se e solo se $\lambda > 0$.
+    
+    \textbf{2. Calcolo Esplicito di $I(\lambda)$}
+    Per $\lambda > 0$, calcoliamo per sostituzione: $t = \log(x^2+1) \implies dt = \frac{2x}{x^2+1} dx$.
+    Estremi: $x=\lambda \to t=\log(\lambda^2+1)$; $x \to +\infty \to t \to +\infty$.
+    
+    \[ I(\lambda) = \int_{\log(\lambda^2+1)}^{+\infty} \frac{1}{2t^2} \, dt = \frac{1}{2} \left[ -\frac{1}{t} \right]_{\log(\lambda^2+1)}^{+\infty} = \frac{1}{2\log(\lambda^2+1)} \]
+    
+    \textbf{3. Calcolo del Limite}
+    Calcoliamo $\lim_{\lambda \to 0^+} \lambda^\alpha I(\lambda)$.
+    Usando la stima $\log(\lambda^2+1) \sim \lambda^2$:
+    
+    \[ \lambda^\alpha I(\lambda) \sim \frac{\lambda^\alpha}{2\lambda^2} = \frac{1}{2} \lambda^{\alpha-2} \]
+    
+    Il limite vale:
+    \begin{itemize}
+        \item $0$ se $\alpha > 2$.
+        \item $1/2$ se $\alpha = 2$.
+        \item $+\infty$ se $\alpha < 2$.
+    \end{itemize}
+
+    % Soluzione Esercizio 44 (Il "Mostro" che in realtà è innocuo)
+    \item[Esercizio 44] \hfill \\
+    Studiare la convergenza per $\alpha > 0$ di:
+    \[ \int_{2}^{+\infty} \frac{\sin(x+x^\alpha)}{x^2 \arctan(x^\alpha + x^{1/\alpha})} \, dx \]
+    
+    \textbf{1. Analisi preliminare}
+    La funzione è definita su tutto l'intervallo $[2, +\infty)$.
+    Il denominatore non si annulla mai perché per $x \ge 2$ e $\alpha > 0$, i termini $x^\alpha$ e $x^{1/\alpha}$ sono positivi, quindi l'arcotangente è positiva e strettamente maggiore di 0.
+    Non ci sono singolarità al finito.
+    
+    \textbf{2. Studio della Convergenza Assoluta}
+    Procediamo con il criterio del confronto assoluto, sfruttando la limitatezza della funzione seno: $|\sin(y)| \le 1$.
+    
+    \[ |f(x)| = \frac{|\sin(x+x^\alpha)|}{x^2 \arctan(x^\alpha + x^{1/\alpha})} \le \frac{1}{x^2 \arctan(x^\alpha + x^{1/\alpha})} \]
+    
+    Analizziamo il comportamento asintotico del denominatore per $x \to +\infty$.
+    L'argomento dell'arcotangente è $x^\alpha + x^{1/\alpha}$.
+    Poiché $\alpha > 0$, entrambi gli esponenti sono positivi, quindi:
+    \[ \lim_{x \to +\infty} (x^\alpha + x^{1/\alpha}) = +\infty \]
+    
+    Di conseguenza, il termine arcotangente tende al suo asintoto orizzontale:
+    \[ \lim_{x \to +\infty} \arctan(x^\alpha + x^{1/\alpha}) = \frac{\pi}{2} \]
+    
+    \textbf{3. Confronto Asintotico}
+    La nostra funzione maggiorante si comporta quindi come:
+    \[ \frac{1}{x^2 \cdot \frac{\pi}{2}} = \frac{2}{\pi} \cdot \frac{1}{x^2} \]
+    
+    Poiché l'integrale improprio $\int_{2}^{+\infty} \frac{1}{x^2} \, dx$ è convergente (esponente $2 > 1$), allora per il Criterio del Confronto Asintotico l'integrale di partenza **converge assolutamente** (e quindi semplicemente).
+    
+    \textbf{Conclusione:}
+    L'integrale converge per \textbf{ogni} $\alpha > 0$.
+\end{description}
+\end{document}

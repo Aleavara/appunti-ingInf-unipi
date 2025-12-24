@@ -1,0 +1,3476 @@
+\documentclass[a4paper,12pt]{article}
+
+% Pacchetti per la lingua e la codifica
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{comment}
+% Pacchetti per la matematica
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% Pacchetti per l'impaginazione
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% --- COMANDO PER LA DIFFICOLTÀ ---
+\newcommand{\diff}[1]{%
+    \ifcase#1\or
+    {\color{green!60!black}$\bullet$}% 1 pallino
+    \or
+    {\color{orange}$\bullet\bullet$}% 2 pallini
+    \or
+    {\color{red}$\bullet\bullet\bullet$}% 3 pallini
+    \fi
+}
+% ---------------------------------
+
+% Titolo del documento
+\title{\textbf{Raccolta Ragionata Esercizi d'Esame}}
+\author{Alessio Avarappattu}
+\date{Dicembre 2025}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\maketitle
+
+\noindent \textbf{Legenda Difficoltà:} \\
+\diff{1} Esercizio Standard / Applicazione Formule \\
+\diff{2} Esercizio Intermedio / Richiede ragionamento sui parametri \\
+\diff{3} Esercizio Avanzato / Studio qualitativo o calcoli complessi
+
+\tableofcontents
+\newpage
+
+% =========================================================================
+\section{Studi con Parametri e Numero di Soluzioni}
+\textit{In questa sezione il focus è sulla discussione grafica al variare di $\lambda$ o altri parametri.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex Parametrico 1
+    \item \diff{1} \textbf{Radice Irrazionale} \hfill \textit{(sol. pag 6)} \\
+    Determinare, al variare di $\lambda \in \mathbb{R}$, il numero di soluzioni dell'equazione:
+    \[ \sqrt{\frac{x^3}{x+2}} = \lambda \]
+
+    % Ex Parametrico 2
+    \item \diff{1} \textbf{Esponenziale (Monotonia e Convessità)} \hfill \textit{(sol. pag 7)} \\
+    Si consideri per $\lambda \in \mathbb{R}$ la funzione $f(x) = (x^2 - 2x + \lambda)e^{-x}$. Determinare:
+    \begin{itemize}
+        \item i valori di $\lambda$ per i quali $f$ è monotona;
+        \item i valori di $\lambda$ per i quali $f$ è convessa.
+    \end{itemize}
+
+    % Ex Parametrico 3
+    \item \diff{1   } \textbf{Misto Fratto-Esponenziale} \hfill \textit{(sol. pag 9)} \\
+    Studiare la funzione $f(x) = \frac{x+1}{x e^x}$ ($x \neq 0$) e determinare il numero di soluzioni di $f(x) = \lambda$ al variare di $\lambda \in \mathbb{R}$.
+
+    % Ex Parametrico 4
+    \item \diff{2} \textbf{studio derivata geometrico} \hfill \textit{(sol. pag 10)} \\
+    Determinare per quali $\lambda > 0$ la funzione definita su $[0, +\infty[$:
+    \[ f(x) = \lambda x + e^{-x^2} \]
+    ammette punti di massimo e minimo relativo/assoluto.
+
+    % Ex Parametrico 5
+    \item \diff{2} \textbf{Studio Completo Parametrico (f'' lunga)} \hfill \textit{(sol. pag 12)} \\
+    Studiare, al variare di $\lambda > 0$, la funzione definita per $x \in \mathbb{R} \setminus \{1/\lambda\}$:
+    \[ f(x) = \frac{e^{-\lambda x}}{\lambda x - 1} \]
+    determinando massimi, minimi e intervalli di convessità.
+
+    % Ex Parametrico 6
+    \item \diff{2} \textbf{Parametro Moltiplicativo} \hfill \textit{(sol. pag 14)} \\
+    Si consideri la funzione $f(x) = (x^2 - \lambda x)e^{\lambda x}$ per $\lambda \in \mathbb{R}$. Studiare l'andamento generale al variare del parametro.
+
+    % Ex Parametrico 7
+    \item \diff{2} \textbf{Equazione Trascendente} \hfill \textit{(sol. pag 16)} \\
+    Determinare, al variare di $\lambda \in \mathbb{R}$, il numero di soluzioni dell'equazione:
+    \[ x^2 \log(|x|) = \lambda \]
+
+    % Ex Parametrico 8
+    \item \diff{3} \textbf{Parametro all'Esponente} \hfill \textit{(sol. pag 17)} \\
+    Data la funzione per $x \ge 0$ e $\lambda > 0$, $f(x) = x e^{-x^\lambda}$. Trovare il massimo (se esiste) e studiare il comportamento di tale massimo per $\lambda \to +\infty$.
+
+    % Ex Parametrico 9
+    \item \diff{2} \textbf{Arcotangente Parametrica} \hfill \textit{(sol. pag 19)} \\
+    Studiare, al variare di $\lambda \in \mathbb{R}$, la funzione:
+    \[ f(x) = \arctan(\lambda x) + x \]
+
+    % Ex Parametrico 10
+    \item \diff{3} \textbf{Potenza Parametrica} \hfill \textit{(sol. pag 20)} \\
+    Si consideri $f(t) = \frac{1+t^p}{(1+t)^p}$ con $p > 1$. Cercare eventuali massimi e minimi per $t \ge 0$ e tracciare il grafico qualitativo.
+
+\end{enumerate}
+
+% =========================================================================
+\section{Valori Assoluti e Funzioni a Tratti}
+\textit{Esercizi che richiedono attenzione ai punti di non derivabilità (cuspidi, punti angolosi) e definizioni a tratti.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex Modulo 1
+    \item \diff{2} \textbf{Doppio Valore Assoluto} \hfill \textit{(sol. pag 22)} \\
+    Studiare la funzione $f(x) = |2e^{-|x|} - 1|$ determinando massimi/minimi locali e assoluti e intervalli di convessità.
+
+    % Ex Modulo 2
+    \item \diff{2} \textbf{Radice con Modulo Parametrico} \hfill \textit{(sol. pag 23)} \\
+    Studiare al variare di $\lambda \in \mathbb{R}$ la funzione $f(x) = \sqrt[3]{2 - \lambda|x|}$ determinando dominio, derivabilità e asintoti.
+
+    % Ex Modulo 3
+    \item \diff{2  } \textbf{Derivabilità nell'Origine (A tratti)} \hfill \textit{(sol. pag 25)} \\
+    Si consideri $f(x) = e^{-1/x^2}$ per $x > 0$ e $f(x) = 0$ per $x \leq 0$.
+    Trovare massimi/minimi e calcolare $f'(0)$ e $f''(0)$ tramite definizione.
+
+    % Ex Modulo 4
+    \item \diff{2} \textbf{Logaritmo e Moduli} \hfill \textit{(sol. pag 26)} \\
+    Studiare la funzione:
+    \[ f(x) = \frac{1}{3}|x| + \log\left(\frac{2(|x|-1)}{|x|-2}\right) \]
+
+    % Ex Modulo 5
+    \item \diff{2} \textbf{Seno} \hfill \textit{(sol. pag 28)} \\
+    Studiare la funzione $f(x) = (|x+1| - |x-1|) \sin(\pi x)$. \\
+    (Suggerimento: analizzare come si comportano i moduli negli intervalli).
+
+    % Ex Modulo 6
+    \item \diff{2} \textbf{Polinomio in Modulo} \hfill \textit{(sol. pag 30)} \\
+    Studiare la funzione definita su $\mathbb{R}$: $f(x) = |x^3+x^2+x+1| - x^2$.
+
+    % Ex Modulo 7
+    \item \diff{2} \textbf{Radice ed Esponenziale} \hfill \textit{(sol. pag 32)} \\
+    Studiare $f(x) = e^{-|x|}\sqrt{x^2-5x+6}$ determinando massimi e minimi relativi/assoluti.
+
+    % Ex Modulo 8
+    \item \diff{1} \textbf{Prolungamento per Continuità} \hfill \textit{(sol. pag 35)} \\
+    Si studi per $\lambda > 0$ la funzione definita da $f(x) = x e^{-\lambda/x^2}$ per $x \neq 0$ e $f(0)=0$.
+
+    % Ex Modulo 9
+    \item \diff{2} \textbf{Connessione Grafica} \hfill \textit{(sol. pag 36)} \\
+    \begin{enumerate}[label=\alph*)]
+        \item Si studi $f(x) = |x^3|e^{-x}$ per $x > 0$, individuando estremi.
+        \item Utilizzando lo studio, determinare al variare di $k \in \mathbb{R}$ le soluzioni di $k e^x = |x^3|$.
+    \end{enumerate}
+
+\end{enumerate}
+
+% =========================================================================
+\section{Logaritmi ed Esponenziali (Analisi Qualitativa)}
+\textit{Studi di funzione puri focalizzati sulle proprietà dei logaritmi e degli esponenziali.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex Log 1
+    \item \diff{2} \textbf{Limitatezza Parametrica} \hfill \textit{(sol. pag 38)} \\
+    Studiare $f(x) = \frac{x^2}{2} + \log_a |x+1|$ ($a \in ]0,+\infty[ \setminus \{1\}$) e determinare per quali $a$ è limitata inferiormente.
+
+    % Ex Log 2
+    \item \diff{2} \textbf{Convessità Logaritmica} \hfill \textit{(sol. pag 39)} \\
+    Studiare per $a \in \mathbb{R} \setminus \{0, \pm 1\}$ la funzione $f(x) = \log_{a^2} |x+1|$ determinando se esistono $a$ per cui $f$ è convessa.
+
+    % Ex Log 3
+    \item \diff{2} \textbf{Logaritmo Composto} \hfill \textit{(sol. pag 40)} \\
+    Studiare $f(x) = \ln x - \ln(\ln x)$ e determinare le soluzioni di $f(x) = \lambda$.
+
+    % Ex Log 4
+    \item \diff{2} \textbf{Razionale Logaritmica I} \hfill \textit{(sol. pag 42)} \\
+    Studiare per $x \in ]0,8[ \setminus \{1\}$: $f(x) = \frac{1}{\log^2 x} - \frac{2}{\log x} + 1$.
+
+    % Ex Log 5
+    \item \diff{1} \textbf{Razionale Logaritmica II} \hfill \textit{(sol. pag 43)} \\
+    Data $f(x) = \log\left(\frac{x-4}{x-6}\right)$, determinarne dominio, asintoti, estremi e flessi.
+
+    % Ex Log 6
+    \item \diff{3} \textbf{Taylor} \hfill \textit{(sol. pag 45)} \\
+    Studiare la funzione $f(x) = \frac{\log x}{(x-1)^2}$.
+
+    % Ex Log 7
+    \item \diff{1} \textbf{Base Variabile} \hfill \textit{(sol. pag 46)} \\
+    Studiare per $x > 0$ la funzione $f(x) = x^{\log x}$. (Suggerimento: passare alla base $e$).
+
+    % Ex Log 8
+    \item \diff{3} \textbf{Singolarità Essenziale} \hfill \textit{(sol. pag 47)} \\
+    Si studi la funzione per $x \neq \pm 1$: $f(x) = (x-1)e^{\frac{1}{x^2-1}}$.
+
+    % Ex Log 9
+    \item \diff{2} \textbf{logaritmi} \hfill \textit{(sol. pag 49)} \\
+    Studiare il grafico della funzione (attenzione al dominio): $f(x) = |\log x|^{\log x}$.
+
+    % Ex Log 10
+    \item \diff{2} \textbf{Mista Log-Quadratico} \hfill \textit{(sol. pag 51)} \\
+    Studiare il grafico della funzione $f(x) = \frac{1-\log(x^2)}{\log^2 x}$.
+
+\end{enumerate}
+
+% =========================================================================
+\section{Trigonometria e Oscillazioni}
+\textit{Funzioni periodiche o quasi-periodiche, composizioni inverse.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex Trig 1
+    \item \diff{3} \textbf{Conteggio Estremi (Trig Mista)} \hfill \textit{(sol. pag 52)} \\
+    Determinare il numero di punti di massimo e minimo di $f(x) = \cos\left(\frac{x}{2}\pi^x\right)$ su $[0,2]$.
+
+    % Ex Trig 2
+    \item \diff{2} \textbf{Trigonometria Razionale} \hfill \textit{(sol. pag 55)} \\
+    Studiare per $x \in ]0, 2\pi[ \setminus \{\pi\}$ la funzione $f(x) = \frac{1}{\sin^2 x} - \frac{2}{\sin x} + 1$ determinando gli estremi.
+
+    % Ex Trig 3
+    \item \diff{3} \textbf{Composizione e Flessi} \hfill \textit{(sol. pag 56)} \\
+    Studiare $f(x) = \sin(\arctan(x^3))$. Trovare i punti di flesso. \\
+    \textit{Dimostrare preliminarmente che} $\cos(\arctan t) = \frac{1}{\sqrt{1+t^2}}$.
+
+    % Ex Trig 4
+    \item \diff{3} \textbf{Seno Composto} \hfill \textit{(sol. pag 56)} \\
+    Studiare per $0 < x < e$ (con $f(0)=0$) la funzione $f(x) = \sin(1 + x \log x)$.
+
+    % Ex Trig 5
+    \item \diff{3} \textbf{Oscillazioni Smorzate} \hfill \textit{(sol. pag 58)} \\
+    Si studi la funzione $f(x) = \frac{\sqrt{x}}{1+|\sin x|}$ (attenzione al comportamento all'infinito).
+
+\end{enumerate}
+
+% =========================================================================
+\section{Teoria, Funzioni Integrali e Inverse}
+\textit{Esercizi che richiedono l'uso del Teorema Fondamentale del Calcolo, criteri di integrabilità o teoremi sulle funzioni inverse.}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % Ex Teoria 1
+    \item \diff{1} \textbf{Funzione Integrale} \hfill \textit{(sol. pag 43)} \\
+    Studiare il grafico di $f(x) = \int_{1}^{x^2+1} e^{-t} \, dt$ determinando massimi, minimi e flessi.
+
+    % Ex Teoria 2
+    \item \diff{1} \textbf{Integrabilità Impropria} \hfill \textit{(sol. pag 59)} \\
+    Si studi $f(x) = \frac{x^3-x}{\sqrt{x^6+1}}$ e si determini se esiste finito $\int_{-\infty}^{+\infty} f(x) \, dx$.
+
+    % Ex Teoria 3
+    \item \diff{1} \textbf{Razionale Standard} \hfill \textit{(sol. pag 61)} \\
+    Studio veloce della funzione $f(x) = \frac{x^2-1}{x^2-4}$ (utile per confronto asintotico).
+
+    % Ex Teoria 4
+    \item \diff{2} \textbf{Invertibilità Locale} \hfill \textit{(sol. pag 63)} \\
+    Data $f(x) = \frac{x^3+x^2+10x+1}{x^2+1}$:
+    \begin{itemize}
+        \item Determinare il più grande intervallo contenente l'origine su cui $f$ è invertibile.
+        \item Calcolare, se possibile, $(f^{-1})'(1)$.
+    \end{itemize}
+
+    % Ex Teoria 5
+    \item \diff{3} \textbf{Studio Misto e Integrale Improprio} \hfill \textit{(sol. pag 65)} \\
+    Si studi $f(x) = \frac{e^x(5x-3)}{x^2+2x-3}$. Successivamente, studiare la convergenza dell'integrale improprio $\int_{-\infty}^{-2} f(x) \, dx$.
+\end{enumerate}
+\newpage
+\section{Soluzioni}
+
+\pgfplotsset{
+    standard/.style={
+        axis lines=middle,      % Assi al centro
+        xlabel=$x$, ylabel=$y$,
+        grid=both,              % Griglia
+        minor tick num=1,       % Tacche intermedie
+        width=12cm, height=9cm, % Grafici più grandi e spaziati
+        legend pos=outer north east, % Legenda fuori per non coprire il grafico
+        trig format plots=rad,  % Importante per funzioni trigonometriche
+        % Assicura che le etichette x e y siano alle estremità
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+        every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+% --- SOLUZIONE ESERCIZIO 1 ---
+\subsection*{1. Radice Irrazionale} \label{sol:ex1}
+\textbf{Testo:} Determinare le soluzioni di $\sqrt{\frac{x^3}{x+2}} = \lambda$.
+
+\textbf{1. Dominio e Regolarità (Analisi Preliminare)}
+\begin{itemize}
+    \item \textbf{Dominio:} L'argomento della radice deve essere $\ge 0$.
+    \[ \frac{x^3}{x+2} \ge 0 \implies \begin{cases} x^3 \ge 0 \to x \ge 0 \\ x+2 > 0 \to x > -2 \end{cases} \]
+    Facendo il grafico dei segni otteniamo: $D = (-\infty, -2) \cup [0, +\infty)$.
+    
+    \item \textbf{Continuità:} La funzione è \textbf{continua in tutto il dominio} $D$, in quanto composizione di funzioni elementari continue (polinomi e radice).
+    
+\end{itemize}
+
+\textbf{2. Limiti agli estremi}
+\begin{itemize}
+    \item $\lim_{x \to -2^-} f(x) = \sqrt{\frac{-8}{0^-}} = \sqrt{+\infty} = +\infty$ \quad (\textbf{Asintoto Verticale} $x=-2$).
+    \item $\lim_{x \to \pm \infty} f(x) = +\infty$ (Si comporta come $\sqrt{x^2} = |x|$).
+    \item Valore in zero: $f(0) = 0$.
+\end{itemize}
+
+\textbf{3. Derivata Prima}
+\[ f'(x) = \frac{1}{2\sqrt{\frac{x^3}{x+2}}} \cdot D\left[ \frac{x^3}{x+2} \right] \]
+Calcolo derivata argomento (regola quoziente):
+\[ D\left[ \frac{x^3}{x+2} \right] = \frac{3x^2(x+2) - x^3}{(x+2)^2} = \frac{2x^3 + 6x^2}{(x+2)^2} = \frac{2x^2(x+3)}{(x+2)^2} \]
+Sostituendo e semplificando i 2:
+\[ f'(x) = \frac{1}{\sqrt{\frac{x^3}{x+2}}} \cdot \frac{x^2(x+3)}{(x+2)^2} \]
+
+
+\textbf{4. Segno e Monotonia}
+Il segno di $f'(x)$ dipende solo dal fattore $(x+3)$ (gli altri sono quadrati o radici positive).
+\[ f'(x) > 0 \iff x > -3 \]
+Nel dominio $D = (-\infty, -2) \cup [0, +\infty)$:
+\begin{itemize}
+    \item $x \in (-\infty, -3)$: $f'(x) < 0$ (Decrescente $\searrow$)
+    \item $x \in (-3, -2)$: $f'(x) > 0$ (Crescente $\nearrow$)
+    \item $x \in [0, +\infty)$: $f'(x) > 0$ (Crescente $\nearrow$)
+\end{itemize}
+\textbf{Minimo Relativo:} $x = -3$, con valore $f(-3) = \sqrt{\frac{-27}{-1}} = 3\sqrt{3}$.
+
+\textbf{5. Discussione Grafica ($y=\lambda$)}
+Immaginando la retta orizzontale che sale:
+\begin{itemize}
+    \item $\lambda < 0$: \textbf{0 sol.}
+    \item $\lambda = 0$: \textbf{1 sol.} ($x=0$).
+    \item $0 < \lambda < 3\sqrt{3}$: \textbf{1 sol.} (ramo destro).
+    \item $\lambda = 3\sqrt{3}$: \textbf{2 sol.} (1 tangente a sx + 1 a dx).
+    \item $\lambda > 3\sqrt{3}$: \textbf{3 sol.} (2 a sx + 1 a dx).
+\end{itemize}
+
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-10, xmax=10,      % Zoom out sull'asse X
+        ymin=-5, ymax=10,       % Zoom out sull'asse Y, inclusa parte negativa
+        restrict y to domain=-5:20] % Evita che l'asintoto "esploda" troppo in alto
+        
+        % Parte sinistra (x < -2)
+        \addplot[blue, thick, samples=200, domain=-10:-2.05] {sqrt(x^3/(x+2))};
+        
+        % Parte destra (x >= 0)
+        \addplot[blue, thick, samples=200, domain=0:10] {sqrt(x^3/(x+2))};
+        
+        % Asintoto verticale
+        \draw[red, dashed] (axis cs:-2, -5) -- (axis cs:-2, 20);
+        
+        % Evidenzio l'origine
+        \filldraw[black] (axis cs:0,0) circle (2pt);
+    \end{axis}
+\end{tikzpicture}
+
+
+% --- SOLUZIONE ESERCIZIO 2 ---
+\subsection*{2. Esponenziale (Monotonia e Convessità)} \label{sol:ex2}
+\textbf{Testo:} $f(x) = (x^2 - 2x + \lambda)e^{-x}$. Determinare $\lambda$ per cui $f$ è monotona e convessa.
+
+\textbf{1. Analisi Preliminare}
+\begin{itemize}
+    \item \textbf{Dominio:} $D = \mathbb{R}$ (prodotto di funzioni ovunque definite).
+    \item \textbf{Continuità/Derivabilità:} $f \in C^{\infty}(\mathbb{R})$.
+    \item \textbf{Limiti:}
+    \[ \lim_{x \to -\infty} f(x) = (+\infty) \cdot (+\infty) = +\infty \]
+    \[ \lim_{x \to +\infty} f(x) = \lim_{x \to +\infty} \frac{x^2 - 2x + \lambda}{e^x} = 0 \quad (\text{Gerarchia: } e^x \gg x^2) \]
+\end{itemize}
+
+\textbf{2. Monotonia (Studio di $f'$)}
+Calcoliamo la derivata prima:
+\[ f'(x) = (2x - 2)e^{-x} + (x^2 - 2x + \lambda)(-e^{-x}) \]
+Raccogliamo $e^{-x}$ (attenzione ai segni):
+\[ f'(x) = e^{-x} [ 2x - 2 - (x^2 - 2x + \lambda) ] \]
+\[ f'(x) = e^{-x} [ -x^2 + 4x - (2 + \lambda) ] \]
+Affinché $f$ sia \textbf{monotona}, $f'(x)$ non deve cambiare segno su $\mathbb{R}$.
+Poiché $e^{-x} > 0$, studiamo il segno del polinomio $P(x) = -x^2 + 4x - (2 + \lambda)$.
+Essendo una parabola rivolta verso il basso ($a = -1 < 0$), essa è sempre negativa o nulla se e solo se il discriminante è $\Delta \le 0$.
+\[ \frac{\Delta}{4} = (2)^2 - (-1)(-(2+\lambda)) = 4 - (2+\lambda) = 2 - \lambda \]
+Imponiamo la condizione:
+\[ \Delta \le 0 \implies 2 - \lambda \le 0 \implies \lambda \ge 2 \]
+\textbf{Conclusione 1:} Per $\lambda \ge 2$, la funzione è sempre decrescente (monotona).
+
+\textbf{3. Convessità (Studio di $f''$)}
+Partiamo da $f'(x) = e^{-x}(-x^2 + 4x - \lambda - 2)$.
+\[ f''(x) = (-e^{-x})(-x^2 + 4x - \lambda - 2) + e^{-x}(-2x + 4) \]
+Raccogliamo $e^{-x}$:
+\[ f''(x) = e^{-x} [ -(-x^2 + 4x - \lambda - 2) - 2x + 4 ] \]
+\[ f''(x) = e^{-x} [ x^2 - 4x + \lambda + 2 - 2x + 4 ] \]
+\[ f''(x) = e^{-x} [ x^2 - 6x + (\lambda + 6) ] \]
+Affinché $f$ sia \textbf{convessa} su tutto $\mathbb{R}$, serve $f''(x) \ge 0$ per ogni $x$.
+Poiché $e^{-x} > 0$, studiamo il polinomio $Q(x) = x^2 - 6x + (\lambda + 6)$.
+Essendo una parabola rivolta verso l'alto ($a = 1 > 0$), essa è sempre positiva o nulla se $\Delta \le 0$ (non interseca l'asse x o lo tocca in un punto).
+\[ \frac{\Delta}{4} = (-3)^2 - (1)(\lambda + 6) = 9 - \lambda - 6 = 3 - \lambda \]
+Imponiamo la condizione:
+\[ \Delta \le 0 \implies 3 - \lambda \le 0 \implies \lambda \ge 3 \]
+\textbf{Conclusione 2:} Per $\lambda \ge 3$, la funzione è convessa su tutto $\mathbb{R}$.
+
+\noindent \textbf{Es. 2:} $f(x) = (x^2 - 2x + \lambda)e^{-x}$ \\
+\textit{Al variare di $\lambda$, la funzione trasla verticalmente "pesata" dall'esponenziale.}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-5, xmax=8, 
+        ymin=-5, ymax=8]
+        
+        % Caso lambda = -1
+        \addplot[red, thick, samples=100, domain=-3:8] {(x^2 - 2*x - 1)*exp(-x)};
+        \addlegendentry{$\lambda = -1$}
+        
+        % Caso lambda = 1
+        \addplot[green!60!black, thick, dashed, samples=100, domain=-3:8] {(x^2 - 2*x + 1)*exp(-x)};
+        \addlegendentry{$\lambda = 1$}
+        
+        % Caso lambda = 5
+        \addplot[blue, thick, samples=100, domain=-3:8] {(x^2 - 2*x + 5)*exp(-x)};
+        \addlegendentry{$\lambda = 5$}
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 3 ---
+\subsection*{3. Misto Fratto-Esponenziale} \label{sol:ex3}
+\textbf{Testo:} $f(x) = \frac{x+1}{x e^x}$. Determinare soluzioni di $f(x)=\lambda$.
+
+\textbf{1. Dominio e Limiti}
+\begin{itemize}
+    \item \textbf{Dominio:} $x \neq 0$ (Denominatore non nullo). $D = (-\infty, 0) \cup (0, +\infty)$.
+    \item \textbf{Limiti (Comportamento agli estremi):}
+    \[ \lim_{x \to -\infty} \frac{x+1}{x} e^{-x} = [1 \cdot (+\infty)] = +\infty \]
+    \[ \lim_{x \to 0^-} \frac{1}{0^-} = -\infty \quad (\textbf{Asintoto Verticale}) \]
+    \[ \lim_{x \to 0^+} \frac{1}{0^+} = +\infty \quad (\textbf{Asintoto Verticale}) \]
+    \[ \lim_{x \to +\infty} \frac{x+1}{xe^x} \approx \lim \frac{1}{e^x} = 0^+ \quad (\textbf{Asintoto Orizzontale } y=0) \]
+\end{itemize}
+
+\textbf{2. Derivata e Monotonia}
+\[ f(x) = \frac{x+1}{x}e^{-x} = \left(1 + \frac{1}{x}\right)e^{-x} \]
+Usiamo la regola del prodotto (più veloce del quoziente qui):
+\[ f'(x) = \left( -\frac{1}{x^2} \right)e^{-x} + \left( 1 + \frac{1}{x} \right)(-e^{-x}) \]
+Raccogliamo $-e^{-x}$:
+\[ f'(x) = -e^{-x} \left[ \frac{1}{x^2} + 1 + \frac{1}{x} \right] = -e^{-x} \left[ \frac{1 + x^2 + x}{x^2} \right] \]
+Analisi del segno:
+\begin{itemize}
+    \item $-e^{-x}$: Sempre negativo.
+    \item $x^2$ (den): Sempre positivo.
+    \item $x^2 + x + 1$ (num): Il discriminante è $\Delta = 1 - 4 = -3 < 0$. Essendo una parabola rivolta verso l'alto senza zeri, è \textbf{sempre positiva}.
+\end{itemize}
+\textbf{Conclusione:} $f'(x)$ è il prodotto di un termine negativo per uno positivo.
+\[ f'(x) < 0 \quad \forall x \in D \]
+La funzione è \textbf{strettamente decrescente} in entrambi gli intervalli del dominio. Non ci sono massimi né minimi relativi.
+
+\textbf{3. Discussione Grafica ($y=\lambda$)}
+Visualizziamo i due rami separati dall'asintoto verticale $x=0$:
+\begin{itemize}
+    \item \textbf{Ramo Sinistro ($x < 0$):} Scende da $+\infty$ a $-\infty$. Copre tutti i valori reali di $y$.
+    \item \textbf{Ramo Destro ($x > 0$):} Scende da $+\infty$ e tende a $0^+$ (senza mai scendere sotto l'asse x). Copre solo i valori $y > 0$.
+\end{itemize}
+
+Intersezioni con $y=\lambda$:
+\begin{itemize}
+    \item $\lambda \le 0$: \textbf{1 soluzione} (Solo il ramo sinistro attraversa i valori negativi/nulli).
+    \item $\lambda > 0$: \textbf{2 soluzioni} (Una intersezione sul ramo sinistro + una sul ramo destro).
+\end{itemize}
+
+% --- ESERCIZIO 3 ---
+\noindent \textbf{Es. 3:} $f(x) = \frac{x+1}{x e^x}$ \\
+\textit{Asintoto in $x=0$. Zero in $x=-1$. L'origine è esclusa dal dominio.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-6, xmax=6, 
+        ymin=-6, ymax=6,
+        restrict y to domain=-15:15]
+        
+        % Ramo sinistro
+        \addplot[purple, thick, samples=100, domain=-6:-0.1] {(x+1)/(x*exp(x))};
+        
+        % Ramo destro
+        \addplot[purple, thick, samples=100, domain=0.1:6] {(x+1)/(x*exp(x))};
+        
+        % Asintoto verticale
+        \draw[gray, dashed] (axis cs:0, -10) -- (axis cs:0, 10);
+        
+        % Intersezione asse x in -1
+        \filldraw[black] (axis cs:-1,0) circle (2pt) node[anchor=north east] {$-1$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+% --- SOLUZIONE ESERCIZIO 4 ---
+\subsection*{4. Parametro Lineare ed Esponenziale} \label{sol:ex4}
+\textbf{Testo:} $f(x) = \lambda x + e^{-x^2}$ su $[0, +\infty[$ con $\lambda > 0$.
+
+\textbf{1. Limiti e Teoremi (Weierstrass Generalizzato)}
+\begin{itemize}
+    \item $f(0) = 0 + e^0 = 1$.
+    \item $\lim_{x \to +\infty} (\lambda x + e^{-x^2}) = +\infty$ (Poiché $\lambda > 0$).
+\end{itemize}
+\textbf{Nota:} Poiché $f$ è continua su $[0, +\infty)$ e $\lim_{x \to +\infty} f(x) = +\infty$, per il \textbf{Teorema di Weierstrass Generalizzato} (versione per intervalli illimitati), la funzione ammette sicuramente un **Minimo Assoluto** nell'intervallo. Resta da capire se tale minimo è al bordo ($x=0$) o interno.
+
+\textbf{2. Derivata Prima e "Studio nello Studio"}
+\[ f'(x) = \lambda + e^{-x^2}(-2x) = \lambda - 2x e^{-x^2} \]
+Cerchiamo i punti stazionari ($f'(x)=0$) e il segno:
+\[ \lambda - 2x e^{-x^2} \ge 0 \iff \lambda \ge 2x e^{-x^2} \]
+Non potendo isolare la $x$, usiamo il \textbf{Metodo Grafico}.
+Definiamo la funzione ausiliaria $g(x) = 2x e^{-x^2}$ e confrontiamola con la retta orizzontale $y = \lambda$.
+
+\textbf{Studio breve di $g(x) = 2x e^{-x^2}$ per $x \ge 0$:}
+\begin{itemize}
+    \item $g(0)=0$; $\lim_{x \to +\infty} g(x) = 0$ (asintoto orizzontale).
+    \item $g'(x) = 2e^{-x^2} + 2x(-2x)e^{-x^2} = 2e^{-x^2}(1 - 2x^2)$.
+    \item Massimo di $g(x)$: $1-2x^2 = 0 \implies x = \frac{1}{\sqrt{2}}$.
+    \item Valore del Massimo (altezza della "gobba"):
+    \[ g\left(\frac{1}{\sqrt{2}}\right) = 2\frac{1}{\sqrt{2}} e^{-1/2} = \sqrt{2} \cdot \frac{1}{\sqrt{e}} = \sqrt{\frac{2}{e}} \approx 0.85 \]
+\end{itemize}
+
+\textbf{3. Confronto e Conclusioni}
+Ora sovrapponiamo la retta $y=\lambda$ al grafico di $g(x)$ (che parte da 0, sale a $\sqrt{2/e}$ e scende a 0).
+Ricordiamo che $f'(x)$ è positiva quando la retta $\lambda$ sta \textit{sopra} la gobba $g(x)$.
+
+\textbf{CASO A: $\lambda \ge \sqrt{\frac{2}{e}}$ (Retta alta)}
+La retta sta sempre sopra (o tocca) il grafico di $g(x)$.
+\begin{itemize}
+    \item $f'(x) \ge 0$ per ogni $x$.
+    \item La funzione $f(x)$ è sempre **strettamente crescente**.
+    \item \textbf{Estremi:} Non ci sono massimi/minimi relativi interni.
+    \item Minimo assoluto in $x=0$ (punto di partenza).
+\end{itemize}
+
+\textbf{CASO B: $0 < \lambda < \sqrt{\frac{2}{e}}$ (Retta taglia la gobba)}
+La retta interseca $g(x)$ in due punti $x_1$ e $x_2$ (con $x_1 < x_{max} < x_2$).
+Segno di $f'(x) = \lambda - g(x)$:
+\begin{itemize}
+    \item Tra $0$ e $x_1$: $\lambda > g(x) \implies f' > 0$ (Cresce).
+    \item Tra $x_1$ e $x_2$: $\lambda < g(x) \implies f' < 0$ (Decresce).
+    \item Oltre $x_2$: $\lambda > g(x) \implies f' > 0$ (Cresce).
+\end{itemize}
+\textbf{Conclusione:}
+In questo caso la funzione ammette:
+\begin{itemize}
+    \item Un \textbf{Massimo Relativo} in $x_1$.
+    \item Un \textbf{Minimo Relativo} in $x_2$.
+\end{itemize}
+
+\textbf{Risposta finale:} La funzione ammette punti di massimo e minimo relativo interni se e solo se $\lambda \in \left( 0, \sqrt{\frac{2}{e}} \right)$.
+
+\noindent \textbf{Es. 4:} $f(x) = \lambda x + e^{-x^2}$ (per $\lambda > 0$) \\
+\textit{Interazione tra retta (dominante a $+\infty$) e gaussiana (dominante vicino a 0).}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=5, 
+        ymin=-2, ymax=6]
+        
+        % Lambda piccolo
+        \addplot[red, thick, samples=100, domain=-3:5] {0.2*x + exp(-x^2)};
+        \addlegendentry{$\lambda = 0.2$}
+        
+        % Lambda grande
+        \addplot[blue, thick, dashed, samples=100, domain=-3:5] {1.5*x + exp(-x^2)};
+        \addlegendentry{$\lambda = 1.5$}
+        
+        % Evidenzio origine
+        \node[anchor=north east] at (axis cs:0,0) {$O$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 5 ---
+\subsection*{5. Studio Completo Parametrico} \label{sol:ex5}
+\textbf{Testo:} $f(x) = \frac{e^{-\lambda x}}{\lambda x - 1}$ con $\lambda > 0$ e $x \neq 1/\lambda$.
+
+\textbf{1. Dominio e Limiti}
+\begin{itemize}
+    \item \textbf{Dominio:} $D = \mathbb{R} \setminus \{ 1/\lambda \}$.
+    \item \textbf{Limiti:}
+    \[ \lim_{x \to -\infty} f(x) = \frac{e^{+\infty}}{-\infty} = -\infty \quad (\text{Gerarchia: } e^x \text{ vince}) \]
+    \[ \lim_{x \to (1/\lambda)^-} \frac{e^{-1}}{0^-} = -\infty \quad ; \quad \lim_{x \to (1/\lambda)^+} \frac{e^{-1}}{0^+} = +\infty \]
+    (Asintoto Verticale in $x = 1/\lambda$)
+    \[ \lim_{x \to +\infty} f(x) = \frac{0}{+\infty} = 0 \quad (\text{Asintoto Orizzontale } y=0) \]
+\end{itemize}
+
+\textbf{2. Derivata Prima (Monotonia)}
+\[ f'(x) = \frac{D[e^{-\lambda x}](\lambda x - 1) - e^{-\lambda x}D[\lambda x - 1]}{(\lambda x - 1)^2} \]
+\[ f'(x) = \frac{-\lambda e^{-\lambda x}(\lambda x - 1) - e^{-\lambda x}(\lambda)}{(\lambda x - 1)^2} \]
+Raccogliamo il termine comune $-\lambda e^{-\lambda x}$ al numeratore:
+\[ f'(x) = \frac{-\lambda e^{-\lambda x} [ (\lambda x - 1) + 1 ]}{(\lambda x - 1)^2} = \frac{-\lambda e^{-\lambda x} (\lambda x)}{(\lambda x - 1)^2} \]
+\[ f'(x) = \frac{-\lambda^2 x e^{-\lambda x}}{(\lambda x - 1)^2} \]
+\textbf{Segno di $f'(x)$:}
+Il denominatore è un quadrato ($>0$), l'esponenziale è positivo, $\lambda^2$ è positivo. Il segno dipende solo da $-x$.
+\[ f'(x) \ge 0 \iff -x \ge 0 \iff x \le 0 \]
+\begin{itemize}
+    \item $x < 0$: Crescente $\nearrow$
+    \item $0 < x < 1/\lambda$: Decrescente $\searrow$
+    \item $x > 1/\lambda$: Decrescente $\searrow$
+\end{itemize}
+\textbf{Massimo Relativo:} in $x=0$, vale $f(0) = \frac{1}{-1} = -1$.
+(Nota: Il massimo è $-1$, indipendente da $\lambda$!).
+
+\textbf{3. Derivata Seconda (calcolo difficile)}
+Riscriviamo la $f'$ portando fuori le costanti per pulizia:
+\[ f'(x) = (-\lambda^2) \cdot \frac{x e^{-\lambda x}}{(\lambda x - 1)^2} \]
+Deriviamo solo la frazione $g(x) = \frac{x e^{-\lambda x}}{(\lambda x - 1)^2}$:
+\begin{itemize}
+    \item Num ($N$): $x e^{-\lambda x} \implies N' = e^{-\lambda x} + x(-\lambda)e^{-\lambda x} = e^{-\lambda x}(1-\lambda x)$
+    \item Den ($D$): $(\lambda x - 1)^2 \implies D' = 2(\lambda x - 1)\lambda$
+\end{itemize}
+Applichiamo la regola:
+\[ g'(x) = \frac{[e^{-\lambda x}(1-\lambda x)](\lambda x - 1)^2 - [x e^{-\lambda x}] \cdot 2\lambda(\lambda x - 1)}{(\lambda x - 1)^4} \]
+\textbf{TRUCCO:} Raccogli $(\lambda x - 1)$ al numeratore e semplificalo con il denominatore.
+\[ g'(x) = \frac{e^{-\lambda x}(\lambda x - 1) [ (1-\lambda x) - 2\lambda x ]}{(\lambda x - 1)^4} \]
+Si cancella un $(\lambda x - 1)$:
+\[ g'(x) = \frac{e^{-\lambda x} [ 1 - \lambda x - 2\lambda x ]}{(\lambda x - 1)^3} = \frac{e^{-\lambda x}(1 - 3\lambda x)}{(\lambda x - 1)^3} \]
+Ora rimoltiplichiamo per la costante $(-\lambda^2)$ che avevamo lasciato fuori:
+\[ f''(x) = (-\lambda^2) \frac{e^{-\lambda x}(1 - 3\lambda x)}{(\lambda x - 1)^3} = \frac{\lambda^2 e^{-\lambda x}(3\lambda x - 1)}{(\lambda x - 1)^3} \]
+
+\textbf{4. Segno della Derivata Seconda (Convessità)}
+Studiamo il segno di $f''(x) > 0$.
+Num: $\lambda^2 e^{-\lambda x} > 0$ sempre. Resta $(3\lambda x - 1)$.
+Den: $(\lambda x - 1)^3$ ha lo stesso segno di $(\lambda x - 1)$.
+Disuguaglianza:
+\[ \frac{3\lambda x - 1}{\lambda x - 1} > 0 \]
+Zeri: Numeratore $x = 1/(3\lambda)$, Denominatore $x = 1/\lambda$.
+Essendo $1/(3\lambda) < 1/\lambda$, abbiamo (segni concordi esterni):
+\begin{itemize}
+    \item $x < \frac{1}{3\lambda}$: $N(-), D(-) \to (+)$ \textbf{Convessa} $\cup$
+    \item $\frac{1}{3\lambda} < x < \frac{1}{\lambda}$: $N(+), D(-) \to (-)$ \textbf{Concava} $\cap$
+    \item $x > \frac{1}{\lambda}$: $N(+), D(+) \to (+)$ \textbf{Convessa} $\cup$
+\end{itemize}
+\textbf{Punto di Flesso:} $x = \frac{1}{3\lambda}$.
+
+% --- ESERCIZIO 5 ---
+\noindent \textbf{Es. 5:} $f(x) = \frac{e^{-\lambda x}}{\lambda x - 1}$ \\
+\textit{Grafico per $\lambda=1$. Asintoto verticale in $x=1$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-5, xmax=5, 
+        ymin=-5, ymax=5,
+        restrict y to domain=-10:10]
+        
+        % Fissiamo lambda = 1 -> f(x) = e^-x / (x-1)
+        % Dominio sx
+        \addplot[teal, thick, samples=100, domain=-5:0.9] {exp(-x)/(x-1)};
+        
+        % Dominio dx
+        \addplot[teal, thick, samples=100, domain=1.1:5] {exp(-x)/(x-1)};
+        
+        % Asintoto verticale x=1
+        \draw[red, dashed] (axis cs:1, -10) -- (axis cs:1, 10);
+        
+        % Intersezione asse y in (0, -1)
+        \filldraw[black] (axis cs:0,-1) circle (2pt);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 6 ---
+\subsection*{6. Parametro Moltiplicativo} \label{sol:ex6}
+\textbf{Testo:} $f(x) = (x^2 - \lambda x)e^{\lambda x}$.
+
+\textbf{1. Il Caso Banale ($\lambda = 0$)}
+Se $\lambda = 0$, la funzione diventa $f(x) = x^2 \cdot e^0 = x^2$.
+È una parabola con vertice (minimo assoluto) in $(0,0)$.
+
+\textbf{2. Studio per $\lambda \neq 0$ (Limiti e Asintoti)}
+Il dominio è sempre $\mathbb{R}$. Gli asintoti dipendono dal segno dell'esponente.
+\begin{itemize}
+    \item \textbf{Caso $\lambda > 0$:}
+    \[ \lim_{x \to +\infty} f(x) = (+\infty)e^{+\infty} = +\infty \]
+    \[ \lim_{x \to -\infty} f(x) = [+\infty \cdot 0] = \lim_{x \to -\infty} \frac{x^2 - \lambda x}{e^{-\lambda x}} = 0^+ \quad (\text{Asint. Orizz. } y=0 \text{ a } -\infty) \]
+    
+    \item \textbf{Caso $\lambda < 0$ (Speculare):}
+    \[ \lim_{x \to -\infty} f(x) = (+\infty)e^{+\infty} = +\infty \]
+    \[ \lim_{x \to +\infty} f(x) = 0^+ \quad (\text{Asint. Orizz. } y=0 \text{ a } +\infty) \]
+\end{itemize}
+
+\textbf{3. Derivata Prima (Generale)}
+Calcoliamo la derivata senza sostituire $\lambda$:
+\[ f'(x) = (2x - \lambda)e^{\lambda x} + (x^2 - \lambda x) \cdot \lambda e^{\lambda x} \]
+Raccogliamo $e^{\lambda x}$:
+\[ f'(x) = e^{\lambda x} [ 2x - \lambda + \lambda x^2 - \lambda^2 x ] \]
+Ordiniamo il polinomio di secondo grado tra parentesi:
+\[ f'(x) = e^{\lambda x} [ \lambda x^2 + (2 - \lambda^2)x - \lambda ] \]
+
+\textbf{4. Studio dei Punti Stazionari}
+Poniamo $f'(x) = 0$. Poiché $e^{\lambda x} \neq 0$, studiamo il polinomio:
+\[ \lambda x^2 + (2 - \lambda^2)x - \lambda = 0 \]
+Calcoliamo il discriminante $\Delta$:
+\[ \Delta = b^2 - 4ac = (2 - \lambda^2)^2 - 4(\lambda)(-\lambda) \]
+\[ \Delta = (4 - 4\lambda^2 + \lambda^4) + 4\lambda^2 \]
+I termini $4\lambda^2$ si cancellano!
+\[ \Delta = \lambda^4 + 4 \]
+\textbf{Osservazione Fondamentale:} $\Delta = \lambda^4 + 4$ è \textbf{sempre positivo} per ogni $\lambda \in \mathbb{R}$.
+Quindi esistono \textbf{sempre due soluzioni distinte} $x_1, x_2$.
+
+Le soluzioni sono:
+\[ x_{1,2} = \frac{-(2-\lambda^2) \pm \sqrt{\lambda^4+4}}{2\lambda} = \frac{\lambda^2 - 2 \pm \sqrt{\lambda^4+4}}{2\lambda} \]
+
+\textbf{5. Classificazione (Max/Min)}
+Il segno della derivata dipende dal coefficiente di $x^2$ (che è $\lambda$) e dall'intervallo delle radici.
+Siano $x_1 < x_2$ le due radici trovate.
+
+\textbf{Se $\lambda > 0$ (Parabola verso l'alto):}
+Segni: $(+) \dots x_1 \dots (-) \dots x_2 \dots (+)$.
+\begin{itemize}
+    \item Cresce fino a $x_1$, poi decresce $\implies$ $x_1$ è \textbf{Massimo Relativo}.
+    \item Decresce fino a $x_2$, poi cresce $\implies$ $x_2$ è \textbf{Minimo Relativo}.
+\end{itemize}
+
+\textbf{Se $\lambda < 0$ (Parabola verso il basso):}
+Segni: $(-) \dots x_1 \dots (+) \dots x_2 \dots (-)$.
+\begin{itemize}
+    \item Decresce fino a $x_1$, poi cresce $\implies$ $x_1$ è \textbf{Minimo Relativo}.
+    \item Cresce fino a $x_2$, poi decresce $\implies$ $x_2$ è \textbf{Massimo Relativo}.
+\end{itemize}
+
+\textbf{Conclusione:} Per ogni $\lambda \neq 0$, la funzione ha sempre un asintoto orizzontale (da un lato), diverge (dall'altro) e possiede esattamente un massimo e un minimo locale.
+
+
+\noindent \textbf{Es. 6:} $f(x) = (x^2 - \lambda x)e^{\lambda x}$ \\
+\textit{Confronto tra $\lambda=1$ (crescita esponenziale a dx) e $\lambda=-1$ (crescita esponenziale a sx). Si notano gli zeri in $0$ e $\lambda$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-4, xmax=4, 
+        ymin=-2, ymax=5,
+        restrict y to domain=-5:10]
+        
+        % Lambda = 1
+        \addplot[blue, thick, samples=100, domain=-4:2] {(x^2 - x)*exp(x)};
+        \addlegendentry{$\lambda = 1$}
+        
+        % Lambda = -1
+        \addplot[red, thick, dashed, samples=100, domain=-2:4] {(x^2 + x)*exp(-x)};
+        \addlegendentry{$\lambda = -1$}
+        
+        \filldraw[black] (axis cs:0,0) circle (2pt);
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 7 ---
+\subsection*{7. Equazione Trascendente (Simmetria)} \label{sol:ex7}
+\textbf{Testo:} Determinare il numero di soluzioni di $x^2 \log(|x|) = \lambda$.
+
+\textbf{1. Analisi Preliminare (Simmetria e Dominio)}
+\begin{itemize}
+    \item \textbf{Dominio:} Argomento del logaritmo $>0 \implies |x| > 0 \implies x \neq 0$.
+    \item \textbf{Simmetria:} $f(-x) = (-x)^2 \log(|-x|) = x^2 \log|x| = f(x)$.
+    La funzione è \textbf{PARI}. La studiamo solo per $x > 0$ e riflettiamo i risultati.
+    \item \textbf{Regolarità:} Continua e derivabile in tutto il dominio $(0, +\infty)$.
+\end{itemize}
+
+\textbf{2. Studio per $x > 0$ (Funzione $y = x^2 \ln x$)}
+\begin{itemize}
+    \item \textbf{Limiti:}
+    \[ \lim_{x \to 0^+} x^2 \ln x = 0^- \quad (\text{Limite notevole } x^\alpha \ln x \to 0) \]
+    Nota: La funzione ha un "buco" nell'origine, ma tende a 0.
+    \[ \lim_{x \to +\infty} x^2 \ln x = +\infty \]
+    
+    \item \textbf{Derivata Prima:}
+    \[ f'(x) = 2x \ln x + x^2 \cdot \frac{1}{x} = 2x \ln x + x = x(2\ln x + 1) \]
+    
+    \item \textbf{Monotonia ($x>0$):}
+    $f'(x) \ge 0 \implies 2\ln x + 1 \ge 0 \implies \ln x \ge -1/2 \implies x \ge e^{-1/2} = \frac{1}{\sqrt{e}}$.
+    \begin{itemize}
+        \item Tra $0$ e $\frac{1}{\sqrt{e}}$: Decrescente $\searrow$ (parte da 0 e scende).
+        \item Dopo $\frac{1}{\sqrt{e}}$: Crescente $\nearrow$ (risale a $+\infty$).
+    \end{itemize}
+    
+    \item \textbf{Minimo Relativo (e Assoluto):}
+    $x_{min} = \frac{1}{\sqrt{e}}$.
+    Valore: $f\left(\frac{1}{\sqrt{e}}\right) = \left(\frac{1}{\sqrt{e}}\right)^2 \ln\left(e^{-1/2}\right) = \frac{1}{e} \cdot \left(-\frac{1}{2}\right) = -\frac{1}{2e}$.
+\end{itemize}
+
+\textbf{3. Ricostruzione Grafica Completa}
+Sfruttando la simmetria pari:
+\begin{itemize}
+    \item La funzione ha \textbf{due minimi assoluti} gemelli in $x = \pm \frac{1}{\sqrt{e}}$ con valore $y = -\frac{1}{2e}$.
+    \item Nell'origine tende a 0 (senza toccarlo, $x \neq 0$).
+    \item Va a $+\infty$ per $|x| \to \infty$.
+    \item Forma a "W" smussata, con la punta centrale che manca (buco in 0).
+\end{itemize}
+
+\textbf{4. Discussione Soluzioni ($f(x)=\lambda$)}
+Immaginando la retta orizzontale che sale dal basso:
+\begin{itemize}
+    \item $\lambda < -\frac{1}{2e}$: \textbf{0 soluzioni} (Sotto i minimi).
+    \item $\lambda = -\frac{1}{2e}$: \textbf{2 soluzioni} (Tangente ai due minimi).
+    \item $-\frac{1}{2e} < \lambda < 0$: \textbf{4 soluzioni} (Taglia entrambi i rami della "W").
+    \item $\lambda = 0$: \textbf{2 soluzioni} ($x = \pm 1$, poiché $\ln|x|=0$). Il punto $x=0$ è escluso dal dominio.
+    \item $\lambda > 0$: \textbf{2 soluzioni} (Una sul ramo dx che va a infinito, una sul sx).
+\end{itemize}
+% --- ESERCIZIO 7 ---
+\noindent \textbf{Es. 7:} $f(x) = x^2 \log(|x|)$ \\
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=3, 
+        ymin=-1, ymax=3]
+        
+        % Dominio spezzato per evitare log(0)
+        \addplot[purple, thick, samples=100, domain=-3:-0.01] {x^2 * ln(abs(x))};
+        \addplot[purple, thick, samples=100, domain=0.01:3] {x^2 * ln(abs(x))};
+        
+        % Evidenzio che in 0 tende a 0
+        \filldraw[purple] (axis cs:0,0) circle (1.5pt);
+        
+        % Esempio di lambda negativo (2 soluzioni)
+        \draw[gray, dashed] (axis cs:-3, -0.18) -- (axis cs:3, -0.18);
+        \node[gray, anchor=south] at (axis cs:2, -0.18) {$\lambda < 0$};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 8 ---
+\subsection*{8. Parametro all'Esponente} \label{sol:ex8}
+\textbf{Testo:} $f(x) = x e^{-x^\lambda}$ con $x \ge 0, \lambda > 0$.
+
+\textbf{1. Derivata Prima (passaggio critico)}
+Usiamo la regola del prodotto: $D[x] \cdot e^{-x^\lambda} + x \cdot D[e^{-x^\lambda}]$.
+Attenzione alla derivata composta: $D[e^{-x^\lambda}] = e^{-x^\lambda} \cdot (- \lambda x^{\lambda-1})$.
+
+Sostituendo:
+\[ f'(x) = 1 \cdot e^{-x^\lambda} + x \cdot [ e^{-x^\lambda} (-\lambda x^{\lambda-1}) ] \]
+Raccogliamo $e^{-x^\lambda}$:
+\[ f'(x) = e^{-x^\lambda} [ 1 - \lambda \cdot x \cdot x^{\lambda-1} ] \]
+Qui applichiamo la proprietà delle potenze ($x^1 \cdot x^{\lambda-1} = x^{1+\lambda-1} = x^\lambda$):
+\[ f'(x) = e^{-x^\lambda} ( 1 - \lambda x^\lambda ) \]
+
+\textbf{2. Studio del Segno e Massimo}
+Poiché $e^{-x^\lambda} > 0$, il segno dipende solo dalla parentesi:
+\[ f'(x) \ge 0 \iff 1 - \lambda x^\lambda \ge 0 \iff \lambda x^\lambda \le 1 \]
+\[ x^\lambda \le \frac{1}{\lambda} \]
+Estraiamo la radice $\lambda$-esima (possiamo farlo perché $x \ge 0$ e la funzione potenza è monotona):
+\[ x \le \left( \frac{1}{\lambda} \right)^{\frac{1}{\lambda}} = \frac{1}{\lambda^{1/\lambda}} = \lambda^{-\frac{1}{\lambda}} \]
+\textbf{Conclusione:}
+\begin{itemize}
+    \item La funzione cresce per $x < \lambda^{-1/\lambda}$.
+    \item La funzione decresce per $x > \lambda^{-1/\lambda}$.
+    \item Esiste un **Unico Massimo Assoluto** in $x_{max} = \lambda^{-1/\lambda}$.
+\end{itemize}
+
+\textbf{3. Valore del Massimo ($y_{max}$)}
+Sostituiamo $x_{max}$ nella funzione originale $f(x)$:
+\[ f(x_{max}) = (\lambda^{-1/\lambda}) \cdot e^{-(\lambda^{-1/\lambda})^\lambda} \]
+Semplifichiamo l'esponente dell'esponenziale:
+\[ (\lambda^{-1/\lambda})^\lambda = \lambda^{-\frac{1}{\lambda} \cdot \lambda} = \lambda^{-1} = \frac{1}{\lambda} \]
+Quindi:
+\[ y_{max} = \lambda^{-\frac{1}{\lambda}} \cdot e^{-\frac{1}{\lambda}} \]
+
+\textbf{4. Comportamento asintotico ($\lambda \to +\infty$)}
+Studiamo cosa succede al punto di massimo quando $\lambda$ diventa grandissimo.
+\begin{itemize}
+    \item \textbf{Ascissa del massimo ($x_{max}$):}
+    \[ \lim_{\lambda \to +\infty} \frac{1}{\lambda^{1/\lambda}} = \frac{1}{1} = 1 \]
+    (Limite notevole: $\lim_{n \to \infty} \sqrt[n]{n} = 1$).
+    
+    \item \textbf{Ordinata del massimo ($y_{max}$):}
+    \[ \lim_{\lambda \to +\infty} \underbrace{\lambda^{-1/\lambda}}_{\to 1} \cdot \underbrace{e^{-1/\lambda}}_{\to e^0 = 1} = 1 \cdot 1 = 1 \]
+\end{itemize}
+\textbf{Interpretazione:}
+Al crescere di $\lambda$, il picco della funzione si sposta verso il punto $(1, 1)$. La funzione tende a schiacciarsi verso l'asse x per $x>1$ e a diventare molto ripida per $x<1$.
+% --- ESERCIZIO 8 ---
+\noindent \textbf{Es. 8:} $f(x) = x e^{-x^\lambda}$ (per $x \ge 0$) \\
+\textit{Al crescere di $\lambda$, il picco si sposta e la discesa diventa più ripida (comportamento "a scatola").}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-1, xmax=4, 
+        ymin=0, ymax=1,
+        xlabel=$x$, ylabel=$f(x)$]
+        
+        % Lambda = 1 (Standard)
+        \addplot[blue, thick, samples=100, domain=0:4] {x*exp(-x)};
+        \addlegendentry{$\lambda = 1$}
+        
+        % Lambda = 3 (Più squadrata)
+        \addplot[red, thick, dashed, samples=100, domain=0:4] {x*exp(-x^3)};
+        \addlegendentry{$\lambda = 3$}
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 9 ---
+\subsection*{9. Arcotangente Parametrica} \label{sol:ex9}
+\textbf{Testo:} $f(x) = \arctan(\lambda x) + x$ con $\lambda \in \mathbb{R}$.
+
+\textbf{1. Analisi Preliminare}
+\begin{itemize}
+    \item \textbf{Dominio:} $\mathbb{R}$ ovunque.
+    \item \textbf{Limiti:} Il termine $x$ domina sull'arcotangente (che è limitata tra $\pm \pi/2$).
+    \[ \lim_{x \to \pm \infty} f(x) = \pm \infty \]
+    (Quindi non ci sono asintoti orizzontali, ma potrebbero esserci obliqui, $m=1$).
+\end{itemize}
+
+\textbf{2. Derivata Prima}
+\[ f'(x) = \frac{\lambda}{1 + (\lambda x)^2} + 1 \]
+Studiamo il segno $f'(x) \ge 0$:
+\[ \frac{\lambda + 1 + \lambda^2 x^2}{1 + \lambda^2 x^2} \ge 0 \]
+Poiché il denominatore è sempre positivo, studiamo il numeratore:
+\[ \lambda^2 x^2 + (\lambda + 1) \ge 0 \]
+
+\textbf{3. Discussione dei Casi (Il cuore del problema)}
+Dobbiamo capire quando questa parabola $\lambda^2 x^2 + (\lambda + 1)$ tocca l'asse o scende sotto.
+
+\textbf{CASO A: $\lambda \ge -1$}
+In questo caso, il termine noto $(\lambda + 1)$ è $\ge 0$.
+Sommato a un quadrato ($\lambda^2 x^2$), otteniamo una quantità sempre positiva (o nulla).
+\[ f'(x) \ge 0 \quad \forall x \in \mathbb{R} \]
+\textbf{Conclusione A:} La funzione è **strettamente crescente** su tutto $\mathbb{R}$. Nessun massimo o minimo.
+
+\textbf{CASO B: $\lambda < -1$}
+In questo caso, $(\lambda + 1)$ è negativo. La derivata può diventare negativa tra le radici.
+Risolviamo $f'(x) = 0$:
+\[ \lambda^2 x^2 = -(\lambda + 1) \implies x^2 = -\frac{\lambda + 1}{\lambda^2} \]
+Poiché $\lambda < -1$, il numeratore $-(\lambda+1)$ è positivo, quindi le radici esistono reali:
+\[ x_{1,2} = \pm \frac{\sqrt{-(\lambda + 1)}}{|\lambda|} \]
+Essendo la derivata una parabola rivolta verso l'alto (coeff $x^2$ positivo):
+\begin{itemize}
+    \item $f'(x) > 0$ all'esterno delle radici.
+    \item $f'(x) < 0$ all'interno delle radici.
+\end{itemize}
+\textbf{Conclusione B:}
+\begin{itemize}
+    \item $x_1 = -\frac{\sqrt{-(\lambda + 1)}}{|\lambda|}$ è un punto di **Massimo Relativo**.
+    \item $x_2 = +\frac{\sqrt{-(\lambda + 1)}}{|\lambda|}$ è un punto di **Minimo Relativo**.
+\end{itemize}
+
+\textbf{Interpretazione Grafica:}
+La funzione $y=x$ è una retta a 45 gradi (pendenza 1).
+L'arcotangente $\arctan(\lambda x)$ ha pendenza massima $\lambda$ nell'origine.
+\begin{itemize}
+    \item Se $\lambda > -1$ (es. $\lambda = -0.5$), l'arcotangente scende troppo piano per contrastare la salita della $x$. La somma sale sempre.
+    \item Se $\lambda < -1$ (es. $\lambda = -5$), l'arcotangente scende molto ripida nell'origine, "piegando" temporaneamente la funzione verso il basso (creando la "conca" con max e min).
+\end{itemize}
+
+% --- ESERCIZIO 9 ---
+\noindent \textbf{Es. 9:} $f(x) = \arctan(\lambda x) + x$ \\
+\textit{Se $\lambda > 0$, la funzione è sempre crescente. Se $\lambda$ è molto negativo (es. -5), la derivata diventa negativa vicino all'origine creando max/min locali.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=3, 
+        ymin=-4, ymax=4]
+        
+        % Lambda positivo (monotona)
+        \addplot[blue, thick, samples=100, domain=-3:3] {atan(x) + x};
+        \addlegendentry{$\lambda = 1$}
+        
+        % Lambda negativo forte (non monotona)
+        \addplot[red, thick, dashed, samples=100, domain=-3:3] {atan(-5*x) + x};
+        \addlegendentry{$\lambda = -5$}
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 10 ---
+\subsection*{10. Potenza Parametrica (Confronto di Infiniti)} \label{sol:ex10}
+\textbf{Testo:} $f(t) = \frac{1+t^p}{(1+t)^p}$ con $t \ge 0$ e $p > 1$.
+
+\textbf{1. Limiti e Comportamento agli estremi}
+\begin{itemize}
+    \item $f(0) = \frac{1+0}{1} = 1$.
+    \item $\lim_{t \to +\infty} \frac{1+t^p}{(1+t)^p} = \lim_{t \to +\infty} \frac{t^p}{t^p} \left( \frac{1/t^p + 1}{(1/t + 1)^p} \right) = 1$.
+    (Asintoto Orizzontale $y=1$).
+\end{itemize}
+Nota: La funzione parte da 1 e tende a 1. Deve succedere qualcosa nel mezzo (o è costante, o scende e risale, o sale e riscende).
+
+\textbf{2. Derivata Prima}
+Applichiamo la regola del quoziente:
+\[ f'(t) = \frac{ [p t^{p-1}] (1+t)^p - (1+t^p) [p (1+t)^{p-1}] }{ [(1+t)^p]^2 } \]
+\textbf{Semplificazione Cruciale:}
+Al numeratore abbiamo un fattore comune $p(1+t)^{p-1}$ in entrambi i termini. Raccogliamolo
+\[ f'(t) = \frac{ p(1+t)^{p-1} \cdot [ t^{p-1}(1+t) - (1+t^p) ] }{ (1+t)^{2p} } \]
+Semplifichiamo il termine $(1+t)^{p-1}$ col denominatore:
+\[ f'(t) = \frac{ p [ t^{p-1}(1+t) - 1 - t^p ] }{ (1+t)^{p+1} } \]
+Ora svolgiamo la moltiplicazione dentro la parentesi quadra:
+\[ t^{p-1}(1+t) = t^{p-1} + t^p \]
+Sostituiamo nel numeratore:
+\[ f'(t) = \frac{ p [ t^{p-1} + t^p - 1 - t^p ] }{ (1+t)^{p+1} } \]
+I termini $t^p$ e $-t^p$ si cancellano:
+\[ f'(t) = \frac{ p ( t^{p-1} - 1 ) }{ (1+t)^{p+1} } \]
+
+\textbf{3. Studio del Segno}
+Adesso è facilissimo.
+\begin{itemize}
+    \item Denominatore: Sempre positivo ($t \ge 0$).
+    \item Costante $p$: Positiva.
+    \item Segno dipende da: $t^{p-1} - 1$.
+\end{itemize}
+Poiché $p > 1$, l'esponente $p-1$ è positivo. La funzione potenza è crescente.
+\[ f'(t) \ge 0 \iff t^{p-1} \ge 1 \iff t \ge 1 \]
+
+\textbf{4. Conclusione e Grafico}
+\begin{itemize}
+    \item $0 < t < 1$: La funzione \textbf{decresce}.
+    \item $t > 1$: La funzione \textbf{cresce}.
+    \item $t = 1$: Punto di \textbf{Minimo Assoluto}.
+\end{itemize}
+Valore del minimo:
+\[ f(1) = \frac{1+1^p}{(1+1)^p} = \frac{2}{2^p} = 2^{1-p} \]
+Essendo $p > 1$, $1-p < 0$, quindi il minimo è un valore piccolo ma positivo (sotto l'asintoto $y=1$).
+
+\textbf{Riassunto grafico:}
+La funzione parte da $(0,1)$, scende fino al minimo $(1, 2^{1-p})$, e poi risale asintoticamente verso $y=1$ senza mai superarlo.
+
+% --- ESERCIZIO 10 ---
+\noindent \textbf{Es. 10:} $f(t) = \frac{1+t^p}{(1+t)^p}$ (con $p > 1, t \ge 0$) \\
+\textit{La funzione parte da 1, scende a un minimo in $t=1$ e risale asintoticamente a 1.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=5, 
+        ymin=0, ymax=1.2,
+        xlabel=$t$, ylabel=$f(t)$]
+        
+        % p = 2
+        \addplot[teal, thick, samples=100, domain=0:5] {(1+x^2)/(1+x)^2};
+        \addlegendentry{$p=2$}
+        
+        % p = 4 (Minimo più profondo)
+        \addplot[orange, thick, dashed, samples=100, domain=0:5] {(1+x^4)/(1+x)^4};
+        \addlegendentry{$p=4$}
+        
+        % Asintoto orizzontale y=1
+        \draw[gray, dotted] (axis cs:0, 1) -- (axis cs:5, 1);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO MODULO 1 ---
+\subsection*{11. Doppio Valore Assoluto} \label{sol:mod1}
+\textbf{Testo:} $f(x) = |2e^{-|x|} - 1|$.
+
+\textbf{1. Strategia (Simmetria)}
+La funzione è \textbf{Pari} ($f(-x)=f(x)$). Studiamo solo per $x \ge 0$ e riflettiamo il grafico.
+Per $x \ge 0$, $|x|=x$, quindi studiamo $y = |2e^{-x} - 1|$.
+
+\textbf{2. Studio dell'Argomento (senza modulo esterno)}
+Poniamo $g(x) = 2e^{-x} - 1$.
+\begin{itemize}
+    \item \textbf{Segno:} $2e^{-x} - 1 \ge 0 \iff e^{-x} \ge 1/2 \iff -x \ge \ln(1/2) \iff x \le \ln 2$.
+    Quindi l'argomento è positivo tra $0$ e $\ln 2$, negativo dopo.
+\end{itemize}
+
+\textbf{3. Definizione a tratti (per $x \ge 0$)}
+\[ f(x) = \begin{cases} 
+2e^{-x} - 1 & \text{se } 0 \le x \le \ln 2 \\
+-(2e^{-x} - 1) = 1 - 2e^{-x} & \text{se } x > \ln 2 
+\end{cases} \]
+
+\textbf{4. Derivata Prima e Monotonia}
+\begin{itemize}
+    \item \textbf{Tra $0$ e $\ln 2$:} $f'(x) = -2e^{-x}$. Sempre negativa ($<0$). La funzione scende.
+    \item \textbf{Oltre $\ln 2$:} $f'(x) = -(-2e^{-x}) = 2e^{-x}$. Sempre positiva ($>0$). La funzione sale.
+\end{itemize}
+\textbf{Punti Notevoli:}
+\begin{itemize}
+    \item $x = \ln 2$: Punto di \textbf{Minimo Assoluto} (vale 0, è uno zero del modulo). È un punto angoloso.
+    \item $x = 0$: Vediamo l'attacco. $f(0)=1$. Poiché scende subito dopo, è un \textbf{Massimo Relativo}.
+    Essendo $f(x)$ pari, in $x=0$ c'è un punto angoloso (derivata destra $-2$, sinistra $+2$).
+    \item \textbf{Asintoto:} $\lim_{x \to +\infty} (1 - 2e^{-x}) = 1$. Asintoto orizzontale $y=1$.
+\end{itemize}
+
+\textbf{5. Derivata Seconda e Convessità}
+Qui sta la sorpresa. Deriviamo le espressioni della $f'(x)$:
+\begin{itemize}
+    \item \textbf{Tra $0$ e $\ln 2$:} $f''(x) = D[-2e^{-x}] = 2e^{-x} > 0$.
+    \textbf{Convessa} $\cup$ (sorride).
+    \item \textbf{Oltre $\ln 2$:} $f''(x) = D[2e^{-x}] = -2e^{-x} < 0$.
+    \textbf{Concava} $\cap$ (triste).
+\end{itemize}
+Non c'è un flesso "classico" perché il cambio di concavità avviene nel punto angoloso $x = \ln 2$.
+
+\textbf{6. Ricostruzione Completa (con simmetria)}
+\begin{itemize}
+    \item \textbf{Minimi Assoluti:} $x = \pm \ln 2$ (Valore $y=0$, punti a "V").
+    \item \textbf{Massimo Relativo:} $x = 0$ (Valore $y=1$, punto a "V" rovesciata).
+    \item \textbf{Asintoto:} $y=1$ (sia a $+\infty$ che a $-\infty$).
+    \item \textbf{Forma:} Una "M" molto larga, dove le gambe laterali non scendono ma risalgono asintoticamente a 1.
+    (Convessa tra $-\ln 2$ e $\ln 2$, Concava all'esterno).
+\end{itemize}
+
+
+% --- ESERCIZIO 11 ---
+\noindent \textbf{Es. 11:} $f(x) = |2e^{-|x|} - 1|$ \\
+\textit{Funzione pari. Asintoto orizzontale $y=1$. Punti di non derivabilità (cuspidi) dove l'argomento si annulla ($x = \pm \ln 2$) e in $0$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-4, xmax=4, 
+        ymin=-0.5, ymax=2.5]
+        
+        \addplot[red, thick, samples=200, domain=-4:4] {abs(2*exp(-abs(x)) - 1)};
+        
+        % Asintoto y=1
+        \draw[gray, dashed] (axis cs:-4, 1) -- (axis cs:4, 1);
+        \node[gray, anchor=south east] at (axis cs:4, 1) {$y=1$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 12 ---
+\subsection*{12. Radice Cubica con Modulo Parametrico} \label{sol:ex12}
+\textbf{Testo:} $f(x) = \sqrt[3]{2 - \lambda|x|}$.
+
+\textbf{1. Simmetria e Dominio}
+\begin{itemize}
+    \item La funzione è **PARI**: $f(-x) = f(x)$. Studiamo per $x \ge 0$ e riflettiamo.
+    \item **Dominio:** $\mathbb{R}$ per ogni $\lambda$ (la radice è dispari).
+    \item **Caso Banale ($\lambda=0$):** $f(x) = \sqrt[3]{2}$ (Retta orizzontale).
+\end{itemize}
+
+\textbf{2. Studio per $x \ge 0$ (Segno e Limiti)}
+La funzione diventa $f(x) = \sqrt[3]{2 - \lambda x}$.
+\begin{itemize}
+    \item \textbf{Se $\lambda < 0$ (es. $\lambda = -3$):}
+    L'argomento è $2 - (-3)x = 2 + 3x$. È sempre positivo.
+    $\lim_{x \to +\infty} \sqrt[3]{2+|\lambda|x} = +\infty$.
+    \item \textbf{Se $\lambda > 0$ (es. $\lambda = 3$):}
+    L'argomento è $2 - 3x$. Si annulla in $x_0 = 2/\lambda$.
+    $\lim_{x \to +\infty} \sqrt[3]{2-\lambda x} = \sqrt[3]{-\infty} = -\infty$.
+\end{itemize}
+
+\textbf{3. Derivata Prima (Studio $x > 0$)}
+\[ f(x) = (2 - \lambda x)^{1/3} \implies f'(x) = \frac{1}{3}(2-\lambda x)^{-2/3} \cdot (-\lambda) \]
+\[ f'(x) = \frac{-\lambda}{3 \sqrt[3]{(2-\lambda x)^2}} \]
+Analizziamo questa frazione:
+\begin{itemize}
+    \item Il **Denominatore** è una radice di un quadrato: è **sempre positivo** (tranne dove si annulla).
+    \item Il **Numeratore** è $-\lambda$.
+\end{itemize}
+
+\textbf{4. Analisi dei Casi (Monotonia)}
+
+\textbf{CASO A: $\lambda < 0$ (es. -1)}
+* $-\lambda$ è positivo.
+* $f'(x) > 0$ per ogni $x > 0$.
+* La funzione cresce sempre per $x>0$.
+* In $x=0$ (unendo col ramo sinistro simmetrico che decresce) abbiamo un **Minimo Assoluto** a cuspide/angoloso.
+
+\textbf{CASO B: $\lambda > 0$ (es. 1)}
+* $-\lambda$ è negativo.
+* $f'(x) < 0$ per ogni $x \neq 2/\lambda$.
+* La funzione decresce sempre per $x>0$.
+* In $x=0$ abbiamo un **Massimo Assoluto** (valore $\sqrt[3]{2}$).
+
+\textbf{5. Derivabilità (I punti critici)}
+\begin{itemize}
+    \item \textbf{Punto $x=0$ (Origine):}
+    Limite destro della derivata:
+    \[ \lim_{x \to 0^+} f'(x) = \frac{-\lambda}{3\sqrt[3]{4}} \neq 0 \]
+    Essendo la funzione pari, la derivata sinistra sarà l'opposto ($+\lambda/...$).
+    Poiché $f'_+ \neq f'_-$, $x=0$ è un **Punto Angoloso**.
+    
+    \item \textbf{Punto $x = 2/\lambda$ (Solo per $\lambda > 0$):}
+    Qui l'argomento della radice si annulla. Il denominatore della derivata va a 0.
+    \[ \lim_{x \to (2/\lambda)} f'(x) = \frac{-\lambda}{0^+} = -\infty \]
+    C'è una **Tangente Verticale**.
+    La funzione passa dall'essere positiva a negativa con pendenza infinita (flesso a tangente verticale).
+\end{itemize}
+
+\textbf{Riassunto Grafico:}
+\begin{itemize}
+    \item $\lambda < 0$: Forma a "V" stondata (simile a un gabbiano che vola alto), minimo in 0.
+    \item $\lambda > 0$: Forma a "Campana" appuntita (cuspide in alto), che poi scende e taglia l'asse x verticalmente.
+\end{itemize}
+
+% --- ESERCIZIO 12 ---
+\noindent \textbf{Es. 12:} $f(x) = \sqrt[3]{2 - \lambda|x|}$ \\
+\textit{Cuspide in $x=0$. Se $\lambda > 0$ va a $-\infty$, se $\lambda < 0$ va a $+\infty$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-8, xmax=8, 
+        ymin=-4, ymax=4,
+        xlabel=$x$, ylabel=$f(x)$]
+        
+        % Lambda positivo (rosso) -> va giù
+        % Nota: per radici cubiche di numeri negativi in pgfplots usiamo sign(x)*abs(x)^(1/3)
+        \addplot[red, thick, samples=100, domain=-8:8] {sign(2 - 1*abs(x)) * abs(2 - 1*abs(x))^(1/3)};
+        \addlegendentry{$\lambda = 1$}
+        
+        % Lambda negativo (blu) -> va su
+        \addplot[blue, thick, dashed, samples=100, domain=-8:8] {sign(2 - (-1)*abs(x)) * abs(2 - (-1)*abs(x))^(1/3)};
+        \addlegendentry{$\lambda = -1$}
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+% --- SOLUZIONE ESERCIZIO 13 ---
+\subsection*{13. Derivabilità nell'Origine (A tratti)} \label{sol:ex13}
+\textbf{Testo:} $f(x) = e^{-1/x^2}$ per $x>0$, $f(x)=0$ per $x \le 0$.
+
+\textbf{1. Analisi Preliminare}
+La funzione è chiaramente continua e derivabile per $x \neq 0$.
+Per $x \to 0^+$, $\lim e^{-1/x^2} = e^{-\infty} = 0$. Dato che $f(0)=0$, la funzione è **continua** in $x=0$.
+Non ci sono massimi/minimi evidenti (la funzione è strettamente positiva per $x>0$ e cresce, vedi derivata).
+
+\textbf{2. Derivata Prima in $x=0$ (Tramite Definizione)}
+Dobbiamo calcolare il limite del rapporto incrementale destro (a sinistra è identicamente nullo).
+\[ f'(0) = \lim_{h \to 0^+} \frac{f(0+h) - f(0)}{h} = \lim_{h \to 0^+} \frac{e^{-1/h^2} - 0}{h} = \lim_{h \to 0^+} \frac{1}{h} e^{-1/h^2} \]
+Effettuiamo il cambio di variabile $t = 1/h$. Se $h \to 0^+$, allora $t \to +\infty$.
+\[ = \lim_{t \to +\infty} t \cdot e^{-t^2} = \lim_{t \to +\infty} \frac{t}{e^{t^2}} \]
+Per la gerarchia degli infiniti, l'esponenziale $e^{t^2}$ domina su qualsiasi potenza di $t$.
+\[ f'(0) = 0 \]
+Quindi la funzione è derivabile nell'origine e la tangente è orizzontale.
+
+\textbf{3. Derivata Seconda in $x=0$ (Tramite Definizione)}
+Per calcolare $f''(0)$, ci serve prima l'espressione di $f'(x)$ per $x > 0$:
+\[ f'(x) = e^{-1/x^2} \cdot (-(-2x^{-3})) = \frac{2}{x^3} e^{-1/x^2} \quad (\text{per } x>0) \]
+Ora applichiamo la definizione di derivata seconda nell'origine:
+\[ f''(0) = \lim_{h \to 0^+} \frac{f'(h) - f'(0)}{h} \]
+Sappiamo che $f'(0)=0$ (calcolato sopra).
+\[ = \lim_{h \to 0^+} \frac{\frac{2}{h^3}e^{-1/h^2}}{h} = \lim_{h \to 0^+} \frac{2}{h^4} e^{-1/h^2} \]
+Stesso cambio di variabile $t = 1/h$ (quindi $t \to +\infty$):
+\[ = \lim_{t \to +\infty} 2t^4 e^{-t^2} = \lim_{t \to +\infty} \frac{2t^4}{e^{t^2}} = 0 \]
+(L'esponenziale vince sempre contro il polinomio $t^4$).
+
+\textbf{4. Conclusione}
+La funzione è "piattissima" nell'origine.
+Tutte le sue derivate in $x=0$ ($f', f'', f''' \dots$) valgono 0.
+Questa funzione (nota come funzione "bump" o di Cauchy) è un classico esempio di funzione $C^\infty$ che non è analitica (non coincide con la sua serie di Taylor, che sarebbe $0+0+0\dots$).
+
+% --- ESERCIZIO 13 ---
+\noindent \textbf{Es. 13:} $f(x) = e^{-1/x^2}$ per $x>0$, $0$ per $x \le 0$ \\
+\textit{Esempio classico di funzione $C^\infty$ (derivabile infinite volte) che si "incolla" perfettamente a 0. Asintoto $y=1$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-2, xmax=4, 
+        ymin=-0.2, ymax=1.2]
+        
+        % Parte nulla
+        \addplot[teal, thick, samples=50, domain=-2:0] {0};
+        
+        % Parte esponenziale
+        \addplot[teal, thick, samples=100, domain=0.01:4] {exp(-1/x^2)};
+        
+        % Asintoto
+        \draw[gray, dashed] (axis cs:-2, 1) -- (axis cs:4, 1);   
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 14 ---
+\subsection*{14. Logaritmo e Moduli (Il trucco della scomposizione)} \label{sol:ex14}
+\textbf{Testo:} $f(x) = \frac{1}{3}|x| + \log\left(\frac{2(|x|-1)}{|x|-2}\right)$.
+
+\textbf{1. Simmetria e Dominio (Fase Fondamentale)}
+\begin{itemize}
+    \item \textbf{Simmetria:} La funzione è \textbf{Pari} (c'è solo $|x|$). Studiamo solo per $x \ge 0$.
+    \item \textbf{Dominio:} Argomento $>0$.
+    Per $x \ge 0$, dobbiamo risolvere $\frac{x-1}{x-2} > 0$.
+    Segni: Num $>0$ per $x>1$, Den $>0$ per $x>2$.
+    Combinando i segni:
+    \[ \text{Dominio per } x \ge 0: [0, 1) \cup (2, +\infty) \]
+    (Quindi c'è un "buco" tra 1 e 2 dove la funzione non esiste).
+\end{itemize}
+
+\textbf{2. Semplificazione della Funzione}
+Per $x \ge 0$ (nel dominio), possiamo scrivere:
+\[ f(x) = \frac{1}{3}x + \log(2) + \log|x-1| - \log|x-2| \]
+Nota: Ho separato il logaritmo. La derivata di $\log(2)$ è 0.
+
+\textbf{3. Calcolo della Derivata (Metodo Smart)}
+Invece di derivare la frazione gigante, deriviamo i pezzi singoli:
+\[ f'(x) = D\left[\frac{1}{3}x\right] + D[\log|x-1|] - D[\log|x-2|] \]
+\[ f'(x) = \frac{1}{3} + \frac{1}{x-1} - \frac{1}{x-2} \]
+Ora facciamo il denominatore comune per studiare il segno:
+\[ f'(x) = \frac{1}{3} + \frac{(x-2) - (x-1)}{(x-1)(x-2)} = \frac{1}{3} + \frac{-1}{(x-1)(x-2)} \]
+\[ f'(x) = \frac{(x-1)(x-2) - 3}{3(x-1)(x-2)} \]
+Svolgiamo il numeratore: $(x^2 - 3x + 2) - 3 = x^2 - 3x - 1$.
+\[ f'(x) = \frac{x^2 - 3x - 1}{3(x-1)(x-2)} \]
+
+\textbf{4. Studio del Segno della Derivata}
+\begin{itemize}
+    \item \textbf{Denominatore:} $3(x-1)(x-2)$.
+    Nel nostro dominio ($0 \le x < 1$ e $x > 2$), analizziamo i segni:
+    - Se $0 \le x < 1$: $(x-1)$ è neg, $(x-2)$ è neg $\implies$ Denominatore \textbf{Positivo}.
+    - Se $x > 2$: entrambi positivi $\implies$ Denominatore \textbf{Positivo}.
+    Quindi il segno dipende \textbf{solo dal Numeratore}.
+    
+    \item \textbf{Numeratore:} $x^2 - 3x - 1 \ge 0$.
+    Radici: $x_{1,2} = \frac{3 \pm \sqrt{9+4}}{2} = \frac{3 \pm \sqrt{13}}{2}$.
+    $x_1 \approx \frac{3-3.6}{2} < 0$ (da scartare, siamo in $x \ge 0$).
+    $x_2 = \frac{3 + \sqrt{13}}{2} \approx 3.3$.
+\end{itemize}
+
+\textbf{5. Conclusione Monotonia (per $x \ge 0$)}
+\begin{itemize}
+    \item \textbf{Tra 0 e 1:} La parabola (Numeratore) è negativa (siamo tra le radici, $0 < 3.3$).
+    Quindi $f'(x) < 0$. La funzione \textbf{decresce}.
+    Partendo da $x=0$, scende verso l'asintoto in $x=1$.
+    
+    \item \textbf{Tra 2 e 3.3:} Il numeratore è ancora negativo (fino a 3.3).
+    $f'(x) < 0$. La funzione scende dall'asintoto ($x=2$) fino al minimo.
+    
+    \item \textbf{Oltre 3.3:} Il numeratore diventa positivo.
+    $f'(x) > 0$. La funzione sale.
+\end{itemize}
+
+\textbf{Punti Critici:}
+\begin{itemize}
+    \item $x = \frac{3+\sqrt{13}}{2}$: Punto di \textbf{Minimo Relativo}.
+    \item $x = 0$: Poiché la funzione decresce subito dopo e $f$ è pari, $x=0$ è un \textbf{Massimo Relativo} (locale).
+    Nota: $f(0) = 0 + \log(\frac{2(-1)}{-2}) = \log(1) = 0$.
+\end{itemize}
+
+\textbf{Asintoti Verticali:} $x=1$ e $x=2$.
+
+
+% --- ESERCIZIO 14 ---
+\noindent \textbf{Es. 14:} $f(x) = \frac{1}{3}|x| + \log\left(\frac{2(|x|-1)}{|x|-2}\right)$ \\
+\textit{Dominio complesso: $x \in ]-\infty, -2[ \cup ]-1, 1[ \cup ]2, +\infty[$. Asintoti verticali in $\pm 1$ e $\pm 2$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-5, xmax=5, 
+        ymin=-4, ymax=5,
+        restrict y to domain=-10:10]
+        
+        % Parte centrale (-1 < x < 1)
+        \addplot[orange, thick, samples=100, domain=-0.99:0.99] {1/3*abs(x) + ln( (2*(abs(x)-1)) / (abs(x)-2) )};
+        
+        % Parte destra (x > 2)
+        \addplot[orange, thick, samples=100, domain=2.05:5] {1/3*abs(x) + ln( (2*(abs(x)-1)) / (abs(x)-2) )};
+        
+        % Parte sinistra (x < -2)
+        \addplot[orange, thick, samples=100, domain=-5:-2.05] {1/3*abs(x) + ln( (2*(abs(x)-1)) / (abs(x)-2) )};
+        
+        % Asintoti verticali
+        \draw[red, dashed] (axis cs:1, -5) -- (axis cs:1, 5);
+        \draw[red, dashed] (axis cs:-1, -5) -- (axis cs:-1, 5);
+        \draw[red, dashed] (axis cs:2, -5) -- (axis cs:2, 5);
+        \draw[red, dashed] (axis cs:-2, -5) -- (axis cs:-2, 5);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 5 ---
+\subsection*{15. Seno Modulato a Tratti} \label{sol:ex5}
+\textbf{Testo:} $f(x) = (|x+1| - |x-1|) \sin(\pi x)$.
+
+\textbf{1. Semplificazione dei Moduli (Split in intervalli)}
+I punti critici dei moduli sono $x=-1$ e $x=1$.
+Analizziamo il coefficiente $g(x) = |x+1| - |x-1|$ nelle tre zone:
+
+\begin{itemize}
+    \item \textbf{Zona A ($x \le -1$):} Entrambi gli argomenti sono negativi.
+    \[ g(x) = -(x+1) - [-(x-1)] = -x - 1 + x - 1 = -2 \]
+    Quindi qui $f(x) = -2 \sin(\pi x)$.
+    
+    \item \textbf{Zona B ($-1 < x < 1$):} Primo positivo, secondo negativo.
+    \[ g(x) = (x+1) - [-(x-1)] = x + 1 + x - 1 = 2x \]
+    Quindi qui $f(x) = 2x \sin(\pi x)$.
+    
+    \item \textbf{Zona C ($x \ge 1$):} Entrambi positivi.
+    \[ g(x) = (x+1) - (x-1) = 2 \]
+    Quindi qui $f(x) = 2 \sin(\pi x)$.
+\end{itemize}
+
+\textbf{Riassunto della funzione a tratti:}
+\[ f(x) = \begin{cases} 
+-2 \sin(\pi x) & x \le -1 \\
+2x \sin(\pi x) & -1 < x < 1 \\
+2 \sin(\pi x) & x \ge 1 
+\end{cases} \]
+
+\textbf{2. Considerazioni sulla Simmetria}
+La funzione è **PARI** ($f(-x)=f(x)$).
+Verifica rapida: $g(x)$ è dispari ($g(-x)=-g(x)$) e il seno è dispari.
+Dispari $\times$ Dispari = Pari.
+Possiamo studiare solo $x \ge 0$.
+
+\textbf{3. Derivabilità nei punti di giunzione ($x=1$)}
+Questa è la parte interessante. Solitamente i moduli creano punti angolosi. Vediamo qui.
+Studiamo il raccordo tra la zona centrale ($2x \sin(\pi x)$) e quella esterna ($2 \sin(\pi x)$) in $x=1$.
+
+\begin{itemize}
+    \item \textbf{Continuità:}
+    $f(1^-) = 2(1)\sin(\pi) = 0$.
+    $f(1^+) = 2\sin(\pi) = 0$.
+    (Continua).
+
+    \item \textbf{Derivata Sinistra ($x \to 1^-$):}
+    $D[2x \sin(\pi x)] = 2\sin(\pi x) + 2x \cdot \pi \cos(\pi x)$.
+    Sostituiamo $x=1$:
+    $2\sin(\pi) + 2\pi \cos(\pi) = 0 + 2\pi(-1) = -2\pi$.
+
+    \item \textbf{Derivata Destra ($x \to 1^+$):}
+    $D[2 \sin(\pi x)] = 2\pi \cos(\pi x)$.
+    Sostituiamo $x=1$:
+    $2\pi(-1) = -2\pi$.
+\end{itemize}
+\textbf{Risultato} Le derivate coincidono
+La funzione è **Derivabile** ovunque, anche in $x=1$ e $x=-1$. Non ci sono punti angolosi. I due grafici si "incollano" perfettamente tangenti.
+
+\textbf{4. Grafico Qualitativo}
+\begin{itemize}
+    \item \textbf{Esterno ($x \ge 1$):} È una classica sinusoide dilatata di ampiezza 2. Oscilla tra $+2$ e $-2$. Si annulla negli interi ($x=1, 2, 3\dots$).
+    
+    \item \textbf{Interno ($0 \le x < 1$):} È $2x \sin(\pi x)$.
+    In $x=0$ vale 0. Poi cresce (perché $2x$ aumenta l'ampiezza e $\sin$ sale).
+    Ha un massimo prima di $x=0.5$ (perché $2x$ spinge in su).
+    Poi scende a 0 in $x=1$.
+\end{itemize}
+
+
+
+Il grafico assomiglia a un'onda che parte dall'origine, cresce di ampiezza fino a stabilizzarsi a un'altezza costante di 2 fuori dall'intervallo $[-1,1]$.
+
+% --- ESERCIZIO 15 ---
+\noindent \textbf{Es. 15:} $f(x) = (|x+1| - |x-1|) \sin(\pi x)$ \\
+\textit{Funzione "Box": il termine tra moduli vale $2$ per $x>1$, $-2$ per $x<-1$, e $2x$ in mezzo. Oscillazione modulata.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=3, 
+        ymin=-3, ymax=3]
+        
+        \addplot[purple, thick, samples=200, domain=-3:3] {(abs(x+1) - abs(x-1)) * sin(deg(pi*x))};
+        
+        % Evidenzio i punti di raccordo in -1 e 1
+        \draw[gray, dotted] (axis cs:1, -3) -- (axis cs:1, 3);
+        \draw[gray, dotted] (axis cs:-1, -3) -- (axis cs:-1, 3);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\section*{16. Polinomio in Modulo}
+\textbf{Funzione:} $f(x) = |x^3+x^2+x+1| - x^2$.
+
+\subsection*{1. Analisi del Modulo}
+Prima di fare qualsiasi calcolo, dobbiamo "aprire" il valore assoluto. Studiamo il segno dell'argomento:
+\[ P(x) = x^3+x^2+x+1 \]
+Raccoglimento parziale:
+\[ P(x) = x^2(x+1) + 1(x+1) = (x^2+1)(x+1) \]
+Poiché $(x^2+1)$ è sempre positivo, il segno dipende solo da $(x+1)$.
+\begin{itemize}
+    \item Se $x \ge -1$: L'argomento è positivo (togliamo il modulo così com'è).
+    \item Se $x < -1$: L'argomento è negativo (togliamo il modulo cambiando segno).
+\end{itemize}
+
+\subsection*{2. Scrittura della Funzione a tratti}
+Semplifichiamo l'espressione nei due casi:
+
+\textbf{CASO A ($x \ge -1$):}
+\[ f(x) = (x^3+x^2+x+1) - x^2 = x^3 + x + 1 \]
+
+\textbf{CASO B ($x < -1$):}
+\[ f(x) = -(x^3+x^2+x+1) - x^2 = -x^3 - x^2 - x - 1 - x^2 \]
+\[ f(x) = -x^3 - 2x^2 - x - 1 \]
+
+\subsection*{3. Calcolo delle Derivate}
+Deriviamo separatamente i due pezzi.
+
+\textbf{Per $x > -1$:}
+\[ f'(x) = 3x^2 + 1 \]
+Questa quantità è somma di quadrati, quindi è \textbf{sempre positiva}.
+$\implies$ La funzione \textbf{cresce sempre} per $x > -1$.
+
+\textbf{Per $x < -1$:}
+\[ f'(x) = -3x^2 - 4x - 1 \]
+Studiamo il segno: $-3x^2 - 4x - 1 \ge 0 \implies 3x^2 + 4x + 1 \le 0$.
+Radici dell'equazione associata:
+\[ x_{1,2} = \frac{-4 \pm \sqrt{16-12}}{6} = \frac{-4 \pm 2}{6} \implies x = -1, \, x = -1/3 \]
+La parabola è positiva "tra le radici" $(-1 < x < -1/3)$.
+Ma noi siamo nel mondo $x < -1$!
+In questa zona ($x < -1$), la derivata è \textbf{sempre negativa}.
+$\implies$ La funzione \textbf{decresce sempre} per $x < -1$.
+
+\subsection*{4. Analisi del Punto di Raccordo ($x = -1$)}
+Abbiamo scoperto che:
+\begin{itemize}
+    \item A sinistra di -1 la funzione scende.
+    \item A destra di -1 la funzione sale.
+\end{itemize}
+Quindi $x = -1$ è sicuramente un punto di \textbf{MINIMO RELATIVO} (e assoluto).
+Valore del minimo: $f(-1) = |0| - (-1)^2 = -1$.
+
+\textbf{È un punto derivabile o un punto angoloso?}
+Calcoliamo il limite della derivata a destra e a sinistra:
+\begin{itemize}
+    \item Limite destro ($x \to -1^+$): Uso $f'(x) = 3x^2+1$.
+    \[ \lim_{x \to -1^+} (3x^2+1) = 3(1)+1 = \mathbf{4} \]
+    
+    \item Limite sinistro ($x \to -1^-$): Uso $f'(x) = -3x^2-4x-1$.
+    \[ \lim_{x \to -1^-} (-3x^2-4x-1) = -3 + 4 - 1 = \mathbf{0} \]
+\end{itemize}
+
+Poiché $4 \ne 0$, il punto $x = -1$ è un \textbf{Punto Angoloso}.
+Geometricamente: la funzione arriva "piatta" da sinistra (pendenza 0) e riparte "ripida" a destra (pendenza 4).
+
+\subsection*{5. Limiti all'infinito (Grafico)}
+\begin{itemize}
+    \item $\lim_{x \to +\infty} (x^3+x+1) = +\infty$
+    \item $\lim_{x \to -\infty} (-x^3-2x^2\dots) = -(-\infty) = +\infty$
+\end{itemize}
+
+\textbf{Sintesi Grafico:}
+Una forma a "V" asimmetrica (o a parabola storta) che scende dall'infinito, tocca il minimo spigoloso in $(-1, -1)$ e risale all'infinito.
+
+% --- ESERCIZIO 16 ---
+\noindent \textbf{Es. 16:} $f(x) = |x^3+x^2+x+1| - x^2$ \\
+\textit{Il polinomio dentro il modulo si annulla solo in $x=-1$. Cuspide in $-1$. A $+\infty$ si comporta come $x^3$, a $-\infty$ come $-x^3$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-2.5, xmax=2, 
+        ymin=-2, ymax=4,
+        xlabel=$x$, ylabel=$f(x)$]
+        
+        \addplot[blue, thick, samples=200, domain=-2.5:2] {abs(x^3+x^2+x+1) - x^2};
+        
+        % Evidenzio la cuspide in -1
+        \filldraw[red] (axis cs:-1,-1) circle (2pt) node[anchor=north] {$-1$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 17 ---
+\subsection*{17. Radice ed Esponenziale (Radici)} \label{sol:ex17}
+\textbf{Testo:} $f(x) = e^{-|x|}\sqrt{x^2-5x+6}$.
+
+\textbf{1. Dominio (La prima trappola)}
+L'argomento della radice deve essere $\ge 0$:
+\[ x^2 - 5x + 6 \ge 0 \implies (x-2)(x-3) \ge 0 \]
+Il dominio è: **$x \le 2 \cup x \ge 3$**.
+\textit{Nota bene:} C'è un "buco" tra 2 e 3. La funzione non esiste lì. Se trovi punti critici come 2.5, vanno buttati!
+
+\textbf{2. Derivata Prima (Divisa per casi)}
+A causa di $|x|$, distinguiamo $x>0$ e $x<0$.
+
+\textbf{CASO A: $x > 0$ (ovvero $0 < x \le 2$ e $x \ge 3$)}
+Qui $|x|=x$, quindi $f(x) = e^{-x}\sqrt{x^2-5x+6}$.
+Applicando la regola del prodotto:
+\[ f'(x) = -e^{-x}\sqrt{x^2-5x+6} + e^{-x}\frac{2x-5}{2\sqrt{x^2-5x+6}} \]
+Raccogliamo $e^{-x}$ e facciamo il denominatore comune $2\sqrt{\dots}$:
+\[ f'(x) = \frac{e^{-x}}{2\sqrt{\dots}} \Big[ -2(x^2-5x+6) + (2x-5) \Big] \]
+\[ f'(x) = \frac{e^{-x}}{2\sqrt{\dots}} \Big[ -2x^2 + 10x - 12 + 2x - 5 \Big] \]
+\[ f'(x) = \frac{e^{-x}}{2\sqrt{\dots}} (-2x^2 + 12x - 17) \]
+
+\textbf{Studio del segno (Caso A):}
+Il segno dipende dal polinomio $-2x^2 + 12x - 17 \ge 0$.
+Radici: $\Delta = 144 - 136 = 8$.
+\[ x_{1,2} = \frac{-12 \pm \sqrt{8}}{-4} = \frac{12 \pm 2\sqrt{2}}{4} = 3 \pm \frac{\sqrt{2}}{2} \]
+Approssimando $\sqrt{2} \approx 1.41$:
+\begin{itemize}
+    \item $x_1 = 3 - 0.707 \approx 2.29$. (Cade nel BUCO tra 2 e 3! \textbf{SCARTARE}).
+    \item $x_2 = 3 + 0.707 \approx 3.707$. (Accettabile).
+\end{itemize}
+Essendo una parabola rovesciata, è positiva tra le radici.
+Ma attenzione al dominio
+\begin{itemize}
+    \item \textbf{Intervallo $(0, 2]$:} Siamo a sinistra delle radici ($x < 2.29$). La parabola è negativa.
+    $f'(x) < 0$. La funzione \textbf{decresce}.
+    \item \textbf{Intervallo $[3, +\infty)$:}
+    - Tra 3 e 3.7: Siamo "dentro" le radici (tra 2.29 e 3.7). Parabola positiva. $f$ \textbf{cresce}.
+    - Oltre 3.7: Parabola negativa. $f$ \textbf{decresce}.
+\end{itemize}
+
+\textbf{CASO B: $x < 0$ (ovvero $x \le 0$)}
+Qui $|x|=-x$, quindi $f(x) = e^{x}\sqrt{x^2-5x+6}$.
+\[ f'(x) = e^x\sqrt{\dots} + e^x\frac{2x-5}{2\sqrt{\dots}} \]
+\[ f'(x) = \frac{e^x}{2\sqrt{\dots}} \Big[ 2(x^2-5x+6) + 2x-5 \Big] \]
+\[ f'(x) = \frac{e^x}{2\sqrt{\dots}} (2x^2 - 8x + 7) \]
+
+\textbf{Studio del segno (Caso B):}
+Polinomio: $2x^2 - 8x + 7 \ge 0$.
+Radici: $\Delta = 64 - 56 = 8$.
+\[ x_{3,4} = \frac{8 \pm \sqrt{8}}{4} = 2 \pm \frac{\sqrt{2}}{2} \]
+Entrambe le soluzioni sono POSITIVE ($\approx 1.3$ e $2.7$).
+Ma noi siamo nel caso $x < 0$!
+Per $x < 0$, la parabola $2x^2 - 8x + 7$ (che ha vertice nelle x positive) è sempre alta e positiva.
+\textbf{Conclusione Caso B:} $f'(x) > 0$ sempre per $x < 0$. La funzione \textbf{cresce} sempre.
+
+\textbf{3. Sintesi e Punti Notevoli}
+Ricostruiamo il grafico da sinistra a destra:
+\begin{itemize}
+    \item \textbf{Da $-\infty$ a 0:} Cresce sempre.
+    \item \textbf{In $x=0$:} $f(0) = \sqrt{6}$. È un punto di \textbf{Massimo Relativo} a cuspide.
+    (A sinistra sale, a destra scende subito).
+    \item \textbf{Da 0 a 2:} Decresce fino a $f(2)=0$. Minimo locale (bordo dominio).
+    \item \textbf{Da 2 a 3:} \textbf{VUOTO}.
+    \item \textbf{Da 3 in poi:} Parte da $f(3)=0$ (Minimo locale), sale fino al massimo, poi scende asintoticamente a 0.
+    \item \textbf{Massimo Assoluto:} In $x = 3 + \frac{\sqrt{2}}{2}$.
+    Valore: $f(3.7) \approx e^{-3.7}\sqrt{\dots}$ (un numero piccolo ma positivo).
+    Confrontandolo con $f(0)=\sqrt{6} \approx 2.45$, chiaramente il picco in $x=0$ è molto più alto.
+    Quindi $x=0$ è il Massimo Assoluto, $x=3+\frac{\sqrt{2}}{2}$ è un Massimo Relativo "piccolo".
+\end{itemize}
+% --- ESERCIZIO 17 ---
+\noindent \textbf{Es. 17:} $f(x) = e^{-|x|}\sqrt{x^2-5x+6}$ \\
+\textit{Dominio: $x \le 2 \cup x \ge 3$. C'è un "buco" tra 2 e 3. Punti a tangente verticale in 2 e 3. Cuspide in 0.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-2, xmax=5, 
+        ymin=0, ymax=1.5]
+        
+        % Ramo sinistro (x <= 2)
+        \addplot[teal, thick, samples=100, domain=-2:2] {exp(-abs(x))*sqrt(x^2 - 5*x + 6)};
+        
+        % Ramo destro (x >= 3)
+        \addplot[teal, thick, samples=100, domain=3:5] {exp(-abs(x))*sqrt(x^2 - 5*x + 6)};
+        
+        % Evidenzio gli estremi del dominio
+        \filldraw[black] (axis cs:2,0) circle (2pt) node[anchor=south] {$2$};
+        \filldraw[black] (axis cs:3,0) circle (2pt) node[anchor=south] {$3$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+% --- SCHEMINO STRATEGICO DERIVATE E MODULI ---
+\section*{Schema Strategico: Quando sdoppiare la derivata?}
+
+Quando incontri un valore assoluto $|A(x)|$, segui questo diagramma di flusso per decidere come comportarti con la derivata $f'(x)$.
+
+\subsection*{1. Check Simmetria (La via veloce)}
+Verifica subito se la funzione è \textbf{Pari} ($f(-x) = f(x)$) o \textbf{Dispari} ($f(-x) = -f(x)$).
+
+\begin{itemize}
+    \item \textbf{SE È SIMMETRICA (SÌ):}
+    \begin{itemize}
+        \item \textbf{Cosa fare:} Studia solo $x \ge 0$. Calcola \textbf{una sola derivata} (quella per $x>0$).
+        \item \textbf{Per $x < 0$:} Non calcolare nulla! Ribalta il grafico ottenuto (a specchio se pari, a specchio rovesciato se dispari).
+    \end{itemize}
+    \textit{Esempio:} $f(x) = e^{-|x|}$ oppure $f(x) = \frac{1+x^2}{|x|}$.
+\end{itemize}
+
+\subsection*{2. Check "Strutturale" (La via obbligata)}
+Se la funzione \textbf{NON è simmetrica}, devi chiederti: "Il modulo cambia la struttura algebrica?"
+
+\begin{itemize}
+    \item \textbf{CASO A: Modulo "Semplice" su tutta la funzione} \\
+    $f(x) = |g(x)|$.
+    \begin{itemize}
+        \item \textbf{Cosa fare:} Studia l'argomento $g(x)$ e la sua derivata $g'(x)$ normalmente.
+        \item \textbf{Alla fine:} Ribalta le parti del grafico dove $g(x) < 0$.
+    \end{itemize}
+    
+    \item \textbf{CASO B: Modulo "Misto" (Il Caso Pericoloso)} \\
+    Il modulo è solo su un pezzo (es. all'esponente, o solo su una x) e ci sono altri termini non modulati (es. $x$, $(x-1)$).
+    \textit{Esempio Ex 17:} $f(x) = e^{-|x|}\sqrt{x^2-5x+6}$.
+    \begin{itemize}
+        \item \textbf{PERCHÉ È PERICOLOSO:} 
+        Per $x>0$ hai $e^{-x}$ (derivata interna $-1$).
+        Per $x<0$ hai $e^x$ (derivata interna $+1$).
+        Questo cambio di segno, applicando la regola del prodotto, \textbf{modifica i coefficienti} del polinomio risultante.
+        \item \textbf{Cosa fare:} \textbf{OBBLIGATORIO fare due derivate separate.}
+        \begin{enumerate}
+            \item Scrivi $f(x)$ per $x \ge 0$ e calcola $f'_+(x)$.
+            \item Scrivi $f(x)$ per $x < 0$ e calcola $f'_-(x)$.
+        \end{enumerate}
+        I risultati saranno spesso polinomi completamente diversi.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+\subsection*{Tabella Riassuntiva}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tipo di Funzione} & \textbf{Esempio} & \textbf{Strategia Derivata} \\ \hline
+Simmetrica (Pari/Dispari) & $x^2 e^{-|x|}$ & Solo $x>0$ + Grafico specchiato \\ \hline
+Modulo Totale & $|\ln x - 1|$ & Deriva argomento + Ribalta grafico \\ \hline
+Modulo Misto/Asimmetrico & $(x+1)e^{|x|}$ & \textbf{DUE CASI DISTINTI} ($x>0$ e $x<0$) \\ \hline
+Modulo Spostato & $|x-1|e^x$ & \textbf{DUE CASI DISTINTI} ($x>1$ e $x<1$) \\ \hline
+\end{tabular}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 18 (Modulo 8) ---
+\subsection*{18. Prolungamento per Continuità} \label{sol:ex18}
+\textbf{Testo:} $f(x) = x e^{-\lambda/x^2}$ per $x \neq 0$, $f(0)=0$ ($\lambda > 0$).
+
+\textbf{1. Simmetria e Continuità}
+\begin{itemize}
+    \item La funzione è **DISPARI**: $f(-x) = -x e^{-\lambda/x^2} = -f(x)$.
+    Studiamo per $x \ge 0$ e ribaltiamo rispetto all'origine.
+    \item **Continuità in 0:**
+    \[ \lim_{x \to 0^+} x e^{-\lambda/x^2} = 0 \cdot 0 = 0 \]
+    (L'esponenziale $e^{-\infty}$ va a 0 molto più velocemente di quanto $x$ vada a 0, ma qui vanno entrambi a 0, quindi nessun conflitto).
+    $f(x)$ è continua in $\mathbb{R}$.
+\end{itemize}
+
+\textbf{2. Derivabilità nell'Origine}
+Facciamo il limite del rapporto incrementale in $x=0$:
+\[ f'(0) = \lim_{h \to 0} \frac{f(h) - f(0)}{h} = \lim_{h \to 0} \frac{h e^{-\lambda/h^2}}{h} = \lim_{h \to 0} e^{-\lambda/h^2} = 0 \]
+Quindi c'è una **Tangente Orizzontale** nell'origine. La funzione "nasce piatta".
+
+\textbf{3. Derivata Prima e Monotonia (x > 0)}
+\[ f'(x) = 1 \cdot e^{-\lambda/x^2} + x \cdot e^{-\lambda/x^2} \cdot \left( -(-2\lambda x^{-3}) \right) \]
+\[ f'(x) = e^{-\lambda/x^2} \left( 1 + \frac{2\lambda}{x^2} \right) \]
+Analizziamo i fattori per $x > 0$:
+\begin{itemize}
+    \item $e^{-\dots}$ è sempre positivo.
+    \item $(1 + \frac{2\lambda}{x^2})$ è somma di positivi $\implies$ sempre positivo.
+\end{itemize}
+\textbf{Conclusione:} $f'(x) > 0$ sempre. La funzione è **strettamente crescente**.
+Non ci sono massimi né minimi relativi.
+
+\textbf{4. Comportamento all'Infinito (Asintoto Obliquo)}
+Per $x \to +\infty$, $f(x) \to +\infty$. Cerchiamo l'asintoto obliquo $y = mx + q$.
+\begin{itemize}
+    \item $m = \lim_{x \to \infty} \frac{f(x)}{x} = \lim e^{-\lambda/x^2} = e^0 = 1$.
+    \item $q = \lim_{x \to \infty} [f(x) - x] = \lim_{x \to \infty} x(e^{-\lambda/x^2} - 1)$.
+    Usiamo lo sviluppo di Taylor $e^t \approx 1+t$ con $t = -\lambda/x^2$:
+    \[ = \lim_{x \to \infty} x \left( 1 - \frac{\lambda}{x^2} - 1 \right) = \lim_{x \to \infty} -\frac{\lambda}{x} = 0 \]
+\end{itemize}
+Asintoto Obliquo: **$y = x$** (bisettrice).
+
+\textbf{5. Grafico Qualitativo}
+La funzione passa per l'origine tangendo l'asse x, poi cresce sempre restando "sotto" la retta $y=x$ (poiché $e^{-\dots} < 1$), avvicinandosi ad essa asintoticamente.
+È una specie di "S" stirata.
+
+
+
+    % --- ESERCIZIO 18 ---
+\noindent \textbf{Es. 18:} $f(x) = x e^{-\lambda/x^2}$ ($f(0)=0$) \\
+\textit{Grafico per $\lambda=1$. Asintoto obliquo $y=x$. In $0$ la funzione si schiaccia (derivata nulla, contatto di ordine infinito).}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=3, 
+        ymin=-3, ymax=3,
+        xlabel=$x$, ylabel=$f(x)$]
+        
+        % Disegno in due pezzi per evitare problemi numerici in 0
+        \addplot[orange, thick, samples=100, domain=-3:-0.01] {x*exp(-1/x^2)};
+        \addplot[orange, thick, samples=100, domain=0.01:3] {x*exp(-1/x^2)};
+        
+        % Asintoto obliquo y=x
+        \addplot[gray, dashed, domain=-3:3] {x};
+        \node[gray, anchor=west] at (axis cs:2, 2.2) {$y=x$};
+        
+        % Origine
+        \filldraw[orange] (axis cs:0,0) circle (1.5pt);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+% --- SOLUZIONE ESERCIZIO 19 ---
+\subsection*{19. Connessione Grafica (Studio + Parametro)} \label{sol:ex19}
+\textbf{Testo:}
+a) Studiare $f(x) = |x^3|e^{-x}$ per $x > 0$.
+b) Risolvere al variare di $k$: $k e^x = |x^3|$.
+
+\textbf{PARTE A: Studio della funzione (per $x > 0$)}
+Poiché $x > 0$, $|x^3| = x^3$. La funzione è $f(x) = x^3 e^{-x}$.
+\begin{itemize}
+    \item \textbf{Limiti:}
+    $f(0) = 0$.
+    $\lim_{x \to +\infty} \frac{x^3}{e^x} = 0$ (Gerarchia infiniti).
+    Asintoto orizzontale $y=0$.
+    
+    \item \textbf{Derivata Prima:}
+    \[ f'(x) = 3x^2 e^{-x} + x^3 (-e^{-x}) = x^2 e^{-x} (3 - x) \]
+    Studio del segno (per $x > 0$, $x^2e^{-x}$ è sempre positivo):
+    \[ f'(x) \ge 0 \iff 3 - x \ge 0 \iff x \le 3 \]
+    
+    \item \textbf{Estremi:}
+    - La funzione cresce tra 0 e 3.
+    - La funzione decresce dopo 3.
+    - \textbf{Massimo Assoluto} in $x = 3$.
+    
+    \item \textbf{Valore del Massimo ($y_{max}$):}
+    \[ f(3) = 3^3 e^{-3} = \frac{27}{e^3} \approx \frac{27}{20} \approx 1.35 \]
+\end{itemize}
+
+\textbf{PARTE B: Risoluzione Grafica ($x \in \mathbb{R}$)}
+L'equazione è $k e^x = |x^3|$.
+Moltiplichiamo per $e^{-x}$ (che è sempre $\neq 0$) per separare il parametro $k$:
+\[ k = |x^3| e^{-x} \]
+Questo significa cercare le intersezioni tra la retta orizzontale $y = k$ e la funzione $g(x) = |x^3|e^{-x}$ su tutto il dominio reale.
+
+\textbf{1. Completamento del grafico per $x < 0$}
+Per $x < 0$, $|x^3| = -x^3$, quindi $g(x) = -x^3 e^{-x}$.
+\begin{itemize}
+    \item \textbf{Limite:} Per $x \to -\infty$, abbiamo $(+\infty) \cdot (+\infty) = +\infty$.
+    \item \textbf{Monotonia:} La funzione scende da $+\infty$ a 0 senza gobbe (la derivata $x^2 e^{-x}(x-3)$ è sempre negativa per $x<0$).
+\end{itemize}
+Quindi il grafico completo è formato da:
+\begin{itemize}
+    \item Un ramo decrescente a sinistra (da $+\infty$ a 0).
+    \item Una "gobba" a destra (da 0, sale a $27/e^3$, scende a 0).
+\end{itemize}
+
+\textbf{2. Conteggio Soluzioni (metodo dell'asticella $y=k$)}
+Facciamo scorrere una linea orizzontale dal basso verso l'alto:
+
+\begin{itemize}
+    \item \textbf{Se $k < 0$:} Nessuna soluzione (la funzione è sempre $\ge 0$).
+    \item \textbf{Se $k = 0$:} \textbf{1 soluzione} ($x=0$).
+    \item \textbf{Se $0 < k < \frac{27}{e^3}$:} La retta taglia 3 volte.
+    (1 volta il ramo sinistro, 2 volte la "gobba" destra). $\to$ \textbf{3 soluzioni}.
+    \item \textbf{Se $k = \frac{27}{e^3}$:} La retta tocca la cima della gobba e taglia a sinistra.
+    (1 tangenza + 1 intersezione). $\to$ \textbf{2 soluzioni}.
+    \item \textbf{Se $k > \frac{27}{e^3}$:} La retta passa sopra la gobba. Taglia solo il ramo sinistro infinito.
+    $\to$ \textbf{1 soluzione}.
+\end{itemize}
+% --- ESERCIZIO 19 ---
+\noindent \textbf{Es. 19:} $f(x) = |x^3|e^{-x}$ \\
+\textit{Fondamentale per il numero di soluzioni. Max locale in $x=3$. A sinistra esplode verso $+\infty$ perché l'esponenziale negativo al denominatore diventa enorme.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-1.5, xmax=6, 
+        ymin=0, ymax=5,
+        restrict y to domain=0:10]
+        
+        \addplot[purple, thick, samples=100, domain=-1.5:6] {abs(x^3)*exp(-x)};
+        
+        % Punto di massimo in x=3 -> f(3) = 27/e^3 approx 1.34
+        \filldraw[black] (axis cs:3, 1.344) circle (2pt) node[anchor=south] {$Max$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 20 ---
+\subsection*{20. Limitatezza Parametrica (Il ruolo della Base)} \label{sol:ex20}
+\textbf{Testo:} $f(x) = \frac{x^2}{2} + \log_a |x+1|$ con $a \in (0, 1) \cup (1, +\infty)$.
+
+\textbf{1. Dominio e Comportamento all'Infinito}
+Dominio: $x \neq -1$.
+Per $x \to \pm \infty$:
+Il termine $\frac{x^2}{2}$ domina sul logaritmo.
+\[ \lim_{x \to \pm \infty} f(x) = +\infty \]
+Questo è un buon segno: "ai lati" la funzione va su, quindi non crea problemi di limitatezza inferiore.
+
+\textbf{2. Il Punto Critico: $x \to -1$}
+
+Sappiamo che $|x+1| \to 0^+$.
+Quindi l'argomento del logaritmo tende a zero.
+Sappiamo che $\log(0^+) \to -\infty$ (come "quantità pura").
+Ma il segno finale dipende dalla base $a$!
+
+Scriviamo il logaritmo in base naturale per vederlo meglio: $\log_a y = \frac{\ln y}{\ln a}$.
+\[ \lim_{x \to -1} f(x) = \frac{1}{2} + \lim_{x \to -1} \frac{\ln|x+1|}{\ln a} = \frac{1}{2} + \frac{-\infty}{\ln a} \]
+
+\textbf{CASO 1: $a > 1$}
+Se $a > 1$, allora $\ln a > 0$ (positivo).
+\[ \lim_{x \to -1} f(x) = \frac{-\infty}{+} = -\infty \]
+\textbf{Interpretazione:} Vicino a $x=-1$, la funzione precipita in un abisso senza fondo.
+\textbf{Conclusione:} La funzione \textbf{NON} è limitata inferiormente.
+
+\textbf{CASO 2: $0 < a < 1$}
+Se $0 < a < 1$, allora $\ln a < 0$ (negativo).
+\[ \lim_{x \to -1} f(x) = \frac{-\infty}{-} = +\infty \]
+\textbf{Interpretazione:} Vicino a $x=-1$, la funzione schizza verso l'alto.
+Dato che va a $+\infty$ anche agli estremi del dominio ($\pm \infty$), la funzione ha la forma di una "W" (o due parabole con un asintoto centrale che va in alto).
+La funzione ha dei minimi assoluti finiti e non va mai a $-\infty$.
+\textbf{Conclusione:} La funzione \textbf{È limitata inferiormente}.
+
+\textbf{Risposta Finale}
+La funzione è limitata inferiormente se e solo se:
+\[ a \in (0, 1) \]
+
+% --- ESERCIZIO 20 ---
+\noindent \textbf{Es. 20:} $f(x) = \frac{x^2}{2} + \log_a |x+1|$ \\
+\textit{Grafico per $a=e$ (base naturale). Asintoto verticale in $x=-1$. La parabola domina all'infinito.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-4, xmax=3, 
+        ymin=-2, ymax=5,
+        restrict y to domain=-5:10]
+        
+        % Ramo sinistro
+        \addplot[blue, thick, samples=100, domain=-4:-1.01] {0.5*x^2 + ln(abs(x+1))};
+        
+        % Ramo destro
+        \addplot[blue, thick, samples=100, domain=-0.99:3] {0.5*x^2 + ln(abs(x+1))};
+        
+        % Asintoto verticale
+        \draw[red, dashed] (axis cs:-1, -5) -- (axis cs:-1, 10);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 21 ---
+\subsection*{21. Convessità Logaritmica (Base variabile)} \label{sol:ex21}
+\textbf{Testo:} $f(x) = \log_{a^2} |x+1|$ con $a \in \mathbb{R} \setminus \{0, \pm 1\}$.
+Trovare $a$ affinché $f$ sia convessa.
+
+\textbf{1. Riscrittura e Derivate}
+Usiamo la formula del cambio di base per portare tutto in logaritmo naturale (più facile da derivare):
+\[ f(x) = \frac{\ln|x+1|}{\ln(a^2)} \]
+Poniamo la costante $K = \frac{1}{\ln(a^2)}$.
+\[ f'(x) = K \cdot \frac{1}{x+1} \]
+\[ f''(x) = K \cdot \left( -\frac{1}{(x+1)^2} \right) = \frac{-1}{(x+1)^2 \ln(a^2)} \]
+
+\textbf{2. Studio del Segno di $f''$}
+Affinché la funzione sia \textbf{convessa}, deve essere $f''(x) > 0$ in tutto il dominio.
+Analizziamo i termini della frazione:
+\begin{itemize}
+    \item Il numeratore è $-1$ (sempre Negativo).
+    \item Il termine $(x+1)^2$ è un quadrato (sempre Positivo).
+\end{itemize}
+Quindi, per avere il risultato finale Positivo ($>0$), il termine $\ln(a^2)$ deve essere necessariamente \textbf{Negativo} (così $\frac{-}{-} = +$).
+
+\textbf{3. Risoluzione della Disequazione}
+\[ \ln(a^2) < 0 \]
+\[ 0 < a^2 < 1 \]
+Risolvendo rispetto ad $a$:
+\[ -1 < a < 1 \]
+Ricordando le condizioni del testo ($a \neq 0$), la soluzione finale è:
+\[ a \in (-1, 1) \setminus \{0\} \]
+
+\textbf{Interpretazione Grafica:}
+Normalmente il logaritmo ($\ln x$) è concavo (curva verso il basso).
+Quando la base è tra 0 e 1, il logaritmo si ribalta rispetto all'asse x, diventando convesso (curva verso l'alto, come una rampa da skate).
+
+
+% --- ESERCIZIO 21 ---
+\noindent \textbf{Es. 21:} $f(x) = \log_{a^2} |x+1|$ \\
+\textit{Funzione simmetrica rispetto all'asintoto verticale $x=-1$. L'uso di $a^2$ garantisce che la base sia positiva.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-5, xmax=3, 
+        ymin=-4, ymax=4,
+        restrict y to domain=-5:5]
+        
+        % Ramo sinistro
+        \addplot[blue, thick, samples=100, domain=-5:-1.05] {ln(abs(x+1))};
+        
+        % Ramo destro
+        \addplot[blue, thick, samples=100, domain=-0.95:3] {ln(abs(x+1))};
+        
+        % Asintoto
+        \draw[red, dashed] (axis cs:-1, -4) -- (axis cs:-1, 4);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 22 ---
+\subsection*{22. Logaritmo Composto} \label{sol:ex22}
+\textbf{Testo:} $f(x) = \ln x - \ln(\ln x)$.
+Determinare le soluzioni di $f(x) = \lambda$.
+
+\textbf{1. Dominio}
+Devono essere validi entrambi i logaritmi:
+\begin{enumerate}
+    \item Argomento interno: $x > 0$.
+    \item Argomento esterno: $\ln x > 0 \implies x > 1$.
+\end{enumerate}
+Dominio: $D = (1, +\infty)$.
+
+\textbf{2. Limiti}
+\begin{itemize}
+    \item $\lim_{x \to 1^+} [\ln x - \ln(\ln x)] = 0 - (-\infty) = +\infty$.
+    (Asintoto Verticale in $x=1$).
+    
+    \item $\lim_{x \to +\infty} [\ln x - \ln(\ln x)]$. Forma indeterminata $\infty - \infty$.
+    Raccogliamo il termine dominante ($\ln x$):
+    \[ \lim_{x \to +\infty} \ln x \left( 1 - \frac{\ln(\ln x)}{\ln x} \right) \]
+    Poiché $\ln x$ è infinito di ordine superiore rispetto a $\ln(\ln x)$, la frazione tende a 0.
+    Risultato: $+\infty \cdot (1 - 0) = +\infty$.
+\end{itemize}
+
+\textbf{3. Derivata e Monotonia}
+\[ f'(x) = \frac{1}{x} - \frac{1}{\ln x} \cdot \frac{1}{x} = \frac{1}{x} \left( 1 - \frac{1}{\ln x} \right) = \frac{\ln x - 1}{x \ln x} \]
+Analizziamo il segno per $x > 1$ (dove il denominatore è positivo):
+\[ \ln x - 1 \ge 0 \implies \ln x \ge 1 \implies x \ge e \]
+
+\begin{itemize}
+    \item $1 < x < e$: Funzione decrescente.
+    \item $x = e$: Punto di \textbf{Minimo Assoluto}.
+    \item $x > e$: Funzione crescente.
+\end{itemize}
+
+\textbf{Valore del Minimo:}
+\[ f(e) = \ln e - \ln(\ln e) = 1 - \ln(1) = 1 - 0 = 1 \]
+Il punto di minimo è $M(e, 1)$.
+
+
+
+\textbf{4. Risoluzione parametrica $f(x) = \lambda$}
+Guardando il grafico (una "U" asimmetrica che parte dall'alto, tocca quota 1 e risale):
+\begin{itemize}
+    \item \textbf{Se $\lambda < 1$:} Nessuna soluzione (la retta passa sotto il minimo).
+    \item \textbf{Se $\lambda = 1$:} \textbf{1 soluzione} (tangenza nel minimo $x=e$).
+    \item \textbf{Se $\lambda > 1$:} \textbf{2 soluzioni} (taglia sia il ramo discendente che quello ascendente).
+\end{itemize}
+
+% --- ESERCIZIO 22 ---
+\noindent \textbf{Es. 22:} $f(x) = \ln x - \ln(\ln x)$ \\
+\textit{Dominio: $x > 1$. Asintoto verticale in $x=1$. Minimo assoluto in $x=e$ dove $y=1$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=6, 
+        ymin=0, ymax=5,
+        restrict y to domain=0:10]
+        
+        \addplot[purple, thick, samples=100, domain=1.01:6] {ln(x) - ln(ln(x))};
+        
+        % Asintoto verticale x=1
+        \draw[gray, dashed] (axis cs:1, 0) -- (axis cs:1, 5);
+        
+        % Punto di minimo (e, 1)
+        \filldraw[black] (axis cs:2.718, 1) circle (2pt) node[anchor=south] {$(e, 1)$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 23 ---
+\subsection*{23. Razionale Logaritmica (Il Quadrato Nascosto)} \label{sol:ex23}
+\textbf{Testo:} $f(x) = \frac{1}{\log^2 x} - \frac{2}{\log x} + 1$ per $x \in ]0,8[ \setminus \{1\}$.
+
+\textbf{1. Semplificazione Algebrica (Il Trucco)}
+Riconosciamo la struttura di un quadrato perfetto ($A^2 - 2A + 1$):
+\[ f(x) = \left( \frac{1}{\log x} - 1 \right)^2 \]
+Questa forma ci dice subito due cose importantissime:
+\begin{itemize}
+    \item \textbf{Segno:} Essendo un quadrato, $f(x) \ge 0$ sempre!
+    \item \textbf{Zeri:} $f(x) = 0 \iff \frac{1}{\log x} = 1 \iff \log x = 1 \iff x = e$.
+\end{itemize}
+
+\textbf{2. Limiti}
+\begin{itemize}
+    \item $x \to 0^+$: $\log x \to -\infty$. I termini $\frac{1}{\infty}$ vanno a 0.
+    \[ \lim_{x \to 0^+} f(x) = (0 - 1)^2 = 1 \]
+    La funzione parte dal punto $(0, 1)$ (buco nel dominio).
+    \item $x \to 1$: $\log x \to 0$.
+    \[ \lim_{x \to 1} \left( \frac{1}{\to 0} - 1 \right)^2 = (\infty)^2 = +\infty \]
+    Asintoto Verticale in $x=1$.
+\end{itemize}
+
+\textbf{3. Derivata Prima (Metodo Rapido)}
+Deriviamo la forma al quadrato $f(x) = [ (\log x)^{-1} - 1 ]^2$ usando la regola della catena $D[g(x)^2] = 2g(x)g'(x)$.
+\[ f'(x) = 2 \left( \frac{1}{\log x} - 1 \right) \cdot D\left[ \frac{1}{\log x} - 1 \right] \]
+La derivata interna di $(\log x)^{-1}$ è $-(\log x)^{-2} \cdot \frac{1}{x}$.
+\[ f'(x) = 2 \left( \frac{1-\log x}{\log x} \right) \cdot \left( -\frac{1}{x \log^2 x} \right) \]
+Portiamo il "meno" nella prima parentesi per cambiare segno ($1-\log x \to \log x - 1$):
+\[ f'(x) = \frac{2(\log x - 1)}{x \log^3 x} \]
+
+\textbf{4. Studio del Segno della Derivata}
+Dominio $x \in (0, 8)$. Il termine $x$ è sempre positivo.
+Studiamo $\frac{\log x - 1}{\log^3 x} \ge 0$.
+
+\begin{itemize}
+    \item \textbf{Numeratore:} $\log x - 1 \ge 0 \implies \log x \ge 1 \implies x \ge e$.
+    \item \textbf{Denominatore:} $\log^3 x > 0 \implies \log x > 0 \implies x > 1$.
+\end{itemize}
+
+Tabella dei segni in $(0, 8)$:
+\begin{center}
+% Definisco 7 colonne per allineare bene: x, 0, int, 1, int, e, int
+\begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+      $x$ & $0$ & & $1$ & & $e$ & \\ \hline
+    % Ogni riga DEVE avere 6 simboli & per fare 7 colonne
+      Num & $\|$ & - & - & - & + & + \\
+      Den & $\|$ & - & + & + & + & + \\ \hline
+      $f'(x)$ & $\|$ & \textbf{+} & $\|$ & \textbf{-} & 0 & \textbf{+} \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Comportamento:}
+\begin{itemize}
+    \item $0 < x < 1$: Cresce (da 1 a $+\infty$).
+    \item $1 < x < e$: Decresce (da $+\infty$ a 0).
+    \item $e < x < 8$: Cresce.
+    \item \textbf{Minimo Assoluto:} In $x = e$ vale $f(e) = 0$.
+\end{itemize}
+
+
+
+    % --- ESERCIZIO 23 ---
+\noindent \textbf{Es. 23:} $f(x) = \frac{1}{\log^2 x} - \frac{2}{\log x} + 1 = \left(\frac{1}{\log x}-1\right)^2$ \\
+\textit{Sempre positiva. Asintoto verticale per $x=1$. Si annulla (tocca l'asse) in $x=e$. Per $x \to 0^+$, tende a $1$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=6, 
+        ymin=-1, ymax=5,
+        restrict y to domain=-2:10]
+        
+        % Tra 0 e 1
+        \addplot[orange, thick, samples=100, domain=0.01:0.9] {(1/ln(x) - 1)^2};
+        
+        % Dopo 1
+        \addplot[orange, thick, samples=100, domain=1.1:6] {(1/ln(x) - 1)^2};
+        
+        % Asintoto x=1
+        \draw[red, dashed] (axis cs:1, -1) -- (axis cs:1, 5);
+        
+        % Punto di contatto (e, 0)
+        \filldraw[black] (axis cs:2.718, 0) circle (2pt) node[anchor=north] {$e$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 24 ---
+\subsection*{24. Razionale Logaritmica} \label{sol:ex24}
+\textbf{Testo:} $f(x) = \log\left(\frac{x-4}{x-6}\right)$.
+
+\textbf{1. Dominio}
+Argomento del logaritmo $> 0$:
+\[ \frac{x-4}{x-6} > 0 \]
+Segni concordi (entrambi positivi o entrambi negativi):
+\[ D = (-\infty, 4) \cup (6, +\infty) \]
+\textit{Attenzione:} L'intervallo $(4, 6)$ è escluso
+
+\textbf{2. Limiti e Asintoti}
+\begin{itemize}
+    \item $x \to \pm \infty$: L'argomento tende a 1. $\log(1) = 0$.
+    \textbf{Asintoto Orizzontale:} $y = 0$.
+    
+    \item $x \to 4^-$: L'argomento $\frac{0^-}{-2} = 0^+$. $\log(0^+) = -\infty$.
+    \textbf{Asintoto Verticale:} $x = 4$.
+    
+    \item $x \to 6^+$: L'argomento $\frac{2}{0^+} = +\infty$. $\log(+\infty) = +\infty$.
+    \textbf{Asintoto Verticale:} $x = 6$.
+\end{itemize}
+
+\textbf{3. Derivata Prima}
+Deriviamo come funzione composta $f(\text{arg})$:
+\[ f'(x) = \frac{1}{\frac{x-4}{x-6}} \cdot D\left[ \frac{x-4}{x-6} \right] = \frac{x-6}{x-4} \cdot \frac{1(x-6) - 1(x-4)}{(x-6)^2} \]
+Semplificando:
+\[ f'(x) = \frac{x-6}{x-4} \cdot \frac{-2}{(x-6)^2} = \frac{-2}{(x-4)(x-6)} \]
+Nel dominio $D$, il prodotto $(x-4)(x-6)$ è sempre positivo (argomento del log).
+Il numeratore è negativo.
+\textbf{Monotonia:} $f'(x) < 0$ sempre. La funzione è \textbf{sempre decrescente} in entrambi i rami.
+Nessun massimo o minimo.
+
+\textbf{4. Derivata Seconda e Flessi}
+Riscriviamo $f'(x) = -2(x^2 - 10x + 24)^{-1}$.
+\[ f''(x) = -2 \cdot (-1)(x^2 - 10x + 24)^{-2} \cdot (2x - 10) \]
+\[ f''(x) = \frac{4(x-5)}{[(x-4)(x-6)]^2} \]
+Studio del segno: Il denominatore è positivo. Il segno dipende da $(x-5)$.
+\begin{itemize}
+    \item $f''(x) > 0$ se $x > 5$.
+    \item $f''(x) < 0$ se $x < 5$.
+    \item $f''(x) = 0$ in $x = 5$.
+\end{itemize}
+
+\textbf{TRAPPOLA:} Verrebbe da dire "Flesso in $x=5$".
+Tuttavia, \textbf{$x=5$ NON appartiene al dominio}.
+\textbf{Conclusione:} Non esistono punti di flesso.
+La concavità è verso il basso per $x<4$ (triste) e verso l'alto per $x>6$ (felice), ma il cambio avviene "nel vuoto".
+
+% --- ESERCIZIO 24 ---
+\noindent \textbf{Es. 24:} $f(x) = \log\left(\frac{x-4}{x-6}\right)$ \\
+\textit{Il dominio esclude l'intervallo $[4, 6]$. Asintoti verticali "inversi": a $-\infty$ per $x \to 4^-$, a $+\infty$ per $x \to 6^+$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=10, 
+        ymin=-4, ymax=4,
+        restrict y to domain=-10:10]
+        
+        % Ramo sinistro
+        \addplot[teal, thick, samples=100, domain=-1:3.9] {ln((x-4)/(x-6))};
+        
+        % Ramo destro
+        \addplot[teal, thick, samples=100, domain=6.1:10] {ln((x-4)/(x-6))};
+        
+        % Asintoti
+        \draw[gray, dashed] (axis cs:4, -4) -- (axis cs:4, 4);
+        \draw[gray, dashed] (axis cs:6, -4) -- (axis cs:6, 4);
+        \node[anchor=north] at (axis cs:5, 0) {No Dominio};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 25 ---
+\subsection*{25. Polo di Ordine 2} \label{sol:ex25}
+\textbf{Testo:} $f(x) = \frac{\log x}{(x-1)^2}$.
+
+\textbf{1. Dominio e Segno}
+Dominio: $x > 0$ (log) e $x \neq 1$ (denom). $D = (0, 1) \cup (1, +\infty)$.
+Segno:
+\begin{itemize}
+    \item Il denominatore $(x-1)^2$ è sempre positivo.
+    \item Il numeratore $\log x$ è positivo per $x > 1$ e negativo per $0 < x < 1$.
+\end{itemize}
+Quindi la funzione cambia segno in $x=1$: negativa a sinistra, positiva a destra.
+
+\textbf{2. Limiti }
+\begin{itemize}
+    \item $x \to 0^+$: $\frac{-\infty}{1} = -\infty$. (Asintoto Verticale).
+    
+    \item $x \to 1$: Forma indeterminata $\frac{0}{0}$.
+    Usiamo Taylor per il logaritmo: $\log x \approx (x-1)$.
+    \[ f(x) \approx \frac{x-1}{(x-1)^2} = \frac{1}{x-1} \]
+    Vicino a 1 la funzione si comporta come un'iperbole semplice $1/y$, non come $1/y^2$.
+    \begin{itemize}
+        \item $x \to 1^-$ (sinistra): $\frac{1}{0^-} = -\infty$.
+        \item $x \to 1^+$ (destra): $\frac{1}{0^+} = +\infty$.
+    \end{itemize}
+    
+    \item $x \to +\infty$: Vince la potenza al denominatore. $f(x) \to 0^+$.
+\end{itemize}
+
+\textbf{3. Derivata Prima (Il Massimo Nascosto)}
+\[ f'(x) = \frac{\frac{1}{x}(x-1)^2 - \log x \cdot 2(x-1)}{(x-1)^4} \]
+Semplifichiamo un $(x-1)$ (fondamentale per non impazzire!):
+\[ f'(x) = \frac{\frac{x-1}{x} - 2\log x}{(x-1)^3} = \frac{x - 1 - 2x\log x}{x(x-1)^3} \]
+
+\textbf{4. Studio del Segno della Derivata}
+Il denominatore $x(x-1)^3$ ha lo stesso segno di $(x-1)$.
+Il numeratore è $N(x) = x - 1 - 2x\log x$.
+Questo non si risolve analiticamente, ma si studia graficamente o per tentativi:
+\begin{itemize}
+    \item Per $x > 1$: $N(x)$ è sempre negativo (la funzione $x$ perde contro $x\log x$).
+    Dato che il Denom è positivo $\implies f'(x) < 0$. La funzione decresce sempre a destra di 1.
+    
+    \item Per $0 < x < 1$:
+    - $N(0) \to -1$.
+    - $N(1) = 0$.
+    - Facendo un rapido studio di $N(x)$, si vede che sale fino a un picco positivo e poi scende a 0.
+    Quindi esiste un punto $\alpha$ (tra 0 e 1) dove il numeratore cambia segno.
+\end{itemize}
+
+\textbf{Risultato Combinato in $(0, 1)$:}
+Il denominatore qui è \textbf{Negativo}.
+\begin{itemize}
+    \item Tra 0 e $\alpha$: Num negativo / Den negativo $\implies f'(x) > 0$ (Cresce).
+    \item Tra $\alpha$ e 1: Num positivo / Den negativo $\implies f'(x) < 0$ (Decresce).
+\end{itemize}
+C'è un \textbf{Massimo Relativo} in $x = \alpha$ (circa $0.5$).
+
+\textbf{5. Grafico Qualitativo}
+\begin{itemize}
+    \item \textbf{Sinistra ($0 < x < 1$):} La funzione parte da $-\infty$ (in 0), sale fino al Massimo $\alpha$ (che è un valore negativo, la funzione sta sempre sotto l'asse), e poi riscende a $-\infty$ (in 1). Forma a "U rovesciata".
+    \item \textbf{Destra ($x > 1$):} La funzione scende da $+\infty$ (asintoto) e va a 0 asintoticamente.
+\end{itemize}
+
+
+    % --- ESERCIZIO 25 ---
+\noindent \textbf{Es. 25:} $f(x) = \frac{\log x}{(x-1)^2}$ \\
+\textit{Discontinuità in $x=1$. Il limite sx è $-\infty$, il limite dx è $+\infty$. A $+\infty$ tende a 0.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=5, 
+        ymin=-5, ymax=5,
+        restrict y to domain=-10:10]
+        
+        % Sx
+        \addplot[blue, thick, samples=100, domain=0.01:0.9] {ln(x)/(x-1)^2};
+        
+        % Dx
+        \addplot[blue, thick, samples=100, domain=1.1:5] {ln(x)/(x-1)^2};
+        
+        % Asintoto x=1
+        \draw[red, dashed] (axis cs:1, -5) -- (axis cs:1, 5);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 26 ---
+\subsection*{26. Base Variabile } \label{sol:ex26}
+\textbf{Testo:} $f(x) = x^{\log x}$ con $x > 0$.
+
+\textbf{1. Trasformazione Fondamentale}
+Usiamo l'identità $A^B = e^{B \ln A}$.
+\[ f(x) = e^{\log x \cdot \log x} = e^{(\log x)^2} \]
+Ora la funzione è molto più amichevole: è un esponenziale con esponente al quadrato.
+
+\textbf{2. Limiti}
+\begin{itemize}
+    \item $x \to 0^+$: $\log x \to -\infty$.
+    Quindi $(\log x)^2 \to +\infty$.
+    Risultato: $e^{+\infty} = +\infty$. (Asintoto Verticale).
+    
+    \item $x \to +\infty$: $\log x \to +\infty$.
+    Risultato: $e^{+\infty} = +\infty$. (Crescita molto rapida, super-lineare).
+\end{itemize}
+
+\textbf{3. Derivata e Monotonia}
+Deriviamo la forma composta $e^{g(x)}$ dove $g(x) = (\log x)^2$:
+\[ f'(x) = e^{(\log x)^2} \cdot D[(\log x)^2] \]
+\[ f'(x) = x^{\log x} \cdot 2\log x \cdot \frac{1}{x} = 2 x^{\log x - 1} \log x \]
+
+Studio del segno:
+\begin{itemize}
+    \item $x^{\log x - 1}$ è un esponenziale $\implies$ Sempre Positivo.
+    \item $2$ è positivo.
+    \item Il segno dipende solo da $\log x$.
+\end{itemize}
+
+\[ f'(x) \ge 0 \iff \log x \ge 0 \iff x \ge 1 \]
+
+\textbf{Conclusioni:}
+\begin{itemize}
+    \item $0 < x < 1$: La funzione decresce.
+    \item $x = 1$: Punto di \textbf{Minimo Assoluto}.
+    Valore: $f(1) = 1^{\log 1} = 1^0 = 1$. Il punto è $M(1, 1)$.
+    \item $x > 1$: La funzione cresce.
+\end{itemize}
+
+\textbf{Grafico:}
+È una curva a forma di "U" (simile a una parabola ma asimmetrica) che sta tutta sopra la retta $y=1$.
+Non tocca mai l'asse y (asintoto) e va all'infinito a destra.
+
+
+    % --- ESERCIZIO 26 ---
+\noindent \textbf{Es. 26:} $f(x) = x^{\log x} = e^{(\ln x)^2}$ \\
+\textit{Dominio $x>0$. La funzione è sempre $\ge 1$. Ha un minimo assoluto in $(1,1)$. Cresce molto rapidamente per $x \to +\infty$ e per $x \to 0^+$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=4, 
+        ymin=0, ymax=10,
+        restrict y to domain=0:15]
+        
+        \addplot[blue, thick, samples=100, domain=0.01:4] {exp(ln(x)^2)};
+        
+        % Minimo
+        \filldraw[black] (axis cs:1, 1) circle (2pt) node[anchor=south] {$(1,1)$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 27 ---
+\subsection*{27. Singolarità Essenziale} \label{sol:ex27}
+\textbf{Testo:} $f(x) = (x-1)e^{\frac{1}{x^2-1}}$ per $x \neq \pm 1$.
+
+\textbf{1. Segno}
+\begin{itemize}
+    \item L'esponenziale è sempre positivo ($>0$).
+    \item Il segno dipende solo da $(x-1)$.
+    \item $f(x) > 0$ per $x > 1$.
+    \item $f(x) < 0$ per $x < 1$ (nel dominio).
+\end{itemize}
+
+\textbf{2. Limiti agli estremi del dominio (Il cuore del problema)}
+Qui bisogna fare molta attenzione ai segni dell'esponente.
+\[ \text{Esponente: } E(x) = \frac{1}{(x-1)(x+1)} \]
+
+\textbf{Punto $x = 1$:}
+\begin{itemize}
+    \item $x \to 1^+$: $E(x) \to \frac{1}{0^+} = +\infty$.
+    \[ f(x) = 0^+ \cdot e^{+\infty} \quad (\text{Forma } 0 \cdot \infty) \]
+    Vince l'esponenziale (gerarchia degli infiniti). L'esponenziale di $1/(x-1)$ esplode molto più velocemente di quanto il termine lineare $(x-1)$ vada a zero.
+    \[ \lim_{x \to 1^+} f(x) = +\infty \quad (\text{Asintoto Verticale}) \]
+    
+    \item $x \to 1^-$: $E(x) \to \frac{1}{0^-} = -\infty$.
+    \[ \lim_{x \to 1^-} f(x) = 0^- \cdot e^{-\infty} = 0 \cdot 0 = 0 \]
+    A sinistra di 1 la funzione non ha asintoto, ma "muore" in 0.
+\end{itemize}
+
+\textbf{Punto $x = -1$:}
+\begin{itemize}
+    \item $x \to -1^+$: $E(x) \to \frac{1}{(-2)(0^+)} = -\infty$.
+    \[ \lim_{x \to -1^+} f(x) = (-2) \cdot e^{-\infty} = -2 \cdot 0 = 0 \]
+    La funzione parte da 0.
+    
+    \item $x \to -1^-$: $E(x) \to \frac{1}{(-2)(0^-)} = +\infty$.
+    \[ \lim_{x \to -1^-} f(x) = (-2) \cdot e^{+\infty} = -\infty \quad (\text{Asintoto Verticale}) \]
+\end{itemize}
+
+\textbf{3. Comportamento all'Infinito (Asintoto Obliquo)}
+Per $x \to \pm \infty$, abbiamo la forma $\infty \cdot 1 = \infty$.
+Cerchiamo l'asintoto obliquo $y = mx + q$.
+\begin{itemize}
+    \item $m = \lim \frac{f(x)}{x} = 1$.
+    \item $q = \lim [f(x) - x]$. Usiamo \textbf{Taylor} per fare prima!
+    Ricordiamo che $e^t \approx 1 + t$ per $t \to 0$. Qui $t = \frac{1}{x^2-1}$.
+    \[ f(x) \approx (x-1) \left( 1 + \frac{1}{x^2-1} \right) = (x-1) + \frac{x-1}{(x-1)(x+1)} \]
+    Semplifichiamo:
+    \[ f(x) \approx x - 1 + \frac{1}{x+1} \]
+    Per $x \to \infty$, l'ultimo termine svanisce.
+    Restano i termini dell'asintoto: $y = x - 1$.
+\end{itemize}
+
+
+
+\textbf{4. Derivata Prima}
+\[ f'(x) = e^{\frac{1}{x^2-1}} \cdot \left[ 1 + (x-1) \cdot \frac{-2x}{(x^2-1)^2} \right] \]
+Semplificando un $(x-1)$ nel secondo termine:
+\[ f'(x) = e^{\dots} \left[ 1 - \frac{2x}{(x-1)(x+1)^2} \right] \]
+Facendo il denominatore comune, al numeratore esce un polinomio di terzo grado:
+\[ N(x) = x^3 + x^2 - 3x - 1 \]
+Non risolvibile elementarmente, ma studiando il segno si nota che ha 3 radici reali:
+$x_1 \approx -2.1$ (Max relativo), $x_2 \approx -0.3$ (Min relativo), $x_3 \approx 1.5$ (Min relativo).
+
+\textbf{Grafico Qualitativo:}
+\begin{itemize}
+    \item $x < -1$: Sale fino al Max ($x_1$), poi scende a $-\infty$ lungo l'asintoto verticale.
+    \item $-1 < x < 1$: Parte da 0, scende al Min ($x_2$), risale a 0. (Tutto negativo).
+    \item $x > 1$: Scende da $+\infty$ fino al Min ($x_3$), poi risale seguendo l'asintoto obliquo.
+\end{itemize}
+
+
+    
+
+% --- ESERCIZIO 27 ---
+\noindent \textbf{Es. 27:} $f(x) = (x-1)e^{\frac{1}{x^2-1}}$ \\
+\textit{Comportamento asimmetrico agli asintoti. Per $x \to 1^-$, l'esponente va a $-\infty$ e $f \to 0$. Per $x \to 1^+$, l'esponente va a $+\infty$ e $f \to +\infty$.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=-3, xmax=3, 
+        ymin=-5, ymax=5,
+        restrict y to domain=-10:10]
+        
+        % Sx
+        \addplot[red, thick, samples=100, domain=-3:-1.05] {(x-1)*exp(1/(x^2-1))};
+        
+        % Centro (tra -1 e 1)
+        % Attenzione: vicino a 1 va a 0, vicino a -1 va a 0.
+        \addplot[red, thick, samples=100, domain=-0.95:0.95] {(x-1)*exp(1/(x^2-1))};
+        
+        % Dx
+        \addplot[red, thick, samples=100, domain=1.05:3] {(x-1)*exp(1/(x^2-1))};
+        
+        % Asintoto x=-1 (solo da sx)
+        \draw[gray, dashed] (axis cs:-1, -5) -- (axis cs:-1, 5);
+        
+        % Asintoto x=1 (solo da dx)
+        \draw[gray, dashed] (axis cs:1, -5) -- (axis cs:1, 5);
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 28 ---
+\subsection*{28. Torre di Logaritmi (Modulo in Esponente)} \label{sol:ex28}
+\textbf{Testo:} $f(x) = |\log x|^{\log x}$ con $x > 0$.
+
+\textbf{1. Riscrittura Esponenziale}
+\[ f(x) = e^{\log x \cdot \log|\log x|} \]
+Il dominio esclude i punti dove l'argomento del log interno è 0:
+$|\log x| > 0 \implies x \neq 1$.
+$D = (0, 1) \cup (1, +\infty)$.
+
+\textbf{2. Limiti}
+\begin{itemize}
+    \item $x \to 0^+$: $\log x \to -\infty$.
+    Esponente: $(-\infty) \cdot \log(+\infty) = -\infty$.
+    $f(x) = e^{-\infty} = 0$. (La funzione parte dall'origine).
+    
+    \item $x \to 1$: $\log x \to 0$.
+    Esponente: $0 \cdot (-\infty)$. Forma indeterminata.
+    Usiamo il limite notevole $t \log t \to 0$ per $t \to 0$.
+    Qui l'esponente tende a 0.
+    $f(x) \to e^0 = 1$. (Discontinuità eliminabile in $x=1$, "buco" nel grafico).
+    
+    \item $x \to +\infty$: $\log x \to +\infty$.
+    Esponente: $+\infty \cdot +\infty = +\infty$.
+    $f(x) \to +\infty$.
+\end{itemize}
+
+\textbf{3. Derivata Prima}
+Deriviamo l'esponente $E(x) = \log x \cdot \log|\log x|$:
+\[ E'(x) = \frac{1}{x}\log|\log x| + \log x \cdot \frac{1}{\log x} \cdot \frac{1}{x} \]
+Semplificando $\log x$:
+\[ E'(x) = \frac{\log|\log x| + 1}{x} \]
+Derivata completa:
+\[ f'(x) = f(x) \cdot \frac{\log|\log x| + 1}{x} \]
+
+\textbf{4. Monotonia}
+Poiché $f(x) > 0$ e $x > 0$, il segno dipende solo dal numeratore:
+\[ \log|\log x| + 1 \ge 0 \]
+\[ \log|\log x| \ge -1 \implies |\log x| \ge e^{-1} = \frac{1}{e} \]
+Sciogliamo il modulo (valori esterni):
+\begin{itemize}
+    \item $\log x \ge \frac{1}{e} \implies x \ge e^{1/e}$
+    \item $\log x \le -\frac{1}{e} \implies x \le e^{-1/e}$
+\end{itemize}
+
+\textbf{Punti Critici:}
+\begin{itemize}
+    \item $M_1(e^{-1/e}, \dots)$ è un \textbf{Massimo Relativo} (prima di 1).
+    \item $m_2(e^{1/e}, \dots)$ è un \textbf{Minimo Relativo} (dopo 1).
+\end{itemize}
+Il grafico fa una "gobba" tra 0 e 1, poi un buco in 1, poi scende un po' e risale per sempre.
+
+
+    % --- ESERCIZIO 28 ---
+\noindent \textbf{Es. 28:} $f(x) = |\log x|^{\log x}$ \\
+\textit{Definita per $x>0, x \neq 1$. Per $x > 1$ cresce velocissima. Tra 0 e 1 ha un comportamento oscillante smorzato molto particolare.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=3, 
+        ymin=0, ymax=4,
+        restrict y to domain=0:10]
+        
+        % Tra 0 e 1 (abs(ln x) > 0, ma l'esponente ln(x) è negativo -> 1/base)
+        \addplot[teal, thick, samples=200, domain=0.01:0.99] {abs(ln(x))^(ln(x))};
+        
+        % Sopra 1
+        \addplot[teal, thick, samples=100, domain=1.01:3] {abs(ln(x))^(ln(x))};
+        
+        % Singolarità in 1
+        \draw[gray, dotted] (axis cs:1, 0) -- (axis cs:1, 4);
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 29 (Log 10) ---
+\subsection*{29. Mista Log-Quadratico (Semplifica prima)} \label{sol:ex29}
+\textbf{Testo:} $f(x) = \frac{1-\log(x^2)}{\log^2 x}$.
+
+\textbf{1. Dominio e Semplificazione}
+Condizioni: $x > 0$ (argomento log) e $\log x \neq 0 \implies x \neq 1$.
+$D = (0, 1) \cup (1, +\infty)$.
+
+\textbf{Il Trucco:}
+Sfruttiamo $\log(x^2) = 2\log x$.
+\[ f(x) = \frac{1 - 2\log x}{(\log x)^2} \]
+Possiamo addirittura spezzare la frazione per derivare ancora più velocemente (facoltativo, ma comodo):
+\[ f(x) = \frac{1}{\log^2 x} - \frac{2}{\log x} = (\log x)^{-2} - 2(\log x)^{-1} \]
+
+\textbf{2. Limiti (sulla forma semplificata)}
+\begin{itemize}
+    \item $x \to 0^+$: $\log x \to -\infty$.
+    $f(x) \approx \frac{-2(-\infty)}{(-\infty)^2} \to 0$.
+    (Vince il quadrato al denominatore). La funzione parte da 0.
+    
+    \item $x \to 1$: $\log x \to 0$.
+    Num $\to 1$, Den $\to 0^+$.
+    $f(x) \to +\infty$. (Asintoto Verticale completo).
+    
+    \item $x \to +\infty$: $\log x \to +\infty$.
+    Vince il grado del denominatore. $f(x) \to 0$.
+\end{itemize}
+
+\textbf{3. Derivata Prima (Metodo Veloce)}
+Usiamo la forma con le potenze negative: $f(x) = (\log x)^{-2} - 2(\log x)^{-1}$.
+Ricordando che $D[u^n] = n u^{n-1} \cdot u'$:
+\[ f'(x) = -2(\log x)^{-3} \cdot \frac{1}{x} - 2(-1)(\log x)^{-2} \cdot \frac{1}{x} \]
+Raccogliamo $\frac{2}{x}$ e mettiamo a fattor comune:
+\[ f'(x) = \frac{2}{x} \left[ -\frac{1}{\log^3 x} + \frac{1}{\log^2 x} \right] \]
+Denominatore comune $\log^3 x$:
+\[ f'(x) = \frac{2}{x} \left[ \frac{-1 + \log x}{\log^3 x} \right] = \frac{2(\log x - 1)}{x \log^3 x} \]
+
+\textbf{4. Studio del Segno}
+Studiamo $f'(x) \ge 0$:
+\begin{itemize}
+    \item $2/x > 0$ (sempre nel dominio).
+    \item Num: $\log x - 1 \ge 0 \implies x \ge e$.
+    \item Den: $\log^3 x > 0 \implies \log x > 0 \implies x > 1$.
+\end{itemize}
+Tabella dei segni (tra $0$ e $+\infty$):
+\begin{itemize}
+    \item Tra $0$ e $1$: Num $(-)$ / Den $(-)$ $\implies$ \textbf{Positivo} (Cresce).
+    \item Tra $1$ e $e$: Num $(-)$ / Den $(+)$ $\implies$ \textbf{Negativo} (Decresce).
+    \item Oltre $e$: Num $(+)$ / Den $(+)$ $\implies$ \textbf{Positivo} (Cresce).
+\end{itemize}
+
+\textbf{Punto di Minimo:}
+$x = e$.
+$f(e) = \frac{1 - 2(1)}{1^2} = -1$.
+Punto $m(e, -1)$.
+
+
+
+% --- ESERCIZIO 29 ---
+\noindent \textbf{Es. 29:} $f(x) = \frac{1-\ln(x^2)}{\ln^2 x} = \frac{1-2\ln x}{(\ln x)^2}$ \\
+\textit{Dominio $x>0, x \neq 1$. Si annulla in $x = \sqrt{e}$. Asintoto verticale in $x=1$ (limite $-\infty$ da entrambi i lati).}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=5, 
+        ymin=-5, ymax=2,
+        restrict y to domain=-10:5]
+        
+        % Parte sx
+        \addplot[orange, thick, samples=100, domain=0.01:0.99] {(1 - 2*ln(x)) / (ln(x)^2)};
+        
+        % Parte dx
+        \addplot[orange, thick, samples=100, domain=1.01:5] {(1 - 2*ln(x)) / (ln(x)^2)};
+        
+        % Asintoto x=1
+        \draw[red, dashed] (axis cs:1, -5) -- (axis cs:1, 2);
+        
+        % Zero in sqrt(e) ~ 1.648
+        \filldraw[black] (axis cs:1.648, 0) circle (2pt) node[anchor=south west] {$\sqrt{e}$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+% --- SOLUZIONE ESERCIZIO 30 (Trig 1) ---
+\subsection*{30. Conteggio Estremi } \label{sol:ex30}
+\textbf{Testo:} Determinare il numero di massimi e minimi di $f(x) = \cos\left(\frac{x}{2}\pi^x\right)$ su $[0,2]$.
+
+\textbf{1. Analisi dell'Argomento}
+Poniamo $t(x) = \frac{x}{2}\pi^x$ l'argomento del coseno.
+Studiamo la sua monotonia per capire "quanta strada fa".
+\[ t'(x) = \frac{1}{2}\pi^x + \frac{x}{2}\pi^x \ln \pi = \frac{1}{2}\pi^x (1 + x \ln \pi) \]
+Per $x \in [0, 2]$, la derivata è sempre positiva ($t'(x) > 0$).
+L'argomento cresce strettamente (non oscillante).
+
+\textbf{2. Calcolo del Range (Il percorso)}
+\begin{itemize}
+    \item Start ($x=0$): $t(0) = 0$.
+    \item End ($x=2$): $t(2) = \frac{2}{2}\pi^2 = \pi^2$.
+\end{itemize}
+Sapendo che $\pi \approx 3.14$, allora $\pi^2 \approx 9.86$.
+Quindi l'argomento varia nell'intervallo $[0, \approx 9.86]$.
+
+\textbf{3. Conteggio delle "Gobbe" (Stazionarietà)}
+Il coseno ha:
+\begin{itemize}
+    \item Massimi locali quando l'argomento è $2k\pi$ (multipli pari).
+    \item Minimi locali quando l'argomento è $(2k+1)\pi$ (multipli dispari).
+    \item In generale: Punti stazionari ($f'(x)=0$) quando l'argomento è $k\pi$.
+\end{itemize}
+
+Elenchiamo i multipli di $\pi$ che cadono nell'intervallo $[0, \pi^2]$ (cioè tra 0 e $\approx 9.86$):
+\begin{enumerate}
+    \item $k=0 \implies t=0$:
+    $f(0) = \cos(0) = 1$. (\textbf{Punto di partenza - Max}).
+    
+    \item $k=1 \implies t=\pi$ (poiché $\pi \approx 3.14 < 9.86$):
+    $f(x_1) = \cos(\pi) = -1$. (\textbf{Minimo}).
+    
+    \item $k=2 \implies t=2\pi$ (poiché $2\pi \approx 6.28 < 9.86$):
+    $f(x_2) = \cos(2\pi) = 1$. (\textbf{Massimo}).
+    
+    \item $k=3 \implies t=3\pi$ (poiché $3\pi \approx 9.42 < 9.86$):
+    $f(x_3) = \cos(3\pi) = -1$. (\textbf{Minimo}).
+    
+    \item $k=4 \implies t=4\pi$ (poiché $4\pi \approx 12.56 > 9.86$):
+    FUORI INTERVALLO.
+\end{enumerate}
+
+\textbf{4. Analisi dell'estremo finale ($x=2$)}
+L'argomento si ferma a $\pi^2 \approx 9.86$.
+L'ultimo punto critico era a $3\pi \approx 9.42$ (dove valeva -1).
+Da $9.42$ a $9.86$ l'argomento cresce, quindi il coseno sta risalendo da -1 verso l'alto.
+Il punto $x=2$ è dunque un estremo superiore locale (un \textbf{Massimo} di bordo), anche se la derivata non è zero.
+
+\textbf{Risposta Finale:}
+\begin{itemize}
+    \item Punti a derivata nulla (interni): \textbf{3} (corrispondenti a $\pi, 2\pi, 3\pi$).
+    \item Estremi totali (inclusi i bordi): \textbf{5} (Max, Min, Max, Min, Max).
+\end{itemize}
+Il grafico fa esattamente due oscillazioni complete e un pezzettino di risalita.
+
+
+    % --- ESERCIZIO 30 ---
+\noindent \textbf{Es. 30:} $f(x) = \cos\left(\frac{x}{2}\pi^x\right)$ su $[0,2]$ \\
+\textit{L'argomento del coseno cresce esponenzialmente, quindi le oscillazioni diventano sempre più frequenti man mano che ci si sposta a destra.}
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[standard, 
+        xmin=0, xmax=2, 
+        ymin=-1.5, ymax=1.5,
+        xlabel=$x$, ylabel=$f(x)$]
+        
+        % Aumentiamo i samples perché oscilla molto
+        \addplot[purple, thick, samples=400, domain=0:2] {cos(deg( (x/2) * (pi^x) ))};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- TEORIA: IL METODO DELL'ARGOMENTO ---
+\section*{Consiglio: Il Metodo dell'Argomento (Trigonometria)}
+Quando dobbiamo trovare massimi e minimi di una funzione composta del tipo $f(x) = \sin(g(x))$ o $f(x) = \cos(g(x))$, non è sempre necessario calcolare la derivata completa.
+
+\subsection*{La Regola d'Oro}
+Possiamo studiare direttamente l'andamento dell'argomento $t = g(x)$ se e solo se:
+\[ \textbf{L'argomento } g(x) \textbf{ è strettamente MONOTONO nell'intervallo.} \]
+ovvero, se $g'(x)$ non cambia mai segno (è sempre positiva o sempre negativa).
+
+\subsection*{Perché funziona?}
+La derivata completa è $f'(x) = \text{trig}'(g(x)) \cdot g'(x)$.
+\begin{itemize}
+    \item Se $g'(x) > 0$ sempre (come per $e^x, \log x, \sqrt{x}$):
+    Il segno di $f'(x)$ dipende \textbf{solo} dalla funzione trigonometrica esterna. L'argomento "corre in avanti" lungo l'onda. Basta vedere dove l'argomento tocca i picchi ($k\pi$).
+    
+    \item Se $g'(x)$ cambia segno (es. $x^2$ o polinomi che oscillano):
+    Il termine $g'(x)$ diventa negativo in alcuni punti, invertendo il segno della derivata totale. Qui il metodo NON si può applicare ciecamente: bisogna fare la derivata completa.
+\end{itemize}
+
+\subsection*{Quando applicarlo}
+Usa questo metodo se l'argomento $g(x)$ è:
+\begin{itemize}
+    \item Un esponenziale: $\pi^x, e^{2x}$ (cresce sempre).
+    \item Un logaritmo: $\ln x$ (cresce sempre).
+    \item Una radice: $\sqrt{x}$ (cresce sempre).
+    \item Una retta: $mx + q$ (monotona).
+    \item Un prodotto di funzioni positive crescenti: $x \cdot e^x$ (per $x>0$).
+\end{itemize}
+
+\subsection*{Esempio Pratico}
+\textbf{Funzione:} $f(x) = \cos(e^x)$.
+\begin{enumerate}
+    \item Controllo argomento: $t = e^x$. È monotono? SÌ (cresce sempre).
+    \item Range: Se $x \in [0, 2]$, allora $t \in [1, e^2] \approx [1, 7.38]$.
+    \item Conto i picchi: Il coseno ha massimi a $0, 2\pi, \dots$ e minimi a $\pi, 3\pi, \dots$.
+    \item Controllo quali cadono in $[1, 7.38]$:
+    \begin{itemize}
+        \item $\pi \approx 3.14$ (Minimo).
+        \item $2\pi \approx 6.28$ (Massimo).
+    \end{itemize}
+    \item Conclusione: C'è 1 Minimo e 1 Massimo interni. Fine.
+\end{enumerate}
+
+\subsection*{Quando NON applicarlo}
+Se $f(x) = \cos(x^2 - x)$ su $[-2, 2]$.
+L'argomento è una parabola (scende e poi sale). La derivata interna $2x-1$ cambia segno.
+Qui \textbf{DEVI} calcolare la derivata completa:
+\[ f'(x) = -\sin(x^2 - x) \cdot (2x - 1) \]
+I punti stazionari saranno dati sia da $\sin(\dots)=0$ CHE da $2x-1=0$.
+
+% --- SOLUZIONE ESERCIZIO 31 ---
+\subsection*{31. Trigonometria Razionale} \label{sol:ex31}
+\textbf{Testo:} $f(x) = \frac{1}{\sin^2 x} - \frac{2}{\sin x} + 1$ in $]0, 2\pi[ \setminus \{\pi\}$.
+
+\textbf{1. Semplificazione (Quadrato Perfetto)}
+Riconosciamo la struttura $A^2 - 2A + 1$:
+\[ f(x) = \left( \frac{1}{\sin x} - 1 \right)^2 = \frac{(1-\sin x)^2}{\sin^2 x} \]
+Questo ci dice subito che $f(x) \ge 0$ e si annulla solo in $x=\pi/2$.
+
+\textbf{2. Derivata Prima}
+Usiamo la forma con potenze negative: $f(x) = \sin^{-2}x - 2\sin^{-1}x + 1$.
+\[ f'(x) = -2\sin^{-3}x (\cos x) + 2\sin^{-2}x (\cos x) \]
+\[ f'(x) = \frac{2\cos x}{\sin^2 x} - \frac{2\cos x}{\sin^3 x} = \frac{2\cos x(\sin x - 1)}{\sin^3 x} \]
+
+\textbf{3. Studio del Segno}
+Ricordando che $(\sin x - 1) \le 0$ sempre:
+\begin{itemize}
+    \item \textbf{Intervallo $(0, \pi)$}: $\sin^3 x > 0$.
+    Il segno dipende da $\cos x \cdot (\text{negativo})$.
+    Quindi segno opposto al coseno: scende fino a $\pi/2$, poi sale.
+    $\implies x = \pi/2$ è \textbf{Minimo} ($y=0$).
+    
+    \item \textbf{Intervallo $(\pi, 2\pi)$}: $\sin^3 x < 0$.
+    Il segno dipende da $\frac{\cos x \cdot (\text{negativo})}{(\text{negativo})} = \cos x$.
+    Quindi segno uguale al coseno: scende fino a $3\pi/2$ (dove cos cambia), poi sale.
+    $\implies x = 3\pi/2$ è \textbf{Minimo} ($y=4$).
+\end{itemize}
+
+\textbf{Grafico intuitivo:}
+Una "U" che tocca zero a $\pi/2$, un asintoto verticale a $\pi$, e un'altra "U" più alta (che parte da altezza 4) a $3\pi/2$.
+
+\noindent \textbf{Grafico:} $f(x) = \frac{1}{\sin^2 x} - \frac{2}{\sin x} + 1 = (\csc x - 1)^2$ \\
+\textit{Definita in $]0, 2\pi[$. Asintoti verticali per $x \to 0, \pi, 2\pi$. Minimo assoluto in $\pi/2$ e minimo relativo in $3\pi/2$.}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        % Impostazioni per vedere bene assi e centro
+        xmin=-1.5, xmax=7.5,
+        ymin=-2, ymax=14,
+        restrict y to domain=0:15, % Taglia gli asintoti
+        samples=200,
+        grid=major,
+        width=12cm, height=8cm,
+        % Ticks sull'asse X in radianti
+        xtick={0, 1.57, 3.14, 4.71, 6.28},
+        xticklabels={$0$, $\frac{\pi}{2}$, $\pi$, $\frac{3\pi}{2}$, $2\pi$}
+    ]
+        
+        % Primo ramo: 0 < x < pi
+        \addplot[blue, thick, domain=0.15:2.99] { (1/sin(deg(x)) - 1)^2 };
+        
+        % Secondo ramo: pi < x < 2pi
+        \addplot[blue, thick, domain=3.29:6.13] { (1/sin(deg(x)) - 1)^2 };
+
+        % Asintoti verticali (tratteggiati rossi)
+        \draw[red, dashed] (axis cs:3.14, 0) -- (axis cs:3.14, 14);
+        \draw[red, dashed] (axis cs:6.28, 0) -- (axis cs:6.28, 14);
+
+        % Etichette
+        \node[anchor=south] at (axis cs:1.57, 0.2) {Zero ($\frac{\pi}{2}$)};
+        \node[anchor=south] at (axis cs:4.71, 4) {Min Rel ($4$)};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+% --- SOLUZIONE ESERCIZIO 32 ---
+\subsection*{32. Composizione e Flessi (Semplificazione Trigonometrica)}
+\textbf{Testo:} $f(x) = \sin(\arctan(x^3))$.
+
+\textbf{1. Semplificazione Algebrica (Fondamentale)}
+Sfruttando il triangolo rettangolo con cateti $t$ e $1$, abbiamo $\sin(\arctan t) = \frac{t}{\sqrt{1+t^2}}$.
+Ponendo $t=x^3$, la funzione diventa puramente algebrica:
+\[ f(x) = \frac{x^3}{\sqrt{1+x^6}} \]
+
+\textbf{2. Derivata Prima}
+\[ f'(x) = \frac{3x^2}{(1+x^6)^{3/2}} \]
+Risulta $f'(x) \ge 0$ sempre. La funzione è strettamente crescente.
+In $x=0$, $f'(0)=0$, quindi è un punto a tangente orizzontale.
+
+\textbf{3. Derivata Seconda}
+\[ f''(x) = \frac{3x(2 - 7x^6)}{(1+x^6)^{5/2}} \]
+I punti di flesso si hanno dove $f''(x)$ cambia segno:
+\begin{itemize}
+    \item $x = 0$: Cambio segno del fattore $x$. (Flesso orizzontale).
+    \item $2 - 7x^6 = 0 \implies x = \pm \sqrt[6]{2/7}$: Cambio segno della parentesi. (Flessi obliqui).
+\end{itemize}
+\noindent \textbf{Grafico } $f(x) = \sin(\arctan(x^3))$ \\
+\textit{Funzione dispari. Crescente su tutto il dominio. Asintoti orizzontali $y=\pm 1$. Flesso orizzontale in $(0,0)$.}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-4.5, xmax=4.5,    % Abbastanza largo per vedere l'appiattimento
+        ymin=-1.5, ymax=1.5,    % Focus sulla fascia [-1, 1]
+        samples=200,            % Campionamento alto per la curva
+        grid=major,
+        width=10cm, height=6cm
+    ]
+        
+        % La funzione
+        % Nota: usiamo deg() per convertire i radianti dell'arcotangente per il seno di pgfplots
+        \addplot[red, thick, domain=-4.5:4.5] {sin(deg(atan(x^3)))};
+        
+        % Asintoti orizzontali (tratteggiati grigi)
+        \draw[gray, dashed] (axis cs:-4.5, 1) -- (axis cs:4.5, 1);
+        \draw[gray, dashed] (axis cs:-4.5, -1) -- (axis cs:4.5, -1);
+        
+        % Etichette asintoti
+        \node[anchor=south east] at (axis cs:4.5, 1) {$y=1$};
+        \node[anchor=north west] at (axis cs:-4.5, -1) {$y=-1$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\section*{33. : Seno Composto (Studio Completo)}
+\textbf{Testo:} Studiare la funzione $f(x) = \sin(1 + x \ln x)$ nell'intervallo $x \in (0, e]$.
+\textit{Nota: $f(0)=0$ è dato come punto isolato o di partenza, ma studiamo il limite.}
+
+\subsection*{1. Comportamento agli estremi}
+\begin{itemize}
+    \item \textbf{Limite per $x \to 0^+$:}
+    Sappiamo che $\lim_{x \to 0^+} x \ln x = 0$ (Gerarchia degli infiniti).
+    \[ \lim_{x \to 0^+} f(x) = \sin(1 + 0) = \sin(1) \approx 0.84 \]
+    (La funzione parte da altezza 0.84, non da 0).
+    
+    \item \textbf{Valore in $x = e$:}
+    \[ f(e) = \sin(1 + e \ln e) = \sin(1 + e) \approx \sin(3.71) \]
+    Poiché $3.71$ è poco più di $\pi (\approx 3.14)$, siamo nel III quadrante (seno negativo).
+    $f(e) \approx -0.5$.
+\end{itemize}
+
+\subsection*{2. Analisi dell'Argomento (Il Passo Cruciale)}
+Prima di derivare, studiamo "il viaggio" dell'argomento $g(x) = 1 + x \ln x$.
+\begin{itemize}
+    \item $g'(x) = \ln x + 1$. Si annulla in $x = 1/e$.
+    \item \textbf{Minimo dell'argomento:} In $x = 1/e$, $g(1/e) = 1 - 1/e \approx 0.63$.
+    \item \textbf{Massimo dell'argomento:} In $x = e$, $g(e) = 1 + e \approx 3.71$.
+\end{itemize}
+
+\textbf{Check dei Quadranti:}
+L'argomento varia nell'intervallo $[0.63, 3.71]$.
+Questo intervallo contiene il valore critico $\frac{\pi}{2} \approx 1.57$ (e anche $\pi \approx 3.14$).
+\textbf{ATTENZIONE:} Significa che il coseno nella derivata \textbf{cambierà segno} anche se l'argomento continua a crescere!
+
+\subsection*{3. Derivata Prima}
+\[ f'(x) = \underbrace{\cos(1 + x \ln x)}_{\text{Segno variabile (Range)}} \cdot \underbrace{(\ln x + 1)}_{\text{Segno variabile (Log)}} \]
+
+Studiamo i segni dei due fattori separatamente:
+
+\textbf{Fattore 1: Derivata Interna ($\ln x + 1$)}
+\begin{itemize}
+    \item $x < 1/e$: Negativo ($-$)
+    \item $x > 1/e$: Positivo ($+$)
+\end{itemize}
+
+\textbf{Fattore 2: Coseno ($\cos(g(x))$)}
+Dobbiamo vedere quando l'argomento $g(x)$ supera $\pi/2$.
+Essendo $g(x)$ crescente per $x > 1/e$, esiste un punto unico $x_0$ tale che:
+\[ 1 + x_0 \ln x_0 = \frac{\pi}{2} \approx 1.57 \]
+Poiché a destra $g(e) \approx 3.71$ (che è $> 1.57$), il coseno diventa negativo dopo $x_0$.
+\begin{itemize}
+    \item Per $x < x_0$: Argomento nel I Quadrante $\implies \cos > 0$ ($+$).
+    \item Per $x > x_0$: Argomento nel II/III Quadrante $\implies \cos < 0$ ($-$).
+\end{itemize}
+
+\subsection*{4. Tabella dei Segni Combinata}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & \dots & $1/e$ & \dots $x_0$ \dots & $e$ \\
+\hline
+Segno $(\ln x + 1)$ & & $-$ & $0$ & $+$ & $+$ \\
+\hline
+Argomento $g(x)$ & $\searrow$ & Decresce & Min & Cresce ($< \frac{\pi}{2}$) & Cresce ($> \frac{\pi}{2}$) \\
+\hline
+Segno $\cos(g(x))$ & & $+$ & $+$ & $+$ & $-$ \\
+\hline
+\textbf{Segno Totale $f'(x)$} & & \textbf{$-$} & $0$ & \textbf{$+$} & \textbf{$-$} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{5. Conclusioni sui Punti Critici}
+
+\begin{itemize}
+    \item \textbf{Minimo Relativo in $x = 1/e$:}
+    La derivata passa da $-$ a $+$.
+    Valore: $y = \sin(1 - 1/e) \approx \sin(0.63) \approx 0.59$.
+    
+    \item \textbf{Massimo Relativo in $x = x_0$:}
+    (Dove l'argomento vale $\pi/2$). La derivata passa da $+$ a $-$.
+    Anche se non possiamo calcolare $x_0$ esatto (è circa $1.8$), conosciamo l'altezza esatta:
+    \[ y = f(x_0) = \sin\left( \frac{\pi}{2} \right) = 1 \]
+    Questo è il punto più alto del grafico.
+\end{itemize}
+
+\textbf{Sintesi Grafico:}
+La funzione parte da $\sin(1)$, scende fino al minimo in $1/e$, risale fino al picco massimo $1$ (in $x_0$), e poi scende fino a $f(e)$ diventando negativa.
+
+\noindent \textbf{Grafico } $f(x) = \sin(1 + x \ln x)$ per $x \in (0, e]$ \\
+\textit{Il limite per $x \to 0^+$ è $\sin(1)$. Ha un minimo locale vicino all'origine, poi cresce fino a 1 e scende diventando negativa in $e$.}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-0.5, xmax=3.5,    % Spazio a sx e dx per vedere bene
+        ymin=-1.2, ymax=1.2,    % Standard range trigonometrico
+        samples=200,
+        grid=major,
+        width=10cm, height=6cm,
+        xtick={1, 2.718},       % Mostro 1 e il numero di Nepero
+        xticklabels={$1$, $e$}
+    ]
+        
+        % La funzione
+        % Nota: domain parte da 0.01 per evitare errori di log(0)
+        \addplot[teal, thick, domain=0.01:2.718] {sin(deg(1 + x*ln(x)))};
+        
+        % Pallino vuoto all'inizio (limite x->0)
+        \addplot[mark=*, mark options={fill=white, draw=teal}, only marks] coordinates {(0, 0.841)};
+        \node[anchor=south west] at (axis cs:0, 0.841) {$\sin(1)$};
+        
+        % Pallino pieno alla fine (x=e, incluso)
+        \addplot[mark=*, teal, only marks] coordinates {(2.718, -0.49)};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\section*{35: Oscillazioni (Metodo dell'Inviluppo)}
+\textbf{Testo:} $f(x) = \frac{\sqrt{x}}{1+|\sin x|}$ per $x \ge 0$.
+
+\subsection*{1. Strategia:}
+Il calcolo diretto del segno della derivata porta a una disequazione trascendente irrisolvibile elementarmente. Procediamo per \textbf{maggiorazione e minorazione}.
+
+Sappiamo che $0 \le |\sin x| \le 1$. Quindi:
+\[ 1 \le 1+|\sin x| \le 2 \]
+Passando ai reciproci e moltiplicando per $\sqrt{x}$ (che è $\ge 0$), otteniamo la "gabbia":
+\[ \frac{\sqrt{x}}{2} \le f(x) \le \sqrt{x} \]
+
+\textbf{Interpretazione Grafica:}
+La funzione $f(x)$ oscilla infinite volte rimanendo sempre compresa tra la parabola $y=\frac{1}{2}\sqrt{x}$ e la parabola $y=\sqrt{x}$.
+\begin{itemize}
+    \item \textbf{Punti di contatto col "Soffitto" ($y=\sqrt{x}$):}
+    Avvengono quando $|\sin x|=0 \implies x = k\pi$.
+    In questi punti la funzione tocca il suo massimo locale "inviluppato".
+    
+    \item \textbf{Punti di contatto col "Pavimento" ($y=\frac{\sqrt{x}}{2}$):}
+    Avvengono quando $|\sin x|=1 \implies x = \frac{\pi}{2} + k\pi$.
+    In questi punti la funzione è schiacciata verso il basso.
+\end{itemize}
+
+\subsection*{2. Comportamento all'infinito}
+\[ \lim_{x \to +\infty} f(x) = +\infty \]
+Tuttavia, non ci va in modo lineare, ma oscillando tra $\sqrt{x}$ e $\frac{\sqrt{x}}{2}$. Non esiste asintoto obliquo.
+
+\subsection*{3. Analisi Qualitativa della Derivata}
+Per confermare l'oscillazione, calcoliamo la derivata (es. per $x \in (0, \pi)$ dove $\sin x > 0$):
+\[ f(x) = \frac{\sqrt{x}}{1+\sin x} \]
+\[ f'(x) = \frac{\frac{1}{2\sqrt{x}}(1+\sin x) - \sqrt{x}\cos x}{(1+\sin x)^2} = \frac{1+\sin x - 2x\cos x}{2\sqrt{x}(1+\sin x)^2} \]
+Per $x$ molto grandi ($x \to +\infty$), il termine dominante al numeratore è {$-2x \cos x$}.
+\begin{itemize}
+    \item Poiché $\cos x$ continua a cambiare segno periodicamente, anche $f'(x)$ cambierà segno infinite volte.
+    \item Questo conferma che ci sono \textbf{infiniti massimi e minimi locali} che si susseguono mentre la funzione sale verso infinito.
+\end{itemize}
+
+{In questi esercizi, se si vedono termini limitati (seno/coseno) al denominatore e termini che crescono ($\sqrt{x}, x$) al numeratore, usare sempre il metodo del confronto  invece della derivata}
+\noindent \textbf{Grafico } $f(x) = \frac{\sqrt{x}}{1+|\sin x|}$ per $x \ge 0$ \\
+\textit{Funzione positiva che oscilla tra $\frac{\sqrt{x}}{2}$ e $\sqrt{x}$. Presenta punti angolosi (cuspidi verso l'alto) in $x=k\pi$ dove tocca la parabola $\sqrt{x}$.}
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-1, xmax=14,       % Arriviamo circa a 4pi
+        ymin=0, ymax=4,         % sqrt(14) è < 4
+        samples=400,            % Campionamento alto per rendere le punte aguzze
+        grid=major,
+        width=12cm, height=7cm,
+        xtick={0, 3.14, 6.28, 9.42, 12.56},
+        xticklabels={$0$, $\pi$, $2\pi$, $3\pi$, $4\pi$}
+    ]
+        
+        % L'inviluppo superiore sqrt(x) (tratteggiato per riferimento)
+        \addplot[gray, dashed, domain=0:14] {sqrt(x)};
+        \node[gray, anchor=south east] at (axis cs:14, 3.7) {$y=\sqrt{x}$};
+
+        % La funzione vera e propria
+        \addplot[violet, thick, domain=0:14] {sqrt(x) / (1 + abs(sin(deg(x))))};
+        
+        % Etichetta su un punto angoloso
+        \node[anchor=south] at (axis cs:9.42, 3.1) {Angoloso};
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\section*{36. Integrabilità e Asintoti}
+\textbf{Testo:} $f(x) = \frac{x^3-x}{\sqrt{x^6+1}}$. Esiste finito $\int_{-\infty}^{+\infty} f(x) dx$?
+
+\subsection*{1. Simmetria }
+Prima di tutto, controlliamo la parità.
+\[ f(-x) = \frac{(-x)^3 - (-x)}{\sqrt{(-x)^6+1}} = \frac{-x^3+x}{\sqrt{x^6+1}} = -\frac{x^3-x}{\sqrt{x^6+1}} = -f(x) \]
+La funzione è \textbf{DISPARI} (simmetrica rispetto all'origine).
+Ci basterebbe studiarla per $x \ge 0$.
+
+\subsection*{2. Comportamento all'infinito }
+Calcoliamo i limiti per vedere se la funzione "si spegne" a zero.
+\[ \lim_{x \to +\infty} \frac{x^3-x}{\sqrt{x^6+1}} = \lim_{x \to +\infty} \frac{x^3(1 - 1/x^2)}{x^3\sqrt{1+1/x^6}} = 1 \]
+Dalla simmetria dispari:
+\[ \lim_{x \to -\infty} f(x) = -1 \]
+
+\textbf{Conclusione sugli Asintoti:}
+\begin{itemize}
+    \item Asintoto orizzontale destro: $y = 1$.
+    \item Asintoto orizzontale sinistro: $y = -1$.
+\end{itemize}
+
+
+
+\subsection*{3. Verdetto sull'Integrale}
+L'integrale improprio $\int_{-\infty}^{+\infty} f(x) \, dx$ richiede che l'area sottesa sia finita.
+Poiché $\lim_{x \to +\infty} f(x) = 1 \neq 0$, la funzione non è integrabile in senso generalizzato (l'area sotto la "coda" destra è infinita).
+
+\textbf{Risposta:} L'integrale \textbf{non esiste finito} (Diverge).
+
+\hrulefill
+
+\subsection*{se volessi fare la derivata? }
+Se si chiedesse i massimi/minimi locali, ecco come semplificare la "derivata mostruosa".
+\[ f'(x) = \frac{(3x^2-1)\sqrt{x^6+1} - (x^3-x)\frac{3x^5}{\sqrt{x^6+1}}}{x^6+1} \]
+Moltiplico sopra e sotto per la radice $\sqrt{x^6+1}$ per pulire il numeratore:
+\[ \text{Num} = (3x^2-1)(x^6+1) - 3x^5(x^3-x) \]
+Sviluppando e semplificando i termini di grado 8 ($3x^8 - 3x^8$ si elidono):
+\[ \text{Num} = 2x^6 + 3x^2 - 1 \]
+Ponendo $t=x^2$, risolvi $2t^3 + 3t - 1 = 0$.
+C'è una soluzione reale positiva tra 0 e 1.
+\textbf{NON serviva per rispondere alla domanda sull'integrale}
+
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-4, xmax=4,        % Mostra bene l'avvicinamento agli asintoti
+        ymin=-1.5, ymax=1.5,    % Focus sulla fascia [-1, 1]
+        samples=200,
+        grid=major,
+        width=10cm, height=6cm,
+        xtick={-1, 1},          % Evidenzia gli zeri non banali
+        ytick={-1, 1},          % Evidenzia i livelli degli asintoti
+    ]
+        
+        % La funzione
+        \addplot[magenta, thick, domain=-4:4] { (x^3 - x) / sqrt(x^6 + 1) };
+        
+        % Asintoti orizzontali
+        \draw[gray, dashed] (axis cs:-4, 1) -- (axis cs:4, 1);
+        \draw[gray, dashed] (axis cs:-4, -1) -- (axis cs:4, -1);
+        
+        % Etichette
+        \node[anchor=south east] at (axis cs:4, 1) {$y=1$};
+        \node[anchor=north west] at (axis cs:-4, -1) {$y=-1$};
+        
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section*{37. Studio della Funzione: $f(x) = \frac{x^2-1}{x^2-4}$}
+
+\subsection*{1. Dominio e Simmetrie}
+Il denominatore non deve annullarsi:
+\[ x^2 - 4 \neq 0 \implies x \neq \pm 2 \]
+\textbf{Dominio:} $D = \mathbb{R} \setminus \{-2, 2\} = (-\infty, -2) \cup (-2, 2) \cup (2, +\infty)$.
+
+Controlliamo le simmetrie:
+\[ f(-x) = \frac{(-x)^2-1}{(-x)^2-4} = \frac{x^2-1}{x^2-4} = f(x) \]
+La funzione è \textbf{Pari} (simmetrica rispetto all'asse $y$). Basta studiarla per $x \ge 0$.
+
+\subsection*{2. Segno della funzione}
+Poniamo $f(x) \ge 0$:
+\[ \frac{x^2-1}{x^2-4} \ge 0 \]
+
+Studio del segno (Numeratore e Denominatore):
+\begin{itemize}
+    \item $N \ge 0 \implies x^2 - 1 \ge 0 \implies x \le -1 \lor x \ge 1$
+    \item $D > 0 \implies x^2 - 4 > 0 \implies x < -2 \lor x > 2$
+\end{itemize}
+
+\begin{center}
+
+\begin{tabular}{ c | c c c c c c c c c }
+    $x$ & & $-2$ & & $-1$ & & $1$ & & $2$ & \\ \hline
+    Num & + & + & + & 0 & - & 0 & + & + & + \\
+    Den & + & 0 & - & - & - & - & - & 0 & + \\ \hline
+    $f(x)$ & \textbf{+} & $\nexists$ & \textbf{-} & \textbf{0} & \textbf{+} & \textbf{0} & \textbf{-} & $\nexists$ & \textbf{+} \\
+\end{tabular}
+\end{center}
+\textbf{Intersezioni con gli assi:}
+\begin{itemize}
+    \item Asse $x$ ($f(x)=0$): $x = \pm 1$
+    \item Asse $y$ ($x=0$): $f(0) = \frac{-1}{-4} = \frac{1}{4}$
+\end{itemize}
+
+\subsection*{3. Limiti e Asintoti}
+\textbf{Agli estremi del dominio ($\pm \infty$):}
+\[ \lim_{x \to \pm \infty} \frac{x^2-1}{x^2-4} = 1 \]
+C'è un \textbf{Asintoto Orizzontale} $y = 1$.
+
+\textbf{Nei punti di discontinuità ($x = \pm 2$):}
+\[ \lim_{x \to 2^+} \frac{x^2-1}{x^2-4} = \frac{3}{0^+} = +\infty \]
+\[ \lim_{x \to 2^-} \frac{x^2-1}{x^2-4} = \frac{3}{0^-} = -\infty \]
+C'è un \textbf{Asintoto Verticale} in $x = 2$ (e per simmetria in $x = -2$).
+
+\subsection*{4. Derivata Prima e Monotonia}
+Calcoliamo la derivata:
+\[ f'(x) = \frac{2x(x^2-4) - (x^2-1)(2x)}{(x^2-4)^2} \]
+Svolgendo i calcoli al numeratore:
+\[ 2x^3 - 8x - (2x^3 - 2x) = 2x^3 - 8x - 2x^3 + 2x = -6x \]
+Quindi:
+\[ f'(x) = \frac{-6x}{(x^2-4)^2} \]
+
+Studiamo il segno di $f'(x) \ge 0$:
+\begin{itemize}
+    \item Num: $-6x \ge 0 \implies x \le 0$
+    \item Den: $(x^2-4)^2 > 0$ sempre nel dominio.
+\end{itemize}
+
+La funzione è:
+\begin{itemize}
+    \item \textbf{Crescente} per $x < 0$ (e $x \neq -2$).
+    \item \textbf{Decrescente} per $x > 0$ (e $x \neq 2$).
+    \item \textbf{Massimo Relativo} in $M(0, \frac{1}{4})$.
+\end{itemize}
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = $x$,
+    ylabel = {$f(x)$},
+    ymin=-4, ymax=4,
+    xmin=-5, xmax=5,
+    grid=both,
+    width=10cm,
+    height=7cm
+]
+    % Asintoti Verticali
+    \draw [dashed, red] (axis cs:2,-4) -- (axis cs:2,4);
+    \draw [dashed, red] (axis cs:-2,-4) -- (axis cs:-2,4);
+    % Asintoto Orizzontale
+    \draw [dashed, blue] (axis cs:-5,1) -- (axis cs:5,1);
+
+    % Funzione (spezzata in tre parti per evitare le linee verticali sugli asintoti)
+    \addplot [domain=-5:-2.2, samples=50, thick, color=black] {(x^2-1)/(x^2-4)};
+    \addplot [domain=-1.8:1.8, samples=50, thick, color=black] {(x^2-1)/(x^2-4)};
+    \addplot [domain=2.2:5, samples=50, thick, color=black] {(x^2-1)/(x^2-4)};
+    
+    % Punto di Massimo
+    \addplot[mark=*] coordinates {(0,0.25)} node[above right]{Max};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+\section*{38. Invertibilità Locale }
+\textbf{Testo:} $f(x) = \frac{x^3+x^2+10x+1}{x^2+1}$.
+\begin{enumerate}
+    \item Trovare il più grande intervallo contenente l'origine ($x=0$) dove $f$ è invertibile.
+    \item Calcolare $(f^{-1})'(1)$.
+\end{enumerate}
+
+\subsection*{1. Studio della Derivata Prima}
+Per determinare l'invertibilità, cerchiamo gli intervalli di \textbf{stretta monotonia} (dove $f'(x)$ ha segno costante).
+Calcoliamo la derivata con la regola del quoziente:
+\[ f'(x) = \frac{D[Num] \cdot Den - Num \cdot D[Den]}{(Den)^2} \]
+Dove:
+\begin{itemize}
+    \item $D[Num] = 3x^2 + 2x + 10$
+    \item $D[Den] = 2x$
+\end{itemize}
+
+Sostituendo:
+\[ f'(x) = \frac{(3x^2+2x+10)(x^2+1) - (x^3+x^2+10x+1)(2x)}{(x^2+1)^2} \]
+
+\textbf{Semplificazione algebrica:}
+Svolgiamo i calcoli al numeratore per vedere cosa si cancella.
+\[ N(x) = (3x^4 + 3x^2 + 2x^3 + 2x + 10x^2 + 10) - (2x^4 + 2x^3 + 20x^2 + 2x) \]
+Raggruppiamo per potenze:
+\begin{itemize}
+    \item $x^4$: $3x^4 - 2x^4 = \mathbf{x^4}$
+    \item $x^3$: $2x^3 - 2x^3 = \mathbf{0}$ (Si cancellano!)
+    \item $x^2$: $3x^2 + 10x^2 - 20x^2 = \mathbf{-7x^2}$
+    \item $x$: $2x - 2x = \mathbf{0}$ (Si cancellano!)
+    \item Costanti: $\mathbf{10}$
+\end{itemize}
+
+La derivata semplificata è:
+\[ f'(x) = \frac{x^4 - 7x^2 + 10}{(x^2+1)^2} \]
+
+\subsection*{2. Ricerca dell'Intervallo di Invertibilità}
+Studiamo il segno di $f'(x) \ge 0$. Poiché il denominatore è un quadrato (sempre positivo), studiamo solo il numeratore:
+\[ x^4 - 7x^2 + 10 \ge 0 \]
+Poniamo $t = x^2$ (equazione biquadratica):
+\[ t^2 - 7t + 10 \ge 0 \]
+Le soluzioni dell'equazione associata sono $t_{1,2} = \frac{7 \pm \sqrt{49-40}}{2} = \frac{7 \pm 3}{2} \implies t=2, t=5$.
+La disequazione è verificata per valori esterni:
+\[ t \le 2 \quad \cup \quad t \ge 5 \]
+
+Torniamo alla variabile $x$:
+\begin{itemize}
+    \item $x^2 \le 2 \implies -\sqrt{2} \le x \le \sqrt{2}$
+    \item $x^2 \ge 5 \implies x \le -\sqrt{5} \cup x \ge \sqrt{5}$
+\end{itemize}
+
+\textbf{Scelta dell'Intervallo:}
+La funzione è crescente (quindi invertibile) in tre zone separate.
+Il testo chiede l'intervallo \textbf{contenente l'origine} ($x=0$).
+L'unico intervallo tra questi che include lo $0$ è $[-\sqrt{2}, \sqrt{2}]$.
+
+\boxed{\text{Intervallo di invertibilità: } [-\sqrt{2}, \sqrt{2}]}
+
+\subsection*{3. Calcolo della Derivata dell'Inversa}
+Vogliamo calcolare $(f^{-1})'(y_0)$ con $y_0 = 1$.
+Usiamo il Teorema della Derivata della Funzione Inversa:
+\[ (f^{-1})'(y_0) = \frac{1}{f'(x_0)} \]
+dove $x_0$ è il punto tale che $f(x_0) = y_0 = 1$.
+
+\textbf{Passo A: Trovare $x_0$}
+Risolviamo l'equazione $f(x) = 1$:
+\[ \frac{x^3+x^2+10x+1}{x^2+1} = 1 \]
+\[ x^3+x^2+10x+1 = x^2+1 \]
+Semplificando $x^2$ e $1$ da entrambi i lati:
+\[ x^3 + 10x = 0 \implies x(x^2+10) = 0 \]
+Poiché $x^2+10$ non è mai zero, l'unica soluzione è $\mathbf{x_0 = 0}$.
+(Nota: $0$ appartiene al nostro intervallo di invertibilità, quindi è accettabile).
+
+\textbf{Passo B: Calcolare $f'(0)$}
+Usiamo la formula della derivata trovata al punto 1:
+\[ f'(0) = \frac{0^4 - 7(0)^2 + 10}{(0^2+1)^2} = \frac{10}{1} = 10 \]
+
+\textbf{Passo C: Conclusione}
+\[ (f^{-1})'(1) = \frac{1}{f'(0)} = \frac{1}{10} \]
+
+\boxed{(f^{-1})'(1) = \frac{1}{10}}
+
+
+
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-5, xmax=5,        % Mostra l'asintoto ai lati
+        ymin=-1, ymax=11,       % Deve arrivare fino a 10
+        samples=200,
+        grid=major,
+        width=10cm, height=8cm,
+        ytick={1, 5, 10},       % Evidenzia l'asintoto e il massimo
+        xtick={-2, 2}           % Riferimenti X semplici
+    ]
+        
+        % Asintoto orizzontale y=1
+        \addplot[gray, dashed, domain=-5:5] {1};
+        \node[gray, anchor=south east] at (axis cs:5, 1) {$y=1$};
+
+        % La funzione
+        \addplot[blue, thick, domain=-5:5] { (x^4 - 7*x^2 + 10) / ( (x^2+1)^2 ) };
+        
+        % Etichetta Massimo
+        \node[anchor=south] at (axis cs:0, 10) {Max $(0,10)$};
+        
+        % Etichetta Zeri (indicativa)
+        \node[anchor=north, font=\footnotesize] at (axis cs:2, -0.2) {$\sqrt{2}, \sqrt{5}$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\section*{39. Studio Misto e Integrale Improprio}
+\textbf{Funzione:} $f(x) = \frac{e^x(5x-3)}{x^2+2x-3}$.
+
+\subsection*{1. Dominio (Fondamentale per l'integrale)}
+Denominatore $\ne 0$:
+\[ x^2+2x-3 \ne 0 \implies (x+3)(x-1) \ne 0 \]
+Dominio: $D = \mathbb{R} \setminus \{-3, 1\}$.
+
+\subsection*{2. Derivata Prima (Gestione dei calcoli)}
+Usiamo la regola del quoziente.
+\begin{itemize}
+    \item \textbf{Derivata Numeratore ($N'$):}
+    Usiamo la regola del prodotto su $e^x(5x-3)$.
+    Ricorda il trucco: $D[e^x \cdot P(x)] = e^x(P(x) + P'(x))$.
+    \[ N' = e^x(5x-3 + 5) = e^x(5x+2) \]
+    \item \textbf{Derivata Denominatore ($D'$):}
+    \[ D' = 2x+2 \]
+\end{itemize}
+
+Componiamo la frazione:
+\[ f'(x) = \frac{e^x(5x+2)(x^2+2x-3) - e^x(5x-3)(2x+2)}{(x^2+2x-3)^2} \]
+
+\textbf{Semplificazione Intelligente:}
+Raccogliamo $e^x$ a fattor comune totale al numeratore \textbf{prima} di fare le moltiplicazioni.
+\[ \text{Num} = e^x \Big[ \underbrace{(5x+2)(x^2+2x-3)}_{\text{Blocco A}} - \underbrace{(5x-3)(2x+2)}_{\text{Blocco B}} \Big] \]
+
+Svolgiamo i conti dentro la parentesi quadra:
+\begin{itemize}
+    \item \textbf{Blocco A:} $5x^3 + 10x^2 - 15x + 2x^2 + 4x - 6 = 5x^3 + 12x^2 - 11x - 6$
+    \item \textbf{Blocco B:} $10x^2 + 10x - 6x - 6 = 10x^2 + 4x - 6$
+\end{itemize}
+
+Sottraiamo ($A - B$):
+\begin{itemize}
+    \item $x^3$: $5x^3$
+    \item $x^2$: $12x^2 - 10x^2 = \mathbf{2x^2}$
+    \item $x$: $-11x - 4x = \mathbf{-15x}$
+    \item Costanti: $-6 - (-6) = \mathbf{0}$ (Si cancellano)
+\end{itemize}
+
+Derivata finale:
+\[ f'(x) = \frac{e^x(5x^3 + 2x^2 - 15x)}{(x^2+2x-3)^2} = \frac{x \cdot e^x (5x^2+2x-15)}{(x^2+2x-3)^2} \]
+
+\subsection*{3. Studio del Segno (Max/Min)}
+$e^x$ e il denominatore quadrato sono sempre positivi. Studiamo solo:
+\[ x(5x^2+2x-15) \ge 0 \]
+\begin{itemize}
+    \item Fattore 1: $x \ge 0$.
+    \item Fattore 2: $5x^2+2x-15 \ge 0$.
+    Radici: $x_{1,2} = \frac{-1 \pm \sqrt{1 - 5(-15)}}{5} = \frac{-1 \pm \sqrt{76}}{5} \approx \frac{-1 \pm 8.7}{5}$.
+    Valori approx: $x \approx 1.5$ e $x \approx -1.9$.
+\end{itemize}
+
+
+\hrulefill
+
+\subsection*{4. Integrale Improprio (Trappola)}
+Testo: $\int_{-\infty}^{-2} f(x) \, dx$.
+Guardiamo l'intervallo di integrazione: $(-\infty, -2]$.
+
+\textbf{Controlliamo i punti critici nel dominio:}
+Il dominio esclude $x = -3$ e $x = 1$.
+Notiamo che $\mathbf{x = -3}$ cade DENTRO l'intervallo di integrazione!
+L'integrale va spezzato:
+\[ \int_{-\infty}^{-3} f(x) dx + \int_{-3}^{-2} f(x) dx \]
+
+\textbf{Analisi Asintotica locale ($x \to -3$):}
+Sostituiamo $x=-3$ nella parte "tranquilla" della funzione per vedere come si comporta la singolarità.
+\[ f(x) = \frac{e^x(5x-3)}{(x+3)(x-1)} \]
+Per $x \to -3$:
+\begin{itemize}
+    \item Numeratore $\to e^{-3}(-15-3) \approx \text{numero finito } \ne 0$.
+    \item Denominatore (parte $x-1$) $\to -4$.
+    \item Denominatore (parte $x+3$) $\to 0$ (infinitesimo di ordine 1).
+\end{itemize}
+Quindi:
+\[ f(x) \sim \frac{C}{x+3} \]
+L'infinito è di \textbf{ordine 1}.
+Poiché l'ordine $\alpha = 1 \ge 1$, l'integrale \textbf{DIVERGE} in prossimità dell'asintoto verticale.
+
+\textbf{Conclusione:}
+Non serve nemmeno guardare cosa succede a $-\infty$. Basta che diverga in un punto ($x=-3$) perché tutto l'integrale diverga.
+\boxed{\text{L'integrale DIVERGE positivamente.}}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin=-7, xmax=3,        % Intervallo utile
+        ymin=-10, ymax=10,      % Taglio verticale per gestire gli asintoti
+        restrict y to domain=-15:15, % Sicurezza extra per valori enormi
+        samples=200,
+        grid=major,
+        width=10cm, height=8cm,
+        xtick={-3, 0.6, 1},     % Mostro asintoti e lo zero
+        xticklabels={$-3$, $0.6$, $1$}
+    ]
+        
+        % Definizione della funzione per brevità
+        % exp(x)*(5*x-3)/(x^2+2*x-3)
+        
+        % Ramo 1: x < -3
+        \addplot[teal, thick, domain=-7:-3.1] {exp(x)*(5*x-3)/(x^2+2*x-3)};
+        
+        % Ramo 2: -3 < x < 1
+        \addplot[teal, thick, domain=-2.9:0.9] {exp(x)*(5*x-3)/(x^2+2*x-3)};
+        
+        % Ramo 3: x > 1
+        \addplot[teal, thick, domain=1.1:2.5] {exp(x)*(5*x-3)/(x^2+2*x-3)};
+        
+        % Asintoti verticali
+        \draw[red, dashed] (axis cs:-3, -10) -- (axis cs:-3, 10);
+        \draw[red, dashed] (axis cs:1, -10) -- (axis cs:1, 10);
+        
+        % Zero della funzione
+        \addplot[mark=*, black, only marks, mark size=1.5pt] coordinates {(0.6, 0)};
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{document}
