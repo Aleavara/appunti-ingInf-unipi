@@ -1,0 +1,112 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+% Impostazioni margini
+\geometry{margin=1.5cm}
+
+\title{\textbf{Risoluzione esercizi Algebra Lineare}}
+\author{Alessio Avarappattu}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Calcolo Dimensioni e Basi: Nucleo (Kernel) e Immagine}
+\textit{procedure standard per determinare le proprietà fondamentali di trasformazioni lineari espresse sia tramite matrici esplicite che tramite definizioni funzionali.}
+
+\hrule
+\vspace{0.5cm}
+
+\begin{multicols}{2}
+
+\subsection*{1. Calcolo con MATRICI}
+L'approccio matriciale si basa sulla riduzione a scala (Algoritmo di Gauss).
+
+\medskip
+\textbf{Procedura:}
+\begin{enumerate}
+    \item Scrivere la matrice $A$ associata.
+    \item Ridurre $A$ in una forma a scala.
+    \item \textbf{Immagine ($Im$):} La dimensione è pari al numero di pivot. Una base è data dalle colonne della matrice \textbf{originale} $A$ in corrispondenza dei pivot.
+    \item \textbf{Nucleo ($Ker$):} Risolvere il sistema omogeneo $Ux = 0$. La dimensione è $n - r$ (colonne - pivot).
+\end{enumerate}
+
+\textbf{Esempio Svolto:}
+$A = \begin{pmatrix} 1 & 2 & 0 \\ 1 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix} \to \text{Gauss} \to \begin{pmatrix} \mathbf{1} & 2 & 0 \\ 0 & 0 & \mathbf{1} \\ 0 & 0 & 0 \end{pmatrix}$
+
+\begin{itemize}
+    \item \textbf{Dim Im:} 2 (due pivot).
+    \item \textbf{Base Im:} $\{ (1, 1, 0), (0, 1, 1) \}$.
+    \item \textbf{Dim Ker:} $3 - 2 = 1$.
+    \item \textbf{Base Ker:} Risolvendo $x+2y=0$ e $z=0$, ponendo $y=1$ otteniamo $\{ (-2, 1, 0) \}$.
+\end{itemize}
+
+\columnbreak
+
+\subsection*{2. Calcolo con APPLICAZIONI}
+Nelle applicazioni (polinomi, funzioni), il segreto è costruire la matrice rappresentativa rispetto alle basi canoniche.
+
+\medskip
+\textbf{Procedura:}
+\begin{enumerate}
+    \item Scegliere le basi canoniche per dominio e codominio.
+    \item Calcolare l'immagine di ogni vettore della base del dominio.
+    \item Mettere i risultati in colonna per formare la matrice $M$.
+    \item Procedere con Gauss su $M$ come nel caso precedente.
+\end{enumerate}
+
+\textbf{Esempio Svolto ($T: P_2 \to P_1, T(p)=p'$):}
+Basi: $\mathcal{B}_{in} = \{1, x, x^2\}$, $\mathcal{B}_{out} = \{1, x\}$.
+
+\begin{itemize}
+    \item $T(1) = 0 \to \text{colonna } \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    \item $T(x) = 1 \to \text{colonna } \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+    \item $T(x^2) = 2x \to \text{colonna } \begin{pmatrix} 0 \\ 2 \end{pmatrix}$
+\end{itemize}
+
+Matrice $M = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$
+\begin{itemize}
+    \item \textbf{Dim Im:} 2. Base: $\{1, x\}$ (suriettiva).
+    \item \textbf{Dim Ker:} $3 - 2 = 1$.
+    \item \textbf{Base Ker:} La prima colonna è nulla, corrisponde al vettore base $\{1\}$ (le costanti).
+\end{itemize}
+
+\end{multicols}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.3cm}
+\textbf{Nota bene:} Ricorda il \textit{Teorema del Rango}: 
+$$\dim(V_{partenza}) = \dim(\ker T) + \dim(\text{Im } T)$$
+\section*{Determinazione di immagini tramite linearità}
+\textit{Quando conosciamo l'immagine di alcuni vettori e vogliamo trovarne un'altra, usiamo il sistema delle immagini.}
+
+\textbf{Esempio:} Dati $f(e_1+e_2+e_3)=e_2, f(e_1-e_3)=e_1, f(e_2-e_1)=e_2$. Trovare $f(e_1)$.
+
+\textbf{Metodo del Sistema:}
+Poniamo $v_1=f(e_1), v_2=f(e_2), v_3=f(e_3)$.
+\begin{enumerate}
+    \item $v_1 + v_2 + v_3 = e_2$
+    \item $v_1 - v_3 = e_1 \implies v_3 = v_1 - e_1$
+    \item $v_2 - v_1 = e_2 \implies v_2 = v_1 + e_2$
+\end{enumerate}
+
+Sostituendo (2) e (3) nella (1):
+$v_1 + (v_1 + e_2) + (v_1 - e_1) = e_2 \implies 3v_1 - e_1 = 0 \implies \mathbf{f(e_1) = \frac{1}{3}e_1}$
+
+\begin{center}
+\fcolorbox{black}{yellow!10}{
+\begin{minipage}{0.8\textwidth}
+\textbf{REGOLA:} In un'applicazione lineare $f: V \to W$, le immagini dei vettori della base di $V$ vanno scritte SEMPRE in \textbf{colonna}. 
+\\ \textit{Il numero di colonne = dimensione partenza. Il numero di righe = dimensione arrivo.}
+\end{minipage}}
+\end{center}
+\end{document}
