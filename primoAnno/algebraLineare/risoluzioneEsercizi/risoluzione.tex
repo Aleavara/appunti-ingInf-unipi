@@ -7,27 +7,44 @@
 \usepackage{geometry}
 \usepackage{multicol}
 \usepackage{xcolor}
+\usepackage{tcolorbox}
 
-% Impostazioni margini
+ \usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
 \geometry{margin=1.5cm}
 
-\title{\textbf{Risoluzione esercizi Algebra Lineare}}
+\title{\textbf{Algebra Lineare: Guida risoluzione esercizi}}
 \author{Alessio Avarappattu}
-\date{\today}
 
 \begin{document}
 
 \maketitle
+\section*{}
 
-\section*{Calcolo Dimensioni e Basi: Nucleo (Kernel) e Immagine}
-\textit{procedure standard per determinare le proprietà fondamentali di trasformazioni lineari espresse sia tramite matrici esplicite che tramite definizioni funzionali.}
+Questa guida segue la linea didattica del corso di \textbf{Algebra Lineare} del Prof. Giovanni Gaiffi (Ingegneria Informatica, @Unipi).
+
+\medskip
+
+\textbf{Prerequisiti}
+\\ I concetti teorici fondamentali sono dati per assodati. Per chi volesse rivedere i concetti principali (schema riassuntivo), gran parte della trattazione teorica è stata pubblicata ed è consultabile liberamente su \href{https://uni.alessioavara.it/algebra-lineare/teoria}{\textbf{uni.alessioavara.it}}.
+Questo documento non sostituisce lo studio della teoria, ha il solo obiettivo di metterla in pratica.
+
+\medskip
+
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+\section*{1. Calcolo Dimensioni e Basi: Nucleo (Kernel) e Immagine}
+\textit{Procedure standard per determinare le proprietà fondamentali di trasformazioni lineari espresse sia tramite matrici esplicite che tramite definizioni funzionali.}
 
 \hrule
-\vspace{0.5cm}
+\vspace{0.4cm}
 
 \begin{multicols}{2}
 
-\subsection*{1. Calcolo con MATRICI}
+\subsection*{1.1 Calcolo con MATRICI}
 L'approccio matriciale si basa sulla riduzione a scala (Algoritmo di Gauss).
 
 \medskip
@@ -36,77 +53,780 @@ L'approccio matriciale si basa sulla riduzione a scala (Algoritmo di Gauss).
     \item Scrivere la matrice $A$ associata.
     \item Ridurre $A$ in una forma a scala.
     \item \textbf{Immagine ($Im$):} La dimensione è pari al numero di pivot. Una base è data dalle colonne della matrice \textbf{originale} $A$ in corrispondenza dei pivot.
-    \item \textbf{Nucleo ($Ker$):} Risolvere il sistema omogeneo $Ux = 0$. La dimensione è $n - r$ (colonne - pivot).
+    \item \textbf{Nucleo ($Ker$):} Risolvere il sistema omogeneo $Ax = 0$. La dimensione è $n - r$ (colonne - pivot).
 \end{enumerate}
 
 \textbf{Esempio Svolto:}
-$A = \begin{pmatrix} 1 & 2 & 0 \\ 1 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix} \to \text{Gauss} \to \begin{pmatrix} \mathbf{1} & 2 & 0 \\ 0 & 0 & \mathbf{1} \\ 0 & 0 & 0 \end{pmatrix}$
+$A = \begin{pmatrix} 1 & 2 & 0 \\ 1 & 2 & 1 \\ 0 & 0 & 1 \end{pmatrix} \xrightarrow{\text{Gauss}} \begin{pmatrix} \mathbf{1} & 2 & 0 \\ 0 & 0 & \mathbf{1} \\ 0 & 0 & 0 \end{pmatrix}$
 
 \begin{itemize}
     \item \textbf{Dim Im:} 2 (due pivot).
     \item \textbf{Base Im:} $\{ (1, 1, 0), (0, 1, 1) \}$.
     \item \textbf{Dim Ker:} $3 - 2 = 1$.
-    \item \textbf{Base Ker:} Risolvendo $x+2y=0$ e $z=0$, ponendo $y=1$ otteniamo $\{ (-2, 1, 0) \}$.
+    \item \textbf{Base Ker:} Risolvendo il sistema, ponendo $y=1$ otteniamo $\{ (-2, 1, 0) \}$.
 \end{itemize}
 
 \columnbreak
 
-\subsection*{2. Calcolo con APPLICAZIONI}
-Nelle applicazioni (polinomi, funzioni), il segreto è costruire la matrice rappresentativa rispetto alle basi canoniche.
+\subsection*{1.2 Calcolo con APPLICAZIONI}
+Nelle applicazioni (polinomi, funzioni), si costruisce la matrice rappresentativa rispetto alle basi canoniche.
 
 \medskip
 \textbf{Procedura:}
 \begin{enumerate}
     \item Scegliere le basi canoniche per dominio e codominio.
     \item Calcolare l'immagine di ogni vettore della base del dominio.
-    \item Mettere i risultati in colonna per formare la matrice $M$.
-    \item Procedere con Gauss su $M$ come nel caso precedente.
+    \item Inserire i vettori risultanti in \textbf{colonna} per formare la matrice $M$.
+    \item Procedere con Gauss su $M$.
 \end{enumerate}
 
 \textbf{Esempio Svolto ($T: P_2 \to P_1, T(p)=p'$):}
 Basi: $\mathcal{B}_{in} = \{1, x, x^2\}$, $\mathcal{B}_{out} = \{1, x\}$.
 
 \begin{itemize}
-    \item $T(1) = 0 \to \text{colonna } \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-    \item $T(x) = 1 \to \text{colonna } \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
-    \item $T(x^2) = 2x \to \text{colonna } \begin{pmatrix} 0 \\ 2 \end{pmatrix}$
+    \item $T(1) = 0 \to \text{colonna } (0, 0)^T$
+    \item $T(x) = 1 \to \text{colonna } (1, 0)^T$
+    \item $T(x^2) = 2x \to \text{colonna } (0, 2)^T$
 \end{itemize}
 
 Matrice $M = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$
 \begin{itemize}
     \item \textbf{Dim Im:} 2. Base: $\{1, x\}$ (suriettiva).
-    \item \textbf{Dim Ker:} $3 - 2 = 1$.
-    \item \textbf{Base Ker:} La prima colonna è nulla, corrisponde al vettore base $\{1\}$ (le costanti).
+    \item \textbf{Dim Ker:} $3 - 2 = 1$. Base: $\{1\}$ (costanti).
 \end{itemize}
 
 \end{multicols}
 
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{2. Iniettività e Suriettività: Criteri Rapidi}
+Sia $f: V \to W$ un'applicazione lineare e $A$ la matrice associata $m \times n$ (dove $n = \dim(V)$ e $m = \dim(W)$).
+
+\begin{itemize}
+    \item \textbf{Iniettività:} $f$ è iniettiva se e solo se trasforma vettori distinti in immagini distinte.
+    \begin{itemize}
+        \item \textbf{Condizione Nucleo:} $\ker(f) = \{0\}$.
+        \item \textbf{Condizione Rango:} $rg(A) = n$ (il rango è massimo, pari al numero di colonne).
+        \item \textbf{Nota Pratica:} Se ci sono colonne senza pivot, \textbf{non} è iniettiva.
+        \item \textbf{Matrici Alte ($m > n$):} Possono essere iniettive, mai suriettive.
+    \end{itemize}
+    
+    \item \textbf{Suriettività:} $f$ è suriettiva se l'Immagine coincide con il Codominio.
+    \begin{itemize}
+        \item \textbf{Condizione Immagine:} $\dim(\text{Im } f) = m$.
+        \item \textbf{Condizione Rango:} $rg(A) = m$ (il rango è pari al numero di righe).
+        \item \textbf{Nota Pratica:} Se dopo Gauss c'è una riga nulla (e $m=n$), \textbf{non} è suriettiva.
+        \item \textbf{Matrici Larghe ($n > m$):} Possono essere suriettive, mai iniettive.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Sintesi per Matrici Quadrate ($n \times n$):}
+Se $\det(A) \neq 0$, l'applicazione è un \textbf{Isomorfismo} (Biettiva).
+
+
+
 \vspace{0.5cm}
 \hrule
-\vspace{0.3cm}
-\textbf{Nota bene:} Ricorda il \textit{Teorema del Rango}: 
-$$\dim(V_{partenza}) = \dim(\ker T) + \dim(\text{Im } T)$$
-\section*{Determinazione di immagini tramite linearità}
-\textit{Quando conosciamo l'immagine di alcuni vettori e vogliamo trovarne un'altra, usiamo il sistema delle immagini.}
+\vspace{0.5cm}
+
+\section*{3. Determinazione di Immagini tramite Linearità}
+\textit{Metodo per calcolare l'immagine di un vettore generico conoscendo le immagini di una base o di un set di vettori.}
 
 \textbf{Esempio:} Dati $f(e_1+e_2+e_3)=e_2, f(e_1-e_3)=e_1, f(e_2-e_1)=e_2$. Trovare $f(e_1)$.
 
-\textbf{Metodo del Sistema:}
-Poniamo $v_1=f(e_1), v_2=f(e_2), v_3=f(e_3)$.
+\textbf{Svolgimento:}
+Poniamo $v_1=f(e_1), v_2=f(e_2), v_3=f(e_3)$. Impostiamo il sistema vettoriale:
 \begin{enumerate}
     \item $v_1 + v_2 + v_3 = e_2$
     \item $v_1 - v_3 = e_1 \implies v_3 = v_1 - e_1$
     \item $v_2 - v_1 = e_2 \implies v_2 = v_1 + e_2$
 \end{enumerate}
 
-Sostituendo (2) e (3) nella (1):
-$v_1 + (v_1 + e_2) + (v_1 - e_1) = e_2 \implies 3v_1 - e_1 = 0 \implies \mathbf{f(e_1) = \frac{1}{3}e_1}$
+Sostituendo le espressioni (2) e (3) nella (1):
+\[ v_1 + (v_1 + e_2) + (v_1 - e_1) = e_2 \]
+\[ 3v_1 - e_1 = 0 \implies 3v_1 = e_1 \]
+\[ \mathbf{f(e_1) = \frac{1}{3}e_1} \]
 
-\begin{center}
-\fcolorbox{black}{yellow!10}{
-\begin{minipage}{0.8\textwidth}
-\textbf{REGOLA:} In un'applicazione lineare $f: V \to W$, le immagini dei vettori della base di $V$ vanno scritte SEMPRE in \textbf{colonna}. 
-\\ \textit{Il numero di colonne = dimensione partenza. Il numero di righe = dimensione arrivo.}
-\end{minipage}}
-\end{center}
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{4. Verifica della Linearità}
+Analisi di mappe $T: X \to X$ per determinare la linearità al variare di parametri.
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Nota Fondamentale sul Calcolo]
+Durante la verifica dell'omogeneità $T(kf)$, lo scalare $k$ è una \textbf{costante reale}. 
+Secondo le regole di derivazione, la costante esce dall'operatore derivata:
+\[ (k \cdot f(x))' = k \cdot f'(x) \]
+\textbf{Attenzione:} Non scrivere $k'$ (derivata di $k$ rispetto a $x$), poiché essendo costante varrebbe 0.
+\end{tcolorbox}
+
+\subsection*{4.1 Algoritmo di Verifica}
+\begin{enumerate}
+    \item \textbf{Test dello Zero:} Calcola $T(0)$. Se $T(0) \neq 0$, allora \textbf{NON LINEARE}.
+    \item \textbf{Test della Costante ($k$):} Calcola $T(kf)$ sostituendo ogni $f$ con $kf$. Confronta con $k \cdot T(f)$. Se compaiono potenze ($k^2$) o valori assoluti ($|k|$), \textbf{NON LINEARE}.
+    \item \textbf{Test della Somma:} Verifica $T(f+g) = T(f) + T(g)$.
+\end{enumerate}
+
+\subsection*{4.2 Esercizi Svolti}
+
+\textbf{Esercizio 1: $T(f)(x) = |f'(x)| + a f(x)$}
+\begin{itemize}
+    \item \textbf{Verifica Omogeneità:} Calcoliamo $T(kf) = |(kf)'| + a(kf)$.
+    \item Poiché $k$ è costante: $|k f'| + akf = |k| \cdot |f'| + akf$.
+    \item Confrontiamo con $k \cdot T(f) = k |f'| + akf$.
+    \item \textbf{Analisi:} Se $k < 0$, allora $|k| \neq k$. L'uguaglianza non regge.
+    \item \textbf{Soluzione:} Mai lineare per alcun valore di $a$.
+\end{itemize}
+
+\textbf{Esercizio 2: $T(f)(x) = f(x)^a + b$}
+\begin{itemize}
+    \item \textbf{Test dello Zero:} $T(0) = 0^a + b = b$. Per essere lineare, deve essere $b=0$.
+    \item \textbf{Test Omogeneità (con $b=0$):} $T(kf) = (kf)^a = k^a f^a$.
+    \item Confrontiamo con $k T(f) = k f^a$. L'uguaglianza $k^a = k$ vale per ogni $k$ solo se $a=1$.
+    \item \textbf{Soluzione:} Lineare se e solo se $a=1$ e $b=0$.
+\end{itemize}
+
+\textbf{Esercizio 3: $T(f)(x) = f(x^2) + a x f'(x)$}
+\begin{itemize}
+    \item \textbf{Test Omogeneità:} $T(kf) = (kf)(x^2) + ax(kf)'(x)$.
+    \item Applicando la proprietà della costante: $k f(x^2) + ax(k f'(x))$.
+    \item Raccogliamo $k$: $k [ f(x^2) + ax f'(x) ]$.
+    \item Questo coincide esattamente con $k \cdot T(f)$. Le operazioni sull'argomento ($x^2$) non influenzano la linearità di $f$.
+    \item \textbf{Soluzione:} Lineare per ogni $a \in \mathbb{R}$.
+\end{itemize}
+
+\textbf{Esercizio 4: $T(f) = \int_{0}^{1} [f(t) + a]^2 dt$}
+\begin{itemize}
+    \item Sviluppando il quadrato: $T(f) = \int (f^2 + 2af + a^2) dt$.
+    \item Il termine $f^2$ comporta che $T(kf)$ conterrà un termine $k^2 f^2$, violando la condizione di omogeneità ($k^2 \neq k$).
+    \item \textbf{Soluzione:} Mai lineare.
+\end{itemize}
+
+\textbf{Esercizio 5: $T(f)(x) = a f'(x+1) + b f(x) + c$}
+\begin{itemize}
+    \item \textbf{Test dello Zero:} $T(0) = a(0) + b(0) + c = c$. Condizione necessaria: $c=0$.
+    \item \textbf{Test Omogeneità (con $c=0$):} $T(kf) = a(kf)'(x+1) + b(kf)(x)$.
+    \item Estraiamo la costante $k$: $k [ a f'(x+1) + b f(x) ]$.
+    \item L'espressione coincide con $k T(f)$.
+    \item \textbf{Soluzione:} Lineare se $c=0$, per ogni $a, b \in \mathbb{R}$.
+\end{itemize}
+\section*{5. Sottospazi Vettoriali: Intersezione e Somma}
+\textit{Analisi delle dimensioni, rappresentazioni cartesiane vs parametriche e Teorema di Grassmann.}
+
+\hrule
+\vspace{0.4cm}
+
+\subsection*{5.1 Rappresentazioni dei Sottospazi}
+Un sottospazio $U \subseteq \mathbb{R}^n$ può essere descritto in due modi:
+\begin{enumerate}
+    \item \textbf{Rappresentazione Parametrica (Span):}
+    $U = \text{span}\{v_1, v_2, \dots, v_k\}$.
+    È una matrice che genera vettori. La dimensione è il numero di vettori linearmente indipendenti.
+    
+    \item \textbf{Rappresentazione Cartesiana (Equazioni):}
+    $U = \{ x \in \mathbb{R}^n \mid Ax = 0 \}$.
+    È un'unica equazione/sistema composto da equazioni omogenee.
+\end{enumerate}
+
+\vspace{0.3cm}
+
+% Riquadro Professionale sulla Relazione Equazioni-Dimensioni
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, title=\textbf{Rettifica}]
+Nello spazio vettoriale $\mathbb{R}^n$, ogni equazione cartesiana lineare indipendente agisce come un vincolo che rimuove un grado di libertà.
+
+\begin{itemize}
+    \item \textbf{Regola della Dimensione:}
+    \[ \dim(U) = n - \text{numero di equazioni linearmente indipendenti} \]
+    Dove $n$ è la dimensione dello spazio (es. 4 per $\mathbb{R}^4$).
+    
+    \item \textbf{Interpretazione Matriciale:}
+    Un sistema di $k$ equazioni in $n$ incognite corrisponde a una matrice $k \times n$. Ogni equazione è una \textbf{RIGA} della matrice.
+    \[ \dim(U) = n - \text{rango(Matrice dei coefficienti)} \]
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\subsection*{5.2 Intersezione di Sottospazi ($U \cap W$)}
+il metodo di risoluzione dipende da come sono forniti i dati.
+
+\textbf{CASO A: Equazioni + Equazioni}
+Se $U$ e $W$ sono entrambi definiti da equazioni cartesiane, l'intersezione deve soddisfare \textbf{tutte} le equazioni contemporaneamente.
+\begin{enumerate}
+    \item Si scrive un unico sistema contenente le equazioni di $U$ e quelle di $W$.
+    \item Si risolve il sistema omogeneo risultante.
+    \item La soluzione è la base di $U \cap W$.
+\end{enumerate}
+
+\textbf{Esempio $\mathbb{R}^4$:}
+$U: \begin{cases} x_1+x_2=0 \\ x_3=0 \end{cases}, \quad W: \begin{cases} x_1-x_4=0 \\ x_2+x_3=0 \end{cases}$
+\\ $\implies$ Sistema unico $4 \times 4$. Se la soluzione è solo $(0,0,0,0)$, allora $\dim(U \cap W) = 0$.
+
+\medskip
+
+\textbf{CASO B: Span + Equazioni (Metodo di Sostituzione)}
+\textit{: Inserire il "vettore generico" dello Span dentro l'equazione cartesiana.}
+
+\textbf{Esempio Svolto:}
+Siano $U: x - y + z = 0$ e $W = \text{span}\{ (1, 0, 1), (0, 1, 0) \} \subset \mathbb{R}^3$.
+\begin{enumerate}
+    \item \textbf{Costruzione Vettore Generico di $W$:}
+    \[ w = \alpha(1, 0, 1) + \beta(0, 1, 0) = (\alpha, \beta, \alpha) \]
+    
+    \item \textbf{Sostituzione nell'equazione di $U$:}
+    L'equazione chiede che $(coord_X) - (coord_Y) + (coord_Z) = 0$. Sostituiamo:
+    \[ (\alpha) - (\beta) + (\alpha) = 0 \implies 2\alpha - \beta = 0 \]
+    
+    \item \textbf{Relazione tra parametri:}
+    Dall'equazione ricaviamo il vincolo: $\mathbf{\beta = 2\alpha}$.
+    
+    \item \textbf{Calcolo Base:}
+    Torniamo al vettore generico $(\alpha, \beta, \alpha)$ e applichiamo $\beta = 2\alpha$:
+    \[ w_{int} = (\alpha, 2\alpha, \alpha) = \alpha(1, 2, 1) \]
+    \textbf{Base Intersezione:} $\{ (1, 2, 1) \}$. \textbf{Dim:} 1.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\textbf{CASO C: Span + Span}
+\textit{: Convertire il sottospazio più semplice in equazioni cartesiane e ricadere nel Caso B.}
+
+
+
+\textbf{Esempio Svolto:}
+Siano $U = \text{span}\{ (1, 1, 0), (0, 0, 1) \}$ e $W = \text{span}\{ (1, 0, 2), (0, 1, 0) \}$.
+
+\begin{enumerate}
+    \item \textbf{Conversione di $U$ in Cartesiana:}
+    Osservando i generatori di $U$: $x$ e $y$ sono uguali nel primo vettore e nulli nel secondo. $z$ è libero.
+    Si nota a occhio che $x = y$. Oppure, risolvendo il sistema, l'equazione di $U$ è:
+    \[ x - y = 0 \]
+    
+    \item \textbf{Vettore Generico di $W$:}
+    \[ w = \alpha(1, 0, 2) + \beta(0, 1, 0) = (\alpha, \beta, 2\alpha) \]
+    
+    \item \textbf{Sostituzione (Ricaduta nel Caso B):}
+    Inseriamo le coordinate di $w$ nell'equazione $x - y = 0$:
+    \[ (\alpha) - (\beta) = 0 \implies \mathbf{\alpha = \beta} \]
+    
+    \item \textbf{Calcolo Base:}
+    Sostituiamo $\beta = \alpha$ nel vettore generico $(\alpha, \beta, 2\alpha)$:
+    \[ w_{int} = (\alpha, \alpha, 2\alpha) = \alpha(1, 1, 2) \]
+    \textbf{Base Intersezione:} $\{ (1, 1, 2) \}$. \textbf{Dim:} 1.
+\end{enumerate}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.3cm}
+
+\subsection*{5.3 Somma di Sottospazi e Formula di Grassmann}
+La dimensione della somma $U+W$ si calcola mettendo insieme tutti i generatori di $U$ e $W$ in un'unica matrice e calcolandone il rango (riduzione a scala).
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!85!black,title=\textbf{FORMULA DI GRASSMANN}]
+\[ \dim(U + W) = \dim(U) + \dim(W) - \dim(U \cap W) \]
+
+\textbf{Somma Diretta ($\oplus$):}
+Si dice che la somma è diretta ($U \oplus W$) se e solo se l'intersezione è banale:
+\[ \dim(U \cap W) = 0 \]
+In questo caso: $\dim(U \oplus W) = \dim(U) + \dim(W)$.
+\end{tcolorbox}
+\vspace{0.5cm}
+
+\subsection*{Come determinare la Somma ($U+W$)}
+La somma richiede i \textbf{generatori}. L'obiettivo è unire le basi di $U$ e $W$ e scartare i vettori ridondanti.
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=\textbf{Procedimento}]
+Per calcolare $U+W$ bisogna avere \textbf{solo generatori}.
+\begin{enumerate}
+    \item Se hai delle equazioni, \textbf{risolvile} prima per trovare una base (converti in Span).
+    \item Metti \textbf{tutti} i vettori (di $U$ e di $W$) come righe di un'unica matrice.
+    \item Riduci a scala con Gauss (Rango).
+    \item Le righe non nulle formano una base di $U+W$.
+\end{enumerate}
+\end{tcolorbox}
+
+\textbf{CASO A: Span + Span (caso ideale)}
+abbiamo tutto quel che ci serve.
+\begin{itemize}
+    \item Costruiramo la matrice unendo i generatori di $U$ e quelli di $W$.
+    \item Riduciamo a scala. Il numero di righe non nulle è $\dim(U+W)$.
+\end{itemize}
+
+\textbf{CASO B: Span + Equazioni (Il caso misto)}
+Convertiamo l'equazione in generatori prima di procedere.
+\begin{enumerate}
+    \item Risolviamo l'equazione del sottospazio cartesiano (trova le variabili libere) per ottenere la sua base.
+    \item Ora ricadiamo nel Caso A: uniamo tutti i vettori in una matrice e riduciamo.
+\end{enumerate}
+
+\textbf{CASO C: Equazioni + Equazioni}
+Non possiamo sommare equazioni direttamente. Dobbiamo prima convertire i due sottospazi in Span.
+\begin{enumerate}
+    \item Risolviamo separatamente il sistema di $U$ e il sistema di $W$ per trovare le rispettive basi.
+    \item Uniamo le due basi in una matrice e riduciamo (Caso A).
+\end{enumerate}
+
+\medskip
+
+\textbf{Esempio Svolto:}
+$U = \text{span}\{ (1, 1, 0) \}$ e $W: x - y + z = 0$ in $\mathbb{R}^3$.
+
+\begin{enumerate}
+    \item \textbf{Convertire $W$ in Span:}
+    $y = x + z$. Variabili libere $x, z$.
+    Base $W$: $\{ (1,1,0), (0,1,1) \}$.
+    
+    \item \textbf{Unione Generatori:}
+    Consideriamo insieme $u_1$ e i nuovi $w_1, w_2$:
+    $\{ (1,1,0)_U, (1,1,0)_W, (0,1,1)_W \}$.
+    
+    \item \textbf{Gauss:}
+    Il vettore $(1,1,0)$ è ripetuto. La matrice ridotta avrà rango 2.
+    \\ $\dim(U+W) = 2$. Base: $\{(1,1,0), (0,1,1)\}$.
+\end{enumerate}
+
+\section*{6. Spazi di Matrici e Dimensioni}
+\textit{Come calcolare la dimensione di sottospazi definiti da condizioni matriciali (simmetria, prodotti, traccia).}
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Gradi di Libertà}]
+La dimensione di uno spazio di matrici è il numero di parametri "liberi" che puoi scegliere.
+\[ \dim(X) = \text{Dimensione Totale} - \text{Numero di Vincoli Indipendenti} \]
+Dove la \textit{Dimensione Totale} di $M(m,n)$ è $m \times n$.
+\end{tcolorbox}
+
+\subsection*{6.1 Vincoli Standard}
+Esempi di come i vincoli più comuni riducono la dimensione in $M(n,n)$:
+
+\begin{itemize}
+    \item \textbf{Matrici Simmetriche ($A=A^T$):}
+    Si scelgono solo la diagonale e il triangolo superiore.
+    \[ \dim(\text{Sym}_n) = \frac{n(n+1)}{2} \]
+    \textit{Esempio $n=3$:} Dim = 6.
+    
+    \item \textbf{Matrici Antisimmetriche ($A=-A^T$):}
+    \textbf{La diagonale è obbligatoriamente 0 nelle matrici antisimmetriche}. Si sceglie solo il triangolo superiore.
+    \[ \dim(\text{Skew}_n) = \frac{n(n-1)}{2} \]
+    \textit{Esempio $n=3$:} Dim = 3.
+    
+    \item \textbf{Traccia Nulla ($\text{tr}(A)=0$):}
+    Impone 1 sola equazione sulla diagonale ($a_{11} + \dots + a_{nn} = 0$).
+    Toglie esattamente \textbf{1} grado di libertà.
+\end{itemize}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\subsection*{6.2 Esercizi Svolti (tratti dall'esame)}
+
+\textbf{Esercizio A: Vincoli su righe e colonne}
+\\ Sia $X = \{ A \in M(4,4, \mathbb{R}) : A e_1 = 0 \land A^T e_1 = 0 \}$. Calcolare $\dim(X)$.
+
+\textit{1. Vincoli:}
+\begin{itemize}
+    \item $\mathbf{A e_1 = 0}$:
+    Moltiplicare per $e_1$ estrae la prima colonna.
+    $\implies$ \textbf{La 1ª colonna deve essere zero.}
+    
+    \item $\mathbf{A^T e_1 = 0}$:
+    Moltiplicare la trasposta per $e_1$ estrae la prima colonna di $A^T$. Ma la prima colonna della trasposta corrisponde esattamente alla prima riga della matrice originale.
+    $\implies$ \textbf{La 1ª riga deve essere zero.}
+\end{itemize}
+
+\textit{2. Rappresentiamola:}
+I vincoli non eliminano interamente le colonne 2, 3 e 4, ma "tagliano via" la prima riga.
+Ecco cosa succede alla matrice:
+
+\[
+A = \begin{pmatrix}
+\mathbf{0}_{11} & \mathbf{0}_{12} & \mathbf{0}_{13} & \mathbf{0}_{14} \\
+\mathbf{0}_{21} & \color{blue}* & \color{blue}* & \color{blue}* \\
+\mathbf{0}_{31} & \color{blue}* & \color{blue}* & \color{blue}* \\
+\mathbf{0}_{41} & \color{blue}* & \color{blue}* & \color{blue}*
+\end{pmatrix}
+\begin{matrix}
+\leftarrow \text{Vincolo } A^T e_1 = 0 \text{ (Riga 1 annullata)} \\
+\\
+\\
+\\
+\end{matrix}
+\]
+\[
+\uparrow
+\]
+\[
+\text{Vincolo } A e_1 = 0 \text{ (Colonna 1 annullata)}
+\]
+
+\textit{3. Calcolo della Dimensione:}
+Le caselle segnate con gli zeri neri sono bloccate dai vincoli.
+Le caselle segnate con gli asterischi blu ($*$) rimangono \textbf{variabili libere}.
+Si forma un sottomatrice $3 \times 3$ di elementi liberi.
+
+\[ \dim(X) = 3 \times 3 = \mathbf{9} \]
+
+\textbf{Esercizio B: Simmetria + Traccia}
+\\ Sia $X = \{ A \in M(3, \mathbb{R}) : A = A^T, \text{tr}(A) = 0 \}$. Calcolare $\dim(X)$.
+
+\textit{Calcolo sequenziale:}
+\begin{enumerate}
+    \item \textbf{Spazio Totale:} $M(3,3)$ ha dimensione 9.
+    \item \textbf{Vincolo Simmetria:} Riduce la dimensione a $\frac{3(4)}{2} = 6$.
+    (Parametri liberi: 3 sulla diagonale + 3 sopra la diagonale).
+    \item \textbf{Vincolo Traccia:} Aggiunge l'equazione $a_{11} + a_{22} + a_{33} = 0$.
+    Questa equazione "toglie" 1 grado di libertà (ad esempio, $a_{33}$ non è più libero, ma dipende dagli altri due).
+\end{enumerate}
+
+\[ \dim(X) = 6 (\text{simmetriche}) - 1 (\text{traccia}) = \mathbf{5} \]
+\vspace{0.4cm}
+\section*{7. Sistemi Lineari e Teorema di Rouché-Capelli}
+
+
+\hrule
+\vspace{0.4cm}
+
+\subsection*{7.1 Definizioni Fondamentali}
+Dato un sistema lineare di $m$ equazioni in $n$ incognite:
+\[ Ax = b \]
+Definiamo due matrici chiave:
+\begin{enumerate}
+    \item \textbf{Matrice Incompleta ($A$):} La matrice dei soli coefficienti ($m \times n$).
+    \item \textbf{Matrice Completa ($A|b$):} La matrice ottenuta aggiungendo la colonna dei termini noti ($m \times (n+1)$).
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{TEOREMA DI ROUCHÉ-CAPELLI}]
+Il sistema ha soluzioni se e solo se il rango della matrice incompleta è uguale al rango della matrice completa.
+
+\[ \text{rk}(A) = \text{rk}(A|b) \]
+
+\textbf{Analisi dei Casi:}
+\begin{enumerate}
+    \item \textbf{CASO IMPOSSIBILE (0 soluzioni):}
+    \[ \text{rk}(A) < \text{rk}(A|b) \]
+    Il sistema è incompatibile. I termini noti creano una contraddizione (es. $0=1$).
+    
+    \item \textbf{CASO POSSIBILE (Soluzioni esistenti):}
+    \[ \text{rk}(A) = \text{rk}(A|b) = r \]
+    Il sistema ammette soluzioni. Per sapere quante, confrontiamo il rango comune $r$ con il numero di incognite $n$.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection*{7.2 Conteggio delle Soluzioni}
+Una volta stabilito che il sistema è risolubile ($\text{rk}(A) = \text{rk}(A|b) = r$), distinguiamo due sottocasi:
+
+\textbf{A. Soluzione Unica ($r = n$)}
+Se il rango è uguale al numero delle incognite, non ci sono variabili libere.
+Il sistema ha esattamente \textbf{1 soluzione}.
+\textit{(Tipico dei sistemi quadrati con determinante diverso da zero).}
+
+\textbf{B. Infinite Soluzioni ($r < n$)}
+Se il rango è minore delle incognite, ci sono variabili che non sono vincolate (variabili libere).
+\[ \text{Numero di parametri liberi} = n - r \]
+Si dice che il sistema ammette $\infty^{n-r}$ soluzioni.
+
+\vspace{0.3cm}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!85!black,title=\textbf{Esempio Pratico}]
+Sistema in 3 incognite ($n=3$). Calcoliamo i ranghi.
+\begin{itemize}
+    \item Se $\text{rk}(A)=2$ e $\text{rk}(A|b)=3 \implies$ \textbf{0 soluzioni}.
+    \item Se $\text{rk}(A)=3$ e $\text{rk}(A|b)=3 \implies$ \textbf{1 soluzione} ($n=r$).
+    \item Se $\text{rk}(A)=2$ e $\text{rk}(A|b)=2 \implies$ \textbf{$\infty^1$ soluzioni} ($n-r = 3-2 = 1$ parametro).
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\subsection*{7.3 Sistemi Omogenei ($Ax = 0$)}
+Un sistema è omogeneo se la colonna dei termini noti è nulla ($b=0$).
+\begin{itemize}
+    \item \textbf{Proprietà:} Un sistema omogeneo è \textbf{sempre compatibile}, perché $\text{rk}(A)$ è sempre uguale a $\text{rk}(A|0)$.
+    \item Ammette sempre almeno la soluzione banale $x = (0,0,\dots,0)$.
+    \item Se $r < n$, ammette infinite soluzioni (autovettori).
+\end{itemize}
+
+\subsection*{7.4 Esercizi Svolti}
+
+\textbf{Esercizio 1:}
+\[ \begin{cases} x + y = 1 \\ x + y = 2 \end{cases} \]
+Matrice $A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $A|b = \begin{pmatrix} 1 & 1 & | & 1 \\ 1 & 1 & | & 2 \end{pmatrix}$.
+\begin{itemize}
+    \item $\text{rk}(A) = 1$ (righe identiche).
+    \item $\text{rk}(A|b) = 2$ (la sottomatrice $\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}$ ha det $\neq 0$).
+\end{itemize}
+Poiché $1 \neq 2$, il sistema è \textbf{impossibile}.
+
+\vspace{0.3cm}
+
+\textbf{Esercizio 2: Infinite Soluzioni}
+\[ x + y - z = 0 \quad (\text{1 equazione, 3 incognite}) \]
+\begin{itemize}
+    \item $n = 3$.
+    \item $\text{rk}(A) = 1$ (c'è un solo pivot).
+    \item $b=0$, quindi $\text{rk}(A|b)=1$. Compatibile.
+\end{itemize}
+Soluzioni: $\infty^{n-r} = \infty^{3-1} = \infty^2$.
+Ci sono 2 parametri liberi (es. $y$ e $z$). Soluzione: $x = -y + z$.
+
+\vspace{0.3cm}
+
+\textbf{Esercizio 3: Parametrico}
+Discutere al variare di $k$: $\begin{cases} kx + y = 1 \\ x + y = 2 \end{cases}$
+\\ Determinante $A = k - 1$.
+\begin{itemize}
+    \item \textbf{Se $k \neq 1$:} Det $\neq 0 \implies \text{rk}(A)=2$. Anche $\text{rk}(A|b)=2$.
+    $r=n=2$. \textbf{1 Soluzione unica}.
+    
+    \item \textbf{Se $k = 1$:} Il sistema diventa $x+y=1, x+y=2$.
+    $\text{rk}(A)=1$, $\text{rk}(A|b)=2$. \textbf{Impossibile}.
+\end{itemize}
+
+\section*{8. Autovalori e Diagonalizzazione}
+\textit{L'obiettivo è trovare una base in cui la matrice diventa semplicissima (diagonale). Questo è possibile solo se la matrice possiede "abbastanza" autovettori indipendenti.}
+
+\hrule
+\vspace{0.4cm}
+
+\subsection*{8.1 Definizioni Chiave}
+Sia $A \in M(n, \mathbb{K})$. Un vettore $v \neq 0$ è un \textbf{autovettore} relativo all' \textbf{autovalore} $\lambda$ se:
+\[ A v = \lambda v \]
+Geometricamente, l'azione di $A$ su $v$ è un semplice allungamento/accorciamento di fattore $\lambda$. La direzione non cambia.
+
+\textbf{Matrice Diagonalizzabile:}
+$A$ è diagonalizzabile se esiste una matrice invertibile $P$ e una diagonale $D$ tali che:
+\[ D = P^{-1} A P \]
+\begin{itemize}
+    \item $D$ contiene gli autovalori sulla diagonale.
+    \item $P$ contiene gli autovettori sulle colonne (nello stesso ordine degli autovalori).
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{8.2 Algoritmo di Diagonalizzazione}
+
+\textbf{Passo 1: Polinomio Caratteristico ($p_A(\lambda)$)}
+Calcolare il determinante della matrice $A - \lambda I$:
+\[ p_A(\lambda) = \det(A - \lambda I) \]
+Le radici del polinomio sono gli \textbf{Autovalori}.
+
+\textbf{Passo 2: Molteplicità Algebrica ($m_a$)}
+Per ogni autovalore $\lambda_0$, contare quante volte annulla il polinomio.
+Es: se $p(\lambda) = (\lambda - 2)^3 (\lambda + 1)$, allora:
+\begin{itemize}
+    \item $\lambda = 2 \implies m_a(2) = 3$
+    \item $\lambda = -1 \implies m_a(-1) = 1$
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=\textbf{Autovalori Distinti}]
+Se la matrice $n \times n$ ha \textbf{$n$ autovalori tutti distinti}, allora è \textbf{automaticamente diagonalizzabile}.
+\textit{Motivo:} Se sono distinti, ogni $m_a = 1$. Poiché $1 \le m_g \le m_a$, allora per forza $m_g = 1$. La condizione è soddisfatta.
+\end{tcolorbox}
+\vspace{0.2cm}
+
+\textbf{Passo 3: Molteplicità Geometrica ($m_g$)}
+Se invece ci sono autovalori ripetuti ($m_a > 1$), bisogna verificare che abbiano abbastanza autovettori.
+Per ogni autovalore con $m_a > 1$, calcolare la dimensione dell'autospazio:
+\[ m_g(\lambda) = n - \text{rk}(A - \lambda I) \]
+
+\vspace{0.3cm}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{CRITERIO DI DIAGONALIZZABILITÀ}]
+Una matrice è diagonalizzabile se e solo se per ogni autovalore $\lambda$:
+\[ m_g(\lambda) = m_a(\lambda) \]
+Se anche solo per un $\lambda$ si ha $m_g < m_a$, la matrice \textbf{non} è diagonalizzabile.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\subsection*{8.3 Esempio Svolto (Caso Parametrico)}
+Sia $A = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$.
+
+\textbf{1. Polinomio Caratteristico:}
+\[ \det(A - \lambda I) = \det \begin{pmatrix} 1-\lambda & 0 & 1 \\ 0 & 1-\lambda & 0 \\ 1 & 0 & 1-\lambda \end{pmatrix} \]
+Sviluppando lungo la seconda riga (che ha molti zeri):
+\[ = (1-\lambda) \cdot [ (1-\lambda)^2 - 1 ] = (1-\lambda)(1 - 2\lambda + \lambda^2 - 1) \]
+\[ = (1-\lambda)(\lambda^2 - 2\lambda) = \lambda(1-\lambda)(\lambda - 2) \]
+Radici (Autovalori): $\lambda_1 = 0, \quad \lambda_2 = 1, \quad \lambda_3 = 2$.
+
+\textbf{2. Verifica Molteplicità:}
+Poiché abbiamo 3 autovalori distinti per una matrice $3 \times 3$, ognuno ha necessariamente $m_a = 1$.
+Dato che $1 \le m_g \le m_a$, allora obbligatoriamente $m_g = 1$ per tutti.
+\textbf{Conclusione:} La matrice è diagonalizzabile.
+
+\textbf{3. Costruzione di $D$:}
+\[ D = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} \]
+
+\medskip
+
+\textbf{Nota Tecnica sugli Autovettori:}
+Se avessimo dovuto trovare la base diagonalizzante $P$:
+\begin{itemize}
+    \item Per $\lambda=0$: Risolvere sistema omogeneo su $A - 0I$.
+    \item Per $\lambda=1$: Risolvere sistema omogeneo su $A - 1I$.
+    \item Per $\lambda=2$: Risolvere sistema omogeneo su $A - 2I$.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,title=\textbf{PROPRIETÀ FONDAMENTALI E TRU}]
+Sia $A$ una matrice $n \times n$ con autovalori $\lambda_1, \dots, \lambda_n$. Valgono sempre le seguenti pr
+àèoprietà:
+
+\begin{enumerate}
+    \item \textbf{Traccia e Determinante:}
+    La somma degli autovalori è la traccia, il prodotto è il determinante.
+    \[ \sum_{i=1}^n \lambda_i = \text{tr}(A) \qquad \prod_{i=1}^n \lambda_i = \det(A) \]
+    
+    \item \textbf{Invertibilità:}
+    Una matrice è invertibile se e solo se $\det(A) \neq 0$, ovvero se \textbf{0 non è un autovalore}.
+    
+    \item \textbf{Matrici Triangolari:}
+    Se $A$ è triangolare (superiore o inferiore) o diagonale, gli autovalori sono esattamente gli elementi sulla diagonale principale.
+    
+    \item \textbf{Relazione con il Rango:}
+    Se $\text{rk}(A) = r < n$, allora la dimensione del nucleo è $n-r$.
+    Questo significa che l'autovalore $\lambda = 0$ esiste e ha molteplicità geometrica:
+    \[ m_g(0) = n - r \]
+    \textit{(In parole povere: se il rango scende di $k$, hai almeno $k$ autovalori nulli).}
+    
+    \item \textbf{Trasformazioni della Matrice:}
+    Se $v$ è autovettore di $A$ relativo a $\lambda$:
+    \begin{itemize}
+        \item \textbf{Potenza:} $A^k$ ha autovalore $\lambda^k$.
+        \item \textbf{Shift:} $A + cI$ ha autovalore $\lambda + c$.
+    \end{itemize}
+    \textit{Esempio:} Se $A$ ha $\lambda=3$, allora $A+5I$ ha autovalore $3+5=8$.
+    
+    \item \textbf{Invarianti per Similitudine:}
+    Due matrici simili (ovvero che rappresentano la stessa applicazione lineare in basi diverse) condividono:
+    \textbf{Determinante, Traccia, Rango, Polinomio Caratteristico e Spettro (Autovalori).}
+\end{enumerate}
+\end{tcolorbox}
+\vspace{0.3cm}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!60!black,title=\textbf{Rettifica}]
+Quando diagonalizziamo una matrice ($D = P^{-1} A P$), non stiamo cambiando la trasformazione, ma solo il sistema di riferimento.
+Pertanto, la matrice originale $A$ e la matrice diagonale $D$ sono \textbf{matrici simili}.
+
+\textbf{Cosa condividono $A$ e $D$?}
+Tutte le proprietà che non dipendono dalla base scelta:
+\begin{itemize}
+    \item $\det(A) = \det(D) = \text{prodotto degli autovalori}$
+    \item $\text{tr}(A) = \text{tr}(D) = \text{somma degli autovalori}$
+    \item $\text{rk}(A) = \text{rk}(D)$
+    \item Il Polinomio Caratteristico.
+\end{itemize}
+
+\textbf{Attenzione:} La matrice $P$ (che contiene gli autovettori) \textbf{non} condivide queste proprietà con $A$. $P$ serve solo a fare la "traduzione" tra le basi.
+\end{tcolorbox}
+
+\subsection*{8.4 Esercizi Teorici Svolti sulla diagonalizzazione}
+\textit{Spesso nei temi d'esame viene messo uno "stralcio" di dimostrazione riguardante diagonalizzazione,
+prodotti scalari e teorema spettrale (che affronteremo in seguito). riguardo alla parte sulla diagonalizzazione
+è utile ricordarsi la formula fondamentale e la proprietà $Av = \lambda v$.}
+
+\vspace{0.3cm}
+
+\textbf{Esercizio A: Polinomi di Matrici}
+\\ Sia $v$ un autovettore di $A$ relativo all'autovalore $\lambda = 3$.
+\\ Calcolare quanto vale il vettore $w = (A^2 - 4A + 2I)v$.
+
+\textit{Svolgimento:}
+Sfruttiamo la linearità e la definizione:
+\[ w = A^2 v - 4 A v + 2 I v \]
+Sappiamo che:
+\begin{itemize}
+    \item $A v = 3 v$
+    \item $A^2 v = 3^2 v = 9 v$ (Proprietà delle potenze)
+    \item $I v = v$
+\end{itemize}
+Sostituendo:
+\[ w = 9v - 4(3v) + 2(1v) = (9 - 12 + 2)v = -1 v \]
+\textbf{Risultato:} Il vettore risultante è $-v$. (Nota: $v$ è autovettore anche della matrice risultante con autovalore -1).
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio B: L'Inversa e gli Autovalori}
+\\ Dimostrare che se $\lambda \neq 0$ è autovalore di una matrice invertibile $A$ con autovettore $v$, allora $1/\lambda$ è autovalore di $A^{-1}$ con lo stesso autovettore $v$.
+
+\textit{Dimostrazione:}
+Partiamo dalla definizione fondamentale:
+\[ A v = \lambda v \]
+Poiché $A$ è invertibile, esiste $A^{-1}$. Moltiplichiamo entrambi i membri a sinistra per $A^{-1}$:
+\[ A^{-1} (A v) = A^{-1} (\lambda v) \]
+A sinistra, l'inversa cancella la matrice ($A^{-1}A = I$):
+\[ I v = \lambda (A^{-1} v) \]
+\[ v = \lambda (A^{-1} v) \]
+Poiché $\lambda \neq 0$, possiamo dividere tutto per $\lambda$:
+\[ \frac{1}{\lambda} v = A^{-1} v \]
+Rileggendola al contrario: $A^{-1} v = \frac{1}{\lambda} v$.
+\textbf{C.V.D.} $v$ è autovettore di $A^{-1}$ con autovalore $\lambda^{-1}$.
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio C: Matrici Nilpotenti}
+\\ Una matrice $A$ si dice nilpotente se esiste un intero $k$ tale che $A^k = 0$ (Matrice nulla). Dimostrare che l'unico autovalore possibile per $A$ è $\lambda = 0$.
+
+\textit{Svolgimento:}
+Sia $v$ un autovettore (quindi $v \neq 0$) e $\lambda$ il suo autovalore.
+\[ A v = \lambda v \]
+Applichiamo la matrice $A$ ripetutamente fino ad arrivare alla potenza $k$:
+\[ A^k v = \lambda^k v \]
+Ma per ipotesi $A^k$ è la matrice nulla ($0$), quindi il primo membro è il vettore nullo:
+\[ \vec{0} = \lambda^k v \]
+Poiché il vettore $v$ non è nullo (per definizione di autovettore), l'unico modo affinché il prodotto faccia zero è che lo scalare sia nullo:
+\[ \lambda^k = 0 \implies \lambda = 0 \]
+\textbf{Conclusione:} Tutti gli autovalori di una matrice nilpotente sono 0.
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio D: Calcolo rapido di Potenze ($A^k$) (tipologia svolta a lezione, prof. Franchetti)}
+\\ Sia $A$ una matrice diagonalizzabile tale che $A = P D P^{-1}$.
+\\ Trovare una formula per calcolare $A^{100}$ senza fare cento moltiplicazioni.
+
+\textit{Svolgimento:}
+Scriviamo la potenza esplicitando la diagonalizzazione:
+\[ A^2 = A \cdot A = (P D P^{-1}) \cdot (P D P^{-1}) \]
+Grazie all'associatività, i termini centrali si annullano ($P^{-1} P = I$):
+\[ A^2 = P D (P^{-1} P) D P^{-1} = P D (I) D P^{-1} = P D^2 P^{-1} \]
+Iterando il ragionamento per 100 volte:
+\[ A^{100} = P D^{100} P^{-1} \]
+\textbf{Perché è utile?} Elevare a potenza una matrice diagonale $D$ è facilissimo: basta elevare a potenza i singoli numeri sulla diagonale.
+\[ \text{Se } D = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} \implies D^{100} = \begin{pmatrix} 2^{100} & 0 \\ 0 & 3^{100} \end{pmatrix} \]
+Il calcolo si riduce a due sole moltiplicazioni matriciali finali (per $P$ e $P^{-1}$).
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio E: Dimostrazione Invarianza Determinante}
+\\ Usando la relazione di similitudine $A = P D P^{-1}$, dimostrare formalmente che $\det(A) = \det(D)$.
+
+\textit{Dimostrazione:}
+Applichiamo il determinante a entrambi i membri dell'equazione:
+\[ \det(A) = \det(P D P^{-1}) \]
+Per il \textbf{Teorema di Binet} ($\det(AB) = \det(A)\det(B)$), possiamo spezzare il prodotto:
+\[ \det(A) = \det(P) \cdot \det(D) \cdot \det(P^{-1}) \]
+Poiché il determinante è uno scalare (un numero), la moltiplicazione è commutativa. Spostiamo i termini:
+\[ \det(A) = \det(D) \cdot [\det(P) \cdot \det(P^{-1})] \]
+Sappiamo che $\det(P^{-1}) = \frac{1}{\det(P)}$. Quindi il prodotto tra parentesi fa 1:
+\[ \det(A) = \det(D) \cdot 1 \]
+\[ \det(A) = \det(D) \]
+\textbf{Conclusione:} Il determinante della matrice è uguale al prodotto dei suoi autovalori (che sono gli elementi di $D$).
 \end{document}
