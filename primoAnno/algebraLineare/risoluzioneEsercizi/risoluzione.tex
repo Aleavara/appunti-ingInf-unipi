@@ -589,7 +589,7 @@ Discutere al variare di $k$: $\begin{cases} kx + y = 1 \\ x + y = 2 \end{cases}$
 \end{itemize}
 
 \section*{8. Autovalori e Diagonalizzazione}
-\textit{L'obiettivo è trovare una base in cui la matrice diventa semplicissima (diagonale). Questo è possibile solo se la matrice possiede "abbastanza" autovettori indipendenti.}
+\textit{L'obiettivo è trovare una base in cui la matrice diventa "semplice" (diagonale). Questo è possibile solo se la matrice possiede "abbastanza" autovettori indipendenti.}
 
 \hrule
 \vspace{0.4cm}
@@ -814,7 +814,30 @@ Il calcolo si riduce a due sole moltiplicazioni matriciali finali (per $P$ e $P^
 \vspace{0.4cm}
 \hrule
 \vspace{0.4cm}
+\vspace{0.3cm}
 
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf]
+Quando dobbiamo calcolare $A^k$:
+
+\textbf{ERRORE:}
+\[ A^k \neq \text{elevare a potenza ogni singolo elemento di } A \]
+(Esempio: $\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}^2 \neq \begin{pmatrix} 1^2 & 2^2 \\ 0^2 & 3^2 \end{pmatrix}$)
+
+\textbf{PROCEDIMENTO CORRETTO:}
+abbiamo due strade, a seconda della domanda:
+\begin{enumerate}
+    \item \textbf{Se necessitiamo solo degli INVARIANTI (Autovalori, Det, Traccia):}
+    Lavoriamo solo sugli autovalori.
+    \[ \text{Autovalori di } A^k = \{ \lambda_1^k, \lambda_2^k, \dots \} \]
+    \[ \det(A^k) = (\lambda_1)^k \cdot (\lambda_2)^k \dots \]
+
+    \item \textbf{Se ci serve la MATRICE COMPLETA:}
+    Usiamo la diagonalizzazione per "tornare indietro" alla base originale.
+    \[ A^k = P \cdot D^k \cdot P^{-1} \]
+    Dove $D^k$ è la matrice diagonale con gli autovalori elevati a potenza.
+\end{enumerate}
+\end{tcolorbox}
+\vspace{0.3cm}
 \textbf{Esercizio E: Dimostrazione Invarianza Determinante}
 \\ Usando la relazione di similitudine $A = P D P^{-1}$, dimostrare formalmente che $\det(A) = \det(D)$.
 
@@ -829,4 +852,612 @@ Sappiamo che $\det(P^{-1}) = \frac{1}{\det(P)}$. Quindi il prodotto tra parentes
 \[ \det(A) = \det(D) \cdot 1 \]
 \[ \det(A) = \det(D) \]
 \textbf{Conclusione:} Il determinante della matrice è uguale al prodotto dei suoi autovalori (che sono gli elementi di $D$).
+\section*{8.5 Applicazioni Avanzate: Equazioni Matriciali e Similitudine}
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Equazioni con la Diagonalizzazione}]
+Se dobbiamo trovare una matrice $B$ tale che $p(B) = A$ (dove $p$ è un polinomio, es. $B^2+2B=A$):
+\begin{enumerate}
+    \item \textbf{Diagonalizzare A:} Trova $D_A$ e $P$ tali che $A = P D_A P^{-1}$.
+    \item \textbf{Risolvere sui numeri:} Per ogni autovalore $\lambda$ di $A$, risolvi l'equazione scalare $x^2+2x = \lambda$. Le soluzioni saranno gli autovalori $\mu$ di $B$.
+    \item \textbf{Ricostruire B:} Costruisci la matrice diagonale $D_B$ usando le soluzioni $\mu$ trovate.
+    \item \textbf{Tornare alla base originale:} $B = P D_B P^{-1}$.
+\end{enumerate}
+\textit{Nota: $A$ e $B$ commutano ($AB=BA$) e condividono gli stessi autovettori ($P$).}
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\textbf{Esercizio F:}
+\\ Data la matrice $A = \begin{pmatrix} 1 & -2 \\ -1 & 2 \end{pmatrix}$, trovare una matrice $B$ tale che $B^2 + 2B = A$.
+
+\textit{Svolgimento:}
+\textbf{1. Diagonalizziamo $A$:}
+Calcoliamo gli autovalori di $A$.
+$\text{Tr}(A) = 3$, $\det(A) = 2-2=0$.
+Polinomio caratteristico: $\lambda^2 - 3\lambda = 0 \implies \lambda_1 = 0, \lambda_2 = 3$.
+
+Troviamo gli autovettori per costruire $P$:
+\begin{itemize}
+    \item Per $\lambda_1 = 0$: Risolviamo $A\vec{v} = 0 \to x - 2y = 0 \to v_1 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$.
+    \item Per $\lambda_2 = 3$: Risolviamo $(A-3I)\vec{v} = 0 \to -2x - 2y = 0 \to v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$.
+\end{itemize}
+Matrice di passaggio $P = \begin{pmatrix} 2 & 1 \\ 1 & -1 \end{pmatrix}$. Calcoliamo $P^{-1}$:
+$\det(P) = -2 - 1 = -3$.
+\[ P^{-1} = -\frac{1}{3} \begin{pmatrix} -1 & -1 \\ -1 & 2 \end{pmatrix} = \frac{1}{3} \begin{pmatrix} 1 & 1 \\ 1 & -2 \end{pmatrix} \]
+
+\textbf{2. Risolviamo l'equazione scalare sugli autovalori:}
+L'equazione richiesta è $b^2 + 2b = a$.
+\begin{itemize}
+    \item Per l'autovalore $\lambda_1 = 0$:
+    $\mu^2 + 2\mu = 0 \implies \mu(\mu+2)=0$.
+    Scegliamo una soluzione, ad esempio $\mu_1 = 0$ (ma potevamo scegliere anche $-2$).
+    
+    \item Per l'autovalore $\lambda_2 = 3$:
+    $\mu^2 + 2\mu = 3 \implies \mu^2 + 2\mu - 3 = 0 \implies (\mu+3)(\mu-1)=0$.
+    Scegliamo una soluzione, ad esempio $\mu_2 = 1$ (ma potevamo scegliere anche $-3$).
+\end{itemize}
+
+\textbf{3. Ricostruiamo B:}
+La matrice diagonale di $B$ sarà $D_B = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ (usando le scelte $\mu_1=0, \mu_2=1$).
+Ora calcoliamo $B = P D_B P^{-1}$:
+
+\[ B = \begin{pmatrix} 2 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} \frac{1}{3} \begin{pmatrix} 1 & 1 \\ 1 & -2 \end{pmatrix} \]
+\[ B = \frac{1}{3} \underbrace{\begin{pmatrix} 2 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}}_{\text{Moltiplico colonna 2 per 1}} \begin{pmatrix} 1 & 1 \\ 1 & -2 \end{pmatrix} \]
+\[ B = \frac{1}{3} \begin{pmatrix} 0 & 1 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 1 & -2 \end{pmatrix} \]
+\[ B = \frac{1}{3} \begin{pmatrix} 1 & -2 \\ -1 & 2 \end{pmatrix} = \frac{1}{3} A \]
+\textbf{Risultato:} Una soluzione è $B = \begin{pmatrix} 1/3 & -2/3 \\ -1/3 & 2/3 \end{pmatrix}$.
+\textit{(Esistono altre 3 soluzioni possibili combinando diversamente le radici $\mu$).}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio G: Classi di Similitudine (Teorico)}
+\\ Date le matrici $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, determinare se appartengono alla stessa \textbf{Classe di Similitudine} (ovvero se sono simili).
+
+\textit{Svolgimento:}
+Due matrici sono simili ($A \sim B$) se rappresentano lo stesso operatore e hanno la stessa forma canonica (Jordan o Diagonale).
+Controlliamo gli invarianti:
+\begin{itemize}
+    \item \textbf{Determinante:} $\det(A)=1$, $\det(B)=1$. (OK)
+    \item \textbf{Traccia:} $\text{Tr}(A)=2$, $\text{Tr}(B)=2$. (OK)
+    \item \textbf{Autovalori:}
+    $A$ (triangolare) ha autovalori $\lambda=1$ con m.a. 2.
+    $B$ (diagonale) ha autovalori $\lambda=1$ con m.a. 2.
+\end{itemize}
+Sembrano uguali, MA controlliamo la \textbf{diagonalizzabilità}:
+\begin{itemize}
+    \item Matrice $B$: È già diagonale (Identità). $m_g(1) = 2$.
+    \item Matrice $A$: Calcoliamo $m_g(1) = 2 - \text{rk}(A-1I)$.
+    \[ A - I = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \]
+    Il rango è 1. Quindi $m_g(1) = 2 - 1 = 1$.
+\end{itemize}
+Poiché $m_g(1) \neq m_a(1)$, la matrice $A$ \textbf{non è diagonalizzabile}.
+\textbf{Conclusione:} $A$ e $B$ NON sono simili (non sono nella stessa classe di equivalenza), anche se hanno gli stessi autovalori.
+\section*{9. Prodotti Scalari: Formule ed Esercizi}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Riepilogo}]
+Un prodotto scalare è definito da una matrice $S$ ($n \times n$).
+\vspace{0.3cm}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!60!black,title=\textbf{}]
+
+\textbf{1. La formula}
+La formula è un prodotto riga-per-matrice-per-colonna:
+\[ \underbrace{v^T}_{\text{Misuratore}} \cdot \underbrace{S}_{\text{Il "Peso"}} \cdot \underbrace{w}_{\text{Oggetto}} \]
+\begin{itemize}
+    \item \textbf{$w$ (Vettore Colonna):} È l'oggetto geometrico che stiamo misurando.
+    
+    \item \textbf{$S$ (Matrice):} Definisce la \textbf{geometria dello spazio}.
+    Dice come pesare le coordinate. Se $S$ ha numeri grandi, le distanze in quella direzione valgono di più. Se $S$ non è diagonale, gli assi sono "storti".
+    
+    \item \textbf{$v^T$ (Vettore Riga):} È il vettore che usiamo come riferimento per la misurazione, ma \textbf{sdraiato}. 
+    In algebra lineare, per ottenere un numero (scalare) da un vettore, dobbiamo sempre moltiplicare una Riga per una Colonna. $v^T$ è la versione "funzionale" di $v$: è pronto ad agganciare $w$ e sommare le componenti.
+
+    \item \textbf{4. Caso del prodotto scalare standard:}
+    In questo caso $S$ è la matrice Identità, la matrice "sparisce" dai calcoli perché $I \cdot w = w$.
+    La formula si semplifica in:
+    \[ \text{Prodotto Standard} = v^T \cdot w \]
+    Qui $v^T$ è semplicemente il primo vettore scritto in orizzontale.
+    Geometricamente, stiamo calcolando quanto il vettore $w$ "scorre" lungo la direzione di $v$ (proiezione).
+\end{itemize}
+
+\textbf{2. Che differenza con la Diagonalizzazione ($P^{-1} A P$)?}
+Visivamente sembrano simili, ma concettualmente sono opposte:
+
+\begin{itemize}
+    \item \textbf{Diagonalizzazione ($P^{-1} A P$):}
+    Serve a \textbf{cambiare sistema di riferimento}.
+    Trasformiamo il vettore ($P$), applichiamo l'azione ($A$) e traduciamo indietro ($P^{-1}$). Il risultato è ancora una \textbf{Matrice} (un'operazione).
+    
+    \item \textbf{Prodotto Scalare ($v^T S w$):}
+    Serve a \textbf{calcolare un'energia/lunghezza}.
+    Il risultato non è una matrice, ma un \textbf{Numero (Scalare)}.
+    
+    
+\end{itemize}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=yellow!75!black,title=\textbf{TEOREMA: Disuguaglianza di Cauchy-Schwarz}]
+Per qualunque prodotto scalare vale sempre:
+\[ | \langle v, w \rangle | \le \|v\| \cdot \|w\| \]
+\textit{Significato:} Il valore assoluto del prodotto scalare non supera mai il prodotto delle lunghezze.
+È questa disuguaglianza che garantisce che il coseno dell'angolo sia sempre compreso tra -1 e 1.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=cyan!5!white,colframe=cyan!75!black,title=\textbf{FORMULARIO}]
+
+\subsection*{1. Formule Geometriche Fondamentali}
+Sia $\langle v, w \rangle_S = v^T S w$ un prodotto scalare definito dalla matrice $S$.
+
+\begin{itemize}
+    \item \textbf{Norma (Lunghezza):}
+    \[ \|v\|_S = \sqrt{\langle v, v \rangle_S} = \sqrt{v^T S v} \]
+    
+    \item \textbf{Versore (Normalizzazione):}
+    È il vettore di lunghezza unitaria avente la stessa direzione di $v$.
+    \[ u = \frac{v}{\|v\|_S} \]
+    
+    \item \textbf{Vettori Ortogonali:}
+    Due vettori $v$ e $w$ sono ortogonali se il loro prodotto scalare è nullo.
+    \[ \langle v, w \rangle_S = 0 \quad (\iff v^T S w = 0) \]
+    
+    \item \textbf{Base Ortogonale vs Ortonormale:}
+    \begin{itemize}
+        \item \textit{Ortogonale:} Tutti i vettori della base sono ortogonali tra loro a due a due ($\langle v_i, v_j \rangle = 0$ per $i \neq j$).
+        \item \textit{Ortonormale:} Come sopra, ma in più hanno tutti norma 1 ($\|v_i\| = 1$).
+    \end{itemize}
+\end{itemize}
+
+\hrule
+\vspace{0.3cm}
+
+\subsection*{2. Proprietà della Matrice $S$ e Teorema di Sylvester}
+
+\textbf{A. Condizioni di Esistenza:}
+Affinché una matrice $S$ definisca un prodotto scalare valido, deve essere:
+\begin{enumerate}
+    \item \textbf{Simmetrica:} $S = S^T$ (rispetto alla diagonale principale).
+    \item \textbf{Definita Positiva:} Tutti i suoi autovalori devono essere $>0$.
+\end{enumerate}
+
+\textbf{B. Teorema di Sylvester (Legge di Inerzia):}
+Se cambiamo base a una matrice simmetrica $S$ (tramite una matrice invertibile $M$, trasformazione congruente $M^T S M$), i valori numerici degli autovalori cambiano, MA:
+\begin{center}
+    \textbf{Il numero di autovalori positivi, negativi e nulli rimane invariato.}
+\end{center}
+Questa terna di numeri $(n_+, n_-, n_0)$ si chiama \textbf{Segnatura} della matrice.
+
+\textit{Conseguenza:} Se una matrice ha 2 autovalori positivi e 1 negativo, in qualsiasi altra base (non ortonormale) continuerà a rappresentare una geometria con "2 direzioni spaziali e 1 temporale" (come nello spaziotempo), non potrà mai diventare definita positiva (tutti positivi).
+\end{tcolorbox}
+
+\vspace{0.4cm}
+\subsection*{9.1 Esercizi Svolti}
+
+
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio A: Ortogonalità in prodotti non standard}
+\\ Sia definito il prodotto scalare tramite la matrice $S = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$.
+\\ Trovare un vettore $w = \begin{pmatrix} x \\ y \end{pmatrix}$ che sia ortogonale al vettore $v = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$.
+
+\textit{Svolgimento:}
+La condizione di ortogonalità è $\langle v, w \rangle_S = 0$, ovvero $v^T S w = 0$.
+Scriviamo il calcolo matriciale:
+\[ \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = 0 \]
+Facciamo il primo prodotto (riga per matrice):
+\[ \begin{pmatrix} 1\cdot2 + 1\cdot0 & 1\cdot0 + 1\cdot5 \end{pmatrix} = \begin{pmatrix} 2 & 5 \end{pmatrix} \]
+Ora moltiplichiamo per il vettore incognito:
+\[ \begin{pmatrix} 2 & 5 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = 2x + 5y = 0 \]
+Abbiamo l'equazione $2x + 5y = 0$. Possiamo scegliere una soluzione a piacere (basta che non sia il vettore nullo).
+Poniamo ad esempio $x = 5$, allora $2(5) + 5y = 0 \implies 10 = -5y \implies y = -2$.
+\textbf{Risultato:} Un vettore ortogonale è $w = \begin{pmatrix} 5 \\ -2 \end{pmatrix}$.
+\\ \textit{Nota: Col prodotto scalare standard sarebbe stato $(1, -1)$, qui il risultato è diverso perché la matrice "pesa" le coordinate diversamente.}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio B: Calcolo della Norma}
+\\ Usando la stessa matrice $S = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$ e il vettore $v = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$, calcolare la sua lunghezza (Norma).
+
+\textit{Svolgimento:}
+Formula: $\|v\|_S = \sqrt{v^T S v}$.
+Calcoliamo prima il radicando (il prodotto scalare di v con se stesso):
+\[ \langle v, v \rangle_S = 2x^2 + 5y^2 \quad \text{(poiché S è diagonale, è la somma pesata dei quadrati)} \]
+Sostituiamo le componenti $x=1, y=1$:
+\[ \langle v, v \rangle_S = 2(1)^2 + 5(1)^2 = 2 + 5 = 7 \]
+La norma è la radice quadrata di questo numero.
+\textbf{Risultato:} $\|v\|_S = \sqrt{7}$.
+\textit{(Nota: Con il prodotto standard la lunghezza sarebbe stata $\sqrt{1^2+1^2}=\sqrt{2}$).}
+\vspace{0.4cm}
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Complemento Ortogonale $W^\perp$}]
+Se abbiamo un sottospazio $W$ generato da dei vettori $\{v_1, \dots, v_k\}$ e dobbiamo trovare il suo complemento ortogonale $W^\perp$ rispetto a una matrice $S$:
+\begin{enumerate}
+    \item La condizione è che un generico vettore $x$ sia ortogonale a \textbf{tutti} i generatori di $W$.
+    \item Impostiamo il sistema lineare:
+    \[ \begin{cases} v_1^T S x = 0 \\ \dots \\ v_k^T S x = 0 \end{cases} \]
+    \item Risolviamo il sistema. Le soluzioni formano la base di $W^\perp$.
+\end{enumerate}
+\end{tcolorbox}
+\vspace{0.4cm}
+
+\textbf{Esercizio C: Base del Complemento Ortogonale (Tema d'Esame)}
+\\ Si consideri il prodotto scalare su $\mathbb{R}^3$ definito dalla matrice $A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
+\\ Sia $W = \text{span}\left\{ \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \right\}$. Trovare una base di $W^\perp$ rispetto a questo prodotto.
+
+\textit{Svolgimento:}
+Chiamiamo $v_1 = (1, 0, 0)^T$ il generatore di $W$.
+Cerchiamo i vettori $u = (x, y, z)^T$ tali che siano ortogonali a $v_1$ secondo la matrice $A$.
+La condizione è:
+\[ v_1^T A u = 0 \]
+
+1. Calcoliamo prima il prodotto "riga per matrice" $v_1^T A$:
+\[ \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1\cdot1 & 1\cdot2 & 1\cdot0 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 0 \end{pmatrix} \]
+
+2. Ora moltiplichiamo per il vettore generico $u = (x,y,z)^T$:
+\[ \begin{pmatrix} 1 & 2 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = 0 \]
+\[ 1x + 2y + 0z = 0 \implies x + 2y = 0 \]
+
+3. Troviamo la base delle soluzioni:
+L'equazione cartesiana è $x = -2y$. La variabile $z$ non compare, quindi è libera (parametro libero).
+Abbiamo due parametri liberi ($y$ e $z$).
+\begin{itemize}
+    \item Poniamo $y=1, z=0 \implies x=-2$. Vettore: $w_1 = (-2, 1, 0)$.
+    \item Poniamo $y=0, z=1 \implies x=0$. Vettore: $w_2 = (0, 0, 1)$.
+\end{itemize}
+
+\textbf{Risultato:} Una base di $W^\perp$ è $\{ \begin{pmatrix} -2 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \}$.
+\\ \textit{(Nota: Con il prodotto standard, l'ortogonale di $(1,0,0)$ sarebbe stato il piano $yz$, cioè $x=0$. Qui il piano è "ruotato" dall'interazione tra x e y nella matrice).}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio D: }
+\\ Nello spazio $\mathbb{R}^3$ con prodotto scalare dato dalla matrice diagonale $S = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 5 \end{pmatrix}$, calcolare il prodotto scalare tra $v = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$ e $w = \begin{pmatrix} 1 \\ -2 \\ 0 \end{pmatrix}$.
+
+\textit{Svolgimento:}
+Essendo la matrice diagonale, il calcolo è molto rapido. Il prodotto scalare è la somma dei prodotti delle componenti pesati dai numeri sulla diagonale:
+\[ \langle v, w \rangle_S = 3(x_v x_w) + 2(y_v y_w) + 5(z_v z_w) \]
+Sostituiamo i valori:
+\[ \langle v, w \rangle_S = 3(1 \cdot 1) + 2(1 \cdot -2) + 5(1 \cdot 0) \]
+\[ = 3(1) + 2(-2) + 0 \]
+\[ = 3 - 4 = -1 \]
+
+\textbf{Risultato:} Il prodotto scalare vale $-1$.
+\textit{Domanda extra:} Sono ortogonali? No, perché il risultato non è 0.
+
+\subsection*{9.4 Algoritmo di Gram-Schmidt e Ortonormalizzazione}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!60!black,title=\textbf{}]
+Dato un insieme di vettori linearmente indipendenti $\{v_1, v_2, \dots\}$, costruiamo una base ortonormale $\{u_1, u_2, \dots\}$.
+
+\textbf{Fase 1: Ortogonalizzazione (Trovare i $w$)}
+L'idea è: "Nuovo vettore = Vecchio vettore - Proiezioni sui precedenti".
+\begin{itemize}
+    \item $w_1 = v_1$
+    \item $w_2 = v_2 - \frac{\langle v_2, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1$
+    \item $w_3 = v_3 - \frac{\langle v_3, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1 - \frac{\langle v_3, w_2 \rangle}{\langle w_2, w_2 \rangle} w_2$
+\end{itemize}
+\textit{Consiglio pratico:} Se nei vettori $w_i$ escono frazioni, possiamo moltiplicare tutto il vettore per un numero intero per pulirlo. L'ortogonalità (l'angolo) non cambia se allunghi il vettore!
+
+\textbf{Fase 2: Normalizzazione (Trovare gli $u$)}
+Alla fine, dividiamo ogni vettore $w_i$ per la sua lunghezza (norma).
+\[ u_i = \frac{w_i}{\|w_i\|} \]
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\textbf{Esercizio E: Applicazione Completa}
+\\ Data la base di $\mathbb{R}^3$ formata da $v_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}$, $v_2 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$, $v_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$.
+\\ Costruire una base \textbf{Ortonormale} usando il prodotto scalare standard.
+
+\textit{Svolgimento:}
+\textbf{Passo 1: Calcolo di $w_1$ (lo lasciamo uguale a $v_1$)}
+\[ w_1 = v_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} \]
+Calcoliamo subito $\langle w_1, w_1 \rangle = 1^2 + 1^2 + 0 = 2$.
+
+\textbf{Passo 2: Calcolo di $w_2$}
+Applichiamo la formula:
+\[ w_2 = v_2 - \frac{\langle v_2, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1 \]
+Calcoliamo il prodotto misto: $\langle v_2, w_1 \rangle = (1)(1) + (0)(1) + (1)(0) = 1$.
+\[ w_2 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 - 0.5 \\ 0 - 0.5 \\ 1 - 0 \end{pmatrix} = \begin{pmatrix} 1/2 \\ -1/2 \\ 1 \end{pmatrix} \]
+\textit{Trucco Antipanico:} Per evitare di portarci dietro le frazioni nel prossimo passaggio, usiamo un vettore parallelo a $w_2$ moltiplicando per 2.
+\[ w_2' = \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix} \]
+Usiamo questo $w_2'$ per i calcoli successivi (l'ortogonalità è preservata).
+Calcoliamo $\langle w_2', w_2' \rangle = 1 + 1 + 4 = 6$.
+
+\textbf{Passo 3: Calcolo di $w_3$}
+Dobbiamo togliere le proiezioni su $w_1$ e su $w_2'$:
+\[ w_3 = v_3 - \underbrace{\frac{\langle v_3, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1}_{\text{Comp. su } w_1} - \underbrace{\frac{\langle v_3, w_2' \rangle}{\langle w_2', w_2' \rangle} w_2'}_{\text{Comp. su } w_2} \]
+Prodotti scalari:
+\begin{itemize}
+    \item $\langle v_3, w_1 \rangle = 0 \cdot 1 + 0 \cdot 1 + 1 \cdot 0 = 0$. (Fortuna! $v_3$ è già ortogonale a $w_1$).
+    \item $\langle v_3, w_2' \rangle = 0 \cdot 1 + 0 \cdot (-1) + 1 \cdot 2 = 2$.
+\end{itemize}
+Sostituiamo:
+\[ w_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} - 0 - \frac{2}{6} \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix} \]
+\[ w_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} - \frac{1}{3} \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix} = \begin{pmatrix} -1/3 \\ 1/3 \\ 1 - 2/3 \end{pmatrix} = \begin{pmatrix} -1/3 \\ 1/3 \\ 1/3 \end{pmatrix} \]
+Anche qui, puliamo moltiplicando per 3:
+\[ w_3' = \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix} \]
+
+\textbf{Passo 4: Ortonormalizzazione finale}
+Abbiamo la base ortogonale $\{w_1, w_2', w_3'\}$. Ora dividiamo ciascuno per la sua norma.
+\begin{itemize}
+    \item $\|w_1\| = \sqrt{2} \implies u_1 = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}$
+    \item $\|w_2'\| = \sqrt{6} \implies u_2 = \frac{1}{\sqrt{6}} \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix}$
+    \item $\|w_3'\| = \sqrt{(-1)^2+1^2+1^2} = \sqrt{3} \implies u_3 = \frac{1}{\sqrt{3}} \begin{pmatrix} -1 \\ 1 \\ 1 \end{pmatrix}$
+\end{itemize}
+
+\textbf{Risultato:} La base ortonormale è $\{u_1, u_2, u_3\}$.
+\textit{Riprova:} Controlliamo se $u_1 \perp u_2$.
+$\langle u_1, u_2 \rangle \propto 1(1) + 1(-1) + 0(2) = 0$. 
+
+\section*{10. Teorema Spettrale Reale}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=yellow!75!black,title=\textbf{}]
+\textbf{1. Elementi}
+\begin{itemize}
+    \item \textbf{Matrice Simmetrica ($A$):} Uguale alla sua trasposta ($A = A^T$).
+    \item \textbf{Matrice Ortogonale ($Q$):} Una matrice le cui colonne sono \textbf{ortonormali} (norma 1, prodotto scalare 0).
+    \textit{Proprietà fondamentale:} $Q^{-1} = Q^T$ (L'inversa è gratis).
+\end{itemize}
+
+\textbf{2. Il Teorema (Enunciato)}
+Se $A$ è una matrice simmetrica reale:
+\begin{enumerate}
+    \item Tutti gli autovalori sono \textbf{Reali}.
+    \item Autovettori di autovalori diversi sono \textbf{Ortogonali}.
+    \item È sempre diagonalizzabile tramite una matrice ortogonale $Q$.
+\end{enumerate}
+
+\textbf{3. La Formula Spettrale}
+\[ A = Q D Q^T \]
+\textit{Significato:} Possiamo scomporre $A$ in una rotazione ($Q^T$), uno stiramento lungo gli assi ($D$) e la rotazione inversa ($Q$).
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\subsection*{10.1 Algoritmo Pratico: Diagonalizzazione Ortogonale}
+Rispetto alla diagonalizzazione classica, c'è un passaggio obbligatorio in più: la \textbf{Normalizzazione}.
+
+\textbf{Passo 1 (Autovalori):} Trova gli autovalori di $A$.
+
+\textbf{Passo 2 (Autovettori):} Trova gli autospazi.
+
+\textbf{Passo 3 (Costruzione):} Metti i vettori normalizzati nelle colonne di $Q$.
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\subsection*{10.2 Esercizi Svolti}
+
+\textbf{Esercizio A: Diagonalizzazione Spettrale ($2\times2$)}
+\\ Data la matrice simmetrica $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$, trovare $Q$ e $D$ tali che $A = Q D Q^T$.
+
+\textit{Svolgimento:}
+\textbf{1. Autovalori:}
+$\text{Tr}=4, \det=3 \implies \lambda^2 - 4\lambda + 3 = 0$. Soluzioni: $\lambda_1 = 1, \lambda_2 = 3$.
+
+\textbf{2. Autovettori e Normalizzazione:}
+\begin{itemize}
+    \item Per $\lambda_1 = 1$: $x+y=0 \implies v_1 = (1, -1)$.
+    Norma $\|v_1\| = \sqrt{2}$. \textbf{Versore:} $u_1 = \begin{pmatrix} 1/\sqrt{2} \\ -1/\sqrt{2} \end{pmatrix}$.
+    
+    \item Per $\lambda_2 = 3$: $-x+y=0 \implies v_2 = (1, 1)$.
+    Norma $\|v_2\| = \sqrt{2}$. \textbf{Versore:} $u_2 = \begin{pmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{pmatrix}$.
+\end{itemize}
+\textit{Check Ortogonalità:} $1(1) + (-1)(1) = 0$. OK.
+
+\textbf{3. Matrice Q:}
+\[ Q = \begin{pmatrix} 1/\sqrt{2} & 1/\sqrt{2} \\ -1/\sqrt{2} & 1/\sqrt{2} \end{pmatrix} \quad \text{(Nota: } \det(Q)=1 \text{, è una rotazione)} \]
+
+\vspace{0.3cm}
+
+\textbf{Esercizio B: Riconoscimento Matrici Ortogonali}
+\\ Stabilire se $M = \begin{pmatrix} 3/5 & -4/5 \\ 4/5 & 3/5 \end{pmatrix}$ è ortogonale.
+
+\textit{Svolgimento:}
+Verifichiamo se $M^T M = I$ (oppure controlliamo le colonne).
+Colonna 1 ($c_1$): $\|c_1\|^2 = (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 25/25 = 1$. (OK)
+Colonna 2 ($c_2$): $\|c_2\|^2 = (-4/5)^2 + (3/5)^2 = 1$. (OK)
+Prodotto scalare ($c_1 \cdot c_2$): $3/5(-4/5) + 4/5(3/5) = -12/25 + 12/25 = 0$. (OK)
+\textbf{Risultato:} Sì, è una matrice ortogonale.
+
+\subsection*{10.3 Esercizi Inversi}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Sfruttare le proprietà}]
+Se il testo ci dice che la matrice $A$ è \textbf{Simmetrica}, sappiamo due cose anche senza vederla:
+\begin{enumerate}
+    \item \textbf{Autovettore mancante:}
+    Se conosciamo due autovettori $v_1, v_2$ (in 3D), il terzo $v_3$ sarà automaticamente \textbf{ortogonale} a entrambi. Possiamo trovarlo facendo il prodotto vettoriale (regola del determinante).
+    
+    \item \textbf{Ricostruzione della Matrice:}
+    Per trovare $A$ usiamo la formula diretta:
+    \[ A = Q \cdot D \cdot Q^T \]
+    \textbf{Attenzione:} Affinché questa formula funzioni (cioè affinché $Q^{-1}$ sia uguale a $Q^T$), ricordiamoci di \textbf{normalizzare} gli autovettori prima di metterli nelle colonne di $Q$.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\textbf{Esercizio C: Ricostruzione della Matrice (Problema Inverso)}
+\\ Una matrice simmetrica $A$ ($2\times2$) ha autovalori $\lambda_1 = 10$ e $\lambda_2 = 5$.
+\\ L'autovettore relativo a $\lambda_1$ è $v_1 = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$. Determinare $A$.
+
+\textit{Svolgimento:}
+\textbf{1. Troviamo il secondo autovettore ($v_2$):}
+Dato che $A$ è simmetrica, autovettori di autovalori diversi devono essere \textbf{ortogonali}.
+Cerchiamo un vettore ortogonale a $(3, 4)$. Scambiamo le coordinate e cambiamo un segno:
+\[ v_2 = \begin{pmatrix} -4 \\ 3 \end{pmatrix} \]
+\textit{Verifica:} $3(-4) + 4(3) = 0$. OK.
+
+\textbf{2. Costruiamo la matrice ortogonale $Q$:}
+Dobbiamo normalizzare i vettori per metterli dentro $Q$.
+\begin{itemize}
+    \item $\|v_1\| = \sqrt{3^2+4^2} = 5 \implies u_1 = \begin{pmatrix} 3/5 \\ 4/5 \end{pmatrix}$
+    \item $\|v_2\| = \sqrt{(-4)^2+3^2} = 5 \implies u_2 = \begin{pmatrix} -4/5 \\ 3/5 \end{pmatrix}$
+\end{itemize}
+Per semplificare i calcoli, portiamo fuori il fattore $\frac{1}{5}$:
+\[ Q = \frac{1}{5} \begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix} \]
+Di conseguenza, la trasposta (che coincide con l'inversa) è:
+\[ Q^T = \frac{1}{5} \begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix} \]
+
+\textbf{3. Calcoliamo $A = Q D Q^T$:}
+La matrice diagonale è $D = \begin{pmatrix} 10 & 0 \\ 0 & 5 \end{pmatrix}$.
+Impostiamo il prodotto:
+\[ A = \underbrace{\left[ \frac{1}{5} \begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix} \right]}_{Q} \underbrace{\begin{pmatrix} 10 & 0 \\ 0 & 5 \end{pmatrix}}_{D} \underbrace{\left[ \frac{1}{5} \begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix} \right]}_{Q^T} \]
+
+Raccogliamo gli scalari ($1/5 \cdot 1/5 = 1/25$) e facciamo il primo prodotto ($Q \cdot D$):
+Moltiplicare per $D$ significa moltiplicare la prima colonna per 10 e la seconda per 5:
+\[ Q \cdot D = \begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix} \begin{pmatrix} 10 & 0 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 30 & -20 \\ 40 & 15 \end{pmatrix} \]
+
+Ora moltiplichiamo per $Q^T$:
+\[ A = \frac{1}{25} \begin{pmatrix} 30 & -20 \\ 40 & 15 \end{pmatrix} \begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix} \]
+Calcoliamo i 4 elementi:
+\begin{itemize}
+    \item $a_{11} = 30(3) + (-20)(-4) = 90 + 80 = 170$
+    \item $a_{12} = 30(4) + (-20)(3) = 120 - 60 = 60$
+    \item $a_{21} = 40(3) + 15(-4) = 120 - 60 = 60$ 
+    \item $a_{22} = 40(4) + 15(3) = 160 + 45 = 205$
+\end{itemize}
+
+\[ A = \frac{1}{25} \begin{pmatrix} 170 & 60 \\ 60 & 205 \end{pmatrix} \]
+Notiamo che è simmetrica. possiamo ora semplificare dividendo tutto per 5:
+\[ A = \frac{1}{5} \begin{pmatrix} 34 & 12 \\ 12 & 41 \end{pmatrix} = \begin{pmatrix} 6.8 & 2.4 \\ 2.4 & 8.2 \end{pmatrix} \]
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio D:}
+\\ Sia $A$ una matrice simmetrica $3 \times 3$.
+\\ Sappiamo che $v_1 = (1, 1, 0)$ è autovettore per $\lambda=2$.
+\\ Sappiamo che $v_2 = (1, -1, 1)$ è autovettore per $\lambda=3$.
+\\ Trovare un autovettore per il terzo autovalore $\lambda_3$.
+
+\textit{Svolgimento:}
+NON serve sapere chi è $\lambda_3$ o chi è la matrice $A$.
+Per il Teorema Spettrale, autovettori di autovalori distinti sono ortogonali.
+Quindi $v_3$ deve essere ortogonale sia a $v_1$ che a $v_2$.
+Calcoliamo il prodotto vettoriale (cross product) $v_1 \times v_2$:
+\[ v_3 = \det \begin{pmatrix} i & j & k \\ 1 & 1 & 0 \\ 1 & -1 & 1 \end{pmatrix} \]
+Componente $i$: $1(1) - 0(-1) = 1$.
+Componente $j$: $-(1(1) - 0(1)) = -1$.
+Componente $k$: $1(-1) - 1(1) = -2$.
+\textbf{Risultato:} Un autovettore è $v_3 = \begin{pmatrix} 1 \\ -1 \\ -2 \end{pmatrix}$.
+
+\section*{11. Il Prodotto Hermitiano (Caso Complesso)}
+
+questo argomento è stato trattato durante l'ultima lezione del corso, pertanto gli esercizi svolti sono limitati e banali.
+\begin{tcolorbox}[colback=cyan!5!white,colframe=cyan!75!black,title=\textbf{}]
+\textbf{1. La Trasposta Coniugata ($A^H$ o $A^\dagger$)}
+Si ottiene facendo la trasposta della matrice E facendo il complesso coniugato di ogni elemento.
+\[ \text{Se } z = a+ib \implies \bar{z} = a-ib \]
+
+\textbf{2. Il Prodotto Hermitiano Standard}
+La formula è "Riga Coniugata per Colonna":
+\[ \langle v, w \rangle = v^H w = \bar{v}_1 w_1 + \bar{v}_2 w_2 + \dots + \bar{v}_n w_n \]
+\textit{Attenzione all'ordine:} $\langle v, w \rangle \neq \langle w, v \rangle$. Vale invece $\langle v, w \rangle = \overline{\langle w, v \rangle}$.
+
+\textbf{3. Matrice Unitaria ($U$)}
+È l'equivalente complesso della matrice Ortogonale.
+Le colonne sono ortonormali rispetto al prodotto hermitiano.
+\[ U^{-1} = U^H \quad (\text{ovvero } U^H U = I) \]
+
+\textbf{4. Matrice Hermitiana ($A$)}
+È l'equivalente complesso della matrice Simmetrica.
+\[ A = A^H \quad (\text{trasposta coniugata uguale all'originale}) \]
+\textit{Proprietà fondamentale:} Ha autovalori tutti \textbf{Reali}.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\subsection*{11.1 Esercizi Svolti}
+
+\textbf{Esercizio A: Calcolo del Prodotto Hermitiano}
+\\ Dati i vettori in $\mathbb{C}^2$: $v = \begin{pmatrix} 1+i \\ 2i \end{pmatrix}$ e $w = \begin{pmatrix} 1 \\ 1-i \end{pmatrix}$.
+\\ Calcolare il prodotto hermitiano standard $\langle v, w \rangle = v^H w$.
+
+\textit{Svolgimento:}
+Dobbiamo coniugare il primo vettore ($v$) e moltiplicarlo per il secondo ($w$).
+\[ v^H = \begin{pmatrix} \overline{1+i} & \overline{2i} \end{pmatrix} = \begin{pmatrix} 1-i & -2i \end{pmatrix} \]
+Ora eseguiamo il prodotto riga per colonna:
+\[ \langle v, w \rangle = (1-i)(1) + (-2i)(1-i) \]
+Svolgiamo i calcoli ($i^2 = -1$):
+\[ = 1 - i + (-2i + 2i^2) \]
+\[ = 1 - i - 2i - 2 \]
+\[ = -1 - 3i \]
+\textbf{Risultato:} $-1 - 3i$.
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio B: Calcolo della Norma}
+\\ Calcolare la norma del vettore $v = \begin{pmatrix} 1+i \\ 2 \end{pmatrix}$.
+
+\textit{Svolgimento:}
+La norma al quadrato è il prodotto del vettore per se stesso (coniugato): $\|v\|^2 = \bar{v}_1 v_1 + \bar{v}_2 v_2 = |v_1|^2 + |v_2|^2$.
+In pratica, sommiamo i moduli al quadrato dei componenti.
+\[ \|v\|^2 = |1+i|^2 + |2|^2 \]
+Ricordiamo che $|a+ib|^2 = a^2 + b^2$:
+\[ |1+i|^2 = 1^2 + 1^2 = 2 \]
+\[ |2|^2 = 4 \]
+\[ \|v\|^2 = 2 + 4 = 6 \]
+\textbf{Risultato:} $\|v\| = \sqrt{6}$.
+\\ \textit{(Nota: La norma deve essere sempre un numero Reale $\ge 0$. Se esce una $i$, c'è un errore).}
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio C: Verifica Matrice Unitaria}
+\\ Verificare se la matrice $U = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$ è unitaria.
+
+\textit{Svolgimento:}
+Verifichiamo se le colonne $c_1, c_2$ formano una base ortonormale.
+\[ c_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}, \quad c_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} i \\ 1 \end{pmatrix} \]
+
+1. \textbf{Controllo Norme (devono essere 1):}
+\[ \|c_1\|^2 = \left(\frac{1}{\sqrt{2}}\right)^2 (|1|^2 + |i|^2) = \frac{1}{2}(1+1) = 1 \quad \text{(OK)} \]
+\[ \|c_2\|^2 = \frac{1}{2}(|i|^2 + |1|^2) = 1 \quad \text{(OK)} \]
+
+2. \textbf{Controllo Ortogonalità (prodotto scalare deve essere 0):}
+Calcoliamo $\langle c_1, c_2 \rangle = c_1^H c_2$.
+Coniughiamo $c_1$: $c_1^H = \frac{1}{\sqrt{2}} (1, -i)$.
+\[ \langle c_1, c_2 \rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}} \left[ 1(i) + (-i)(1) \right] = \frac{1}{2} (i - i) = 0 \quad \text{(OK)} \]
+
+\textbf{Risultato:} Le colonne sono ortonormali, quindi $U$ è una matrice Unitaria.
+
+\vspace{0.4cm}
+\hrule
+\vspace{0.4cm}
+
+\textbf{Esercizio D: Autovalori di Matrice Hermitiana}
+\\ Data la matrice $A = \begin{pmatrix} 3 & 2-i \\ 2+i & 4 \end{pmatrix}$. Senza calcolarli, di che tipo sono gli autovalori?
+
+\textit{Svolgimento:}
+Osserviamo la simmetria coniugata:
+\begin{itemize}
+    \item Diagonale: $3$ e $4$ (Reali).
+    \item Extra-diagonale: $a_{12} = 2-i$ e $a_{21} = 2+i$. Si vede che $a_{21} = \overline{a_{12}}$.
+\end{itemize}
+Quindi $A = A^H$, la matrice è \textbf{Hermitiana}.
+Per il Teorema Spettrale (versione complessa), gli autovalori di una matrice hermitiana sono sempre \textbf{Reali}.
+
+\textit{Verifica (calcolo opzionale):}
+$\det(A-\lambda I) = (3-\lambda)(4-\lambda) - (2-i)(2+i)$.
+$(2-i)(2+i) = 4 - i^2 = 5$.
+$\lambda^2 - 7\lambda + 12 - 5 = \lambda^2 - 7\lambda + 7 = 0$.
+Discriminante $\Delta = 49 - 28 = 21 > 0$. Le soluzioni sono reali.
+
 \end{document}
