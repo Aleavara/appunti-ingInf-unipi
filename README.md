@@ -2,6 +2,16 @@
 
 Il presente repository ospita una raccolta organizzata di materiale didattico e appunti relativi al corso di laurea in Ingegneria Informatica presso l'Universita di Pisa. L'obiettivo del progetto e la creazione di un archivio centralizzato, strutturato e cronologico per supportare lo studio individuale e la preparazione degli esami.
 
+## Sito Web e Materiale d'Esame
+
+per accedere a risorse aggiuntive, è disponibile il portale dedicato:
+
+👉 **[uni.alessioavara.it](https://uni.alessioavara.it)**
+
+Sul sito è possibile reperire materiale non presente in questo repository, tra cui:
+* **Prove d'esame**: Raccolta di tracce passate e simulazioni.
+* **Risorse integrative**: Materiale di supporto aggiuntivo per specifici corsi.
+
 ## Organizzazione dei contenuti
 
 La struttura del repository e suddivisa per anno accademico e per insegnamento, al fine di garantire una navigazione intuitiva:
