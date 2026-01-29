@@ -18,7 +18,7 @@ E possibile clonare l'intero repository tramite il comando:
 
 ```bash
 git clone [https://github.com/Aleavara/appunti-ingInf-unipi.git](https://github.com/Aleavara/appunti-ingInf-unipi.git)
-'''
+```
 ## Note legali e clausole di esclusione della responsabilità
 
 L'autore del repository non si assume alcuna responsabilità per l'accuratezza, la completezza o la qualità delle informazioni fornite.
