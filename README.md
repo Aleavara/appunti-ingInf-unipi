@@ -1,4 +1,4 @@
-# Archivio Appunti Ingegneria Informatica - Universita di Pisa
+# Archivio Appunti Ingegneria Informatica - Università di Pisa
 
 Il presente repository ospita una raccolta organizzata di materiale didattico e appunti relativi al corso di laurea in Ingegneria Informatica presso l'Universita di Pisa. L'obiettivo del progetto e la creazione di un archivio centralizzato, strutturato e cronologico per supportare lo studio individuale e la preparazione degli esami.
 
